@@ -17,7 +17,6 @@ public class NorthPanel extends JPanel{
         try {
             Image img = ImageIO.read(getClass().getResource("resources/playAgain.png"));
             Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;
-
             restartButton.setIcon(new ImageIcon(newimg));
         } catch (Exception ex) {
             System.out.println(ex);
@@ -32,6 +31,7 @@ public class NorthPanel extends JPanel{
                 fireNorthPanelEvenet(new NorthPanelEvent(this));
             }
         });
+
 
 
     }
