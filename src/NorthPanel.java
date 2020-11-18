@@ -12,6 +12,8 @@ public class NorthPanel extends JPanel{
     private JButton restartButton;
 
     public NorthPanel() {
+//        TODO statistics, time
+
         restartButton = new JButton();
 
         try {

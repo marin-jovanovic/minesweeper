@@ -14,7 +14,15 @@ public class CenterPanel extends  JPanel {
 
     public CenterPanel() {
 
-        setSize(200, 100);
+
+        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
+            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+                controlTable[i][j] = 0;
+
+            }
+        }
+
+                setSize(200, 100);
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
 
         buttons = new JButton[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
@@ -45,24 +53,32 @@ public class CenterPanel extends  JPanel {
 
                         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
                             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                                if(buttons[i][j].toString().equals(e.getSource().toString())) {
-                                    System.out.println("clicked " + i + " " + j);
 
-                                    openCell(i, j);
+                                if (areButtonsActive) {
+                                    if(buttons[i][j].toString().equals(e.getSource().toString())) {
+                                        System.out.println("clicked " + i + " " + j);
 
-                                    if (table[i][j] == -1) {
-                                        System.out.println("game over");
+                                        if (table[i][j] != 0) {
+                                            openCell(i, j);
+
+                                        }
+
+                                        if (table[i][j] == -1) {
+                                            System.out.println("game over");
 //                                        TODO make restar button dead and stop buttons from activating
-                                        fireEvent(new Event(this, "gameOver"));
+                                            fireEvent(new Event(this, "gameOver"));
+                                            areButtonsActive = false;
+                                        }
+                                        else if (table[i][j] == 0) {
+                                            openBlanks(i, j);
+                                        }
+                                        checkForWin();
 
+                                        return;
                                     }
-                                    else if (table[i][j] == 0) {
-                                        openBlanks(i, j);
-                                    }
-                                    checkForWin();
-
-                                    return;
                                 }
+
+
                             }
                         }
                     }
@@ -71,8 +87,11 @@ public class CenterPanel extends  JPanel {
         }
     }
 
+//    if field with mine is opened game is over
+//    all buttons must be locked
+//    this is controler for it
+    private boolean areButtonsActive = true;
     private int numOfOppenedCells = 0;
-
 
 
     public void checkForWin() {
@@ -81,16 +100,35 @@ public class CenterPanel extends  JPanel {
         System.out.println("num of cells " + numOfCells);
         System.out.println("opene        " + numOfOppenedCells);
         System.out.println("bobmbs       " + Constants.NUMBER_OF_MINES);
-        if (isGameWon) {
-            System.out.println("game is won");
+        System.out.println("control table");
+
+        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
+            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+
+                System.out.print(controlTable[i][j] + " ");
+            }
+            System.out.println();
         }
+
+                if (isGameWon) {
+//                    TODO disable statistics
+                    System.out.println("game is won");
+                    fireEvent(new Event(this, "gameWon"));
+                    areButtonsActive = false;
+                }
 
     }
 
-
+//  opens targeted cell
     public void openCell(int i, int j){
 
+
+        if (!buttons[i][j].isEnabled()) {
+            return;
+        }
+        controlTable[i][j]++;
         numOfOppenedCells++;
+        System.out.println("otvaram " + i+ " " + j);
 
         buttons[i][j].setEnabled(false);
 
@@ -125,11 +163,20 @@ public class CenterPanel extends  JPanel {
         }
     }
 
+    private int[][] controlTable = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
 
+
+//    opens all blank that are NEWS of targeted cell
     public void openBlanks(int x, int y) {
 
         if (table[x][y] != 0){
-            openCell(x,y);
+//            if (!buttons[x][y].isEnabled()) {
+
+//          opens tiles that surround empty cells
+
+                openCell(x,y);
+//            }
+
             return;
         }
 
@@ -148,8 +195,13 @@ public class CenterPanel extends  JPanel {
         return;
     }
 
+//    main restart sequnce when game is started again
     public void restart() {
         System.out.println("##### new game ######");
+
+
+        areButtonsActive = true;
+        numOfOppenedCells = 0;
 
         restartButtons();
 
@@ -168,8 +220,8 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-    //  enables all buttons
-    public void restartButtons() {
+//    enables all buttons
+    private void restartButtons() {
         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
                 buttons[i][j].setEnabled(true);
@@ -178,8 +230,6 @@ public class CenterPanel extends  JPanel {
             }
         }
     }
-
-
 
 
     private EventListenerList listenerList = new EventListenerList();
@@ -197,7 +247,5 @@ public class CenterPanel extends  JPanel {
     public void addListener(Listener listener) {
         listenerList.add(Listener.class, listener);
     }
-
-
 
 }
