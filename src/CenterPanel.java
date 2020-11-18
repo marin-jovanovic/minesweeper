@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +13,6 @@ public class CenterPanel extends  JPanel {
 
 
     public CenterPanel() {
-
-
 
         setSize(200, 100);
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
@@ -28,7 +27,6 @@ public class CenterPanel extends  JPanel {
                 this.add(buttons[i][j]);
 
                 Image img;
-//                try {
                 try {
                     img = ImageIO.read(getClass().getResource("resources/closedCell.png"));
                     Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -38,19 +36,13 @@ public class CenterPanel extends  JPanel {
                     e.printStackTrace();
                 }
 
-//                }
-//                catch (Exception dde) {
-//                    img = ImageIO.read(getClass().getResource("resources/" + num + ".jpg"));
-//
-//                }
-
-//                buttons[i][j].setDisabledIcon(new ImageIcon(newimg));
-
-
                 buttons[i][j].addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
+
+                        checkForWin();
+
                         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
                             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
                                 if(buttons[i][j].toString().equals(e.getSource().toString())) {
@@ -61,26 +53,45 @@ public class CenterPanel extends  JPanel {
                                     if (table[i][j] == -1) {
                                         System.out.println("game over");
 //                                        TODO make restar button dead and stop buttons from activating
+                                        fireEvent(new Event(this, "gameOver"));
+
                                     }
                                     else if (table[i][j] == 0) {
                                         openBlanks(i, j);
                                     }
+                                    checkForWin();
 
-
+                                    return;
                                 }
                             }
                         }
                     }
-
                 });
             }
         }
     }
 
+    private int numOfOppenedCells = 0;
 
+
+
+    public void checkForWin() {
+        int numOfCells = Constants.NUMBER_OF_COLUMNS * Constants.NUMBER_OF_ROWS;
+        boolean isGameWon = (numOfCells - numOfOppenedCells == Constants.NUMBER_OF_MINES);
+        System.out.println("num of cells " + numOfCells);
+        System.out.println("opene        " + numOfOppenedCells);
+        System.out.println("bobmbs       " + Constants.NUMBER_OF_MINES);
+        if (isGameWon) {
+            System.out.println("game is won");
+        }
+
+    }
 
 
     public void openCell(int i, int j){
+
+        numOfOppenedCells++;
+
         buttons[i][j].setEnabled(false);
 
         int num = table[i][j];
@@ -88,11 +99,9 @@ public class CenterPanel extends  JPanel {
             num = 0;
         }
 
+
         try {
             Image img;
-
-//                buttons[i][j].setDisabledIcon(new ImageIcon("resources/0.png"));
-//                buttons[i][j].setIcon(new ImageIcon("resources/0.png"));
 
             try {
                 img = ImageIO.read(getClass().getResource("resources/" + num + ".png"));
@@ -102,10 +111,14 @@ public class CenterPanel extends  JPanel {
                 img = ImageIO.read(getClass().getResource("resources/" + num + ".jpg"));
 
             }
+
             Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
 
             buttons[i][j].setDisabledIcon(new ImageIcon(newimg));
             buttons[i][j].setIcon(new ImageIcon(newimg));
+
+//            table[i][j] = -2;
+
         } catch (Exception ex) {
             System.out.println("errr");
             System.out.println(ex);
@@ -114,12 +127,11 @@ public class CenterPanel extends  JPanel {
 
 
     public void openBlanks(int x, int y) {
+
         if (table[x][y] != 0){
             openCell(x,y);
-
             return;
         }
-
 
         table[x][y] = 9;
         openCell(x,y);
@@ -134,7 +146,6 @@ public class CenterPanel extends  JPanel {
             openBlanks(x, y-1);
 
         return;
-
     }
 
     public void restart() {
@@ -157,7 +168,6 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-
     //  enables all buttons
     public void restartButtons() {
         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
@@ -168,6 +178,26 @@ public class CenterPanel extends  JPanel {
             }
         }
     }
+
+
+
+
+    private EventListenerList listenerList = new EventListenerList();
+
+    public void fireEvent(Event event) {
+        Object[] listeners = listenerList.getListenerList();
+
+        for (int i = 0; i < listeners.length; i += 2) {
+            if(listeners[i] == Listener.class) {
+                ((Listener)listeners[i+1]).EventOccured(event);
+            }
+        }
+    }
+
+    public void addListener(Listener listener) {
+        listenerList.add(Listener.class, listener);
+    }
+
 
 
 }

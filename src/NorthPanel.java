@@ -28,7 +28,9 @@ public class NorthPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
-                fireNorthPanelEvenet(new NorthPanelEvent(this));
+//                fireNorthPanelEvent(new NorthPanelEvent(this));
+
+                fireEvent(new Event(this, "none"));
             }
         });
 
@@ -36,23 +38,58 @@ public class NorthPanel extends JPanel{
 
     }
 
+//    true if game is won
+//    false if stepped on mine
+    public void setRestartButton(boolean result) {
+
+        try {
+            Image img;
+            if (result) {
+                img = ImageIO.read(getClass().getResource("resources/true.png"));
+            }
+            else {
+                img = ImageIO.read(getClass().getResource("resources/false.jpg"));
+            }
+            Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;
+            restartButton.setIcon(new ImageIcon(newimg));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
     private EventListenerList listenerList = new EventListenerList();
 
-    public void fireNorthPanelEvenet(NorthPanelEvent event) {
+    public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
         for (int i = 0; i < listeners.length; i += 2) {
-            if(listeners[i] == NorthPanelListener.class) {
-                ((NorthPanelListener)listeners[i+1]).NorthPanelEventOccured(event);
+            if(listeners[i] == Listener.class) {
+                ((Listener)listeners[i+1]).EventOccured(event);
             }
         }
     }
 
-    public void addNorthPanelListener(NorthPanelListener listener) {
-        listenerList.add(NorthPanelListener.class, listener);
+    public void addListener(Listener listener) {
+        listenerList.add(Listener.class, listener);
     }
 
-    public void removeNorthPanelListener(NorthPanelListener listener){
-        listenerList.remove(NorthPanelListener.class, listener);
-    }
+
+
+//    public void fireNorthPanelEvent(NorthPanelEvent event) {
+//        Object[] listeners = listenerList.getListenerList();
+//
+//        for (int i = 0; i < listeners.length; i += 2) {
+//            if(listeners[i] == NorthPanelListener.class) {
+//                ((NorthPanelListener)listeners[i+1]).NorthPanelEventOccured(event);
+//            }
+//        }
+//    }
+
+//    public void addNorthPanelListener(NorthPanelListener listener) {
+//        listenerList.add(NorthPanelListener.class, listener);
+//    }
+//
+//    public void removeNorthPanelListener(NorthPanelListener listener){
+//        listenerList.remove(NorthPanelListener.class, listener);
+//    }
 }

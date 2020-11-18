@@ -13,7 +13,7 @@ public class Main {
             });
         }
         catch (InvocationTargetException e) {
-            e.getTargetException().printStackTrace(); // get the target exception
+            e.getTargetException().printStackTrace();
         }
         catch (InterruptedException e) {
             e.printStackTrace();

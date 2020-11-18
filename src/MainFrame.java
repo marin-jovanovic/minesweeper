@@ -15,7 +15,23 @@ public class MainFrame extends JFrame {
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();
 
-        northPanel.addNorthPanelListener(event -> centerPanel.restart());
+//        northPanel.addNorthPanelListener(event -> centerPanel.restart());
+        northPanel.addListener(event -> centerPanel.restart());
+        centerPanel.addListener(new Listener() {
+            @Override
+            public void EventOccured(Event event) {
+//                System.out.println(event.getSource());
+//                System.out.println(event);
+                System.out.println(event.getCommand());
+
+                if (event.getCommand().equals("gameOver")) {
+                    northPanel.setRestartButton(false);
+                } else {
+                    northPanel.setRestartButton(true);
+                }
+
+            }
+        });
 
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
