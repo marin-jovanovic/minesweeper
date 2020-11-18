@@ -65,15 +65,19 @@ public class CenterPanel extends  JPanel {
 
                                         if (table[i][j] == -1) {
                                             System.out.println("game over");
-//                                        TODO make restar button dead and stop buttons from activating
+//                                          TODO halt time
+//                                          extract to new thread (swing worker)
                                             fireEvent(new Event(this, "gameOver"));
                                             areButtonsActive = false;
+                                            return;
                                         }
                                         else if (table[i][j] == 0) {
                                             openBlanks(i, j);
                                         }
                                         checkForWin();
 
+                                        System.out.println("*** halt ***");
+                                        System.out.println();
                                         return;
                                     }
                                 }
@@ -170,13 +174,7 @@ public class CenterPanel extends  JPanel {
     public void openBlanks(int x, int y) {
 
         if (table[x][y] != 0){
-//            if (!buttons[x][y].isEnabled()) {
-
-//          opens tiles that surround empty cells
-
-                openCell(x,y);
-//            }
-
+            openCell(x,y);
             return;
         }
 

@@ -30,8 +30,6 @@ public class NorthPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
-//                fireNorthPanelEvent(new NorthPanelEvent(this));
-
                 fireEvent(new Event(this, "none"));
             }
         });
@@ -74,24 +72,4 @@ public class NorthPanel extends JPanel{
     public void addListener(Listener listener) {
         listenerList.add(Listener.class, listener);
     }
-
-
-
-//    public void fireNorthPanelEvent(NorthPanelEvent event) {
-//        Object[] listeners = listenerList.getListenerList();
-//
-//        for (int i = 0; i < listeners.length; i += 2) {
-//            if(listeners[i] == NorthPanelListener.class) {
-//                ((NorthPanelListener)listeners[i+1]).NorthPanelEventOccured(event);
-//            }
-//        }
-//    }
-
-//    public void addNorthPanelListener(NorthPanelListener listener) {
-//        listenerList.add(NorthPanelListener.class, listener);
-//    }
-//
-//    public void removeNorthPanelListener(NorthPanelListener listener){
-//        listenerList.remove(NorthPanelListener.class, listener);
-//    }
 }
