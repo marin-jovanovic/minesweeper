@@ -4,25 +4,21 @@ import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.EventListener;
 import java.util.EventObject;
 
 public class NorthPanel extends JPanel{
 
     private JButton restartButton;
+    private JButton settingsButton;
 
     public NorthPanel() {
 //        TODO statistics, time
 
         restartButton = new JButton();
 
-        try {
-            Image img = ImageIO.read(getClass().getResource("resources/playAgain.png"));
-            Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;
-            restartButton.setIcon(new ImageIcon(newimg));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        setRestartButton("init");
 
         add(restartButton);
 
@@ -31,24 +27,48 @@ public class NorthPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
                 fireEvent(new Event(this, "none"));
+                setRestartButton("playAgain");
             }
         });
 
+        settingsButton = new JButton("settings");
 
+        add(settingsButton);
+
+        settingsButton.addActionListener(event -> {
+            try {
+                SwingUtilities.invokeLater(() -> {
+                    SettingsFrame settingsFrame = new SettingsFrame();
+                    settingsFrame.setVisible(true);
+//                    settingsFrame.setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
+//                    settingsFrame.setVisible(true);
+//                    settingsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                });
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+//            catch (InvocationTargetException e) {
+//                e.getTargetException().printStackTrace();
+//            }
+//            catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        });
 
     }
 
-//    true if game is won
-//    false if stepped on mine
-    public void setRestartButton(boolean result) {
+    public void setRestartButton(String result) {
 
         try {
             Image img;
-            if (result) {
+            if (result.equals("gameOver")) {
+                img = ImageIO.read(getClass().getResource("resources/false.jpg"));
+            }
+            else if (result.equals("gameWon")){
                 img = ImageIO.read(getClass().getResource("resources/true.png"));
             }
             else {
-                img = ImageIO.read(getClass().getResource("resources/false.jpg"));
+                img = ImageIO.read(getClass().getResource("resources/playAgain.png"));
             }
             Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;
             restartButton.setIcon(new ImageIcon(newimg));
@@ -56,6 +76,7 @@ public class NorthPanel extends JPanel{
             System.out.println(ex);
         }
     }
+
 
     private EventListenerList listenerList = new EventListenerList();
 

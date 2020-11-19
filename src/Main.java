@@ -5,19 +5,24 @@ public class Main {
 
     public static void windowLauncher() {
         try {
-            SwingUtilities.invokeAndWait(() -> {
+            SwingUtilities.invokeLater(() -> {
                 MainFrame mainFrame = new MainFrame();
                 mainFrame.setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
                 mainFrame.setVisible(true);
                 mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             });
         }
-        catch (InvocationTargetException e) {
-            e.getTargetException().printStackTrace();
+//        catch (InvocationTargetException e) {
+//            e.getTargetException().printStackTrace();
+//        }
+//        catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        catch (Exception e) {
+            System.out.println(e);
         }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+
     }
 
     public static void main(String[] args) {

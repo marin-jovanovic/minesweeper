@@ -14,15 +14,7 @@ public class CenterPanel extends  JPanel {
 
     public CenterPanel() {
 
-
-        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                controlTable[i][j] = 0;
-
-            }
-        }
-
-                setSize(200, 100);
+        setSize(200, 100);
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
 
         buttons = new JButton[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
@@ -31,12 +23,12 @@ public class CenterPanel extends  JPanel {
 
         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+
                 buttons[i][j] = new JButton();
                 this.add(buttons[i][j]);
 
-                Image img;
                 try {
-                    img = ImageIO.read(getClass().getResource("resources/closedCell.png"));
+                    Image img = ImageIO.read(getClass().getResource("resources/closedCell.png"));
                     Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
                     buttons[i][j].setIcon(new ImageIcon(newimg));
 
@@ -61,17 +53,18 @@ public class CenterPanel extends  JPanel {
                                         if (table[i][j] != 0) {
                                             openCell(i, j);
 
-                                        }
-
-                                        if (table[i][j] == -1) {
-                                            System.out.println("game over");
+                                            if (table[i][j] == -1) {
+                                                System.out.println("game over");
 //                                          TODO halt time
 //                                          extract to new thread (swing worker)
-                                            fireEvent(new Event(this, "gameOver"));
-                                            areButtonsActive = false;
-                                            return;
+                                                fireEvent(new Event(this, "gameOver"));
+                                                areButtonsActive = false;
+                                                return;
+                                            }
                                         }
-                                        else if (table[i][j] == 0) {
+
+
+                                        if (table[i][j] == 0) {
                                             openBlanks(i, j);
                                         }
                                         checkForWin();
@@ -81,8 +74,6 @@ public class CenterPanel extends  JPanel {
                                         return;
                                     }
                                 }
-
-
                             }
                         }
                     }
@@ -106,31 +97,22 @@ public class CenterPanel extends  JPanel {
         System.out.println("bobmbs       " + Constants.NUMBER_OF_MINES);
         System.out.println("control table");
 
-        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-
-                System.out.print(controlTable[i][j] + " ");
-            }
-            System.out.println();
-        }
-
-                if (isGameWon) {
+        if (isGameWon) {
 //                    TODO disable statistics
-                    System.out.println("game is won");
-                    fireEvent(new Event(this, "gameWon"));
-                    areButtonsActive = false;
-                }
+            System.out.println("game is won");
+            fireEvent(new Event(this, "gameWon"));
+            areButtonsActive = false;
+        }
 
     }
 
 //  opens targeted cell
     public void openCell(int i, int j){
 
-
         if (!buttons[i][j].isEnabled()) {
             return;
         }
-        controlTable[i][j]++;
+
         numOfOppenedCells++;
         System.out.println("otvaram " + i+ " " + j);
 
@@ -141,7 +123,6 @@ public class CenterPanel extends  JPanel {
             num = 0;
         }
 
-
         try {
             Image img;
 
@@ -151,7 +132,6 @@ public class CenterPanel extends  JPanel {
             }
             catch (Exception dde) {
                 img = ImageIO.read(getClass().getResource("resources/" + num + ".jpg"));
-
             }
 
             Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
@@ -159,15 +139,13 @@ public class CenterPanel extends  JPanel {
             buttons[i][j].setDisabledIcon(new ImageIcon(newimg));
             buttons[i][j].setIcon(new ImageIcon(newimg));
 
-//            table[i][j] = -2;
-
         } catch (Exception ex) {
             System.out.println("errr");
             System.out.println(ex);
         }
     }
 
-    private int[][] controlTable = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
+//    private int[][] controlTable = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
 
 
 //    opens all blank that are NEWS of targeted cell
@@ -196,7 +174,6 @@ public class CenterPanel extends  JPanel {
 //    main restart sequnce when game is started again
     public void restart() {
         System.out.println("##### new game ######");
-
 
         areButtonsActive = true;
         numOfOppenedCells = 0;

@@ -25,9 +25,9 @@ public class MainFrame extends JFrame {
                 System.out.println(event.getCommand());
 
                 if (event.getCommand().equals("gameOver")) {
-                    northPanel.setRestartButton(false);
+                    northPanel.setRestartButton("gameOver");
                 } else {
-                    northPanel.setRestartButton(true);
+                    northPanel.setRestartButton("gameWon");
                 }
 
             }
