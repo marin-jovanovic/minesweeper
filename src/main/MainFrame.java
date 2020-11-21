@@ -9,6 +9,9 @@ public class MainFrame extends JFrame {
     private CenterPanel centerPanel;
 
     public MainFrame() {
+
+        Constants.refresh();
+
         setSize(Constants.WIDTH, Constants.HEIGHT);
         setLayout(new BorderLayout());
 
