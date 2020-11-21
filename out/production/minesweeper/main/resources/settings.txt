@@ -1,5 +1,5 @@
-number of rows = 21
-number of columns = 165
+number of rows = 10
+number of columns = 10
 number of mines = 2
 
 other

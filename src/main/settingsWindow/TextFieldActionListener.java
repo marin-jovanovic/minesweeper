@@ -49,6 +49,9 @@ public class TextFieldActionListener implements DocumentListener {
             else if (target.equals("rowNumber")) {
                 SettingsFrame.setRowNumber(data);
             }
+            else if (target.equals("mineNumber")) {
+                SettingsFrame.setMineNumber(data);
+            }
             else {
                 System.out.println("error with target");
             }

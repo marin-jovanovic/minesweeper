@@ -1,5 +1,6 @@
 package main;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -8,9 +9,9 @@ import java.util.List;
 
 public class Constants {
 
-    public static int NUMBER_OF_COLUMNS = 8;
+    public static int NUMBER_OF_COLUMNS =10;
     public static int NUMBER_OF_ROWS = 10;
-    public static int NUMBER_OF_MINES = 3;
+    public static int NUMBER_OF_MINES = 30;
 
 //    TODO auto determinate, if user resizes window it must log values auto
 //    from top left of the screen select where window will start

@@ -9,6 +9,7 @@ public class MainFrame extends JFrame {
     private CenterPanel centerPanel;
 
     public MainFrame() {
+        super("minesweeper");
 
         Constants.refresh();
 

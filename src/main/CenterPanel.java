@@ -76,6 +76,7 @@ public class CenterPanel extends  JPanel {
 
                                         if (table[i][j] == 0) {
                                             openBlanks(i, j);
+
                                         }
                                         checkForWin();
 
@@ -177,6 +178,14 @@ public class CenterPanel extends  JPanel {
             openBlanks(x, y+1);
         if (!(y-1 < 0))
             openBlanks(x, y-1);
+        if (!(y+1 >= Constants.NUMBER_OF_COLUMNS) && !(x+1 >= Constants.NUMBER_OF_ROWS))
+            openBlanks(x+1, y+1);
+        if (!(y-1 < 0) && !(x-1 < 0))
+            openBlanks(x-1, y-1);
+        if (!(y-1 < 0) && !(x+1 >= Constants.NUMBER_OF_ROWS))
+            openBlanks(x+1, y-1);
+        if (!(y+1 >= Constants.NUMBER_OF_COLUMNS) && !(x-1 < 0))
+            openBlanks(x-1, y+1);
 
         return;
     }
@@ -184,7 +193,8 @@ public class CenterPanel extends  JPanel {
 //    main restart sequnce when game is started again
     public void restart() {
         System.out.println("##### new game ######");
-
+//        SwingUtilities.updateComponentTreeUI(this);
+// FIXME: 21.11.2020. 
         areButtonsActive = true;
         numOfOppenedCells = 0;
 

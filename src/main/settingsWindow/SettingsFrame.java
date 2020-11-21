@@ -59,15 +59,22 @@ public class SettingsFrame extends JFrame {
 
     }
 
-    JLabel rowNumberLabel;
-    JTextField rowNumberField;
+    private JLabel rowNumberLabel;
+    private JTextField rowNumberField;
     private static String rowNumber;
-    JLabel rowNumberChecker;
+    private JLabel rowNumberChecker;
 
 
-    JLabel columnNumberLabel;
-    JTextField columnNumberField;
+    private JLabel columnNumberLabel;
+    private JTextField columnNumberField;
     private static String columnNumber;
+    private JLabel columnNumberChecker;
+
+    private JLabel mineNumberLabel;
+    private JTextField mineNumberField;
+    private static String mineNumber;
+    private JLabel getMineNumberChecker;
+
 
     static private String newline = "\n";
     private JTextArea log;
@@ -86,6 +93,10 @@ public class SettingsFrame extends JFrame {
     public static void setColumnNumber(String columnNumber) {
         SettingsFrame.columnNumber = columnNumber;
     }
+    public static void setMineNumber(String mineNumber) {
+        SettingsFrame.mineNumber = mineNumber;
+    }
+
 
     public SettingsFrame() {
 
@@ -94,51 +105,30 @@ public class SettingsFrame extends JFrame {
         setSize(Constants.WIDTH, Constants.HEIGHT);
         setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
         setVisible(true);
-//        TODO on close save data
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setLayout(new GridLayout(4, 3));
+        setLayout(new GridLayout(0, 3));
 
 //        1. row
-        rowNumberLabel = new JLabel("row number:");
-        add(rowNumberLabel);
-
-        rowNumberField = new JTextField(Constants.NUMBER_OF_ROWS);
-        add(rowNumberField);
-
-        rowNumberField.getDocument().addDocumentListener(
-                new TextFieldActionListener(rowNumberField, "rowNumber")
-        );
-
-        rowNumberChecker = new JLabel();
-        add(rowNumberChecker);
-
-
-
+//        row
+        row1();
 
 //        2. row
-        columnNumberLabel = new JLabel(("column number:"));
-        add(columnNumberLabel);
+//        column
+        row2();
 
-        columnNumberField = new JTextField(Constants.NUMBER_OF_COLUMNS);
-        add(columnNumberField);
-
-        columnNumberField.getDocument().addDocumentListener(
-                new TextFieldActionListener(columnNumberField, "columnNumber")
-        );
+//        3. row
+//        mines
+        row3();
 
         addWindowListener(new WindowListener() {
 
-//            opening
             @Override
             public void windowOpened(WindowEvent e) {
-                System.out.println("window opened");
             }
 
-//            closing events
             @Override
             public void windowClosing(WindowEvent e) {
-                System.out.println("window closing");
 
                 try {
                     BufferedReader file = new BufferedReader(
@@ -147,24 +137,21 @@ public class SettingsFrame extends JFrame {
                     String line;
                     List<String> l = new ArrayList<>();
 
-//                    int counter = 3;
                     file.readLine();
                     file.readLine();
                     file.readLine();
 
                     l.add("number of rows = " + rowNumber);
                     l.add("number of columns = " + columnNumber);
-                    l.add("number of mines = " + "2");
+                    l.add("number of mines = " + mineNumber);
 
                     while ((line = file.readLine()) != null) {
                         l.add(line);
                     }
                     file.close();
 
-
                     String result = String.join("\n", l);
                     System.out.println(result);
-
 
                     // write the new string with the replaced line OVER the same file
                     FileOutputStream fileOut = new FileOutputStream("src/main/resources/settings.txt");
@@ -229,6 +216,51 @@ public class SettingsFrame extends JFrame {
         JButton btn = new JButton("save");
         add(btn);
 
+    }
+
+
+
+    private void row1() {
+        rowNumberLabel = new JLabel("row number:");
+        add(rowNumberLabel);
+
+        rowNumberField = new JTextField(Constants.NUMBER_OF_ROWS);
+        add(rowNumberField);
+
+        rowNumberField.getDocument().addDocumentListener(
+                new TextFieldActionListener(rowNumberField, "rowNumber")
+        );
+
+        rowNumberChecker = new JLabel();
+        add(rowNumberChecker);
+    }
+    private void row2() {
+        columnNumberLabel = new JLabel(("column number:"));
+        add(columnNumberLabel);
+
+        columnNumberField = new JTextField(Constants.NUMBER_OF_COLUMNS);
+        add(columnNumberField);
+
+        columnNumberField.getDocument().addDocumentListener(
+                new TextFieldActionListener(columnNumberField, "columnNumber")
+        );
+
+        columnNumberChecker = new JLabel();
+        add(columnNumberChecker);
+    }
+    private void row3() {
+        mineNumberLabel = new JLabel(("mine number:"));
+        add(mineNumberLabel);
+
+        mineNumberField = new JTextField(Constants.NUMBER_OF_MINES);
+        add(mineNumberField);
+
+        mineNumberField.getDocument().addDocumentListener(
+                new TextFieldActionListener(mineNumberField, "mineNumber")
+        );
+
+        columnNumberChecker = new JLabel();
+        add(columnNumberChecker);
     }
 
     public void actionPerformed(ActionEvent e) {
