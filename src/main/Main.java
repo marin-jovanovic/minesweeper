@@ -1,22 +1,22 @@
 package main;
 
+import main.mainWindow.MainFrame;
+
 import javax.swing.*;
 
 public class Main {
 
     public static void windowLauncher() {
 
-        try {
+//        try {
             SwingUtilities.invokeLater(() -> {
                 MainFrame mainFrame = new MainFrame();
-                mainFrame.setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
-                mainFrame.setVisible(true);
-                mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
             });
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
+//        }
+//        catch (Exception e) {
+//            System.out.println(e);
+//        }
 
     }
 

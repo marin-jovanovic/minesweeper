@@ -1,5 +1,6 @@
-package main;
+package main.mainWindow;
 
+import main.Constants;
 import main.Event;
 import main.Listener;
 import main.TableGenerator;
@@ -10,6 +11,9 @@ import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class CenterPanel extends  JPanel {
@@ -19,6 +23,9 @@ public class CenterPanel extends  JPanel {
 
 
     public CenterPanel() {
+
+
+
 
         setSize(200, 100);
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
@@ -36,7 +43,10 @@ public class CenterPanel extends  JPanel {
 
 //                load image
                 try {
-                    Image img = ImageIO.read(getClass().getResource("resources/closedCell.png"));
+//                    Image img = ImageIO.read(getClass().getResource("src/main/resources/closedCell.png"))
+//                    new FileReader("src/main/resources/settings.txt")
+
+                    Image img = ImageIO.read(getClass().getResource("src/main/resources/closedCell.png"));
                     Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
                     buttons[i][j].setIcon(new ImageIcon(newimg));
 
@@ -93,7 +103,8 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-//    if field with mine is opened game is over
+
+    //    if field with mine is opened game is over
 //    all buttons must be locked
 //    this is controler for it
     private boolean areButtonsActive = true;
@@ -135,17 +146,26 @@ public class CenterPanel extends  JPanel {
         }
 
         try {
-            Image img;
+//            Image img;
 
-            try {
-                img = ImageIO.read(getClass().getResource("resources/" + num + ".png"));
+//            try {
+//                img = ImageIO.read(getClass().getResource("resources/resized_images/" + num + ".png"));
+//
+//            }
+//            catch (Exception dde) {
+//                img = ImageIO.read(getClass().getResource("resources/resized_images/" + num + ".jpg"));
+//            }
 
-            }
-            catch (Exception dde) {
-                img = ImageIO.read(getClass().getResource("resources/" + num + ".jpg"));
-            }
+//            Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
 
-            Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
+            File imageCheck = new File("src/main/resources/resized_images/" + num + ".jpg");
+
+            if(imageCheck.exists())
+                System.out.println("Image file found!");
+            else
+                System.out.println("Image file not found!");
+
+            Image newimg = ImageIO.read(getClass().getResource("src/main/resources/resized_images/" + num + ".jpg"));
 
             buttons[i][j].setDisabledIcon(new ImageIcon(newimg));
             buttons[i][j].setIcon(new ImageIcon(newimg));

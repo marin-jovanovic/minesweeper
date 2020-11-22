@@ -13,7 +13,9 @@ import java.awt.event.WindowListener;
 import java.io.*;
 import java.util.ArrayList;
 //import java.util.Arrays;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 //import java.util.stream.Collectors;
 
 /*
@@ -101,12 +103,9 @@ public class SettingsFrame extends JFrame {
     public SettingsFrame() {
 
         super("Settings");
-        setLayout(new FlowLayout());
         setSize(Constants.WIDTH, Constants.HEIGHT);
         setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
         setVisible(true);
-//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         setLayout(new GridLayout(0, 3));
 
 //        1. row
@@ -121,6 +120,9 @@ public class SettingsFrame extends JFrame {
 //        mines
         row3();
 
+
+
+//        saves on close new settings
         addWindowListener(new WindowListener() {
 
             @Override
@@ -137,13 +139,13 @@ public class SettingsFrame extends JFrame {
                     String line;
                     List<String> l = new ArrayList<>();
 
-                    file.readLine();
-                    file.readLine();
-                    file.readLine();
+//                    adds to l -> number of + k + number
+//                    checks exceptions and handles if not int
+                    checkAndAddLine(file, l, "rows", rowNumber);
+                    checkAndAddLine(file, l, "columns", columnNumber);
+                    checkAndAddLine(file, l, "mines", mineNumber);
 
-                    l.add("number of rows = " + rowNumber);
-                    l.add("number of columns = " + columnNumber);
-                    l.add("number of mines = " + mineNumber);
+
 
                     while ((line = file.readLine()) != null) {
                         l.add(line);
@@ -220,6 +222,36 @@ public class SettingsFrame extends JFrame {
 
 
 
+//    for adding lines to settings.txt
+    private void checkAndAddLine(BufferedReader file, List<String> l, String k, String targ) throws IOException {
+        try {
+            l.add("number of " + k + " = " + Integer.parseInt(targ));
+            file.readLine();
+        }
+        catch (NumberFormatException exception) {
+            if (exception.getMessage().equals("null")) {
+                l.add(file.readLine());
+            }
+            else {
+                System.out.println(exception);
+
+                String replacement = Arrays
+                        .stream(targ.split(""))
+                        .filter(s -> "0123456789".contains(s))
+                        .collect(Collectors.joining());
+
+                l.add("number of " + k + " = " + replacement);
+                file.readLine();
+            }
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            System.out.println("check and add line in settings frame");
+            l.add(file.readLine());
+        }
+    }
+
+
     private void row1() {
         rowNumberLabel = new JLabel("row number:");
         add(rowNumberLabel);
@@ -227,8 +259,28 @@ public class SettingsFrame extends JFrame {
         rowNumberField = new JTextField(Constants.NUMBER_OF_ROWS);
         add(rowNumberField);
 
+        TextFieldActionListener textFieldActionListener =
+                new TextFieldActionListener(rowNumberField, "rowNumber");
+
+        textFieldActionListener.addListener(event -> {
+
+            System.out.println(event.getCommand());
+
+            if (event.getCommand().equals("columnNumber emptyCell")) {
+//                northPanel.setRestartButton("gameOver");
+                System.out.println("empty cell");
+
+            }
+            else {
+                System.out.println("neki drugi fire event");
+//                northPanel.setRestartButton("gameWon");
+            }
+
+        });
+
+
         rowNumberField.getDocument().addDocumentListener(
-                new TextFieldActionListener(rowNumberField, "rowNumber")
+                textFieldActionListener
         );
 
         rowNumberChecker = new JLabel();

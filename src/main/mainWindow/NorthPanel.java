@@ -1,4 +1,4 @@
-package main;
+package main.mainWindow;
 
 import main.Event;
 import main.Listener;
