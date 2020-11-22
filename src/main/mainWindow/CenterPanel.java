@@ -3,7 +3,7 @@ package main.mainWindow;
 import main.Constants;
 import main.Event;
 import main.Listener;
-import main.TableGenerator;
+import main.utils.minesweeperDrivers.TableGenerator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,9 +11,9 @@ import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class CenterPanel extends  JPanel {
@@ -23,38 +23,45 @@ public class CenterPanel extends  JPanel {
 
 
     public CenterPanel() {
-
-
-
-
         setSize(200, 100);
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
 
-        buttons = new JButton[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
-
+//        generates and prints new table for minesweeper
         tableDriver();
+
+        buttons = new JButton[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
 
         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
 
                 buttons[i][j] = new JButton();
+
+//                String imageName = "closedCell";
+
+//                image for when button is not pressed
+                buttonSetIcon(buttons[i][j], "closedCell");
+
                 this.add(buttons[i][j]);
 
-
-//                load image
-                try {
-//                    Image img = ImageIO.read(getClass().getResource("src/main/resources/closedCell.png"))
-//                    new FileReader("src/main/resources/settings.txt")
-
-                    Image img = ImageIO.read(getClass().getResource("src/main/resources/closedCell.png"));
-                    Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
-                    buttons[i][j].setIcon(new ImageIcon(newimg));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                buttons[i][j].addMouseListener(new MouseAdapter() {
 
 
+
+                @Override
+                   public void mouseClicked(MouseEvent e) {
+                    System.out.println("mis kliknut");
+
+
+//                   else if (e.getButton() == MouseEvent.BUTTON1) {
+//                        System.out.println("button 1");
+//                    }
+                    if (e.getButton() != MouseEvent.BUTTON1) {
+                        System.out.println(e.getButton());
+
+
+                    }
+                   }
+               });
 
                 buttons[i][j].addActionListener(new ActionListener() {
 
@@ -77,17 +84,17 @@ public class CenterPanel extends  JPanel {
                                                 System.out.println("game over");
 //                                          TODO halt time
 //                                          extract to new thread (swing worker)
+//                                                defeat
                                                 fireEvent(new main.Event(this, "gameOver"));
                                                 areButtonsActive = false;
                                                 return;
                                             }
                                         }
 
-
                                         if (table[i][j] == 0) {
                                             openBlanks(i, j);
-
                                         }
+
                                         checkForWin();
 
                                         System.out.println("*** halt ***");
@@ -103,6 +110,18 @@ public class CenterPanel extends  JPanel {
         }
     }
 
+//    image when button is not pressed
+    private void buttonSetIcon(JButton jButton, String imageName) {
+        try {
+            ImageIcon img = new ImageIcon(Constants.PICTURES_PATH +
+                   imageName + Constants.PICTURES_FORMAT);
+            jButton.setIcon(img);
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
 
     //    if field with mine is opened game is over
 //    all buttons must be locked
@@ -110,18 +129,18 @@ public class CenterPanel extends  JPanel {
     private boolean areButtonsActive = true;
     private int numOfOppenedCells = 0;
 
-
     public void checkForWin() {
         int numOfCells = Constants.NUMBER_OF_COLUMNS * Constants.NUMBER_OF_ROWS;
         boolean isGameWon = (numOfCells - numOfOppenedCells == Constants.NUMBER_OF_MINES);
         System.out.println("num of cells " + numOfCells);
-        System.out.println("opene        " + numOfOppenedCells);
-        System.out.println("bobmbs       " + Constants.NUMBER_OF_MINES);
+        System.out.println("opened        " + numOfOppenedCells);
+        System.out.println("mines       " + Constants.NUMBER_OF_MINES);
         System.out.println("control table");
 
         if (isGameWon) {
 //                    TODO disable statistics
             System.out.println("game is won");
+//            victory
             fireEvent(new main.Event(this, "gameWon"));
             areButtonsActive = false;
         }
@@ -146,38 +165,16 @@ public class CenterPanel extends  JPanel {
         }
 
         try {
-//            Image img;
 
-//            try {
-//                img = ImageIO.read(getClass().getResource("resources/resized_images/" + num + ".png"));
-//
-//            }
-//            catch (Exception dde) {
-//                img = ImageIO.read(getClass().getResource("resources/resized_images/" + num + ".jpg"));
-//            }
-
-//            Image newimg = img.getScaledInstance( 50, 50,  java.awt.Image.SCALE_SMOOTH ) ;
-
-            File imageCheck = new File("src/main/resources/resized_images/" + num + ".jpg");
-
-            if(imageCheck.exists())
-                System.out.println("Image file found!");
-            else
-                System.out.println("Image file not found!");
-
-            Image newimg = ImageIO.read(getClass().getResource("src/main/resources/resized_images/" + num + ".jpg"));
-
-            buttons[i][j].setDisabledIcon(new ImageIcon(newimg));
-            buttons[i][j].setIcon(new ImageIcon(newimg));
+            ImageIcon img = new ImageIcon(Constants.PICTURES_PATH + num + Constants.PICTURES_FORMAT);
+            buttons[i][j].setDisabledIcon(img);
+            buttons[i][j].setIcon(img);
 
         } catch (Exception ex) {
-            System.out.println("errr");
-            System.out.println(ex);
+
+            ex.printStackTrace();
         }
     }
-
-//    private int[][] controlTable = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
-
 
 //    opens all blank that are NEWS of targeted cell
     public void openBlanks(int x, int y) {
@@ -240,7 +237,8 @@ public class CenterPanel extends  JPanel {
         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
                 buttons[i][j].setEnabled(true);
-                buttons[i][j].setIcon(null);
+                buttonSetIcon(buttons[i][j], "closedCell");
+//                buttons[i][j].setIcon(null);
                 buttons[i][j].setDisabledIcon(null);
             }
         }
@@ -253,6 +251,8 @@ public class CenterPanel extends  JPanel {
         Object[] listeners = listenerList.getListenerList();
 
         for (int i = 0; i < listeners.length; i += 2) {
+
+
             if(listeners[i] == Listener.class) {
                 ((Listener)listeners[i+1]).EventOccured(event);
             }

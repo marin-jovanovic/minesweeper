@@ -1,23 +1,12 @@
 package main;
 
 import main.mainWindow.MainFrame;
-
 import javax.swing.*;
 
 public class Main {
 
     public static void windowLauncher() {
-
-//        try {
-            SwingUtilities.invokeLater(() -> {
-                MainFrame mainFrame = new MainFrame();
-
-            });
-//        }
-//        catch (Exception e) {
-//            System.out.println(e);
-//        }
-
+        SwingUtilities.invokeLater(MainFrame::new);
     }
 
 //    TODO extract image loading to separate threads to make program faster

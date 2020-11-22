@@ -11,7 +11,7 @@ public class Constants {
 
     public static int NUMBER_OF_COLUMNS =10;
     public static int NUMBER_OF_ROWS = 10;
-    public static int NUMBER_OF_MINES = 30;
+    public static int NUMBER_OF_MINES = 15;
 
 //    TODO auto determinate, if user resizes window it must log values auto
 //    from top left of the screen select where window will start
@@ -20,6 +20,12 @@ public class Constants {
 
     public static int WIDTH = 500;
     public static int HEIGHT = 500;
+
+//    this is for RESIZED pictures
+    public static String PICTURES_PATH = "src/main/resources/resized_images/";
+    public static String PICTURES_FORMAT = ".png";
+
+//    add mouse listeners
 
 
     public static void refresh() {

@@ -26,9 +26,13 @@ public class ImageUtils {
             paths.forEach(path -> {
                 System.out.println(path);
                 System.out.println(path.getFileName());
+//                System.out.println();
+
+                String name = (path.getFileName()).toString().replaceFirst("[.][^.]+$", "");
 
                 if (String.valueOf(path).endsWith(".png") || String.valueOf(path).endsWith(".jpg")) {
-                    resizeAndSaveImage(String.valueOf(path), (destination + "/" + path.getFileName()));
+                    resizeAndSaveImage(String.valueOf(path), (destination + "/" + name + ".png"));
+
                     System.out.println(destination + path.getFileName());
                 }
 
@@ -44,8 +48,9 @@ public class ImageUtils {
             BufferedImage originalImage = ImageIO.read(new File(source));
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
-            BufferedImage resizeImageJpg = resizeImage(originalImage, type, 50, 50);
-            ImageIO.write(resizeImageJpg, "jpg", new File(destination));
+            BufferedImage resizeImage = resizeImage(originalImage, type, 50, 50);
+//            ImageIO.write(resizeImageJpg, "jpg", new File(destination));
+            ImageIO.write(resizeImage, "png", new File(destination));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

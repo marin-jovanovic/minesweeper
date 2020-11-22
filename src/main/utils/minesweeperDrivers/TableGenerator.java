@@ -1,4 +1,6 @@
-package main;
+package main.utils.minesweeperDrivers;
+
+import main.Constants;
 
 import java.util.Random;
 
@@ -7,49 +9,6 @@ public class TableGenerator  {
     private static int[][] table = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
     private static boolean[] isRowFull = new boolean[Constants.NUMBER_OF_ROWS];
 
-
-    public static void main(String[] args) {
-
-//        generateTable();
-//
-//        printTable();
-//
-//        generateTable();
-//
-//        printTable();
-
-//        generateTable();
-//        printTable();
-//
-//        int x = 1;
-//        int y = 1;
-//
-//        floodFill(x,y,0,9);
-//
-//        printTable();
-
-    }
-
-//    public static void floodFill(int x, int y, int target, int replacement){
-////        if (target == replacement) {
-////            return;
-////        }
-//        if (table[x][y] != target) {
-//            return;
-//        }
-//        table[x][y] = replacement;
-//        if (!(x+1 >= Constants.NUMBER_OF_ROWS))
-//            floodFill(x+1, y, target, replacement);
-//        if (!(x-1 < 0))
-//            floodFill(x-1, y, target, replacement);
-//        if (!(y+1 >= Constants.NUMBER_OF_COLUMNS))
-//            floodFill(x, y+1, target, replacement);
-//        if (!(y-1 < 0))
-//            floodFill(x, y-1, target, replacement);
-//
-//        return;
-//    }
-
     public static int[][] getTable() {
         generateTable();
         return table;
@@ -57,7 +16,7 @@ public class TableGenerator  {
 
     private static void generateTable() {
 
-//        case: broj redova ili kolona je nula
+//        case: row number of column number == 0
 
 
 //        case: more mines or equal to size of table
@@ -120,31 +79,6 @@ public class TableGenerator  {
         }
     }
 
-//    private static void printIsRowFull() {
-//        for (int i = 0; i < Constants.NUMBER_OF_COLUMNS; i++) {
-//            System.out.println(isRowFull[i]);
-//        }
-//    }
-
-//    private static boolean isSomeRowNotFull() {
-//        boolean isSomeRowNotFull = false;
-//        for (int i = 0; i < Constants.NUMBER_OF_COLUMNS; i++) {
-//            if (!isRowFull[i]) {
-//
-//                isSomeRowNotFull = true;
-//                break;
-//            }
-//        }
-//
-//        if (isSomeRowNotFull) {
-//            System.out.println("some row is not full");
-//        }
-//        else {
-//            System.out.println("all rows are full");
-//        }
-//
-//        return isSomeRowNotFull;
-//    }
 
 //    sets all to boolean(false)
     private static void initializeIsRowFull() {
@@ -167,6 +101,11 @@ public class TableGenerator  {
             }
 
         }
+
+
+//        while (int row = rand.nextInt(Constants.NUMBER_OF_ROWS)) {
+//
+//        }
         return row;
     }
 

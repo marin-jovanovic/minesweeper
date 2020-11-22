@@ -107,6 +107,7 @@ public class SettingsFrame extends JFrame {
         setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
         setVisible(true);
         setLayout(new GridLayout(0, 3));
+//        settingsFrame.setVisible(true);
 
 //        1. row
 //        row
