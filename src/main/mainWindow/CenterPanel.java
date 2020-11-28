@@ -17,15 +17,20 @@ public class CenterPanel extends  JPanel {
 
     private final JButton[][] buttons;
     private int[][] table;
+    private JButton currentHoveredButton;
+
+//    if field with mine is opened game is over
+//    all buttons must be locked
+//    this is controller for it
+    private boolean areButtonsActive = true;
+    private int numOfOpenedCells = 0;
 
 
     public CenterPanel() {
         setSize(200, 100);
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
 
-//        generates and prints new table for minesweeper
-        tableDriver();
-
+        table = TableGenerator.getTable();
         buttons = new JButton[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
 
         for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
@@ -139,31 +144,15 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-
-    private JButton currentHoveredButton;
-//    CSV: "i;j"
-//    private String hoveredButton = "";
-
-//    image when button is not pressed
     private void buttonSetIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.PICTURES_PATH +
-                   imageName + Constants.PICTURES_FORMAT);
-
-
+            ImageIcon img = new ImageIcon(Constants.PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
             jButton.setIcon(img);
         }
         catch (Exception exception) {
             exception.printStackTrace();
         }
     }
-
-
-    //    if field with mine is opened game is over
-//    all buttons must be locked
-//    this is controller for it
-    private boolean areButtonsActive = true;
-    private int numOfOpenedCells = 0;
 
     public void checkForWin() {
         int numOfCells = Constants.NUMBER_OF_COLUMNS * Constants.NUMBER_OF_ROWS;
@@ -252,19 +241,9 @@ public class CenterPanel extends  JPanel {
 
         restartButtons();
 
-        tableDriver();
-
-    }
-
-//    generates and prints new table
-    private void tableDriver() {
+//        tableDriver();
         table = TableGenerator.getTable();
-        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                System.out.print(table[i][j] + " ");
-            }
-            System.out.println();
-        }
+
     }
 
 //    enables all buttons
@@ -277,7 +256,6 @@ public class CenterPanel extends  JPanel {
             }
         }
     }
-
 
     private final EventListenerList listenerList = new EventListenerList();
 

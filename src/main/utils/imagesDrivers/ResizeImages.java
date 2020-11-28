@@ -1,4 +1,4 @@
-package main.utils;
+package main.utils.imagesDrivers;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class ImageUtils {
+public class ResizeImages {
 
     public static void main(String[] args) {
 
