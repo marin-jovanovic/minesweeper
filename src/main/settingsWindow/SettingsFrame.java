@@ -1,8 +1,11 @@
 package main.settingsWindow;
 
 import main.Constants;
+import main.Event;
+import main.Listener;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 //import javax.swing.event.DocumentEvent;
 //import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -166,6 +169,15 @@ public class SettingsFrame extends JFrame {
                 } catch (Exception er) {
                     System.out.println("Problem reading file.");
                 }
+
+//                restar MainFrame
+
+
+
+                fireEvent(new main.Event(this, ""));
+
+
+
             }
 
             @Override
@@ -349,4 +361,25 @@ public class SettingsFrame extends JFrame {
         fc.setSelectedFile(null);
     }
 
+
+
+
+
+    private EventListenerList listenerList = new EventListenerList();
+
+    public void fireEvent(Event event) {
+        Object[] listeners = listenerList.getListenerList();
+
+        for (int i = 0; i < listeners.length; i += 2) {
+
+
+            if(listeners[i] == Listener.class) {
+                ((Listener)listeners[i+1]).EventOccured(event);
+            }
+        }
+    }
+
+    public void addListener(Listener listener) {
+        listenerList.add(Listener.class, listener);
+    }
 }

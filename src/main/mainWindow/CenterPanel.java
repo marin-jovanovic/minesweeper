@@ -45,70 +45,149 @@ public class CenterPanel extends  JPanel {
 
                 buttons[i][j].addMouseListener(new MouseAdapter() {
 
+                    @Override
+                       public void mouseClicked(MouseEvent e) {
+
+                        if (e.getButton() == MouseEvent.BUTTON1) {
+                            System.out.println("LEFT CLICK");
+
+                        } else {
+                            System.out.println("RIGHT CLICK");
 
 
-                @Override
-                   public void mouseClicked(MouseEvent e) {
-                    System.out.println("mis kliknut");
-
-
-//                   else if (e.getButton() == MouseEvent.BUTTON1) {
-//                        System.out.println("button 1");
-//                    }
-                    if (e.getButton() != MouseEvent.BUTTON1) {
-                        System.out.println(e.getButton());
-
-
-                    }
-                   }
+    //                            put flag on hovered button
+                            if (hoveredButton != "") {
+                                String[] field = hoveredButton.split(";");
+                                buttonSetIcon(buttons[Integer.parseInt(field[0])][Integer.parseInt(field[1])], "flag");
+                            }
+                        }
+                       }
                });
 
-                buttons[i][j].addActionListener(new ActionListener() {
 
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
 
-                        checkForWin();
+                buttons[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseEntered(java.awt.event.MouseEvent evt) {
+                        if (areButtonsActive) {
 
-                        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
-                            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-
-                                if (areButtonsActive) {
-                                    if(buttons[i][j].toString().equals(e.getSource().toString())) {
-                                        System.out.println("clicked " + i + " " + j);
-
-                                        if (table[i][j] != 0) {
-                                            openCell(i, j);
-
-                                            if (table[i][j] == -1) {
-                                                System.out.println("game over");
-//                                          TODO halt time
-//                                          extract to new thread (swing worker)
-//                                                defeat
-                                                fireEvent(new main.Event(this, "gameOver"));
-                                                areButtonsActive = false;
-                                                return;
-                                            }
+                            for (int i = 0; i <Constants.NUMBER_OF_ROWS; i++) {
+                                for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+                                        if (buttons[i][j].toString().equals(evt.getSource().toString())) {
+                                            System.out.println("mouse entered");
+                                            hoveredButton = i + ";" + j;
                                         }
+                                    }
+                                }
+                        }
+                    }
 
-                                        if (table[i][j] == 0) {
-                                            openBlanks(i, j);
-                                        }
+                    public void mouseExited(java.awt.event.MouseEvent evt) {
 
-                                        checkForWin();
-
-                                        System.out.println("*** halt ***");
-                                        System.out.println();
-                                        return;
+                        if (areButtonsActive) {
+                            for (int i = 0; i <Constants.NUMBER_OF_ROWS; i++) {
+                                for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+                                    if (buttons[i][j].toString().equals(evt.getSource().toString())) {
+                                        System.out.println("mouse exited");
+                                        hoveredButton = "";
                                     }
                                 }
                             }
                         }
                     }
                 });
+
+                buttons[i][j].addActionListener(new ButtonActionListener());
+//                buttons[i][j].addActionListener(new ActionListener() {
+//
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//
+//                        checkForWin();
+//                        if (areButtonsActive) {
+//
+//                            for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
+//                                for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+//
+//                                        if(buttons[i][j].toString().equals(e.getSource().toString())) {
+//                                            System.out.println("clicked " + i + " " + j);
+//
+//
+//                                                if (table[i][j] != 0) {
+//                                                    openCell(i, j);
+//
+//                                                    if (table[i][j] == -1) {
+//                                                        System.out.println("game over");
+//    //                                          TODO halt time
+//    //                                          extract to new thread (swing worker)
+//    //                                                defeat
+//                                                        fireEvent(new main.Event(this, "gameOver"));
+//                                                        areButtonsActive = false;
+//                                                        return;
+//                                                    }
+//                                                }
+//
+//                                                if (table[i][j] == 0) {
+//                                                    openBlanks(i, j);
+//                                                }
+//
+//                                                checkForWin();
+//
+//                                                System.out.println("*** halt ***");
+//                                                System.out.println();
+//                                                return;
+//                                        }
+//                                }
+//                            }
+//                        }
+//                    }
+//                });
             }
         }
     }
+
+    private class ButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            checkForWin();
+            if (areButtonsActive) {
+                for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
+                    for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+                        if(buttons[i][j].toString().equals(e.getSource().toString())) {
+                            System.out.println("clicked " + i + " " + j);
+
+                            if (table[i][j] != 0) {
+                                openCell(i, j);
+                                if (table[i][j] == -1) {
+                                    System.out.println("game over");
+        //                                          TODO halt time
+        //                                          extract to new thread (swing worker)
+        //                                                defeat
+                                    fireEvent(new main.Event(this, "gameOver"));
+                                    areButtonsActive = false;
+                                    return;
+                                }
+                            }
+
+                            if (table[i][j] == 0) {
+                                openBlanks(i, j);
+                            }
+
+                            checkForWin();
+
+                            System.out.println("*** halt ***");
+                            System.out.println();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+//    CSV: "i;j"
+    private String hoveredButton = "";
 
 //    image when button is not pressed
     private void buttonSetIcon(JButton jButton, String imageName) {
@@ -132,9 +211,9 @@ public class CenterPanel extends  JPanel {
     public void checkForWin() {
         int numOfCells = Constants.NUMBER_OF_COLUMNS * Constants.NUMBER_OF_ROWS;
         boolean isGameWon = (numOfCells - numOfOppenedCells == Constants.NUMBER_OF_MINES);
-        System.out.println("num of cells " + numOfCells);
+        System.out.println("num of cells  " + numOfCells);
         System.out.println("opened        " + numOfOppenedCells);
-        System.out.println("mines       " + Constants.NUMBER_OF_MINES);
+        System.out.println("mines         " + Constants.NUMBER_OF_MINES);
         System.out.println("control table");
 
         if (isGameWon) {
@@ -238,7 +317,6 @@ public class CenterPanel extends  JPanel {
             for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
                 buttons[i][j].setEnabled(true);
                 buttonSetIcon(buttons[i][j], "closedCell");
-//                buttons[i][j].setIcon(null);
                 buttons[i][j].setDisabledIcon(null);
             }
         }
