@@ -46,7 +46,7 @@ public class CenterPanel extends  JPanel {
                 buttons[i][j].addMouseListener(new MouseAdapter() {
 
                     @Override
-                       public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e) {
 
                         if (e.getButton() == MouseEvent.BUTTON1) {
                             System.out.println("LEFT CLICK");
@@ -55,13 +55,35 @@ public class CenterPanel extends  JPanel {
                             System.out.println("RIGHT CLICK");
 
 
-    //                            put flag on hovered button
+
+
                             if (hoveredButton != "") {
-                                String[] field = hoveredButton.split(";");
-                                buttonSetIcon(buttons[Integer.parseInt(field[0])][Integer.parseInt(field[1])], "flag");
+                                String[] buffer = hoveredButton.split(";");
+                                int x = Integer.parseInt(buffer[0]);
+                                int y = Integer.parseInt(buffer[1]);
+
+                                if (buttons[x][y].getIcon().toString().equals(
+                                    Constants.PICTURES_PATH + "closedCell" + Constants.PICTURES_FORMAT)) {
+                                    System.out.println("closedCell -> flag");
+                                    buttonSetIcon(buttons[x][y], "flag");
+
+                                }
+                                else if (buttons[x][y].getIcon().toString().equals(
+                                    Constants.PICTURES_PATH + "flag" + Constants.PICTURES_FORMAT)) {
+                                    System.out.println("flag -> questionmark");
+                                    buttonSetIcon(buttons[x][y], "notSure");
+
+                                }
+                                else if (buttons[x][y].getIcon().toString().equals(
+                                    Constants.PICTURES_PATH + "notSure" + Constants.PICTURES_FORMAT)) {
+                                    System.out.println("flag -> questionmark");
+                                    buttonSetIcon(buttons[x][y], "closedCell");
+
+                                }
                             }
                         }
-                       }
+
+                    }
                });
 
 
@@ -194,6 +216,9 @@ public class CenterPanel extends  JPanel {
         try {
             ImageIcon img = new ImageIcon(Constants.PICTURES_PATH +
                    imageName + Constants.PICTURES_FORMAT);
+            JLabel temp = new JLabel(img);
+
+
             jButton.setIcon(img);
         }
         catch (Exception exception) {
