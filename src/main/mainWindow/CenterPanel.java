@@ -5,7 +5,6 @@ import main.Event;
 import main.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
@@ -13,12 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
 public class CenterPanel extends  JPanel {
 
-    private JButton[][] buttons;
+    private final JButton[][] buttons;
     private int[][] table;
 
 
@@ -36,8 +33,6 @@ public class CenterPanel extends  JPanel {
 
                 buttons[i][j] = new JButton();
 
-//                String imageName = "closedCell";
-
 //                image for when button is not pressed
                 buttonSetIcon(buttons[i][j], "closedCell");
 
@@ -48,41 +43,19 @@ public class CenterPanel extends  JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
 
-                        if (e.getButton() == MouseEvent.BUTTON1) {
-                            System.out.println("LEFT CLICK");
-
-                        } else {
+                        if (e.getButton() != MouseEvent.BUTTON1 && currentHoveredButton != null) {
                             System.out.println("RIGHT CLICK");
 
+                            String name = currentHoveredButton.getIcon().toString()
+                                    .replace(Constants.PICTURES_PATH, "")
+                                    .replace(Constants.PICTURES_FORMAT, "");
 
-
-
-                            if (hoveredButton != "") {
-                                String[] buffer = hoveredButton.split(";");
-                                int x = Integer.parseInt(buffer[0]);
-                                int y = Integer.parseInt(buffer[1]);
-
-                                if (buttons[x][y].getIcon().toString().equals(
-                                    Constants.PICTURES_PATH + "closedCell" + Constants.PICTURES_FORMAT)) {
-                                    System.out.println("closedCell -> flag");
-                                    buttonSetIcon(buttons[x][y], "flag");
-
-                                }
-                                else if (buttons[x][y].getIcon().toString().equals(
-                                    Constants.PICTURES_PATH + "flag" + Constants.PICTURES_FORMAT)) {
-                                    System.out.println("flag -> questionmark");
-                                    buttonSetIcon(buttons[x][y], "notSure");
-
-                                }
-                                else if (buttons[x][y].getIcon().toString().equals(
-                                    Constants.PICTURES_PATH + "notSure" + Constants.PICTURES_FORMAT)) {
-                                    System.out.println("flag -> questionmark");
-                                    buttonSetIcon(buttons[x][y], "closedCell");
-
-                                }
+                            switch (name) {
+                                case "closedCell" -> buttonSetIcon(currentHoveredButton, "flag");
+                                case "flag" -> buttonSetIcon(currentHoveredButton, "notSure");
+                                case "notSure" -> buttonSetIcon(currentHoveredButton, "closedCell");
                             }
                         }
-
                     }
                });
 
@@ -91,15 +64,15 @@ public class CenterPanel extends  JPanel {
                 buttons[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseEntered(java.awt.event.MouseEvent evt) {
                         if (areButtonsActive) {
-
                             for (int i = 0; i <Constants.NUMBER_OF_ROWS; i++) {
                                 for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                                        if (buttons[i][j].toString().equals(evt.getSource().toString())) {
-                                            System.out.println("mouse entered");
-                                            hoveredButton = i + ";" + j;
-                                        }
+                                    if (buttons[i][j].toString().equals(evt.getSource().toString())) {
+                                        System.out.println("mouse entered");
+//                                        hoveredButton = i + ";" + j;
+                                        currentHoveredButton = buttons[i][j];
                                     }
                                 }
+                            }
                         }
                     }
 
@@ -110,7 +83,8 @@ public class CenterPanel extends  JPanel {
                                 for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
                                     if (buttons[i][j].toString().equals(evt.getSource().toString())) {
                                         System.out.println("mouse exited");
-                                        hoveredButton = "";
+//                                        hoveredButton = "";
+                                        currentHoveredButton = null;
                                     }
                                 }
                             }
@@ -119,50 +93,7 @@ public class CenterPanel extends  JPanel {
                 });
 
                 buttons[i][j].addActionListener(new ButtonActionListener());
-//                buttons[i][j].addActionListener(new ActionListener() {
-//
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//
-//                        checkForWin();
-//                        if (areButtonsActive) {
-//
-//                            for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++){
-//                                for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-//
-//                                        if(buttons[i][j].toString().equals(e.getSource().toString())) {
-//                                            System.out.println("clicked " + i + " " + j);
-//
-//
-//                                                if (table[i][j] != 0) {
-//                                                    openCell(i, j);
-//
-//                                                    if (table[i][j] == -1) {
-//                                                        System.out.println("game over");
-//    //                                          TODO halt time
-//    //                                          extract to new thread (swing worker)
-//    //                                                defeat
-//                                                        fireEvent(new main.Event(this, "gameOver"));
-//                                                        areButtonsActive = false;
-//                                                        return;
-//                                                    }
-//                                                }
-//
-//                                                if (table[i][j] == 0) {
-//                                                    openBlanks(i, j);
-//                                                }
-//
-//                                                checkForWin();
-//
-//                                                System.out.println("*** halt ***");
-//                                                System.out.println();
-//                                                return;
-//                                        }
-//                                }
-//                            }
-//                        }
-//                    }
-//                });
+
             }
         }
     }
@@ -193,6 +124,7 @@ public class CenterPanel extends  JPanel {
 
                             if (table[i][j] == 0) {
                                 openBlanks(i, j);
+
                             }
 
                             checkForWin();
@@ -208,15 +140,15 @@ public class CenterPanel extends  JPanel {
     }
 
 
+    private JButton currentHoveredButton;
 //    CSV: "i;j"
-    private String hoveredButton = "";
+//    private String hoveredButton = "";
 
 //    image when button is not pressed
     private void buttonSetIcon(JButton jButton, String imageName) {
         try {
             ImageIcon img = new ImageIcon(Constants.PICTURES_PATH +
                    imageName + Constants.PICTURES_FORMAT);
-            JLabel temp = new JLabel(img);
 
 
             jButton.setIcon(img);
@@ -229,15 +161,15 @@ public class CenterPanel extends  JPanel {
 
     //    if field with mine is opened game is over
 //    all buttons must be locked
-//    this is controler for it
+//    this is controller for it
     private boolean areButtonsActive = true;
-    private int numOfOppenedCells = 0;
+    private int numOfOpenedCells = 0;
 
     public void checkForWin() {
         int numOfCells = Constants.NUMBER_OF_COLUMNS * Constants.NUMBER_OF_ROWS;
-        boolean isGameWon = (numOfCells - numOfOppenedCells == Constants.NUMBER_OF_MINES);
+        boolean isGameWon = (numOfCells - numOfOpenedCells == Constants.NUMBER_OF_MINES);
         System.out.println("num of cells  " + numOfCells);
-        System.out.println("opened        " + numOfOppenedCells);
+        System.out.println("opened        " + numOfOpenedCells);
         System.out.println("mines         " + Constants.NUMBER_OF_MINES);
         System.out.println("control table");
 
@@ -258,8 +190,8 @@ public class CenterPanel extends  JPanel {
             return;
         }
 
-        numOfOppenedCells++;
-        System.out.println("otvaram " + i+ " " + j);
+        numOfOpenedCells++;
+        System.out.println("open tile  " + i+ " " + j);
 
         buttons[i][j].setEnabled(false);
 
@@ -308,16 +240,15 @@ public class CenterPanel extends  JPanel {
         if (!(y+1 >= Constants.NUMBER_OF_COLUMNS) && !(x-1 < 0))
             openBlanks(x-1, y+1);
 
-        return;
     }
 
-//    main restart sequnce when game is started again
+//    main restart sequence when game is started again
     public void restart() {
         System.out.println("##### new game ######");
 //        SwingUtilities.updateComponentTreeUI(this);
-// FIXME: 21.11.2020. 
+// FIXME: 21.11.2020.
         areButtonsActive = true;
-        numOfOppenedCells = 0;
+        numOfOpenedCells = 0;
 
         restartButtons();
 
@@ -348,7 +279,7 @@ public class CenterPanel extends  JPanel {
     }
 
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
