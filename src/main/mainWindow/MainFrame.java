@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
         setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        int width = Constants.NUMBER_OF_COLUMNS * 50;
+//        int width = Constants.NUMBER_OF_COLUMNS * 50;
 //        int height = Constants.NUMBER_OF_ROWS * 40;
         setSize(Constants.WIDTH, Constants.HEIGHT);
 //        setSize(width, Constants.HEIGHT);

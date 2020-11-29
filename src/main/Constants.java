@@ -22,30 +22,28 @@ public class Constants {
     public static int WIDTH = 500;
     public static int HEIGHT = 500;
 
-//    this is for RESIZED pictures
-    public static String PICTURES_PATH = "src/main/resources/resized_images/";
+    public static String ORIGINAL_PICTURES_PATH = "src/main/resources/original_images/";
+    public static String RESIZED_PICTURES_PATH = "src/main/resources/resized_images/";
     public static String PICTURES_FORMAT = ".png";
-
-//    add mouse listeners
 
     public static int PICTURE_WIDTH = 50;
     public static int PICTURE_HEIGHT = 50;
 
+    public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
+
+//    TODO add mouse listeners
+
     public static void refresh() {
 
         try {
-            BufferedReader file = new BufferedReader(
-                    new FileReader("src/main/resources/settings.txt")
-            );
+            BufferedReader file = new BufferedReader(new FileReader(SETTINGS_MEMORY_PATH));
 
             NUMBER_OF_ROWS = Integer.parseInt(((file.readLine().split(" "))[4]));
             NUMBER_OF_COLUMNS = Integer.parseInt(((file.readLine().split(" "))[4]));
             NUMBER_OF_MINES = Integer.parseInt(((file.readLine().split(" "))[4]));
 
-
             WIDTH = NUMBER_OF_COLUMNS * PICTURE_WIDTH;
             HEIGHT = NUMBER_OF_ROWS * PICTURE_HEIGHT;
-
 
             System.out.println("new constants: ");
             System.out.println(NUMBER_OF_COLUMNS);
@@ -55,7 +53,7 @@ public class Constants {
             file.close();
 
         } catch (Exception er) {
-            System.out.println("Problem refreshing constants.");
+            er.printStackTrace();
         }
     }
 }

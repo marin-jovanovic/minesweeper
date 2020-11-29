@@ -1,5 +1,7 @@
 package main.utils.imagesDrivers;
 
+import main.Constants;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,14 +21,11 @@ public class ResizeImages {
 
     }
 
-//  TODO make conversion to .png instead of .jpg
-
     public static void resizeAllImagesInFolder(String source, String destination) {
         try (Stream<Path> paths = Files.walk(Paths.get(source))) {
             paths.forEach(path -> {
                 System.out.println(path);
                 System.out.println(path.getFileName());
-//                System.out.println();
 
                 String name = (path.getFileName()).toString().replaceFirst("[.][^.]+$", "");
 
@@ -44,13 +43,12 @@ public class ResizeImages {
 
     private static void resizeAndSaveImage(String source, String destination) {
         try {
-
             BufferedImage originalImage = ImageIO.read(new File(source));
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
-            BufferedImage resizeImage = resizeImage(originalImage, type, 50, 50);
-//            ImageIO.write(resizeImageJpg, "jpg", new File(destination));
-            ImageIO.write(resizeImage, "png", new File(destination));
+            BufferedImage resizeImage = resizeImage(originalImage, type,
+                    Constants.PICTURE_WIDTH, Constants.PICTURE_HEIGHT);
+            ImageIO.write(resizeImage, Constants.PICTURES_FORMAT, new File(destination));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

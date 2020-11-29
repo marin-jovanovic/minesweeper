@@ -85,13 +85,13 @@ public class NorthPanel extends JPanel{
             ImageIcon img;
 
             if (result.equals("gameOver")) {
-                img = new ImageIcon(Constants.PICTURES_PATH + "false" + Constants.PICTURES_FORMAT);
+                img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + "false" + Constants.PICTURES_FORMAT);
             }
             else if (result.equals("gameWon")){
-                img = new ImageIcon(Constants.PICTURES_PATH + "true" + Constants.PICTURES_FORMAT);
+                img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + "true" + Constants.PICTURES_FORMAT);
             }
             else {
-                img = new ImageIcon(Constants.PICTURES_PATH + "playAgain" + Constants.PICTURES_FORMAT);
+                img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + "playAgain" + Constants.PICTURES_FORMAT);
             }
             restartButton.setIcon(img);
         } catch (Exception ex) {

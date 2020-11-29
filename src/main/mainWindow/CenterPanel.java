@@ -67,7 +67,7 @@ public class CenterPanel extends  JPanel {
                             System.out.println("RIGHT CLICK");
 
                             String name = currentHoveredButton.getIcon().toString()
-                                    .replace(Constants.PICTURES_PATH, "")
+                                    .replace(Constants.RESIZED_PICTURES_PATH, "")
                                     .replace(Constants.PICTURES_FORMAT, "");
 
                             String[] temp = hoveredButton.split(";");
@@ -181,7 +181,7 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
+            ImageIcon img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
             jButton.setIcon(img);
         }
         catch (Exception exception) {
@@ -191,7 +191,7 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetDisabledIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
+            ImageIcon img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
             jButton.setDisabledIcon(img);
         }
         catch (Exception exception) {

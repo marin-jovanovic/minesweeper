@@ -6,16 +6,22 @@ import java.util.Random;
 
 public class TableGenerator  {
 
-    private static int[][] table = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
-    private static boolean[] isRowFull = new boolean[Constants.NUMBER_OF_ROWS];
+    private static int[][] table;
+    private static boolean[] isRowFull;
 
     public static int[][] getTable() {
         generateTable();
+
+        printTable();
+
         return table;
     }
 
+
     private static void generateTable() {
 
+        table = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
+        isRowFull = new boolean[Constants.NUMBER_OF_ROWS];
 //        case: row number of column number == 0
 
 
@@ -92,20 +98,12 @@ public class TableGenerator  {
         Random rand = new Random();
         int row = -1;
 
-        while (true) {
+        do {
 //                row in which mine will be placed
             row = rand.nextInt(Constants.NUMBER_OF_ROWS);
 
-            if (!isRowFull[row]) {
-                break;
-            }
+        } while (isRowFull[row]);
 
-        }
-
-
-//        while (int row = rand.nextInt(Constants.NUMBER_OF_ROWS)) {
-//
-//        }
         return row;
     }
 
