@@ -2,13 +2,30 @@ package main.mainWindow.centerPanelDrivers;
 
 import main.Constants;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonActionListener implements ActionListener {
 
+    private final JButton[][] buttons;
+    private int[][] table;
+    private JButton currentHoveredButton;
 
+    //    if field with mine is opened game is over
+//    all buttons must be locked
+//    this is controller for it
+    private boolean areButtonsActive = true;
+    private int numOfOpenedCells = 0;
 
+    public ButtonActionListener(JButton[][] buttons, int[][] table, JButton currentHoveredButton,
+                                boolean areButtonsActive, int numOfOpenedCells) {
+        this.buttons = buttons;
+        this.table = table;
+        this.currentHoveredButton = currentHoveredButton;
+        this.areButtonsActive = areButtonsActive;
+        this.numOfOpenedCells = numOfOpenedCells;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
