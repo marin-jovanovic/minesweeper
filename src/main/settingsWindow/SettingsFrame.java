@@ -2,26 +2,20 @@ package main.settingsWindow;
 
 import main.Constants;
 import main.Event;
-import main.Listener;
+import main.utils.Listener;
 import main.mainWindow.MainFrame;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
-//import javax.swing.event.DocumentEvent;
-//import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.*;
 import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-//import java.util.stream.Collectors;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -59,7 +53,24 @@ public class SettingsFrame extends JFrame {
 //    frow where was this frame launched
     private SettingsFrame origin;
 
+    private JLabel rowNumberLabel;
+    private JTextField rowNumberField;
+    private static String rowNumber;
+    private JLabel rowNumberChecker;
 
+    private JLabel columnNumberLabel;
+    private JTextField columnNumberField;
+    private static String columnNumber;
+    private JLabel columnNumberChecker;
+
+    private JLabel mineNumberLabel;
+    private JTextField mineNumberField;
+    private static String mineNumber;
+    private JLabel getMineNumberChecker;
+
+    static private String newline = "\n";
+    private JTextArea log;
+    private JFileChooser fc;
 
     public void setSettingsFrame(SettingsFrame origin) {
         this.origin = origin;
@@ -75,44 +86,25 @@ public class SettingsFrame extends JFrame {
 
     }
 
-    private JLabel rowNumberLabel;
-    private JTextField rowNumberField;
-    private static String rowNumber;
-    private JLabel rowNumberChecker;
+    public static String getRowNumber() {
+        return rowNumber;
+    }
 
+    public static String getColumnNumber() {
+        return columnNumber;
+    }
 
-    private JLabel columnNumberLabel;
-    private JTextField columnNumberField;
-    private static String columnNumber;
-    private JLabel columnNumberChecker;
-
-    private JLabel mineNumberLabel;
-    private JTextField mineNumberField;
-    private static String mineNumber;
-    private JLabel getMineNumberChecker;
-
-
-    static private String newline = "\n";
-    private JTextArea log;
-    private JFileChooser fc;
-
-
-//    public static String getRowNumber() {
-//        return rowNumber;
-//    }
-//    public static String getColumnNumber() {
-//        return columnNumber;
-//    }
     public static void setRowNumber(String rowNumber) {
         SettingsFrame.rowNumber = rowNumber;
     }
+
     public static void setColumnNumber(String columnNumber) {
         SettingsFrame.columnNumber = columnNumber;
     }
+
     public static void setMineNumber(String mineNumber) {
         SettingsFrame.mineNumber = mineNumber;
     }
-
 
     public SettingsFrame() {
 //        super("Settings");
@@ -137,7 +129,6 @@ public class SettingsFrame extends JFrame {
 //        mines
         row3();
 
-//        fireEvent(new main.Event(this, "test"));
 
         this.addListener(event -> MainFrame.restartSequence());
 
@@ -245,16 +236,7 @@ public class SettingsFrame extends JFrame {
 
         add(sendButton);
         add(logScrollPane);
-
-
-
-
-        JButton btn = new JButton("save");
-        add(btn);
-
     }
-
-
 
 //    for adding lines to settings.txt
     private void checkAndAddLine(BufferedReader file, List<String> l, String k, String targ) throws IOException {
@@ -284,7 +266,6 @@ public class SettingsFrame extends JFrame {
             l.add(file.readLine());
         }
     }
-
 
     private void row1() {
         rowNumberLabel = new JLabel("row number:");
@@ -320,6 +301,7 @@ public class SettingsFrame extends JFrame {
         rowNumberChecker = new JLabel();
         add(rowNumberChecker);
     }
+
     private void row2() {
         columnNumberLabel = new JLabel(("column number:"));
         add(columnNumberLabel);
@@ -334,6 +316,7 @@ public class SettingsFrame extends JFrame {
         columnNumberChecker = new JLabel();
         add(columnNumberChecker);
     }
+
     private void row3() {
         mineNumberLabel = new JLabel(("mine number:"));
         add(mineNumberLabel);
@@ -382,10 +365,6 @@ public class SettingsFrame extends JFrame {
         fc.setSelectedFile(null);
     }
 
-
-
-
-
     private EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
@@ -395,7 +374,7 @@ public class SettingsFrame extends JFrame {
 
 
             if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).EventOccured(event);
+                ((Listener)listeners[i+1]).eventOccurred(event);
             }
         }
     }

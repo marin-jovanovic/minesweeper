@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -27,6 +28,8 @@ public class Constants {
 
 //    add mouse listeners
 
+    public static int PICTURE_WIDTH = 50;
+    public static int PICTURE_HEIGHT = 50;
 
     public static void refresh() {
 
@@ -38,6 +41,10 @@ public class Constants {
             NUMBER_OF_ROWS = Integer.parseInt(((file.readLine().split(" "))[4]));
             NUMBER_OF_COLUMNS = Integer.parseInt(((file.readLine().split(" "))[4]));
             NUMBER_OF_MINES = Integer.parseInt(((file.readLine().split(" "))[4]));
+
+
+            WIDTH = NUMBER_OF_COLUMNS * PICTURE_WIDTH;
+            HEIGHT = NUMBER_OF_ROWS * PICTURE_HEIGHT;
 
 
             System.out.println("new constants: ");

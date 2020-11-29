@@ -1,4 +1,4 @@
-package main;
+package main.utils;
 
 import main.Event;
 
@@ -7,6 +7,6 @@ import java.util.EventListener;
 
 public interface Listener extends EventListener {
 
-    public void EventOccured(Event event);
+    void eventOccurred(Event event);
 
 }

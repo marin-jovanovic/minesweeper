@@ -1,7 +1,7 @@
 package main.settingsWindow;
 
 import main.Event;
-import main.Listener;
+import main.utils.Listener;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -118,7 +118,7 @@ public class TextFieldActionListener implements DocumentListener {
 
         for (int i = 0; i < listeners.length; i += 2) {
             if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).EventOccured(event);
+                ((Listener)listeners[i+1]).eventOccurred(event);
             }
         }
     }

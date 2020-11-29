@@ -3,7 +3,7 @@ package main.mainWindow;
 //import com.sun.jdi.IncompatibleThreadStateException;
 import main.Constants;
 import main.Event;
-import main.Listener;
+import main.utils.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
 
 import javax.swing.*;
@@ -33,7 +33,7 @@ public class CenterPanel extends  JPanel {
 
 
     public CenterPanel() {
-        setSize(200, 100);
+
         setLayout(new GridLayout(Constants.NUMBER_OF_ROWS, Constants.NUMBER_OF_COLUMNS));
 
         initialization();
@@ -118,7 +118,6 @@ public class CenterPanel extends  JPanel {
                                         System.out.println("mouse exited");
                                         currentHoveredButton = null;
                                         hoveredButton = i + ";" + j;
-
                                     }
                                 }
                             }
@@ -289,7 +288,7 @@ public class CenterPanel extends  JPanel {
 
 
             if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).EventOccured(event);
+                ((Listener)listeners[i+1]).eventOccurred(event);
             }
         }
     }

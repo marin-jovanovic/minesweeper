@@ -2,15 +2,13 @@ package main.mainWindow;
 
 import main.Constants;
 import main.Event;
-import main.Listener;
-import main.Main;
+import main.utils.Listener;
 import main.settingsWindow.SettingsFrame;
 
 //import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 //import java.awt.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -110,7 +108,7 @@ public class NorthPanel extends JPanel{
 
         for (int i = 0; i < listeners.length; i++) {
             if (listeners[i] instanceof Listener) {
-                ((Listener)listeners[i]).EventOccured(event);
+                ((Listener)listeners[i]).eventOccurred(event);
             }
         }
 
