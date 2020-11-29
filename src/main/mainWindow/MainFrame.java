@@ -7,6 +7,8 @@ import main.Listener;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 
@@ -15,6 +17,8 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("minesweeper");
+
+        this.mainFrame = this;
 
         setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
         setVisible(true);
@@ -32,13 +36,27 @@ public class MainFrame extends JFrame {
 //            gameWon
         centerPanel.addListener(event -> northPanel.setRestartButton(event.getCommand()));
 
+//        northPanel.addListener(event -> System.out.println("$$$$$"+event));
 
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
+
+
+//        JButton btn = new JButton();
+//        add(btn, BorderLayout.SOUTH);
+//        btn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                restartSequence();
+//            }
+//        });
+
     }
 
-    public void restartSequence() {
-        this.dispose();
+    public static MainFrame mainFrame;
+
+    public static void restartSequence() {
+        mainFrame.dispose();
         new MainFrame();
     }
 

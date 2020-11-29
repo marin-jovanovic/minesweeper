@@ -3,6 +3,7 @@ package main.settingsWindow;
 import main.Constants;
 import main.Event;
 import main.Listener;
+import main.mainWindow.MainFrame;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 //import java.util.stream.Collectors;
 
@@ -53,6 +55,15 @@ import java.util.stream.Collectors;
  */
 
 public class SettingsFrame extends JFrame {
+
+//    frow where was this frame launched
+    private SettingsFrame origin;
+
+
+
+    public void setSettingsFrame(SettingsFrame origin) {
+        this.origin = origin;
+    }
 
     public static void main(String[] args) {
         try {
@@ -104,8 +115,10 @@ public class SettingsFrame extends JFrame {
 
 
     public SettingsFrame() {
+//        super("Settings");
 
-        super("Settings");
+        this.origin = this;
+
         setSize(Constants.WIDTH, Constants.HEIGHT);
         setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
         setVisible(true);
@@ -124,7 +137,9 @@ public class SettingsFrame extends JFrame {
 //        mines
         row3();
 
+//        fireEvent(new main.Event(this, "test"));
 
+        this.addListener(event -> MainFrame.restartSequence());
 
 //        saves on close new settings
         addWindowListener(new WindowListener() {
@@ -166,15 +181,21 @@ public class SettingsFrame extends JFrame {
 
                     Constants.refresh();
 
+                    fireEvent(new main.Event(this, "setting saved"));
+
+
+//                    fireEvent(new main.Event(origin, "settingsChanged"));
+
                 } catch (Exception er) {
                     System.out.println("Problem reading file.");
+                    er.printStackTrace();
                 }
 
 //                restar MainFrame
 
 
 
-                fireEvent(new main.Event(this, ""));
+//                fireEvent(new main.Event(this, ""));
 
 
 

@@ -3,12 +3,14 @@ package main.mainWindow;
 import main.Constants;
 import main.Event;
 import main.Listener;
+import main.Main;
 import main.settingsWindow.SettingsFrame;
 
 //import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 //import java.awt.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,17 +40,47 @@ public class NorthPanel extends JPanel{
 
         add(settingsButton);
 
+        this.addListener(event -> MainFrame.restartSequence());
+
+//        JButton btn = new JButton();
+//        add(btn, BorderLayout.SOUTH);
+//        btn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////                MainFrame.restartSequence();
+//                fireEvent(new main.Event(this, "new"));
+//            }
+//        });
+
         settingsButton.addActionListener(event -> {
             try {
                 SwingUtilities.invokeLater(SettingsFrame::new);
-            } catch (Exception e) {
-//                System.out.println(e);
+
+//                SwingUtilities.invokeAndWait(SettingsFrame::new);
+//                SettingsFrame settingsFrame = new SettingsFrame();
+//                SwingUtilities.invokeAndWait((Runnable) settingsFrame);
+            }
+//            catch ()
+
+            catch (Exception e) {
                 e.printStackTrace();
             }
+//            fireEvent(new main.Event(this, "new"));
 
         });
 
+
+
     }
+//
+//    public void restartSequence() {
+//        MainFrame.restartSequence();
+//    }
+
+
+
+    private SettingsFrame settingsFrame;
+
 
     public void setRestartButton(String result) {
         try {
