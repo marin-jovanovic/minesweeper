@@ -3,9 +3,8 @@
 
 
 ## settings
+    works for columns and rows
 
-    class Constants
-    
 ## instructions
 
     left click ->  
@@ -23,5 +22,7 @@
 ## customize tiles
     insert pictures in main/resources/original_images
     run main/utils/imagesDrivers/ResizeImages
-  
+ 
    supports .jpg and .png
+   TODO: will be added to settings window
+    
