@@ -1,6 +1,5 @@
 package main.mainWindow;
 
-//import com.sun.jdi.IncompatibleThreadStateException;
 import main.Constants;
 import main.Event;
 import main.utils.Listener;
@@ -13,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import java.util.stream.IntStream;
 
 public class CenterPanel extends  JPanel {
 
@@ -67,8 +65,8 @@ public class CenterPanel extends  JPanel {
                             System.out.println("RIGHT CLICK");
 
                             String name = currentHoveredButton.getIcon().toString()
-                                    .replace(Constants.RESIZED_PICTURES_PATH, "")
-                                    .replace(Constants.PICTURES_FORMAT, "");
+                                    .replace(Constants.RESIZED_IMAGES_PATH, "")
+                                    .replace(Constants.IMAGES_FORMAT, "");
 
                             String[] temp = hoveredButton.split(";");
                             int i = Integer.parseInt(temp[0]);
@@ -181,7 +179,7 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
+            ImageIcon img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + imageName + Constants.IMAGES_FORMAT);
             jButton.setIcon(img);
         }
         catch (Exception exception) {
@@ -191,7 +189,7 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetDisabledIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + imageName + Constants.PICTURES_FORMAT);
+            ImageIcon img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + imageName + Constants.IMAGES_FORMAT);
             jButton.setDisabledIcon(img);
         }
         catch (Exception exception) {
@@ -255,8 +253,24 @@ public class CenterPanel extends  JPanel {
     }
 
 //    main restart sequence when game is started again
-    public void restart() {
+    public void restart(String command) {
+        System.out.println("centerPanel: restart");
         System.out.println("##### new game ######");
+
+
+        System.out.println("command " + command);
+
+        switch (command) {
+
+            case "new game" -> {
+                System.out.println("new game, no need to restart window");
+            }
+
+
+            default -> {
+                System.out.println("restart window");
+            }
+        }
 
         areButtonsActive = true;
         numOfOpenedCells = 0;

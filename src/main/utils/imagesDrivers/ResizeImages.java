@@ -16,8 +16,8 @@ public class ResizeImages {
 
     public static void main(String[] args) {
 
-        resizeAllImagesInFolder("src/main/resources/original_images",
-                "src/main/resources/resized_images");
+        resizeAllImagesInFolder("src/main/resources/original_images/time",
+                "src/main/resources/resized_images/time");
 
     }
 
@@ -35,6 +35,7 @@ public class ResizeImages {
                     System.out.println(destination + path.getFileName());
                 }
 
+                System.out.println();
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,7 +49,7 @@ public class ResizeImages {
 
             BufferedImage resizeImage = resizeImage(originalImage, type,
                     Constants.PICTURE_WIDTH, Constants.PICTURE_HEIGHT);
-            ImageIO.write(resizeImage, Constants.PICTURES_FORMAT, new File(destination));
+            ImageIO.write(resizeImage, Constants.IMAGES_FORMAT, new File(destination));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -14,88 +14,100 @@ import java.awt.event.ActionListener;
 
 public class NorthPanel extends JPanel{
 
-    private JButton restartButton;
+    private JButton oldRestartButton;
+
+    private RestartButton restartButton;
 
     public NorthPanel() {
+
+        Timer timer = new Timer();
+        add(timer);
+
 //        TODO statistics, time
 
-        restartButton = new JButton();
+//
+//        restartButton = new RestartButton();
+//        restartButton.changeIcon("init");
+//        add(restartButton);
 
-        setRestartButton("init");
 
-        add(restartButton);
+//        addListener(event -> centerPanel.restart(event.getCommand()));
 
-        restartButton.addActionListener(new ActionListener() {
+
+        oldRestartButton = new JButton();
+        changeIcon("init");
+        add(oldRestartButton);
+
+        oldRestartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
-                fireEvent(new main.Event(this, "none"));
-                setRestartButton("playAgain");
+                fireEvent(new main.Event(this, "new game"));
+                changeIcon("playAgain");
             }
         });
 
-        JButton settingsButton = new JButton("settings");
 
-        add(settingsButton);
 
-        this.addListener(event -> MainFrame.restartSequence());
 
-//        JButton btn = new JButton();
-//        add(btn, BorderLayout.SOUTH);
-//        btn.addActionListener(new ActionListener() {
+//        this.addListener(event -> {
+//
+//            System.out.println("event");
+//            System.out.println(event);
+//            System.out.println();
+//
+////            MainFrame.restartSequence();
+//
+//            System.out.println("restart tiles");
+//
+//
+//        });
+//
+//        this.addListener(new Listener() {
 //            @Override
-//            public void actionPerformed(ActionEvent e) {
-////                MainFrame.restartSequence();
-//                fireEvent(new main.Event(this, "new"));
+//            public void eventOccurred(Event event) {
+//                System.out.println("event");
+//                System.out.println(event);
+//                System.out.println();
 //            }
 //        });
+
+        JButton settingsButton = new JButton("settings");
 
         settingsButton.addActionListener(event -> {
             try {
                 SwingUtilities.invokeLater(SettingsFrame::new);
-
-//                SwingUtilities.invokeAndWait(SettingsFrame::new);
-//                SettingsFrame settingsFrame = new SettingsFrame();
-//                SwingUtilities.invokeAndWait((Runnable) settingsFrame);
             }
-//            catch ()
-
             catch (Exception e) {
                 e.printStackTrace();
             }
-//            fireEvent(new main.Event(this, "new"));
-
         });
 
-
-
+        add(settingsButton);
     }
-//
-//    public void restartSequence() {
-//        MainFrame.restartSequence();
-//    }
 
+//    private SettingsFrame settingsFrame;
 
-
-    private SettingsFrame settingsFrame;
-
-
-    public void setRestartButton(String result) {
+    public void changeIcon(String result) {
         try {
             ImageIcon img;
 
-            if (result.equals("gameOver")) {
-                img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + "false" + Constants.PICTURES_FORMAT);
+            switch(result) {
+
+                case "gameOver":
+                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "false" + Constants.IMAGES_FORMAT);
+                    break;
+
+                case "gameWon":
+                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "true" + Constants.IMAGES_FORMAT);
+                    break;
+
+                default:
+                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "playAgain" + Constants.IMAGES_FORMAT);
             }
-            else if (result.equals("gameWon")){
-                img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + "true" + Constants.PICTURES_FORMAT);
-            }
-            else {
-                img = new ImageIcon(Constants.RESIZED_PICTURES_PATH + "playAgain" + Constants.PICTURES_FORMAT);
-            }
-            restartButton.setIcon(img);
+
+            oldRestartButton.setIcon(img);
         } catch (Exception ex) {
-//            System.out.println(ex);
             ex.printStackTrace();
         }
     }
@@ -107,22 +119,16 @@ public class NorthPanel extends JPanel{
         Object[] listeners = listenerList.getListenerList();
 
         for (int i = 0; i < listeners.length; i++) {
-            if (listeners[i] instanceof Listener) {
-                ((Listener)listeners[i]).eventOccurred(event);
-            }
+            System.out.println(listeners[i]);
         }
 
 
-
-
-//        for (int i = 0; i < listeners.length; i += 2) {
-//            if(listeners[i] == Listener.class) {
-//                ((Listener)listeners[i+1]).EventOccured(event);
-//            }
-//        }
-
-
-
+        for (int i = 0; i < listeners.length; i++) {
+            if (listeners[i] instanceof Listener) {
+                ((Listener)listeners[i]).eventOccurred(event);
+                return;
+            }
+        }
     }
 
     public void addListener(Listener listener) {

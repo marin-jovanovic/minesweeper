@@ -12,7 +12,6 @@ public class Main {
     }
 
 //    TODO extract image loading to separate threads to make program faster
-//    TODO settings window
 //    TODO time
 //    TODO right click flag
     public static void main(String[] args) {
