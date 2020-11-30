@@ -189,11 +189,7 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetIcon(JButton jButton, String imageName) {
         try {
-
-
-            ImageIcon img = new ImageIcon(Constants.getPathImageOpenedTiles(imageName));
-
-            jButton.setIcon(img);
+            jButton.setIcon(new ImageIcon(Constants.getPathImageOpenedTiles(imageName)));
         }
         catch (Exception exception) {
             exception.printStackTrace();
@@ -202,49 +198,7 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetDisabledIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img;
-            switch (imageName) {
-                case "-1":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_MINE_PATH);
-                    break;
-
-                case "0":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_0_PATH);
-                    break;
-                case "1":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_1_PATH);
-                    break;
-                case "2":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_2_PATH);
-                    break;
-                case "3":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_3_PATH);
-                    break;
-                case "4":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_4_PATH);
-                    break;
-                case "5":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_5_PATH);
-                    break;
-                case "6":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_6_PATH);
-                    break;
-                case "7":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_7_PATH);
-                    break;
-                case "8":
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_8_PATH);
-                    break;
-
-                default:
-                    System.err.println("error in CenterPanel");
-                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_MINE_PATH);
-
-            }
-//            ImageIcon img = new ImageIcon(Constants.RESIZED_IMAGES_PATH +
-//                    imageName + "." + Constants.IMAGES_FORMAT_NAME);
-//            jButton.setIcon(img);
-            jButton.setDisabledIcon(img);
+            jButton.setDisabledIcon(new ImageIcon(Constants.getPathImageOpenedTiles(imageName)));
         }
         catch (Exception exception) {
             exception.printStackTrace();
@@ -314,16 +268,10 @@ public class CenterPanel extends  JPanel {
 
         System.out.println("command " + command);
 
-        switch (command) {
-
-            case "new game" -> {
-                System.out.println("new game, no need to restart window");
-            }
-
-
-            default -> {
-                System.out.println("restart window");
-            }
+        if (command.equals("new game")) {
+            System.out.println("new game, no need to restart window");
+        } else {
+            System.out.println("restart window");
         }
 
         areButtonsActive = true;

@@ -4,7 +4,7 @@ import java.util.EventObject;
 
 public class Event extends EventObject {
 
-    private String command;
+    private final String command;
 
     public Event(Object source, String command) {
         super(source);

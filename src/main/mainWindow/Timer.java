@@ -13,7 +13,9 @@ public class Timer extends JPanel {
     public Timer() {
         try {
 
-            BufferedImage myPicture = ImageIO.read(new File(Constants.RESIZED_IMAGE_TIME_0_PATH));
+
+
+            BufferedImage myPicture = ImageIO.read(new File(Constants.getPathImageTime("0")));
 
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
             add(picLabel);

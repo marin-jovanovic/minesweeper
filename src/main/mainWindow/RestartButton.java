@@ -14,14 +14,6 @@ public class RestartButton extends JButton {
     public RestartButton() {
 
         addActionListener(new RestartButtonActionListener());
-//        addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                System.out.println("restart button clicked");
-//                fireEvent(new main.Event(this, "none"));
-//                changeIcon("playAgain");
-//            }
-//        });
 
     }
 
@@ -38,69 +30,24 @@ public class RestartButton extends JButton {
 
     public void changeIcon(String result) {
         try {
-            ImageIcon img;
-
-
-//            String retString;
-//
-//            switch(result) {
-//
-//                case "gameOver":
-//                    retString = "false";
-////                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "false" + Constants.IMAGES_FORMAT);
-//                    break;
-//
-//                case "gameWon":
-//                    retString = "true";
-////                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "true" + Constants.IMAGES_FORMAT);
-//                    break;
-//
-//                default:
-//                    retString = "playAgain";
-////                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "playAgain" + Constants.IMAGES_FORMAT);
-//            }
-//
-//            img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + retString +
-//                    "." + Constants.IMAGES_FORMAT_NAME);
-
-            if (result.equals("gameOver")) {
-                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_DEFEAT_PATH);
-                this.setIcon(img);
-
-            }
-            else if (result.equals("victory")) {
-                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_VICTORY_PATH);
-                this.setIcon(img);
-
-            }
-            else if (result.equals("playAgain")) {
-                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_PLAY_AGAIN_PATH);
-                this.setIcon(img);
-
-            }
-
-//            FIXME what if none of above is true
-
+            this.setIcon(new ImageIcon(Constants.getPathImageButton(result)));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
-        for (int i = 0; i < listeners.length; i++) {
-            if (listeners[i] instanceof Listener) {
-                ((Listener)listeners[i]).eventOccurred(event);
+        for (Object listener : listeners) {
+            if (listener instanceof Listener) {
+                ((Listener) listener).eventOccurred(event);
                 return;
             }
         }
-
-
-
     }
 
     public void addListener(Listener listener) {
