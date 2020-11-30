@@ -40,21 +40,47 @@ public class RestartButton extends JButton {
         try {
             ImageIcon img;
 
-            switch(result) {
 
-                case "gameOver":
-                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "false" + Constants.IMAGES_FORMAT);
-                    break;
+//            String retString;
+//
+//            switch(result) {
+//
+//                case "gameOver":
+//                    retString = "false";
+////                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "false" + Constants.IMAGES_FORMAT);
+//                    break;
+//
+//                case "gameWon":
+//                    retString = "true";
+////                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "true" + Constants.IMAGES_FORMAT);
+//                    break;
+//
+//                default:
+//                    retString = "playAgain";
+////                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "playAgain" + Constants.IMAGES_FORMAT);
+//            }
+//
+//            img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + retString +
+//                    "." + Constants.IMAGES_FORMAT_NAME);
 
-                case "gameWon":
-                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "true" + Constants.IMAGES_FORMAT);
-                    break;
+            if (result.equals("gameOver")) {
+                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_DEFEAT_PATH);
+                this.setIcon(img);
 
-                default:
-                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "playAgain" + Constants.IMAGES_FORMAT);
+            }
+            else if (result.equals("victory")) {
+                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_VICTORY_PATH);
+                this.setIcon(img);
+
+            }
+            else if (result.equals("playAgain")) {
+                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_PLAY_AGAIN_PATH);
+                this.setIcon(img);
+
             }
 
-            this.setIcon(img);
+//            FIXME what if none of above is true
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

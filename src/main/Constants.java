@@ -1,11 +1,14 @@
 package main;
 
+import jdk.jshell.EvalException;
+
 import javax.swing.*;
 import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Constants {
@@ -23,17 +26,19 @@ public class Constants {
     public static int WIDTH = 500;
     public static int HEIGHT = 500;
 
-    public static String ORIGINAL_IMAGES_PATH = "src/main/resources/original_images/";
-    public static String RESIZED_IMAGES_PATH = "src/main/resources/resized_images/";
-    public static String IMAGES_FORMAT = ".png";
+//    formats in which images will be loaded
+    public static String[] ORIGINAL_IMAGES_FORMATS_NAMES = {"png", "jpg"};
 
-    public static String BUTTON_IMAGES_PATH = "button/";
-    public static String CLOSED_TILES_IMAGES_PATH = "closed_tiles/";
-    public static String OPENED_TILES_IMAGES_PATH = "opened_tiles/";
+//    format in which images will be crooped
+    public static String IMAGES_FORMAT_NAME = "png";
 
-    public static String TIME_IMAGES_PATH = "time/";
+    private static String ORIGINAL_IMAGES_PATH = "src/main/resources/original_images/";
+    private static String RESIZED_IMAGES_PATH = "src/main/resources/resized_images/";
 
-
+    private static String BUTTON_IMAGES_PATH = "button/";
+    private static String CLOSED_TILES_IMAGES_PATH = "closed_tiles/";
+    private static String OPENED_TILES_IMAGES_PATH = "opened_tiles/";
+    private static String TIME_IMAGES_PATH = "time/";
 
     public static int PICTURE_WIDTH = 50;
     public static int PICTURE_HEIGHT = 50;
@@ -41,7 +46,33 @@ public class Constants {
 //    where this is saved
     public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
 
-//    TODO add mouse listeners
+
+    public static String getPathImageButton(String value) {
+
+        if (Arrays.asList("victory", "defeat", "playAgain").contains(value)) {
+            return RESIZED_IMAGES_PATH + BUTTON_IMAGES_PATH + value + "." + IMAGES_FORMAT_NAME;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+
+    }
+
+//    opened_tiles
+    public static String getPathImageOpenedTiles(String value) {
+        if (Integer.parseInt(value) >= -2 && Integer.parseInt(value) <= 8) {
+            return RESIZED_IMAGES_PATH + OPENED_TILES_IMAGES_PATH + value + IMAGES_FORMAT_NAME;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    public static String getPathImageTime(String time) {
+        if (Integer.parseInt(time) >= 0 && Integer.parseInt(time) <= 9) {
+            return RESIZED_IMAGES_PATH + TIME_IMAGES_PATH + time + "." + IMAGES_FORMAT_NAME;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
 
     public static void refresh() {
 

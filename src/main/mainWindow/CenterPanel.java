@@ -64,9 +64,19 @@ public class CenterPanel extends  JPanel {
                         if (e.getButton() != MouseEvent.BUTTON1 && currentHoveredButton != null) {
                             System.out.println("RIGHT CLICK");
 
-                            String name = currentHoveredButton.getIcon().toString()
-                                    .replace(Constants.RESIZED_IMAGES_PATH, "")
-                                    .replace(Constants.IMAGES_FORMAT, "");
+//                            name of picture on button
+                            String name = currentHoveredButton.getIcon().toString();
+                            if (name.contains("closedCell")) {
+                                name = "closedCell";
+                            }
+                            else if (name.contains("flag")) {
+                                name = "flag";
+                            }
+                            else {
+                                name = "notSure";
+                            }
+//                                    .replace(Constants.RESIZED_IMAGES_PATH, "")
+//                                    .replace("." + Constants.IMAGES_FORMAT_NAME, "");
 
                             String[] temp = hoveredButton.split(";");
                             int i = Integer.parseInt(temp[0]);
@@ -179,7 +189,10 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + imageName + Constants.IMAGES_FORMAT);
+
+
+            ImageIcon img = new ImageIcon(Constants.getPathImageOpenedTiles(imageName));
+
             jButton.setIcon(img);
         }
         catch (Exception exception) {
@@ -189,7 +202,48 @@ public class CenterPanel extends  JPanel {
 
     private void buttonSetDisabledIcon(JButton jButton, String imageName) {
         try {
-            ImageIcon img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + imageName + Constants.IMAGES_FORMAT);
+            ImageIcon img;
+            switch (imageName) {
+                case "-1":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_MINE_PATH);
+                    break;
+
+                case "0":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_0_PATH);
+                    break;
+                case "1":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_1_PATH);
+                    break;
+                case "2":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_2_PATH);
+                    break;
+                case "3":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_3_PATH);
+                    break;
+                case "4":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_4_PATH);
+                    break;
+                case "5":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_5_PATH);
+                    break;
+                case "6":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_6_PATH);
+                    break;
+                case "7":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_7_PATH);
+                    break;
+                case "8":
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_8_PATH);
+                    break;
+
+                default:
+                    System.err.println("error in CenterPanel");
+                    img = new ImageIcon(Constants.RESIZED_IMAGE_OPENED_TILES_MINE_PATH);
+
+            }
+//            ImageIcon img = new ImageIcon(Constants.RESIZED_IMAGES_PATH +
+//                    imageName + "." + Constants.IMAGES_FORMAT_NAME);
+//            jButton.setIcon(img);
             jButton.setDisabledIcon(img);
         }
         catch (Exception exception) {

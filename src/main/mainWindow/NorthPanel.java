@@ -91,20 +91,41 @@ public class NorthPanel extends JPanel{
     public void changeIcon(String result) {
         try {
             ImageIcon img;
+//
+//            String retString;
+//
+//            switch(result) {
+//
+//                case "gameOver":
+//                    retString = "false";
+//                    break;
+//
+//                case "gameWon":
+//                    retString = "true";
+//                    break;
+//
+//                default:
+//                    retString = "playAgain";
+//            }
+//
+//            img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + retString +
+//                    "." + Constants.IMAGES_FORMAT_NAME);
 
-            switch(result) {
 
-                case "gameOver":
-                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "false" + Constants.IMAGES_FORMAT);
-                    break;
-
-                case "gameWon":
-                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "true" + Constants.IMAGES_FORMAT);
-                    break;
-
-                default:
-                    img = new ImageIcon(Constants.RESIZED_IMAGES_PATH + "playAgain" + Constants.IMAGES_FORMAT);
+            if (result.equals("gameOver")) {
+                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_DEFEAT_PATH);
+                oldRestartButton.setIcon(img);
             }
+            else if (result.equals("gameWon")) {
+                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_VICTORY_PATH);
+                oldRestartButton.setIcon(img);
+            }
+            else {
+                img = new ImageIcon(Constants.RESIZED_IMAGE_BUTTON_PLAY_AGAIN_PATH);
+                oldRestartButton.setIcon(img);
+            }
+
+
 
             oldRestartButton.setIcon(img);
         } catch (Exception ex) {
