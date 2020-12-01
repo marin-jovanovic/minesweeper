@@ -62,7 +62,8 @@ public class TextFieldActionListener implements DocumentListener {
                 catch (NumberFormatException exception) {
                     if (exception.getMessage().equals("null")) {
 //                        l.add(file.readLine());
-                        fireEvent(new main.Event(this, "columnNumber emptyCell"));
+//                        FIXME this bellow must be part of the code
+//                        fireEvent(new main.Event(this, "columnNumber emptyCell"));
 
                     }
                     else {
@@ -72,7 +73,9 @@ public class TextFieldActionListener implements DocumentListener {
                                 .stream(data.split(""))
                                 .filter(s -> "0123456789".contains(s))
                                 .collect(Collectors.joining());
-                        fireEvent(new main.Event(this, "columnNumber replacement: " + replacement));
+                        //                        FIXME this bellow must be part of the code
+
+//                        fireEvent(new main.Event(this, "columnNumber replacement: " + replacement));
 
 
                     }

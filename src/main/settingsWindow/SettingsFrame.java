@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.Constants;
+import main.constants.Constants;
 import main.Event;
 import main.utils.Listener;
 import main.mainWindow.MainFrame;
@@ -171,8 +171,9 @@ public class SettingsFrame extends JFrame {
                     fileOut.close();
 
                     Constants.refresh();
+//                        FIXME this bellow must be part of the code
 
-                    fireEvent(new main.Event(this, "setting saved"));
+//                    fireEvent(new main.Event(this, "setting saved"));
 
 
 //                    fireEvent(new main.Event(origin, "settingsChanged"));

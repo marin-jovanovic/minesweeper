@@ -1,9 +1,9 @@
 package main.mainWindow;
 
-import main.ClosedTileStatus;
-import main.Constants;
+import main.*;
 import main.Event;
-import main.OpenedTileStatus;
+import main.constants.Commands;
+import main.constants.Constants;
 import main.utils.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
 
@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 public class CenterPanel extends  JPanel {
 
@@ -57,15 +58,10 @@ public class CenterPanel extends  JPanel {
 
                 buttons[i][j] = new JButton();
 
-
-                try {
-                    buttons[i][j].setIcon(new ImageIcon(
-                            Constants.getPathImageClosedTiles(ClosedTileStatus.CLOSED_CELL)));
-                } catch (Exception exception) {
-                    System.out.println(exception.getMessage());
-                    exception.printStackTrace();
-                }
-
+                buttons[i][j].setIcon(new ImageIcon(
+                            ClosedTileStatus.CLOSED_CELL.getPath()
+                        )
+                );
 
                 this.add(buttons[i][j]);
 
@@ -79,27 +75,32 @@ public class CenterPanel extends  JPanel {
 
 //                            name of picture on button
                             String name = currentHoveredButton.getIcon().toString();
+                            System.out.println(name);
 
                             ClosedTileStatus closedTileStatus;
 
                             if (name.contains("closedCell")) {
-                                closedTileStatus = ClosedTileStatus.CLOSED_CELL;
-                            }
-                            else if (name.contains("flag")) {
                                 closedTileStatus = ClosedTileStatus.FLAG;
                             }
-                            else {
+                            else if (name.contains("flag")) {
                                 closedTileStatus = ClosedTileStatus.NOT_SURE;
                             }
+                            else if (name.contains("notSure")){
+                                closedTileStatus = ClosedTileStatus.CLOSED_CELL;
+                            } else {
+                                System.out.println("error");
+                                throw new IndexOutOfBoundsException("error in  mouse listener");
+                            }
+
 
                             try {
                                 currentHoveredButton.setIcon(new ImageIcon(ImageIO.read(new File(
-                                        Constants.getPathImageClosedTiles(closedTileStatus)
+                                        closedTileStatus.getPath()
                                 ))));
+                            } catch (IOException ioException) {
+                                ioException.printStackTrace();
                             }
-                            catch (Exception exception) {
-                                exception.printStackTrace();
-                            }
+
                         }
                     }
                });
@@ -111,7 +112,6 @@ public class CenterPanel extends  JPanel {
                                 for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
                                     if (buttons[i][j].toString().equals(evt.getSource().toString())) {
                                         System.out.println("mouse entered");
-                                        hoveredButton = i + ";" + j;
                                         currentHoveredButton = buttons[i][j];
                                     }
                                 }
@@ -127,7 +127,6 @@ public class CenterPanel extends  JPanel {
                                     if (buttons[i][j].toString().equals(evt.getSource().toString())) {
                                         System.out.println("mouse exited");
                                         currentHoveredButton = null;
-                                        hoveredButton = i + ";" + j;
                                     }
                                 }
                             }
@@ -141,7 +140,7 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-    private String hoveredButton;
+//    private String hoveredButton;
 
     private class ButtonActionListener implements ActionListener {
 
@@ -163,7 +162,7 @@ public class CenterPanel extends  JPanel {
                                         System.out.println("game over");
     //                                          TODO halt time
     //                                          extract to new thread (swing worker)
-                                        fireEvent(new main.Event(this, "gameOver"));
+                                        fireEvent(new main.Event(this, Commands.GAME_OVER));
                                         areButtonsActive = false;
                                         return;
                                     }
@@ -187,13 +186,13 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-    private int numOfCells;
+    private final int numOfCells;
 
     public void checkForWin() {
         if (numOfCells - numOfOpenedCells == Constants.NUMBER_OF_MINES) {
 //            TODO disable statistics
             System.out.println("game is won");
-            fireEvent(new main.Event(this, "gameWon"));
+            fireEvent(new main.Event(this, Commands.GAME_WON));
             areButtonsActive = false;
         }
 
@@ -221,31 +220,27 @@ public class CenterPanel extends  JPanel {
             case 6 -> openedTileStatus = OpenedTileStatus.SIX;
             case 7 -> openedTileStatus = OpenedTileStatus.SEVEN;
             case 8 -> openedTileStatus = OpenedTileStatus.EIGHT;
+            case -1 -> openedTileStatus = OpenedTileStatus.MINE;
             default -> throw new IndexOutOfBoundsException("error in parsing");
-        }
-
-        try {
-            buttons[i][j].setDisabledIcon(
-                    new ImageIcon(
-                            Constants.getPathImageOpenedTiles(
-                                        openedTileStatus
-                                    )
-                            )
-                    )
-            );
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
         }
 
 //        try {
 //            buttons[i][j].setDisabledIcon(
-//                    new ImageIcon(
-//                            Constants.getPathImageOpenedTiles(
-//                                    String.valueOf(table[i][j])
-//                            )
+//                new ImageIcon(
+//                    Constants.getPathImageOpenedTiles(
+//                        openedTileStatus
 //                    )
+//                )
 //            );
+
+            buttons[i][j].setDisabledIcon(
+                    new ImageIcon(
+                            openedTileStatus.getPath()
+//                            Constants.getPathImageOpenedTiles(
+//                                    openedTileStatus
+//                            )
+                    )
+            );
 //        }
 //        catch (Exception exception) {
 //            exception.printStackTrace();
@@ -278,17 +273,22 @@ public class CenterPanel extends  JPanel {
     }
 
 //    main restart sequence when game is started again
-    public void restart(String command) {
-        System.out.println("centerPanel: restart");
-        System.out.println("command " + command);
+    public void restart(Commands command) throws Exception {
+        if (command.equals(Commands.NEW_GAME)) {
+            System.out.println("centerPanel: restart");
 
-        areButtonsActive = true;
-        numOfOpenedCells = 0;
+            areButtonsActive = true;
+            numOfOpenedCells = 0;
 
-        restartButtons();
+            restartButtons();
 
 //         generate new table
-        table = TableGenerator.getTable();
+            table = TableGenerator.getTable();
+
+        } else {
+            throw new Exception("unsupported command");
+        }
+
 
     }
 
@@ -300,10 +300,10 @@ public class CenterPanel extends  JPanel {
                 buttons[i][j].setEnabled(true);
 
                 try {
-                    buttons[i][j].setIcon(new ImageIcon(Constants.getPathImageClosedTiles(ClosedTileStatus.CLOSED_CELL)));
+                    buttons[i][j].setIcon(new ImageIcon(
+                            ClosedTileStatus.CLOSED_CELL.getPath()
+                    ));
 
-
-//                    buttons[i][j].setIcon(new ImageIcon(Constants.getPathImageClosedTiles("closedCell")));
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }

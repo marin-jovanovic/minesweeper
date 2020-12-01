@@ -1,6 +1,6 @@
 package main.mainWindow;
 
-import main.Constants;
+import main.constants.Constants;
 import main.Event;
 import main.utils.Listener;
 
@@ -30,12 +30,20 @@ public class MainFrame extends JFrame {
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();
 
-        northPanel.addListener(event -> centerPanel.restart(event.getCommand()));
-
-//        getCommand:
-//            gameOver
-//            gameWon
-        centerPanel.addListener(event -> northPanel.changeIcon(event.getCommand()));
+        northPanel.addListener(event -> {
+            try {
+                centerPanel.restart(event.getCommand());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        centerPanel.addListener(event -> {
+            try {
+                northPanel.setRestartButton(event.getCommand());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
 
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);

@@ -1,13 +1,6 @@
 package main.mainWindow;
 
-import main.Constants;
-import main.Event;
-import main.utils.Listener;
-
 import javax.swing.*;
-import javax.swing.event.EventListenerList;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class RestartButton extends JButton {
 

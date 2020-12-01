@@ -1,14 +1,13 @@
 package main.mainWindow;
 
-import main.Constants;
+import main.*;
 import main.Event;
+import main.constants.Commands;
 import main.utils.Listener;
 import main.settingsWindow.SettingsFrame;
 
-//import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
-//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,61 +15,27 @@ public class NorthPanel extends JPanel{
 
     private JButton oldRestartButton;
 
-    private RestartButton restartButton;
+//    private RestartButton restartButton;
 
     public NorthPanel() {
 
-        Timer timer = new Timer();
-        add(timer);
-
 //        TODO statistics, time
 
-//
-//        restartButton = new RestartButton();
-//        restartButton.changeIcon("init");
-//        add(restartButton);
-
-
-//        addListener(event -> centerPanel.restart(event.getCommand()));
-
-
         oldRestartButton = new JButton();
-        changeIcon("init");
+
+        oldRestartButton.setIcon(new ImageIcon(ButtonStatus.INIT.getPath()));
+
         add(oldRestartButton);
 
         oldRestartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
-                fireEvent(new main.Event(this, "new game"));
-                changeIcon("playAgain");
+                fireEvent(new main.Event(this, Commands.NEW_GAME));
+
+                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));
             }
         });
-
-
-
-
-//        this.addListener(event -> {
-//
-//            System.out.println("event");
-//            System.out.println(event);
-//            System.out.println();
-//
-////            MainFrame.restartSequence();
-//
-//            System.out.println("restart tiles");
-//
-//
-//        });
-//
-//        this.addListener(new Listener() {
-//            @Override
-//            public void eventOccurred(Event event) {
-//                System.out.println("event");
-//                System.out.println(event);
-//                System.out.println();
-//            }
-//        });
 
         JButton settingsButton = new JButton("settings");
 
@@ -86,29 +51,6 @@ public class NorthPanel extends JPanel{
         add(settingsButton);
     }
 
-//    private SettingsFrame settingsFrame;
-
-//    public void changeIcon(String result) {
-//
-//
-//
-//        try {
-//            oldRestartButton.setIcon(new ImageIcon(Constants.getPathImageButton(result)));
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
-//
-//
-//
-////        try {
-////            oldRestartButton.setIcon(new ImageIcon(Constants.getPathImageButton(result)));
-////        } catch (Exception ex) {
-////            ex.printStackTrace();
-////        }
-//    }
-
-
     private EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
@@ -117,7 +59,6 @@ public class NorthPanel extends JPanel{
         for (int i = 0; i < listeners.length; i++) {
             System.out.println(listeners[i]);
         }
-
 
         for (int i = 0; i < listeners.length; i++) {
             if (listeners[i] instanceof Listener) {
@@ -130,4 +71,31 @@ public class NorthPanel extends JPanel{
     public void addListener(Listener listener) {
         listenerList.add(Listener.class, listener);
     }
+
+    public void setRestartButton(Commands command) throws Exception {
+        if (command.equals(Commands.GAME_OVER)) {
+            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.DEFEAT.getPath()));
+        } else if (command.equals(Commands.GAME_WON)) {
+            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.VICTORY.getPath()));
+        } else {
+            throw new Exception("unsupported command");
+        }
+//
+//        if (command.equals("gameOver")) {
+////            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
+//
+//            buttonSetIcon(ButtonStatus.DEFEAT);
+//        } else if (command.equals("gameWon")) {
+//            buttonSetIcon(ButtonStatus.VICTORY);
+//        }
+
+
+    }
+
+    private void buttonSetIcon(ButtonStatus defeat) {
+            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
+
+    }
+
+
 }

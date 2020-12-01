@@ -1,19 +1,21 @@
 package main;
 
+import main.constants.Commands;
+
 import java.util.EventObject;
 
 public class Event extends EventObject {
 
-    private final String command;
+    private final Commands command;
 
-    public Event(Object source, String command) {
+    public Event(Object source, Commands command) {
         super(source);
 
         this.command = command;
 
     }
 
-    public String getCommand() {
+    public Commands getCommand() {
         return command;
     }
 
