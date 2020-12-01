@@ -1,6 +1,7 @@
 package main.utils.imagesDrivers;
 
 import main.Constants;
+import main.Main;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -17,9 +19,21 @@ public class ResizeImages {
 
     public static void main(String[] args) {
 
-        resizeAllImagesInFolder("src/main/resources/original_images/time",
-                "src/main/resources/resized_images/time");
+//        resizeAllImagesInFolder("src/main/resources/original_images/time",
+//                "src/main/resources/resized_images/time");
+//
 
+//        List<String> list = new ArrayList<String>();
+//        lis
+
+        String a = "button";
+
+        resizeAllImagesInFolder("src/main/resources/original_images/" + a,
+                "src/main/resources/resized_images/" + a);
+//        button
+//                closed_tiles
+//                Opened_tiles
+//                        time
 //        resizeAndSaveImage("src/main/resources/original_images/time/0.png",
 //                "src/main/resources/resized_images/slika.png");
     }
@@ -30,15 +44,19 @@ public class ResizeImages {
                 System.out.println(path);
                 System.out.println(path.getFileName());
 
-                String[] buffer = (path.getFileName()).toString().split(".");
 
-                String name = buffer[0];
-                String format = buffer[1];
+                String name = (path.getFileName()).toString().replaceFirst("[.][^.]+$", "");
+                System.out.println(name);
 
-//                String name = (path.getFileName()).toString().replaceFirst("[.][^.]+$", "");
-//                String sufix = (path.getFileName()).toString().replaceFirst("[^.][.]", "");
+//                extension
+                String format = path.toString().substring(path.toString().lastIndexOf('.')+1);
 
-//                System.out.println(sufix);
+//                String format = "";
+//
+//                int i = path.toString().lastIndexOf('.');
+//                if (i > 0) {
+//                    format = path.toString().substring(i+1);
+//                }
 
 
                 if (Arrays.asList(Constants.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {

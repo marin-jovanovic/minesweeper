@@ -88,13 +88,25 @@ public class NorthPanel extends JPanel{
 
 //    private SettingsFrame settingsFrame;
 
-    public void changeIcon(String result) {
-        try {
-            oldRestartButton.setIcon(new ImageIcon(Constants.getPathImageButton(result)));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+//    public void changeIcon(String result) {
+//
+//
+//
+//        try {
+//            oldRestartButton.setIcon(new ImageIcon(Constants.getPathImageButton(result)));
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//
+//
+//
+//
+////        try {
+////            oldRestartButton.setIcon(new ImageIcon(Constants.getPathImageButton(result)));
+////        } catch (Exception ex) {
+////            ex.printStackTrace();
+////        }
+//    }
 
 
     private EventListenerList listenerList = new EventListenerList();
