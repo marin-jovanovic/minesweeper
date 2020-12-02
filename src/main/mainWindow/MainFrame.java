@@ -1,6 +1,6 @@
 package main.mainWindow;
 
-import main.constants.Constants;
+import main.constants.GeneralConstants;
 import main.utils.Event;
 import main.constants.LayoutConstants;
 import main.utils.Listener;
@@ -26,7 +26,7 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout());
 
         this.mainFrame = this;
-        Constants.refresh();
+        GeneralConstants.refresh();
 
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();

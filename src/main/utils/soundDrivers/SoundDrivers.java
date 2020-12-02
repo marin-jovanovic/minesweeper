@@ -13,8 +13,6 @@ public class SoundDrivers {
         soundThread.start();
     }
 
-    private static SoundThread soundThread = new SoundThread();
-
     public static void playGameOverSound() {
         SoundThread soundThread = new SoundThread();
         soundThread.start();
@@ -34,45 +32,28 @@ public class SoundDrivers {
                     notifyAll();
                 }
             }
-            public synchronized void waitUntilDone() throws InterruptedException {
-                while (!done) { wait(); }
+            public synchronized void waitUntilDone() {
+                try {
+                    while (!done) { wait(); }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         AudioListener listener = new AudioListener();
         AudioInputStream audioInputStream = null;
+
         try {
             audioInputStream = AudioSystem.getAudioInputStream(clipFile);
-        } catch (UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
-        }
-        try {
-//            Clip clip = null;
-            try {
-                Clip clip = AudioSystem.getClip();
-                clip.addLineListener(listener);
-                try {
-//                    assert clip != null;
-                    clip.open(audioInputStream);
-                } catch (LineUnavailableException | IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    clip.start();
-                    try {
-                        listener.waitUntilDone();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } finally {
-                    clip.close();
-                }
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
-//            if (clip != null) {
-//            }
 
+            Clip clip = AudioSystem.getClip();
+            clip.addLineListener(listener);
+            clip.open(audioInputStream);
+            clip.start();
+            listener.waitUntilDone();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
         } finally {
             try {
                 assert audioInputStream != null;

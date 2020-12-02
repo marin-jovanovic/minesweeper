@@ -10,9 +10,7 @@ public class Event extends EventObject {
 
     public Event(Object source, Commands command) {
         super(source);
-
         this.command = command;
-
     }
 
     public Commands getCommand() {

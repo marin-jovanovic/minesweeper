@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.constants.Constants;
+import main.constants.GeneralConstants;
 import main.utils.Event;
 import main.constants.LayoutConstants;
 import main.utils.Listener;
@@ -171,7 +171,7 @@ public class SettingsFrame extends JFrame {
                     fileOut.write(result.getBytes());
                     fileOut.close();
 
-                    Constants.refresh();
+                    GeneralConstants.refresh();
 //                        FIXME this bellow must be part of the code
 
 //                    fireEvent(new main.utils.Event(this, "setting saved"));
@@ -273,7 +273,7 @@ public class SettingsFrame extends JFrame {
         rowNumberLabel = new JLabel("row number:");
         add(rowNumberLabel);
 
-        rowNumberField = new JTextField(Constants.NUMBER_OF_ROWS);
+        rowNumberField = new JTextField(GeneralConstants.NUMBER_OF_ROWS);
         add(rowNumberField);
 
         TextFieldActionListener textFieldActionListener =
@@ -308,7 +308,7 @@ public class SettingsFrame extends JFrame {
         columnNumberLabel = new JLabel(("column number:"));
         add(columnNumberLabel);
 
-        columnNumberField = new JTextField(Constants.NUMBER_OF_COLUMNS);
+        columnNumberField = new JTextField(GeneralConstants.NUMBER_OF_COLUMNS);
         add(columnNumberField);
 
         columnNumberField.getDocument().addDocumentListener(
@@ -323,7 +323,7 @@ public class SettingsFrame extends JFrame {
         mineNumberLabel = new JLabel(("mine number:"));
         add(mineNumberLabel);
 
-        mineNumberField = new JTextField(Constants.NUMBER_OF_MINES);
+        mineNumberField = new JTextField(GeneralConstants.NUMBER_OF_MINES);
         add(mineNumberField);
 
         mineNumberField.getDocument().addDocumentListener(

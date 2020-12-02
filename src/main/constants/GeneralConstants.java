@@ -5,7 +5,7 @@ import main.constants.imageDrivers.ImagesConstants;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class Constants {
+public class GeneralConstants {
 
     public static Boolean CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN = false;
 
@@ -15,8 +15,6 @@ public class Constants {
 
     //    where this is saved
     public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
-    public static final String SOUND_PATH_0 = "C:\\Users\\PC\\Downloads\\j3.wav";
-
 
     public static void refresh() {
 
