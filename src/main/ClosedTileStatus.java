@@ -2,6 +2,9 @@ package main;
 
 import main.constants.Constants;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
 public enum ClosedTileStatus {
     CLOSED_CELL("closedCell"),
     FLAG("flag"),
@@ -9,12 +12,13 @@ public enum ClosedTileStatus {
 
     private String path;
 
-    public String getPath() {
-        return Constants.RESIZED_IMAGES_PATH + Constants.CLOSED_TILES + this.path + Constants.DOT +
-                Constants.IMAGES_FORMAT_NAME;
+    public ImageIcon getImageIcon() {
+        return new ImageIcon(Constants.RESIZED_IMAGES_PATH + Constants.CLOSED_TILES + this.path + Constants.DOT +
+                Constants.IMAGES_FORMAT_NAME);
     }
 
     ClosedTileStatus(String path) {
         this.path = path;
     }
+
 }

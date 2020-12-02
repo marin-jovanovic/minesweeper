@@ -25,10 +25,12 @@ public class Constants {
     public static String[] ORIGINAL_IMAGES_FORMATS_NAMES = {"png", "jpg"};
 
 
-    private static final String ORIGINAL_IMAGES_PATH = "src/main/resources/original_images/";
 
 //    where this is saved
     public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
+
+
+    private static final String ORIGINAL_IMAGES_PATH = "src/main/resources/original_images/";
 
     public static final String RESIZED_IMAGES_PATH = "src/main/resources/resized_images/";
 
@@ -40,44 +42,6 @@ public class Constants {
 
     //    format in which images will be changed
     public static String IMAGES_FORMAT_NAME = "png";
-//    public static String getPathImageClosedTiles(String value) {
-//
-//        if (Arrays.asList("closedCell", "flag", "notSure").contains(value)) {
-//            return RESIZED_IMAGES_PATH + "closed_tiles/" + value + "." + IMAGES_FORMAT_NAME;
-//        } else {
-//            throw new IndexOutOfBoundsException();
-//        }
-//
-//    }
-
-////    button
-//    public static String getPathImageButton(String value) {
-//
-//        if (Arrays.asList("victory", "defeat", "playAgain", "init").contains(value)) {
-//            return RESIZED_IMAGES_PATH + "button/" + value + "." + IMAGES_FORMAT_NAME;
-//        } else {
-//            throw new IndexOutOfBoundsException();
-//        }
-//
-//    }
-//
-////    opened tiles
-//    public static String getPathImageOpenedTiles(String value) {
-//        if (Integer.parseInt(value) >= -1 && Integer.parseInt(value) <= 8) {
-//            return RESIZED_IMAGES_PATH + "opened_tiles/" + value + "." + IMAGES_FORMAT_NAME;
-//        } else {
-//            throw new IndexOutOfBoundsException();
-//        }
-//    }
-//
-////    image path
-//    public static String getPathImageTime(String time) {
-//        if (Integer.parseInt(time) >= 0 && Integer.parseInt(time) <= 9) {
-//            return RESIZED_IMAGES_PATH + "time/" + time + "." + IMAGES_FORMAT_NAME;
-//        } else {
-//            throw new IndexOutOfBoundsException();
-//        }
-//    }
 
     public static void refresh() {
 

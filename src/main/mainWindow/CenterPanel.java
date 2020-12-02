@@ -7,7 +7,6 @@ import main.constants.Constants;
 import main.utils.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
@@ -15,8 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
 public class CenterPanel extends  JPanel {
 
@@ -25,15 +22,25 @@ public class CenterPanel extends  JPanel {
 //    table that shows board mines
     private int[][] table;
 
+
     private final int[][] rightClickTable;
-    private JButton currentHoveredButton;
+
+//    used for right click actions
+//    private JButton currentHoveredButton;
 
 //    if field with mine is opened game is over
 //    all buttons must be locked
 //    this is controller for it
     private boolean areButtonsActive = true;
+
+//    used to check if you can declare win
     private int numOfOpenedCells = 0;
 
+
+    //    for navigation in table
+//
+    private int currentHoveredButtonX;
+    private int currentHoveredButtonY;
 
     public CenterPanel() {
 
@@ -43,11 +50,11 @@ public class CenterPanel extends  JPanel {
 
         rightClickTable = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
 
-        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                rightClickTable[i][j] = 0;
-            }
-        }
+//        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
+//            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
+//                rightClickTable[i][j] = 0;
+//            }
+//        }
 
         table = TableGenerator.getTable();
 
@@ -58,89 +65,61 @@ public class CenterPanel extends  JPanel {
 
                 buttons[i][j] = new JButton();
 
-                buttons[i][j].setIcon(new ImageIcon(
-                            ClosedTileStatus.CLOSED_CELL.getPath()
-                        )
-                );
+                buttons[i][j].setIcon(ClosedTileStatus.CLOSED_CELL.getImageIcon());
 
-                this.add(buttons[i][j]);
-
-                buttons[i][j].addMouseListener(new MouseAdapter() {
-
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-
-                        if (e.getButton() != MouseEvent.BUTTON1 && currentHoveredButton != null) {
-                            System.out.println("RIGHT CLICK");
-
-//                            name of picture on button
-                            String name = currentHoveredButton.getIcon().toString();
-                            System.out.println(name);
-
-                            ClosedTileStatus closedTileStatus;
-
-                            if (name.contains("closedCell")) {
-                                closedTileStatus = ClosedTileStatus.FLAG;
-                            }
-                            else if (name.contains("flag")) {
-                                closedTileStatus = ClosedTileStatus.NOT_SURE;
-                            }
-                            else if (name.contains("notSure")){
-                                closedTileStatus = ClosedTileStatus.CLOSED_CELL;
-                            } else {
-                                System.out.println("error");
-                                throw new IndexOutOfBoundsException("error in  mouse listener");
-                            }
-
-
-                            try {
-                                currentHoveredButton.setIcon(new ImageIcon(ImageIO.read(new File(
-                                        closedTileStatus.getPath()
-                                ))));
-                            } catch (IOException ioException) {
-                                ioException.printStackTrace();
-                            }
-
-                        }
-                    }
-               });
-
-                buttons[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseEntered(java.awt.event.MouseEvent evt) {
-                        if (areButtonsActive) {
-                            for (int i = 0; i <Constants.NUMBER_OF_ROWS; i++) {
-                                for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                                    if (buttons[i][j].toString().equals(evt.getSource().toString())) {
-                                        System.out.println("mouse entered");
-                                        currentHoveredButton = buttons[i][j];
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    public void mouseExited(java.awt.event.MouseEvent evt) {
-
-                        if (areButtonsActive) {
-                            for (int i = 0; i <Constants.NUMBER_OF_ROWS; i++) {
-                                for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-                                    if (buttons[i][j].toString().equals(evt.getSource().toString())) {
-                                        System.out.println("mouse exited");
-                                        currentHoveredButton = null;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
+                buttons[i][j].addMouseListener(new MouseActionListener(i, j));
 
                 buttons[i][j].addActionListener(new ButtonActionListener());
+
+                this.add(buttons[i][j]);
 
             }
         }
     }
 
-//    private String hoveredButton;
+
+    private class MouseActionListener extends MouseAdapter {
+        private final int x;
+        private final int y;
+
+        public MouseActionListener(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            if (e.getButton() != MouseEvent.BUTTON1 && currentHoveredButtonX != -1) {
+                System.out.println("RIGHT CLICK");
+
+                String string = buttons[currentHoveredButtonX][currentHoveredButtonY].getIcon().toString();
+
+                if (ClosedTileStatus.CLOSED_CELL.getImageIcon().toString().equals(string)) {
+                    buttons[currentHoveredButtonX][currentHoveredButtonY].setIcon(
+                            ClosedTileStatus.FLAG.getImageIcon()
+                    );
+                } else if (ClosedTileStatus.FLAG.getImageIcon().toString().equals(string)) {
+                    buttons[currentHoveredButtonX][currentHoveredButtonY].setIcon(
+                            ClosedTileStatus.NOT_SURE.getImageIcon()
+                    );
+                } else {
+                    buttons[currentHoveredButtonX][currentHoveredButtonY].setIcon(
+                            ClosedTileStatus.CLOSED_CELL.getImageIcon()
+                    );
+                }
+            }
+        }
+
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentHoveredButtonX = x;
+                currentHoveredButtonY = y;
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            currentHoveredButtonX = -1;
+        }
+
+    }
 
     private class ButtonActionListener implements ActionListener {
 
@@ -155,7 +134,6 @@ public class CenterPanel extends  JPanel {
 
                             System.out.println("clicked " + i + " " + j);
 
-                            if (rightClickTable[i][j] == 0) {
                                 if (table[i][j] != 0) {
                                     openCell(i, j);
                                     if (table[i][j] == -1) {
@@ -178,7 +156,6 @@ public class CenterPanel extends  JPanel {
                                 System.out.println("*** halt ***");
                                 System.out.println();
                                 return;
-                            }
                         }
                     }
                 }
@@ -195,7 +172,6 @@ public class CenterPanel extends  JPanel {
             fireEvent(new main.Event(this, Commands.GAME_WON));
             areButtonsActive = false;
         }
-
     }
 
 //  opens targeted cell
@@ -224,27 +200,8 @@ public class CenterPanel extends  JPanel {
             default -> throw new IndexOutOfBoundsException("error in parsing");
         }
 
-//        try {
-//            buttons[i][j].setDisabledIcon(
-//                new ImageIcon(
-//                    Constants.getPathImageOpenedTiles(
-//                        openedTileStatus
-//                    )
-//                )
-//            );
+        buttons[i][j].setDisabledIcon(openedTileStatus.getImageIcon());
 
-            buttons[i][j].setDisabledIcon(
-                    new ImageIcon(
-                            openedTileStatus.getPath()
-//                            Constants.getPathImageOpenedTiles(
-//                                    openedTileStatus
-//                            )
-                    )
-            );
-//        }
-//        catch (Exception exception) {
-//            exception.printStackTrace();
-//        }
     }
 
 //    opens all blank that are NEWS, ne, ns, ...,  of targeted cell
@@ -265,8 +222,8 @@ public class CenterPanel extends  JPanel {
             for (int j = -1; j < 2; j++) {
                 try {
                     openBlanks(x+i, y+j);
-                }
-                catch (Exception ignored) {
+                } catch (Exception ignored) {
+
                 }
             }
         }
@@ -300,9 +257,7 @@ public class CenterPanel extends  JPanel {
                 buttons[i][j].setEnabled(true);
 
                 try {
-                    buttons[i][j].setIcon(new ImageIcon(
-                            ClosedTileStatus.CLOSED_CELL.getPath()
-                    ));
+                    buttons[i][j].setIcon(ClosedTileStatus.CLOSED_CELL.getImageIcon());
 
                 } catch (Exception exception) {
                     exception.printStackTrace();

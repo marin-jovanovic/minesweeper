@@ -2,6 +2,8 @@ package main;
 
 import main.constants.Constants;
 
+import javax.swing.*;
+
 public enum ButtonStatus {
     VICTORY("victory"),
     DEFEAT("defeat"),
@@ -10,9 +12,9 @@ public enum ButtonStatus {
 
     private String path;
 
-    public String getPath() {
-        return Constants.RESIZED_IMAGES_PATH + Constants.BUTTON_PATH + this.path + Constants.DOT +
-                Constants.IMAGES_FORMAT_NAME;
+    public ImageIcon getImageIcon() {
+        return new ImageIcon(Constants.RESIZED_IMAGES_PATH + Constants.BUTTON_PATH + this.path + Constants.DOT +
+                Constants.IMAGES_FORMAT_NAME);
     }
 
     ButtonStatus(String path) {

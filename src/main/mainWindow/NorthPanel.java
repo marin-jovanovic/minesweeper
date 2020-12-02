@@ -23,7 +23,8 @@ public class NorthPanel extends JPanel{
 
         oldRestartButton = new JButton();
 
-        oldRestartButton.setIcon(new ImageIcon(ButtonStatus.INIT.getPath()));
+//        oldRestartButton.setIcon(new ImageIcon(ButtonStatus.INIT.getPath()));
+        oldRestartButton.setIcon(ButtonStatus.INIT.getImageIcon());
 
         add(oldRestartButton);
 
@@ -32,8 +33,9 @@ public class NorthPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
                 fireEvent(new main.Event(this, Commands.NEW_GAME));
+                oldRestartButton.setIcon(ButtonStatus.PLAY_AGAIN.getImageIcon());
 
-                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));
+//                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));
             }
         });
 
@@ -74,9 +76,13 @@ public class NorthPanel extends JPanel{
 
     public void setRestartButton(Commands command) throws Exception {
         if (command.equals(Commands.GAME_OVER)) {
-            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.DEFEAT.getPath()));
+            oldRestartButton.setIcon(ButtonStatus.DEFEAT.getImageIcon());
+
+//            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.DEFEAT.getPath()));
         } else if (command.equals(Commands.GAME_WON)) {
-            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.VICTORY.getPath()));
+            oldRestartButton.setIcon(ButtonStatus.VICTORY.getImageIcon());
+
+//            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.VICTORY.getPath()));
         } else {
             throw new Exception("unsupported command");
         }
@@ -92,8 +98,9 @@ public class NorthPanel extends JPanel{
 
     }
 
-    private void buttonSetIcon(ButtonStatus defeat) {
-            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
+    private void buttonSetIcon(ButtonStatus buttonStatus) {
+        oldRestartButton.setIcon(buttonStatus.getImageIcon());
+//            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
 
     }
 
