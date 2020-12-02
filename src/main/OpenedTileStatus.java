@@ -22,10 +22,6 @@ public enum OpenedTileStatus {
         return new ImageIcon(Constants.RESIZED_IMAGES_PATH + Constants.OPENED_TILES + this.path + Constants.DOT +
                 Constants.IMAGES_FORMAT_NAME);
     }
-//    public String getPath() {
-//        return Constants.RESIZED_IMAGES_PATH + Constants.OPENED_TILES + this.path + Constants.DOT +
-//                Constants.IMAGES_FORMAT_NAME;
-//    }
 
     OpenedTileStatus(String path) {
         this.path = path;

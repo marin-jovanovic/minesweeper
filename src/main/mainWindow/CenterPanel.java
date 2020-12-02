@@ -17,6 +17,9 @@ import java.awt.event.MouseEvent;
 
 public class CenterPanel extends  JPanel {
 
+//    TODO
+//      add ability to block all buttons under flag
+
     private final JButton[][] buttons;
 
 //    table that shows board mines
@@ -50,12 +53,6 @@ public class CenterPanel extends  JPanel {
 
         rightClickTable = new int[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
 
-//        for (int i = 0; i < Constants.NUMBER_OF_ROWS; i++) {
-//            for (int j = 0; j < Constants.NUMBER_OF_COLUMNS; j++) {
-//                rightClickTable[i][j] = 0;
-//            }
-//        }
-
         table = TableGenerator.getTable();
 
         buttons = new JButton[Constants.NUMBER_OF_ROWS][Constants.NUMBER_OF_COLUMNS];
@@ -77,7 +74,7 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-
+//    handles right click operations
     private class MouseActionListener extends MouseAdapter {
         private final int x;
         private final int y;
@@ -89,7 +86,7 @@ public class CenterPanel extends  JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if (e.getButton() != MouseEvent.BUTTON1 && currentHoveredButtonX != -1) {
+            if (areButtonsActive && e.getButton() != MouseEvent.BUTTON1 && currentHoveredButtonX != -1) {
                 System.out.println("RIGHT CLICK");
 
                 String string = buttons[currentHoveredButtonX][currentHoveredButtonY].getIcon().toString();
@@ -136,7 +133,7 @@ public class CenterPanel extends  JPanel {
 
                                 if (table[i][j] != 0) {
                                     openCell(i, j);
-                                    if (table[i][j] == -1) {
+                                    if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
                                         System.out.println("game over");
     //                                          TODO halt time
     //                                          extract to new thread (swing worker)
@@ -180,6 +177,16 @@ public class CenterPanel extends  JPanel {
         if (!buttons[i][j].isEnabled()) {
             return;
         }
+
+        if (! Constants.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN) {
+            System.out.println(buttons[i][j].getIcon().toString());
+            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
+
+            if (! buttons[i][j].getIcon().toString().equals(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString())) {
+                return;
+            }
+        }
+
 
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);

@@ -5,6 +5,8 @@ import java.io.FileReader;
 
 public class Constants {
 
+    public static Boolean CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN = false;
+
     public static int NUMBER_OF_COLUMNS =10;
     public static int NUMBER_OF_ROWS = 10;
     public static int NUMBER_OF_MINES = 15;
@@ -23,8 +25,6 @@ public class Constants {
 
 //    formats in which images will be loaded
     public static String[] ORIGINAL_IMAGES_FORMATS_NAMES = {"png", "jpg"};
-
-
 
 //    where this is saved
     public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
