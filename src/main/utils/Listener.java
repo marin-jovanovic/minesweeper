@@ -1,7 +1,5 @@
 package main.utils;
 
-import main.Event;
-
 import java.util.EventListener;
 
 

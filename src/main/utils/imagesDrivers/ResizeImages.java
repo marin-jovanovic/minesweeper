@@ -1,6 +1,6 @@
 package main.utils.imagesDrivers;
 
-import main.constants.Constants;
+import main.constants.imageDrivers.ImagesConstants;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -57,7 +57,7 @@ public class ResizeImages {
 //                }
 
 
-                if (Arrays.asList(Constants.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {
+                if (Arrays.asList(ImagesConstants.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {
 
 //                }
 
@@ -101,10 +101,10 @@ public class ResizeImages {
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
             BufferedImage resizeImage = resizeImage(originalImage, type,
-                    Constants.PICTURE_WIDTH, Constants.PICTURE_HEIGHT);
+                    ImagesConstants.PICTURE_WIDTH, ImagesConstants.PICTURE_HEIGHT);
 
 
-            ImageIO.write(resizeImage, Constants.IMAGES_FORMAT_NAME, new File(destination));
+            ImageIO.write(resizeImage, ImagesConstants.IMAGES_FORMAT_NAME, new File(destination));
 
 //            if (!(new File(destination).exists())) {
 //                System.out.println("destination does not exist");

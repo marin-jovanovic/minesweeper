@@ -1,10 +1,12 @@
 package main.mainWindow;
 
-import main.*;
-import main.Event;
+import main.utils.Event;
 import main.constants.Commands;
 import main.constants.Constants;
+import main.constants.imageDrivers.ClosedTileStatus;
+import main.constants.imageDrivers.OpenedTileStatus;
 import main.utils.Listener;
+import main.utils.soundDrivers.SoundDrivers;
 import main.utils.minesweeperDrivers.TableGenerator;
 
 import javax.swing.*;
@@ -64,7 +66,7 @@ public class CenterPanel extends  JPanel {
 
                 buttons[i][j].setIcon(ClosedTileStatus.CLOSED_CELL.getImageIcon());
 
-                buttons[i][j].addMouseListener(new MouseActionListener(i, j));
+                buttons[i][j].addMouseListener(new MouseActionListener(this, areButtonsActive, buttons, i, j));
 
                 buttons[i][j].addActionListener(new ButtonActionListener());
 
@@ -75,32 +77,38 @@ public class CenterPanel extends  JPanel {
     }
 
 //    handles right click operations
-    private class MouseActionListener extends MouseAdapter {
+    private static class MouseActionListener extends MouseAdapter {
         private final int x;
         private final int y;
+    private CenterPanel panel;
+    private boolean areButtonsActive;
+    private JButton[][] buttons;
 
-        public MouseActionListener(int x, int y) {
+    public MouseActionListener(CenterPanel panel, boolean areButtonsActive, JButton[][] buttons, int x, int y) {
             this.x = x;
             this.y = y;
-        }
+        this.panel = panel;
+        this.areButtonsActive = areButtonsActive;
+        this.buttons = buttons;
+    }
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if (areButtonsActive && e.getButton() != MouseEvent.BUTTON1 && currentHoveredButtonX != -1) {
+            if (areButtonsActive && e.getButton() != MouseEvent.BUTTON1 && panel.currentHoveredButtonX != -1) {
                 System.out.println("RIGHT CLICK");
 
-                String string = buttons[currentHoveredButtonX][currentHoveredButtonY].getIcon().toString();
+                String string = buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].getIcon().toString();
 
                 if (ClosedTileStatus.CLOSED_CELL.getImageIcon().toString().equals(string)) {
-                    buttons[currentHoveredButtonX][currentHoveredButtonY].setIcon(
+                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
                             ClosedTileStatus.FLAG.getImageIcon()
                     );
                 } else if (ClosedTileStatus.FLAG.getImageIcon().toString().equals(string)) {
-                    buttons[currentHoveredButtonX][currentHoveredButtonY].setIcon(
+                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
                             ClosedTileStatus.NOT_SURE.getImageIcon()
                     );
                 } else {
-                    buttons[currentHoveredButtonX][currentHoveredButtonY].setIcon(
+                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
                             ClosedTileStatus.CLOSED_CELL.getImageIcon()
                     );
                 }
@@ -108,12 +116,12 @@ public class CenterPanel extends  JPanel {
         }
 
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-                currentHoveredButtonX = x;
-                currentHoveredButtonY = y;
+                panel.currentHoveredButtonX = x;
+                panel.currentHoveredButtonY = y;
         }
 
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            currentHoveredButtonX = -1;
+            panel.currentHoveredButtonX = -1;
         }
 
     }
@@ -137,7 +145,13 @@ public class CenterPanel extends  JPanel {
                                         System.out.println("game over");
     //                                          TODO halt time
     //                                          extract to new thread (swing worker)
-                                        fireEvent(new main.Event(this, Commands.GAME_OVER));
+                                        fireEvent(new Event(this, Commands.GAME_OVER));
+
+                                        SoundDrivers.playGameOverSound();
+
+//                                        SoundThread soundThread = new SoundThread();
+//                                        soundThread.start();
+
                                         areButtonsActive = false;
                                         return;
                                     }
@@ -166,8 +180,9 @@ public class CenterPanel extends  JPanel {
         if (numOfCells - numOfOpenedCells == Constants.NUMBER_OF_MINES) {
 //            TODO disable statistics
             System.out.println("game is won");
-            fireEvent(new main.Event(this, Commands.GAME_WON));
             areButtonsActive = false;
+
+            fireEvent(new Event(this, Commands.GAME_WON));
         }
     }
 
@@ -179,8 +194,8 @@ public class CenterPanel extends  JPanel {
         }
 
         if (! Constants.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN) {
-            System.out.println(buttons[i][j].getIcon().toString());
-            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
+//            System.out.println(buttons[i][j].getIcon().toString());
+//            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
 
             if (! buttons[i][j].getIcon().toString().equals(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString())) {
                 return;
@@ -265,7 +280,6 @@ public class CenterPanel extends  JPanel {
 
                 try {
                     buttons[i][j].setIcon(ClosedTileStatus.CLOSED_CELL.getImageIcon());
-
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }

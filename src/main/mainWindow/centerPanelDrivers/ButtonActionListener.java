@@ -41,7 +41,7 @@ public class ButtonActionListener implements ActionListener {
 //                                //                                          TODO halt time
 //                                //                                          extract to new thread (swing worker)
 //                                //                                                defeat
-//                                fireEvent(new main.Event(this, "gameOver"));
+//                                fireEvent(new main.utils.Event(this, "gameOver"));
 //                                areButtonsActive = false;
 //                                return;
 //                            }

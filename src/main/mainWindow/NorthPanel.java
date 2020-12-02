@@ -1,8 +1,8 @@
 package main.mainWindow;
 
-import main.*;
-import main.Event;
+import main.utils.Event;
 import main.constants.Commands;
+import main.constants.imageDrivers.ButtonStatus;
 import main.utils.Listener;
 import main.settingsWindow.SettingsFrame;
 
@@ -32,7 +32,7 @@ public class NorthPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
-                fireEvent(new main.Event(this, Commands.NEW_GAME));
+                fireEvent(new Event(this, Commands.NEW_GAME));
                 oldRestartButton.setIcon(ButtonStatus.PLAY_AGAIN.getImageIcon());
 
 //                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));

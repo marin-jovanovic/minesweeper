@@ -1,6 +1,6 @@
-package main;
+package main.constants.imageDrivers;
 
-import main.constants.Constants;
+import main.constants.imageDrivers.ImagesConstants;
 
 import javax.swing.*;
 
@@ -19,8 +19,8 @@ public enum OpenedTileStatus {
     private String path;
 
     public ImageIcon getImageIcon() {
-        return new ImageIcon(Constants.RESIZED_IMAGES_PATH + Constants.OPENED_TILES + this.path + Constants.DOT +
-                Constants.IMAGES_FORMAT_NAME);
+        return new ImageIcon(ImagesConstants.RESIZED_IMAGES_PATH + ImagesConstants.OPENED_TILES
+                + this.path + ImagesConstants.DOT + ImagesConstants.IMAGES_FORMAT_NAME);
     }
 
     OpenedTileStatus(String path) {

@@ -1,7 +1,8 @@
 package main.settingsWindow;
 
 import main.constants.Constants;
-import main.Event;
+import main.utils.Event;
+import main.constants.LayoutConstants;
 import main.utils.Listener;
 import main.mainWindow.MainFrame;
 
@@ -111,8 +112,8 @@ public class SettingsFrame extends JFrame {
 
         this.origin = this;
 
-        setSize(Constants.WIDTH, Constants.HEIGHT);
-        setLocation(Constants.LOCATION_X, Constants.LOCATION_Y);
+        setSize(LayoutConstants.WIDTH, LayoutConstants.HEIGHT);
+        setLocation(LayoutConstants.LOCATION_X, LayoutConstants.LOCATION_Y);
         setVisible(true);
         setLayout(new GridLayout(0, 3));
 //        settingsFrame.setVisible(true);
@@ -173,10 +174,10 @@ public class SettingsFrame extends JFrame {
                     Constants.refresh();
 //                        FIXME this bellow must be part of the code
 
-//                    fireEvent(new main.Event(this, "setting saved"));
+//                    fireEvent(new main.utils.Event(this, "setting saved"));
 
 
-//                    fireEvent(new main.Event(origin, "settingsChanged"));
+//                    fireEvent(new main.utils.Event(origin, "settingsChanged"));
 
                 } catch (Exception er) {
                     System.out.println("Problem reading file.");
@@ -187,7 +188,7 @@ public class SettingsFrame extends JFrame {
 
 
 
-//                fireEvent(new main.Event(this, ""));
+//                fireEvent(new main.utils.Event(this, ""));
 
 
 

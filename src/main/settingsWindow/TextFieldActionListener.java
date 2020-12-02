@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.Event;
+import main.utils.Event;
 import main.utils.Listener;
 
 import javax.swing.*;
@@ -63,7 +63,7 @@ public class TextFieldActionListener implements DocumentListener {
                     if (exception.getMessage().equals("null")) {
 //                        l.add(file.readLine());
 //                        FIXME this bellow must be part of the code
-//                        fireEvent(new main.Event(this, "columnNumber emptyCell"));
+//                        fireEvent(new main.utils.Event(this, "columnNumber emptyCell"));
 
                     }
                     else {
@@ -75,7 +75,7 @@ public class TextFieldActionListener implements DocumentListener {
                                 .collect(Collectors.joining());
                         //                        FIXME this bellow must be part of the code
 
-//                        fireEvent(new main.Event(this, "columnNumber replacement: " + replacement));
+//                        fireEvent(new main.utils.Event(this, "columnNumber replacement: " + replacement));
 
 
                     }
@@ -86,7 +86,7 @@ public class TextFieldActionListener implements DocumentListener {
 //                    l.add(file.readLine());
                     System.out.println("new error in text field action listenr");
                 }
-//                fireEvent(new main.Event(this, "gameWon"));
+//                fireEvent(new main.utils.Event(this, "gameWon"));
 
             }
             case "rowNumber" -> SettingsFrame.setRowNumber(data);
