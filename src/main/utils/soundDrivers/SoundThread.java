@@ -4,7 +4,7 @@ import main.constants.Sounds;
 
 public class SoundThread extends Thread {
 
-    private Sounds sound;
+    private final Sounds sound;
 
     public SoundThread(Sounds sound) {
         this.sound = sound;

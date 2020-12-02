@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class TextFieldActionListener implements DocumentListener {
 
-
     private final JTextField source;
     private final String target;
     private String data;
@@ -22,7 +21,6 @@ public class TextFieldActionListener implements DocumentListener {
         this.source = source;
         this.target = target;
         this.data = "";
-
     }
 
     @Override
@@ -46,8 +44,6 @@ public class TextFieldActionListener implements DocumentListener {
     public void processData() {
         data = source.getText();
 
-//        try {
-//            int tester = Integer.parseInt(data);
         System.out.println(data);
 
         switch (target) {
@@ -56,12 +52,11 @@ public class TextFieldActionListener implements DocumentListener {
 
                 try {
                     int test = Integer.parseInt(data);
-//                    l.add("number of " + k + " = " + Integer.parseInt(targ));
-//                    file.readLine();
+
                 }
                 catch (NumberFormatException exception) {
                     if (exception.getMessage().equals("null")) {
-//                        l.add(file.readLine());
+
 //                        FIXME this bellow must be part of the code
 //                        fireEvent(new main.utils.Event(this, "columnNumber emptyCell"));
 
@@ -73,8 +68,8 @@ public class TextFieldActionListener implements DocumentListener {
                                 .stream(data.split(""))
                                 .filter(s -> "0123456789".contains(s))
                                 .collect(Collectors.joining());
-                        //                        FIXME this bellow must be part of the code
 
+                        //                        FIXME this bellow must be part of the code
 //                        fireEvent(new main.utils.Event(this, "columnNumber replacement: " + replacement));
 
 
@@ -82,8 +77,6 @@ public class TextFieldActionListener implements DocumentListener {
                 }
                 catch (Exception e) {
                     System.err.println(e);
-//                    System.out.println("check and add line in settings frame");
-//                    l.add(file.readLine());
                     System.out.println("new error in text field action listenr");
                 }
 //                fireEvent(new main.utils.Event(this, "gameWon"));
@@ -94,24 +87,6 @@ public class TextFieldActionListener implements DocumentListener {
             default -> System.out.println("error with target");
         }
 
-
-
-//        }
-//        catch (Exception e) {
-//            String replacement = "";
-//            for(String token : data.split("")) {
-//                if ("0123456789".contains(token)) {
-//                    replacement += token;
-//                }
-//            }
-//            System.out.println("replacement " + replacement);
-//
-//            System.out.println("Nan");
-//        }
-
-
-//        SettingsFrame.columnNumber = columnNumberField.getText();
-//        System.out.println(SettingsFrame.columnNumber);
     }
 
     private EventListenerList listenerList = new EventListenerList();

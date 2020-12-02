@@ -8,6 +8,13 @@ import main.utils.Listener;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainFrame extends JFrame {
 
@@ -17,6 +24,55 @@ public class MainFrame extends JFrame {
     public static MainFrame mainFrame;
 
 
+    private class MainFrameWindowListener implements WindowListener {
+
+        private JFrame jFrame;
+
+        public MainFrameWindowListener(JFrame jFrame) {
+            this.jFrame = jFrame;
+        }
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            System.out.println("closing");
+            System.out.println(jFrame.getX());
+            System.out.println(jFrame.getY());
+
+            System.out.println(jFrame.getSize().getWidth());
+            System.out.println(jFrame.getSize().getHeight());
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+
+        }
+    }
+
     public MainFrame() {
         super("minesweeper");
         setLocation(LayoutConstants.LOCATION_X, LayoutConstants.LOCATION_Y);
@@ -24,6 +80,56 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(LayoutConstants.WIDTH, LayoutConstants.HEIGHT);
         setLayout(new BorderLayout());
+
+        System.out.println("temp");
+        System.out.println(this.getLocation());
+
+        System.out.println(this.getX());
+        System.out.println(this.getY());
+
+        addWindowListener(new MainFrameWindowListener(this));
+
+//        addWindowListener(new WindowListener() {
+//
+//            @Override
+//            public void windowOpened(WindowEvent e) {
+//            }
+//
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+//                System.out.println();
+//            }
+//
+//            @Override
+//            public void windowClosed(WindowEvent e) {
+//                System.out.println("window closed");
+//            }
+//
+//            //            minimized
+//            @Override
+//            public void windowIconified(WindowEvent e) {
+//                System.out.println("window iconified");
+//            }
+//
+//            @Override
+//            public void windowDeiconified(WindowEvent e) {
+//                System.out.println("window de iconified");
+//            }
+//
+//
+//            //            alt tab
+//            @Override
+//            public void windowActivated(WindowEvent e) {
+//                System.out.println("window activated");
+//            }
+//
+//            @Override
+//            public void windowDeactivated(WindowEvent e) {
+//                System.out.println("window deactivated");
+//            }
+//        });
+
+
 
         this.mainFrame = this;
         GeneralConstants.refresh();

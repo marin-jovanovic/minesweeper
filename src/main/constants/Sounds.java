@@ -1,7 +1,5 @@
 package main.constants;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -11,7 +9,7 @@ public enum Sounds {
     SOUND_PATH_1("j3"),
     SOUND_PATH_2("i");
 
-    private String path;
+    private final String path;
 
     private static final String defaultPath = "src/main/resources/defeat_sounds/";
     private static final String end = ".wav";
@@ -26,7 +24,7 @@ public enum Sounds {
     }
 
 
-    private static final List<Sounds> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    private static final List<Sounds> VALUES = List.of(values());
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
