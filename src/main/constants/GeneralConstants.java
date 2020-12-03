@@ -15,6 +15,7 @@ public class GeneralConstants {
 
     //    where this is saved
     public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
+    public static String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/defaultSettings.txt";
 
     public static void refresh() {
 

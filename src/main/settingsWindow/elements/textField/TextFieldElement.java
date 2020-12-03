@@ -16,7 +16,7 @@ public class TextFieldElement extends JPanel{
         textField = new JTextField(textFieldLength);
         textField.setText(currentValue);
         textField.getDocument().addDocumentListener(
-                new TextFieldActionListener(textField, message)
+                new TextFieldActionListener(this, message)
         );
         add(textField);
 
@@ -25,4 +25,11 @@ public class TextFieldElement extends JPanel{
 
     }
 
+    public void setCheckerText(String string) {
+        this.checker.setText(string);
+    }
+
+    public JTextField getTextField() {
+        return textField;
+    }
 }

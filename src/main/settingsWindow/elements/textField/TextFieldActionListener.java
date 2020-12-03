@@ -11,14 +11,17 @@ import java.util.stream.Collectors;
 
 public class TextFieldActionListener implements DocumentListener {
 
-    private final JTextField source;
+//    private final JTextField source;
     private final String key;
+    private final String oldValue;
 
-    public TextFieldActionListener(JTextField source, String key) {
+    private final TextFieldElement source;
+
+    public TextFieldActionListener(TextFieldElement source, String key) {
         this.source = source;
         this.key = key;
-
-        SettingsBuffer.writeToBuffer(key, source.getText());
+        this.oldValue = source.getTextField().getText();
+        SettingsBuffer.writeToBuffer(key, source.getTextField().getText());
     }
 
     @Override
@@ -36,25 +39,35 @@ public class TextFieldActionListener implements DocumentListener {
         processData();
     }
 
+
+//    handles non int types
+//    0000 + int
+//    int + alphanumeric
+//    "" -> empty cell
+//        reads original input
     public void processData() {
-        String value = source.getText();
-        System.out.println(key + " " + value);
+        String value = source.getTextField().getText();
 
-        if (! value.matches("[1-9][0-9]*")) {
-            value = Arrays
-                    .stream(value.split(""))
-                    .filter(s -> "0123456789".contains(s))
-                    .collect(Collectors.joining());
-        }
+        if (value.equals("")) {
+            value = oldValue;
+        } else {
+            if (! value.matches("[1-9][0-9]*")) {
+                value = Arrays
+                        .stream(value.split(""))
+                        .filter("0123456789"::contains)
+                        .collect(Collectors.joining());
+            }
 
-        if (value.startsWith("0")) {
-            while (value.startsWith("0")) {
-                value = value.substring(1);
+            if (value.startsWith("0")) {
+                while (value.startsWith("0")) {
+                    value = value.substring(1);
+                }
             }
         }
 
-        System.out.println(key + " " + value);
         SettingsBuffer.writeToBuffer(key, value);
+
+        source.setCheckerText("new value: " + value);
     }
 
 }

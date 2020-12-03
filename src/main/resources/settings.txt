@@ -1,5 +1,14 @@
-number of rows = 10
-number of columns = 10
-number of mines = 8
+col 1
+min 5
+mine number: 91203
+column number: 0
+row 1
+row number: 14
+
 
 other
+lalaa
+lalala
+alaalla
+row = 5
+col num: 65

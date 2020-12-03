@@ -5,12 +5,11 @@ import main.constants.GeneralConstants;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +54,26 @@ public class SettingsWindowListener implements WindowListener {
     }
 
 
+    public ArrayList<String> getPreviousSettings() {
+        ArrayList<String> l = new ArrayList<>();
+
+        try (BufferedReader file = new BufferedReader(new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH))){
+
+            String line;
+
+
+//            get all file content
+            while ((line = file.readLine()) != null) {
+                l.add(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return l;
+    }
+
     /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
@@ -64,48 +83,73 @@ public class SettingsWindowListener implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
 
-        try {
-            BufferedReader file = new BufferedReader(
-                    new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH)
+        System.out.println("\nnew settings");
+        SettingsBuffer.printBufferContent();
 
-//            BufferedReader file = new BufferedReader(
-//                    new FileReader("src/main/resources/settings.txt")
-            );
-            String line;
-            List<String> l = new ArrayList<>();
-
-//                    adds to l -> number of + k + number
-//                    checks exceptions and handles if not int
-//            checkAndAddLine(file, l, "rows", rowNumber);
-//            checkAndAddLine(file, l, "columns", columnNumber);
-//            checkAndAddLine(file, l, "mines", mineNumber);
-
-
-
-//            reads rest of file and copy to l
-            while ((line = file.readLine()) != null) {
-                l.add(line);
-            }
-            file.close();
-
-            String result = String.join("\n", l);
-            System.out.println(result);
-
-            // write the new string with the replaced line OVER the same file
-            FileOutputStream fileOut = new FileOutputStream(GeneralConstants.SETTINGS_MEMORY_PATH);
-            fileOut.write(result.getBytes());
-            fileOut.close();
-
-            GeneralConstants.refresh();
-
-//                        FIXME this bellow must be part of the code
-//                    fireEvent(new main.utils.Event(this, "setting saved"));
-//                    fireEvent(new main.utils.Event(origin, "settingsChanged"));
-
-        } catch (Exception er) {
-            System.out.println("Problem reading file.");
-            er.printStackTrace();
-        }
+//
+////        newLines
+////        ArrayList<String> newLines = new ArrayList<>();
+////        SettingsBuffer.getAllLines().forEach((key, value) -> newLines.add(key + " " + value));
+////        HashMap<String, String> lines = SettingsBuffer.
+//
+//
+////        current settings
+//        ArrayList<String> oldLines = getPreviousSettings();
+//
+////        update old lines
+////        check if new line exist in old
+////          if exist:
+////            update
+////          else
+////            add
+//
+//
+////        write new settings
+//
+//        try {
+////            BufferedReader file = new BufferedReader(
+////                    new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH)
+////            );
+////
+////            String line;
+////
+////            List<String> l = new ArrayList<>();
+//////            get all file content
+////            while ((line = file.readLine()) != null) {
+////                l.add(line);
+////            }
+////
+////            file.close();
+//
+//
+////                    adds to l -> number of + k + number
+////                    checks exceptions and handles if not int
+////            checkAndAddLine(file, l, "rows", rowNumber);
+////            checkAndAddLine(file, l, "columns", columnNumber);
+////            checkAndAddLine(file, l, "mines", mineNumber);
+//
+//
+//
+//
+////            l = lista
+////            String result = String.join("\n", l);
+////            System.out.println(result);
+////
+//////             write the new string with the replaced line OVER the same file
+////            FileOutputStream fileOut = new FileOutputStream(GeneralConstants.SETTINGS_MEMORY_PATH);
+////            fileOut.write(result.getBytes());
+////            fileOut.close();
+//
+//            GeneralConstants.refresh();
+//
+////                        FIXME this bellow must be part of the code
+////                    fireEvent(new main.utils.Event(this, "setting saved"));
+////                    fireEvent(new main.utils.Event(origin, "settingsChanged"));
+//
+//        } catch (Exception er) {
+//            System.out.println("Problem reading file.");
+//            er.printStackTrace();
+//        }
 
     }
 

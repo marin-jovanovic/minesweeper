@@ -1,21 +1,11 @@
 package main.settingsWindow;
 
 import main.constants.GeneralConstants;
-import main.settingsWindow.elements.imagePicker.ImageFileView;
-import main.settingsWindow.elements.imagePicker.ImageFilter;
 import main.settingsWindow.elements.imagePicker.ImagePickerElement;
-import main.settingsWindow.elements.imagePicker.ImagePreview;
 import main.settingsWindow.elements.textField.TextFieldElement;
-import main.utils.Event;
 import main.constants.LayoutConstants;
-import main.utils.Listener;
-import main.mainWindow.MainFrame;
 
 import javax.swing.*;
-import javax.swing.event.EventListenerList;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.*;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -50,10 +40,6 @@ import java.io.*;
 
 public class SettingsFrame extends JFrame {
 
-//    static private String newline = "\n";
-    private JTextArea log;
-    private JFileChooser fc;
-
     public static void main(String[] args) {
         try {
             SwingUtilities.invokeLater(SettingsFrame::new);
@@ -64,15 +50,13 @@ public class SettingsFrame extends JFrame {
 
     }
 
+//    TODO reset to default
+
     public SettingsFrame() {
-//        super("Settings");
+        super("Settings");
         setSize(LayoutConstants.WIDTH, LayoutConstants.HEIGHT);
         setLocation(LayoutConstants.LOCATION_X, LayoutConstants.LOCATION_Y);
         setVisible(true);
-        setLayout(new GridLayout(0, 3));
-//        setLayout(new BoxLayout(this,
-//                BoxLayout.PAGE_AXIS));
-        //        settingsFrame.setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
 
@@ -95,81 +79,32 @@ public class SettingsFrame extends JFrame {
         ImagePickerElement imagePickerElement = new ImagePickerElement();
         add(imagePickerElement);
 
-//
-//        log = new JTextArea(5,20);
-////Create the log first, because the action listener
-//        //needs to refer to it.
-//        log.setMargin(new Insets(5,5,5,5));
-//        log.setEditable(false);
-//        JScrollPane logScrollPane = new JScrollPane(log);
-//        JButton sendButton = new JButton("Attach...");
-////        sendButton.addActionListener(this);
-//        sendButton.addActionListener(this::actionPerformed);
-//        add(sendButton);
-//        add(logScrollPane);
+
+//        restart @MainFrame
+//        this.addListener(event -> MainFrame.restartSequence());
 
 
-
-
-
-
-
-        this.addListener(event -> MainFrame.restartSequence());
 //        saves on close new settings
         addWindowListener(new SettingsWindowListener());
 
+
     }
 
-//    used for images
-//    public void actionPerformed(ActionEvent e) {
-//        //Set up the file chooser.
-//        if (fc == null) {
-//            fc = new JFileChooser();
+//    private EventListenerList listenerList = new EventListenerList();
 //
-//            //Add a custom file filter and disable the default
-//            //(Accept All) file filter.
-//            fc.addChoosableFileFilter(new ImageFilter());
-//            fc.setAcceptAllFileFilterUsed(false);
+//    public void fireEvent(Event event) {
+//        Object[] listeners = listenerList.getListenerList();
 //
-//            //Add custom icons for file types.
-//            fc.setFileView(new ImageFileView());
+//        for (int i = 0; i < listeners.length; i += 2) {
 //
-//            //Add the preview pane.
-//            fc.setAccessory(new ImagePreview(fc));
+//
+//            if(listeners[i] == Listener.class) {
+//                ((Listener)listeners[i+1]).eventOccurred(event);
+//            }
 //        }
-//
-//        //Show it.
-//        int returnVal = fc.showDialog(main.settingsWindow.SettingsFrame.this,"Attach");
-//
-//        //Process the results.
-//        if (returnVal == JFileChooser.APPROVE_OPTION) {
-//            File file = fc.getSelectedFile();
-//            log.append("Attaching file: " + file.getName() + "." + "\n");
-//        } else {
-//            log.append("Attachment cancelled by user." + "\n");
-//        }
-//        log.setCaretPosition(log.getDocument().getLength());
-//
-//        //Reset the file chooser for the next time it's shown.
-//        fc.setSelectedFile(null);
 //    }
-
-
-    private EventListenerList listenerList = new EventListenerList();
-
-    public void fireEvent(Event event) {
-        Object[] listeners = listenerList.getListenerList();
-
-        for (int i = 0; i < listeners.length; i += 2) {
-
-
-            if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).eventOccurred(event);
-            }
-        }
-    }
-
-    public void addListener(Listener listener) {
-        listenerList.add(Listener.class, listener);
-    }
+//
+//    public void addListener(Listener listener) {
+//        listenerList.add(Listener.class, listener);
+//    }
 }

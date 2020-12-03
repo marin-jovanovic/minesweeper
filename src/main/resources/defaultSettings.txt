@@ -1,0 +1,3 @@
+mine number: 10
+column number: 10
+row number: 14
