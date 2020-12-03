@@ -1,4 +1,4 @@
-package main.settingsWindow;
+package main.settingsWindow.elements.imagePicker;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -31,39 +31,40 @@ package main.settingsWindow;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//package components;
-
 import java.io.File;
-import javax.swing.filechooser.*;
+import javax.swing.ImageIcon;
 
-/* ImageFilter.java is used by FileChooserDemo2.java. */
-public class ImageFilter extends FileFilter {
+/* Utils.java is used by FileChooserDemo2.java. */
+public class Utils {
+    public final static String jpeg = "jpeg";
+    public final static String jpg = "jpg";
+    public final static String gif = "gif";
+    public final static String tiff = "tiff";
+    public final static String tif = "tif";
+    public final static String png = "png";
 
-    //Accept all directories and all gif, jpg, tiff, or png files.
-    public boolean accept(File f) {
-        if (f.isDirectory()) {
-            return true;
+    /*
+     * Get the extension of a file.
+     */
+    public static String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
         }
-
-        String extension = Utils.getExtension(f);
-        if (extension != null) {
-            if (extension.equals(Utils.tiff) ||
-                    extension.equals(Utils.tif) ||
-                    extension.equals(Utils.gif) ||
-                    extension.equals(Utils.jpeg) ||
-                    extension.equals(Utils.jpg) ||
-                    extension.equals(Utils.png)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        return false;
+        return ext;
     }
 
-    //The description of this filter
-    public String getDescription() {
-        return "PNG (*.png), JPEG (*.jpeg;*.jpg), TIFF (*.tif;*.tiff), GIF (*.gif)";
+    /** Returns an ImageIcon, or null if the path was invalid. */
+    protected static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = Utils.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 }

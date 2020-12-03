@@ -1,4 +1,4 @@
-package main.settingsWindow;
+package main.settingsWindow.elements.imagePicker;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
