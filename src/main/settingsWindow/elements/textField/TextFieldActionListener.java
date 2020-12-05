@@ -45,6 +45,7 @@ public class TextFieldActionListener implements DocumentListener {
 //    int + alphanumeric
 //    "" -> empty cell
 //        reads original input
+//    alphas -> old value
     public void processData() {
         String value = source.getTextField().getText();
 
@@ -63,6 +64,10 @@ public class TextFieldActionListener implements DocumentListener {
                     value = value.substring(1);
                 }
             }
+        }
+
+        if (value.equals("")) {
+            value = oldValue;
         }
 
         SettingsBuffer.writeToBuffer(key, value);

@@ -21,15 +21,6 @@ public class SettingsBuffer {
         return buffer;
     }
 
-
-    /**
- * settings.txt
- *
- * num of mines = 10
- * num of rows = 5
- * num of columns = 5
- * */
-
     public static void main(String[] args) {
 
         writeToBuffer("row", "1");

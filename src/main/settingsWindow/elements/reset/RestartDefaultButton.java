@@ -1,28 +1,28 @@
 package main.settingsWindow.elements.reset;
 
+import main.settingsWindow.SettingsManager;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class RestartDefaultButton extends JPanel {
-    private JButton jButton;
+    private final JButton jButton;
+    private JLabel checker;
+
 
     public RestartDefaultButton() {
         jButton = new JButton("restart to default settings");
-        jButton.addActionListener(new RestartButtonActionListener());
+        jButton.addActionListener(e -> SettingsManager.restartSettings(this));
+        add(jButton);
+
+        checker = new JLabel();
+        add(checker);
     }
 
-    private class RestartButtonActionListener implements ActionListener {
+    public void setCheckerText(String string) {
+        this.checker.setText(string);
+    }
 
-        /**
-         * Invoked when an action occurs.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-//            read settings from @defaultsettings.txt
-//            write settings to @settings.txt
-        }
+    public void main(String[] args) {
+        SettingsManager.restartSettings();
     }
 }

@@ -39,6 +39,37 @@ import java.io.File;
 public class ImagePickerElement extends JPanel {
     private JTextArea log;
     private JFileChooser fc;
+    private JLabel imageLabel;
+    private JButton jButton;
+
+
+    public ImagePickerElement(String message) {
+
+        log = new JTextArea(5,20);
+        //Create the log first, because the action listener
+        //needs to refer to it.
+        log.setMargin(new Insets(5,5,5,5));
+        log.setEditable(false);
+
+
+        JScrollPane logScrollPane = new JScrollPane(log);
+        add(logScrollPane);
+
+
+        jButton = new JButton(message);
+        // sendButton.addActionListener(this);
+        jButton.addActionListener(this::actionPerformed);
+        add(jButton);
+
+
+//        load default image for this or current if exists
+        imageLabel = new JLabel();
+        add(imageLabel);
+
+//        ImageIcon imgThisImg = new ImageIcon(PicURL));
+//
+//        jLabel2.setIcon(imgThisImg);
+    }
 
     public ImagePickerElement() {
 

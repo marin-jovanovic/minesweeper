@@ -2,6 +2,7 @@ package main.settingsWindow;
 
 import main.constants.GeneralConstants;
 import main.settingsWindow.elements.imagePicker.ImagePickerElement;
+import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.settingsWindow.elements.textField.TextFieldElement;
 import main.constants.LayoutConstants;
 
@@ -75,8 +76,12 @@ public class SettingsFrame extends JFrame {
         );
         add(mineField);
 
+        RestartDefaultButton restartDefaultButton = new RestartDefaultButton();
+        add(restartDefaultButton);
 
-        ImagePickerElement imagePickerElement = new ImagePickerElement();
+
+
+        ImagePickerElement imagePickerElement = new ImagePickerElement("dummy image");
         add(imagePickerElement);
 
 

@@ -24,55 +24,55 @@ public class SettingsWindowListener implements WindowListener {
 
     }
 
-    //    for adding lines to settings.txt
-    private void checkAndAddLine(BufferedReader file, List<String> l, String k, String targ) throws IOException {
-        try {
-            l.add("number of " + k + " = " + Integer.parseInt(targ));
-            file.readLine();
-        }
-        catch (NumberFormatException exception) {
-            if (exception.getMessage().equals("null")) {
-                l.add(file.readLine());
-            }
-            else {
-                System.out.println(exception);
-
-                String replacement = Arrays
-                        .stream(targ.split(""))
-                        .filter(s -> "0123456789".contains(s))
-                        .collect(Collectors.joining());
-
-                l.add("number of " + k + " = " + replacement);
-                file.readLine();
-            }
-        }
-        catch (Exception e) {
-            System.err.println(e);
-            System.out.println("check and add line in settings frame");
-            l.add(file.readLine());
-        }
-    }
-
-
-    public ArrayList<String> getPreviousSettings() {
-        ArrayList<String> l = new ArrayList<>();
-
-        try (BufferedReader file = new BufferedReader(new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH))){
-
-            String line;
-
-
-//            get all file content
-            while ((line = file.readLine()) != null) {
-                l.add(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return l;
-    }
+//    //    for adding lines to settings.txt
+//    private void checkAndAddLine(BufferedReader file, List<String> l, String k, String targ) throws IOException {
+//        try {
+//            l.add("number of " + k + " = " + Integer.parseInt(targ));
+//            file.readLine();
+//        }
+//        catch (NumberFormatException exception) {
+//            if (exception.getMessage().equals("null")) {
+//                l.add(file.readLine());
+//            }
+//            else {
+//                System.out.println(exception);
+//
+//                String replacement = Arrays
+//                        .stream(targ.split(""))
+//                        .filter(s -> "0123456789".contains(s))
+//                        .collect(Collectors.joining());
+//
+//                l.add("number of " + k + " = " + replacement);
+//                file.readLine();
+//            }
+//        }
+//        catch (Exception e) {
+//            System.err.println(e);
+//            System.out.println("check and add line in settings frame");
+//            l.add(file.readLine());
+//        }
+//    }
+//
+//
+//    public ArrayList<String> getPreviousSettings() {
+//        ArrayList<String> l = new ArrayList<>();
+//
+//        try (BufferedReader file = new BufferedReader(new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH))){
+//
+//            String line;
+//
+//
+////            get all file content
+//            while ((line = file.readLine()) != null) {
+//                l.add(line);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return l;
+//    }
 
     /**
      * Invoked when the user attempts to close the window
@@ -85,6 +85,8 @@ public class SettingsWindowListener implements WindowListener {
 
         System.out.println("\nnew settings");
         SettingsBuffer.printBufferContent();
+
+        SettingsManager.saveSettings();
 
 //
 ////        newLines

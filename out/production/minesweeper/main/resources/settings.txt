@@ -1,11 +1,8 @@
-mine number: 91203
-column number: 0
-row number: 14
-
+mine number: 15
+column number: 10
+row number: 10
 
 other
-lalaa
-lalala
-alaalla
-row = 5
-col num: 65
+...
+...
+...
