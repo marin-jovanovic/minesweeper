@@ -1,6 +1,10 @@
 package main.settingsWindow.elements.imagePicker;
 
+import main.constants.imageDrivers.OpenedTileStatus;
+
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -42,8 +46,13 @@ public class ImagePickerElement extends JPanel {
     private JLabel imageLabel;
     private JButton jButton;
 
+    private static final int PADDING = 3;   // for example
 
+
+//    add in consturctor IMageicon for this
     public ImagePickerElement(String message) {
+
+        setBorder(BorderFactory.createLineBorder(Color.blue));
 
         log = new JTextArea(5,20);
         //Create the log first, because the action listener
@@ -52,18 +61,17 @@ public class ImagePickerElement extends JPanel {
         log.setEditable(false);
 
 
-        JScrollPane logScrollPane = new JScrollPane(log);
-        add(logScrollPane);
-
-
         jButton = new JButton(message);
-        // sendButton.addActionListener(this);
         jButton.addActionListener(this::actionPerformed);
         add(jButton);
 
 
+//        JScrollPane logScrollPane = new JScrollPane(log);
+        add(new JScrollPane(log));
+
+
 //        load default image for this or current if exists
-        imageLabel = new JLabel();
+        imageLabel = new JLabel(OpenedTileStatus.FIVE.getImageIcon());
         add(imageLabel);
 
 //        ImageIcon imgThisImg = new ImageIcon(PicURL));
@@ -71,25 +79,90 @@ public class ImagePickerElement extends JPanel {
 //        jLabel2.setIcon(imgThisImg);
     }
 
-    public ImagePickerElement() {
+    private void setImageLabel(String fileName) {
 
-        log = new JTextArea(5,20);
 
-//Create the log first, because the action listener
-        //needs to refer to it.
-        log.setMargin(new Insets(5,5,5,5));
-        log.setEditable(false);
-        JScrollPane logScrollPane = new JScrollPane(log);
+//        ImageIcon imageIcon = new ImageIcon("./img/imageName.png"); // load the image to a imageIcon
+//        Image image = imageIcon.getImage(); // transform it
+        Image newimg =
+                new ImageIcon("./img/imageName.png").getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        ImageIcon imageIcon = new ImageIcon(newimg);  // transform it back
 
-        JButton sendButton = new JButton("Attach...");
-//        sendButton.addActionListener(this);
-
-        sendButton.addActionListener(this::actionPerformed);
-
-        add(sendButton);
-        add(logScrollPane);
-
+        imageLabel.setIcon(new ImageIcon(
+                                        new ImageIcon(fileName)
+                                                .getImage()
+                                                .getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)
+                                        )
+                            );
+        imageLabel.setText("current image");
+        imageLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        imageLabel.setHorizontalTextPosition(JLabel.CENTER);
     }
+
+//    public static class LabelDemo extends JPanel {
+//        public LabelDemo() {
+//            JLabel label1, label2, label3;
+//
+//            label1 = new JLabel("Image and Text",
+//                    OpenedTileStatus.EIGHT.getImageIcon(),
+//                    JLabel.CENTER);
+//
+//            //Set the position of its text, relative to its icon:
+//            label1.setVerticalTextPosition(JLabel.BOTTOM);
+//            label1.setHorizontalTextPosition(JLabel.CENTER);
+//            add(label1);
+//
+//
+//            label2 = new JLabel("Text-Only Label");
+//            add(label2);
+//
+//
+//            label3 = new JLabel(OpenedTileStatus.EIGHT.getImageIcon());
+//            add(label3);
+//
+//        }
+//    }
+
+//    public static void main(String[] args) {
+//        //Schedule a job for the event dispatch thread:
+//        //creating and showing this application's GUI.
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                JFrame frame = new JFrame("LabelDemo");
+//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//                //Add content to the window.
+//                frame.add(new LabelDemo());
+//
+//                //Display the window.
+//                frame.pack();
+//                frame.setVisible(true);
+//            }
+//        });
+//    }
+
+
+//    public ImagePickerElement() {
+//
+//        log = new JTextArea(5,20);
+//
+////Create the log first, because the action listener
+//        //needs to refer to it.
+//        log.setMargin(new Insets(5,5,5,5));
+//        log.setEditable(false);
+//        JScrollPane logScrollPane = new JScrollPane(log);
+//
+//        JButton sendButton = new JButton("Attach...");
+////        sendButton.addActionListener(this);
+//
+//        sendButton.addActionListener(this::actionPerformed);
+//
+//        add(sendButton);
+//        add(logScrollPane);
+//
+//    }
+
+//    private String fileName;
 
     //    used for images
     public void actionPerformed(ActionEvent e) {
@@ -116,6 +189,7 @@ public class ImagePickerElement extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             log.append("Attaching file: " + file.getName() + "." + "\n");
+            setImageLabel(file.getAbsolutePath());
         } else {
             log.append("Attachment cancelled by user." + "\n");
         }

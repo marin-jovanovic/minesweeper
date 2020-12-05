@@ -61,28 +61,37 @@ public class SettingsFrame extends JFrame {
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
 
-        TextFieldElement rowFiled = new TextFieldElement(
-                "row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)
-        );
-        add(rowFiled);
+//        TextFieldElement rowFiled = new TextFieldElement(
+//                "row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)
+//        );
+//        add(rowFiled);
+//
+//        TextFieldElement columnField = new TextFieldElement(
+//                "column number:" , String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)
+//        );
+//        add(columnField);
+//
+//        TextFieldElement mineField = new TextFieldElement(
+//                "mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)
+//        );
+//        add(mineField);
 
-        TextFieldElement columnField = new TextFieldElement(
-                "column number:" , String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)
-        );
-        add(columnField);
+        addTextFieldElements(new String[]{"row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)},
+                new String[]{"column number:", String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)},
+                new String[]{"mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)});
 
-        TextFieldElement mineField = new TextFieldElement(
-                "mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)
-        );
-        add(mineField);
+        addTextFieldElements(new String[]{"row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)},
+                new String[]{"column number:", String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)},
+                new String[]{"mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)});
+
+        ImagePickerElement imagePickerElement = new ImagePickerElement("dummy image");
+        add(imagePickerElement);
 
         RestartDefaultButton restartDefaultButton = new RestartDefaultButton();
         add(restartDefaultButton);
 
 
 
-        ImagePickerElement imagePickerElement = new ImagePickerElement("dummy image");
-        add(imagePickerElement);
 
 
 //        restart @MainFrame
@@ -94,6 +103,30 @@ public class SettingsFrame extends JFrame {
 
 
     }
+
+
+    private void addTextFieldElements(String[]... elements) {
+        for (String[] s : elements){
+            TextFieldElement mineField = new TextFieldElement(s[0], s[1]);
+            add(mineField);
+        }
+    }
+
+
+    private void addImagePickerElements(String[]... elements) {
+        for (String[] s : elements){
+            ImagePickerElement imagePickerElement = new ImagePickerElement("dummy");
+            add(imagePickerElement);
+        }
+    }
+
+
+
+
+
+
+
+
 
 //    private EventListenerList listenerList = new EventListenerList();
 //
