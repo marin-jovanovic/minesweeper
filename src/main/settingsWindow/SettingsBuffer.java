@@ -14,7 +14,7 @@ public class SettingsBuffer {
     }
 
     public static void writeToBuffer(String key, String value) {
-        buffer.put(key, value);
+        buffer.put(key + " =", value);
     }
 
     public static HashMap<String, String> getBuffer() {
@@ -36,8 +36,8 @@ public class SettingsBuffer {
 
         printBufferContent();
 
-        SettingsManager.saveSettings();
+//        SettingsManager.saveSettings();
 
-        printBufferContent();
+//        printBufferContent();
     }
 }

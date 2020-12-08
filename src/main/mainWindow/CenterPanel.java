@@ -2,7 +2,7 @@ package main.mainWindow;
 
 import main.utils.Event;
 import main.constants.Commands;
-import main.constants.GeneralConstants;
+import main.constants.ConstantsManager;
 import main.constants.imageDrivers.ClosedTileStatus;
 import main.constants.imageDrivers.OpenedTileStatus;
 import main.utils.Listener;
@@ -49,18 +49,18 @@ public class CenterPanel extends  JPanel {
 
     public CenterPanel() {
 
-        setLayout(new GridLayout(GeneralConstants.NUMBER_OF_ROWS, GeneralConstants.NUMBER_OF_COLUMNS));
+        setLayout(new GridLayout(ConstantsManager.NUMBER_OF_ROWS, ConstantsManager.NUMBER_OF_COLUMNS));
 
-        numOfCells = GeneralConstants.NUMBER_OF_COLUMNS * GeneralConstants.NUMBER_OF_ROWS;
+        numOfCells = ConstantsManager.NUMBER_OF_COLUMNS * ConstantsManager.NUMBER_OF_ROWS;
 
-        rightClickTable = new int[GeneralConstants.NUMBER_OF_ROWS][GeneralConstants.NUMBER_OF_COLUMNS];
+        rightClickTable = new int[ConstantsManager.NUMBER_OF_ROWS][ConstantsManager.NUMBER_OF_COLUMNS];
 
         table = TableGenerator.getTable();
 
-        buttons = new JButton[GeneralConstants.NUMBER_OF_ROWS][GeneralConstants.NUMBER_OF_COLUMNS];
+        buttons = new JButton[ConstantsManager.NUMBER_OF_ROWS][ConstantsManager.NUMBER_OF_COLUMNS];
 
-        for (int i = 0; i < GeneralConstants.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < GeneralConstants.NUMBER_OF_COLUMNS; j++) {
+        for (int i = 0; i < ConstantsManager.NUMBER_OF_ROWS; i++) {
+            for (int j = 0; j < ConstantsManager.NUMBER_OF_COLUMNS; j++) {
 
                 buttons[i][j] = new JButton();
 
@@ -133,8 +133,8 @@ public class CenterPanel extends  JPanel {
             checkForWin();
             if (areButtonsActive) {
 
-                for (int i = 0; i < GeneralConstants.NUMBER_OF_ROWS; i++){
-                    for (int j = 0; j < GeneralConstants.NUMBER_OF_COLUMNS; j++) {
+                for (int i = 0; i < ConstantsManager.NUMBER_OF_ROWS; i++){
+                    for (int j = 0; j < ConstantsManager.NUMBER_OF_COLUMNS; j++) {
                         if(buttons[i][j].toString().equals(e.getSource().toString())) {
 
                             System.out.println("clicked " + i + " " + j);
@@ -177,7 +177,7 @@ public class CenterPanel extends  JPanel {
     private final int numOfCells;
 
     public void checkForWin() {
-        if (numOfCells - numOfOpenedCells == GeneralConstants.NUMBER_OF_MINES) {
+        if (numOfCells - numOfOpenedCells == ConstantsManager.NUMBER_OF_MINES) {
 //            TODO disable statistics
             System.out.println("game is won");
             areButtonsActive = false;
@@ -193,7 +193,7 @@ public class CenterPanel extends  JPanel {
             return;
         }
 
-        if (! GeneralConstants.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN) {
+        if (! ConstantsManager.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN) {
 //            System.out.println(buttons[i][j].getIcon().toString());
 //            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
 
@@ -274,8 +274,8 @@ public class CenterPanel extends  JPanel {
 //    enables all buttons
 //    changes icon to closedCell
     private void restartButtons() {
-        for (int i = 0; i < GeneralConstants.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < GeneralConstants.NUMBER_OF_COLUMNS; j++) {
+        for (int i = 0; i < ConstantsManager.NUMBER_OF_ROWS; i++) {
+            for (int j = 0; j < ConstantsManager.NUMBER_OF_COLUMNS; j++) {
                 buttons[i][j].setEnabled(true);
 
                 try {

@@ -32,7 +32,6 @@ package main.settingsWindow.elements.imagePicker;
  */
 
 import java.io.File;
-import javax.swing.ImageIcon;
 
 /* Utils.java is used by FileChooserDemo2.java. */
 public class Utils {

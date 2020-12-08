@@ -1,0 +1,106 @@
+# comments
+
+constants
+number of columns = 10
+number of rows = 10
+number of mines = 10
+
+images
+
+original images
+
+button
+defeat.png
+playAgain.png
+victory.png
+
+closed tiles
+closedCell.png
+flag.png
+notSure.png
+
+opened tiles
+-1.png
+0.png
+1.png
+2.png
+3.png
+4.png
+5.png
+6.png
+7.png
+8.png
+
+settings checker flags
+false.png
+notSure.png
+true.png
+
+time
+0.png
+1.png
+2.png
+3.png
+4.png
+5.png
+6.png
+7.png
+8.png
+9.png
+
+resized images
+
+button
+defeat.png
+playAgain.png
+victory.png
+
+closed tiles
+closedCell.png
+flag.png
+notSure.png
+
+opened tiles
+-1.png
+0.png
+1.png
+2.png
+3.png
+4.png
+5.png
+6.png
+7.png
+8.png
+
+settings checker flags
+false.png
+notSure.png
+true.png
+
+time
+0.png
+1.png
+2.png
+3.png
+4.png
+5.png
+6.png
+7.png
+8.png
+9.png
+
+settings logs
+defaultSettings.txt
+settings.txt
+
+sounds
+
+defeat sounds
+0.wav
+...
+n.wav
+
+victory sounds
+0.wav
+...
+n.wav

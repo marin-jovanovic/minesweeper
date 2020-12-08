@@ -3,7 +3,6 @@ package main.settingsWindow.elements.textField;
 
 import main.settingsWindow.SettingsBuffer;
 
-import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.util.Arrays;
@@ -11,10 +10,8 @@ import java.util.stream.Collectors;
 
 public class TextFieldActionListener implements DocumentListener {
 
-//    private final JTextField source;
     private final String key;
     private final String oldValue;
-
     private final TextFieldElement source;
 
     public TextFieldActionListener(TextFieldElement source, String key) {
@@ -39,16 +36,18 @@ public class TextFieldActionListener implements DocumentListener {
         processData();
     }
 
-
-//    handles non int types
-//    0000 + int
-//    int + alphanumeric
-//    "" -> empty cell
-//        reads original input
-//    alphas -> old value
-    public void processData() {
+    private void processData() {
         String value = source.getTextField().getText();
 
+        value = reformatValue(value);
+
+        SettingsBuffer.writeToBuffer(key, value);
+
+        source.setCheckerText("new value: " + value);
+    }
+
+//    checks for errors and formats it to int type
+    private String reformatValue(String value) {
         if (value.equals("")) {
             value = oldValue;
         } else {
@@ -69,10 +68,7 @@ public class TextFieldActionListener implements DocumentListener {
         if (value.equals("")) {
             value = oldValue;
         }
-
-        SettingsBuffer.writeToBuffer(key, value);
-
-        source.setCheckerText("new value: " + value);
+        return value;
     }
 
 }

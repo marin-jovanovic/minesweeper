@@ -3,17 +3,13 @@ package main.settingsWindow.elements.textField;
 import javax.swing.*;
 
 public class TextFieldElement extends JPanel{
-    JLabel label;
-    JTextField textField;
-    JLabel checker;
-
-    private static final int textFieldLength = 10;
+    private final JTextField textField;
+    private final JLabel checker;
 
     public TextFieldElement(String message, String currentValue) {
-        label = new JLabel(message);
-        add(label);
+        add(new JLabel(message));
 
-        textField = new JTextField(textFieldLength);
+        textField = new JTextField(10);
         textField.setText(currentValue);
         textField.getDocument().addDocumentListener(
                 new TextFieldActionListener(this, message)
@@ -22,7 +18,6 @@ public class TextFieldElement extends JPanel{
 
         checker = new JLabel("checker");
         add(checker);
-
     }
 
     public void setCheckerText(String string) {

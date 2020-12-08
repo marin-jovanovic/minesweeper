@@ -1,6 +1,6 @@
 package main.mainWindow;
 
-import main.constants.GeneralConstants;
+import main.constants.ConstantsManager;
 import main.utils.Event;
 import main.constants.LayoutConstants;
 import main.utils.Listener;
@@ -10,11 +10,6 @@ import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainFrame extends JFrame {
 
@@ -132,7 +127,7 @@ public class MainFrame extends JFrame {
 
 
         this.mainFrame = this;
-        GeneralConstants.refresh();
+        ConstantsManager.refresh();
 
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();

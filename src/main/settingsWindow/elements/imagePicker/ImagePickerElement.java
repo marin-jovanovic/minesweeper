@@ -1,6 +1,7 @@
 package main.settingsWindow.elements.imagePicker;
 
 import main.constants.imageDrivers.OpenedTileStatus;
+import main.settingsWindow.SettingsBuffer;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -48,9 +49,12 @@ public class ImagePickerElement extends JPanel {
 
     private static final int PADDING = 3;   // for example
 
+    private String message;
 
 //    add in consturctor IMageicon for this
     public ImagePickerElement(String message) {
+
+        this.message = message;
 
         setBorder(BorderFactory.createLineBorder(Color.blue));
 
@@ -189,7 +193,14 @@ public class ImagePickerElement extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             log.append("Attaching file: " + file.getName() + "." + "\n");
+//            saves to buffer
+
+            SettingsBuffer.writeToBuffer(message, file.getAbsolutePath());
+
+
+//            sets right component image to new selected image
             setImageLabel(file.getAbsolutePath());
+//
         } else {
             log.append("Attachment cancelled by user." + "\n");
         }

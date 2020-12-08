@@ -1,17 +1,8 @@
 package main.settingsWindow;
 
-import main.constants.GeneralConstants;
-
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SettingsWindowListener implements WindowListener {
     /**

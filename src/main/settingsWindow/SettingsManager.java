@@ -1,14 +1,36 @@
 package main.settingsWindow;
 
-import main.constants.GeneralConstants;
+import main.constants.ConstantsManager;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+
+// TODO
+//
+
+
+
+
+
+
 public class SettingsManager {
+
+
+    public static void main(String[] args) {
+        ArrayList<String> temp = new ArrayList<>();
+        temp.add("a");
+        temp.add("c");
+        temp.add("f");
+        temp.add("k");
+        temp.add("b");
+
+        System.out.println(temp);
+    }
 
     public static void saveSettings() {
 
@@ -48,7 +70,7 @@ public class SettingsManager {
     private static void restartSettingsDriver() {
         //            read settings from @defaultsettings.txt
         ArrayList<String> lines = new ArrayList<>();
-        try (Scanner myReader = new Scanner(new File(GeneralConstants.DEFAULT_SETTINGS_MEMORY_PATH))) {
+        try (Scanner myReader = new Scanner(new File(ConstantsManager.DEFAULT_SETTINGS_MEMORY_PATH))) {
             while (myReader.hasNextLine()) {
                 lines.add(myReader.nextLine());
             }
@@ -65,14 +87,14 @@ public class SettingsManager {
     private static ArrayList<String> completeSettings() {
         ArrayList<String> bufferList = new ArrayList<>();
 
-        try (BufferedReader file = new BufferedReader(new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH))){
+        System.out.println("complete settings");
+        System.out.println(SettingsBuffer.getBuffer());
+
+        try (BufferedReader file = new BufferedReader(new FileReader(ConstantsManager.SETTINGS_MEMORY_PATH))){
 
             String line = file.readLine();
 
             ////            check if settings.txt is empty
-            //            if (line.isBlank()) {
-            //                return;
-            //            }
 
             //            adds settings&config that are not targeted by settingsFrame elements
             do {
@@ -87,6 +109,7 @@ public class SettingsManager {
 
             } while (! (line = file.readLine()).isBlank());
 
+//            adds new settings
             SettingsBuffer.getBuffer().forEach((key, value) -> bufferList.add(key + " " + value));
 
             bufferList.add("");
@@ -103,7 +126,7 @@ public class SettingsManager {
     }
 
     private static void writeToSettings(String newSettings) {
-        try (FileOutputStream fileOutputStream = new FileOutputStream(GeneralConstants.SETTINGS_MEMORY_PATH)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(ConstantsManager.SETTINGS_MEMORY_PATH)) {
             fileOutputStream.write(newSettings.getBytes());
         } catch (IOException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

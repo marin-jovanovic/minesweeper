@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.constants.GeneralConstants;
+import main.constants.ConstantsManager;
 import main.settingsWindow.elements.imagePicker.ImagePickerElement;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.settingsWindow.elements.textField.TextFieldElement;
@@ -39,6 +39,10 @@ import javax.swing.*;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+//  TODO
+//
+
 public class SettingsFrame extends JFrame {
 
     public static void main(String[] args) {
@@ -51,8 +55,6 @@ public class SettingsFrame extends JFrame {
 
     }
 
-//    TODO reset to default
-
     public SettingsFrame() {
         super("Settings");
         setSize(LayoutConstants.WIDTH, LayoutConstants.HEIGHT);
@@ -61,88 +63,24 @@ public class SettingsFrame extends JFrame {
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
 
-//        TextFieldElement rowFiled = new TextFieldElement(
-//                "row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)
-//        );
-//        add(rowFiled);
-//
-//        TextFieldElement columnField = new TextFieldElement(
-//                "column number:" , String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)
-//        );
-//        add(columnField);
-//
-//        TextFieldElement mineField = new TextFieldElement(
-//                "mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)
-//        );
-//        add(mineField);
+        add(new TextFieldElement("row number:", String.valueOf(ConstantsManager.NUMBER_OF_ROWS)));
+        add(new TextFieldElement("column number:" , String.valueOf(ConstantsManager.NUMBER_OF_COLUMNS)));
+        add(new TextFieldElement("mine number:", String.valueOf(ConstantsManager.NUMBER_OF_MINES)));
 
-        addTextFieldElements(new String[]{"row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)},
-                new String[]{"column number:", String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)},
-                new String[]{"mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)});
+        add(new ImagePickerElement("choose image for x"));
+        add(new ImagePickerElement("dummy image 2"));
 
-        addTextFieldElements(new String[]{"row number:", String.valueOf(GeneralConstants.NUMBER_OF_ROWS)},
-                new String[]{"column number:", String.valueOf(GeneralConstants.NUMBER_OF_COLUMNS)},
-                new String[]{"mine number:", String.valueOf(GeneralConstants.NUMBER_OF_MINES)});
+        add(new RestartDefaultButton());
 
-        ImagePickerElement imagePickerElement = new ImagePickerElement("dummy image");
-        add(imagePickerElement);
-
-        RestartDefaultButton restartDefaultButton = new RestartDefaultButton();
-        add(restartDefaultButton);
-
-
-
+        add(new TreeDemo());
 
 
 //        restart @MainFrame
 //        this.addListener(event -> MainFrame.restartSequence());
-
 
 //        saves on close new settings
         addWindowListener(new SettingsWindowListener());
 
 
     }
-
-
-    private void addTextFieldElements(String[]... elements) {
-        for (String[] s : elements){
-            TextFieldElement mineField = new TextFieldElement(s[0], s[1]);
-            add(mineField);
-        }
-    }
-
-
-    private void addImagePickerElements(String[]... elements) {
-        for (String[] s : elements){
-            ImagePickerElement imagePickerElement = new ImagePickerElement("dummy");
-            add(imagePickerElement);
-        }
-    }
-
-
-
-
-
-
-
-
-
-//    private EventListenerList listenerList = new EventListenerList();
-//
-//    public void fireEvent(Event event) {
-//        Object[] listeners = listenerList.getListenerList();
-//
-//        for (int i = 0; i < listeners.length; i += 2) {
-//
-//
-//            if(listeners[i] == Listener.class) {
-//                ((Listener)listeners[i+1]).eventOccurred(event);
-//            }
-//        }
-//    }
-//
-//    public void addListener(Listener listener) {
-//        listenerList.add(Listener.class, listener);
-//    }
 }
