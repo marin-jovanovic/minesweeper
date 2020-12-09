@@ -1,7 +1,7 @@
 package main.constants.imageDrivers;
 
 public class ImagesConstants {
-    public static final String RESIZED_IMAGES_PATH = "src/main/resources/resized_images/";
+    public static final String RESIZED_IMAGES_PATH = "src/main/resources/images/resized_images/";
     public static final String CLOSED_TILES = "closed_tiles/";
     public static final String OPENED_TILES = "opened_tiles/";
     public static final String BUTTON_PATH = "button/";

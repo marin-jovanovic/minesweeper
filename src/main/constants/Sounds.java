@@ -11,7 +11,7 @@ public enum Sounds {
 
     private final String path;
 
-    private static final String defaultPath = "src/main/resources/defeat_sounds/";
+    private static final String defaultPath = "src/main/resources/sounds/defeat_sounds/";
     private static final String end = ".wav";
 
 

@@ -24,10 +24,10 @@ public class ResizeImages {
 //        List<String> list = new ArrayList<String>();
 //        lis
 
-        String a = "button";
+        String a = "time";
 
-        resizeAllImagesInFolder("src/main/resources/original_images/" + a,
-                "src/main/resources/resized_images/" + a);
+        resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
+                "src/main/resources/images/resized_images/" + a);
 //        button
 //                closed_tiles
 //                Opened_tiles

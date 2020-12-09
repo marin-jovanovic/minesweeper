@@ -84,47 +84,6 @@ public class MainFrame extends JFrame {
 
         addWindowListener(new MainFrameWindowListener(this));
 
-//        addWindowListener(new WindowListener() {
-//
-//            @Override
-//            public void windowOpened(WindowEvent e) {
-//            }
-//
-//            @Override
-//            public void windowClosing(WindowEvent e) {
-//                System.out.println();
-//            }
-//
-//            @Override
-//            public void windowClosed(WindowEvent e) {
-//                System.out.println("window closed");
-//            }
-//
-//            //            minimized
-//            @Override
-//            public void windowIconified(WindowEvent e) {
-//                System.out.println("window iconified");
-//            }
-//
-//            @Override
-//            public void windowDeiconified(WindowEvent e) {
-//                System.out.println("window de iconified");
-//            }
-//
-//
-//            //            alt tab
-//            @Override
-//            public void windowActivated(WindowEvent e) {
-//                System.out.println("window activated");
-//            }
-//
-//            @Override
-//            public void windowDeactivated(WindowEvent e) {
-//                System.out.println("window deactivated");
-//            }
-//        });
-
-
 
         this.mainFrame = this;
         ConstantsManager.refresh();

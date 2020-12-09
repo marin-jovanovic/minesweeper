@@ -7,8 +7,8 @@ public class ConstantsManager {
 
     public static Boolean CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN = false;
 
-    public static int NUMBER_OF_COLUMNS = GeneralConstant.NUMBER_OF_COLUMNS.getValue();
-//    public static int NUMBER_OF_COLUMNS =10;
+//    public static int NUMBER_OF_COLUMNS = GeneralConstant.NUMBER_OF_COLUMNS.getValue();
+    public static int NUMBER_OF_COLUMNS =10;
     public static int NUMBER_OF_ROWS = 10;
     public static int NUMBER_OF_MINES = 15;
 
