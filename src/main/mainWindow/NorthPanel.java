@@ -1,8 +1,8 @@
 package main.mainWindow;
 
+import main.constants.Constant;
 import main.utils.Event;
 import main.constants.Commands;
-import main.constants.imageDrivers.ButtonStatus;
 import main.utils.Listener;
 import main.settingsWindow.SettingsFrame;
 
@@ -24,7 +24,7 @@ public class NorthPanel extends JPanel{
         oldRestartButton = new JButton();
 
 //        oldRestartButton.setIcon(new ImageIcon(ButtonStatus.INIT.getPath()));
-        oldRestartButton.setIcon(ButtonStatus.INIT.getImageIcon());
+        oldRestartButton.setIcon(Constant.INIT.getImageIcon());
 
         add(oldRestartButton);
 
@@ -33,7 +33,7 @@ public class NorthPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
                 fireEvent(new Event(this, Commands.NEW_GAME));
-                oldRestartButton.setIcon(ButtonStatus.PLAY_AGAIN.getImageIcon());
+                oldRestartButton.setIcon(Constant.PLAY_AGAIN.getImageIcon());
 
 //                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));
             }
@@ -76,11 +76,11 @@ public class NorthPanel extends JPanel{
 
     public void setRestartButton(Commands command) throws Exception {
         if (command.equals(Commands.GAME_OVER)) {
-            oldRestartButton.setIcon(ButtonStatus.DEFEAT.getImageIcon());
+            oldRestartButton.setIcon(Constant.DEFEAT.getImageIcon());
 
 //            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.DEFEAT.getPath()));
         } else if (command.equals(Commands.GAME_WON)) {
-            oldRestartButton.setIcon(ButtonStatus.VICTORY.getImageIcon());
+            oldRestartButton.setIcon(Constant.VICTORY.getImageIcon());
 
 //            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.VICTORY.getPath()));
         } else {
@@ -98,7 +98,7 @@ public class NorthPanel extends JPanel{
 
     }
 
-    private void buttonSetIcon(ButtonStatus buttonStatus) {
+    private void buttonSetIcon(Constant buttonStatus) {
         oldRestartButton.setIcon(buttonStatus.getImageIcon());
 //            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
 

@@ -34,6 +34,9 @@ public class SettingsBuffer {
         writeToBuffer("min", "5");
         writeToBuffer("mine number:", "91203");
 
+
+
+
         printBufferContent();
 
 //        SettingsManager.saveSettings();

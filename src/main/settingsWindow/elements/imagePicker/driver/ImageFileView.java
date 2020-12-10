@@ -1,4 +1,4 @@
-package main.settingsWindow.elements.imagePicker;
+package main.settingsWindow.elements.imagePicker.driver;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -34,7 +34,6 @@ package main.settingsWindow.elements.imagePicker;
 //package components;
 
 import java.io.File;
-import javax.swing.*;
 import javax.swing.filechooser.*;
 
 /* ImageFileView.java is used by FileChooserDemo2.java. */

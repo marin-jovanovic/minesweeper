@@ -1,10 +1,9 @@
 package main.mainWindow;
 
+import main.constants.Constant;
 import main.utils.Event;
 import main.constants.Commands;
 import main.constants.ConstantsManager;
-import main.constants.imageDrivers.ClosedTileStatus;
-import main.constants.imageDrivers.OpenedTileStatus;
 import main.utils.Listener;
 import main.utils.soundDrivers.SoundDrivers;
 import main.utils.minesweeperDrivers.TableGenerator;
@@ -64,7 +63,7 @@ public class CenterPanel extends  JPanel {
 
                 buttons[i][j] = new JButton();
 
-                buttons[i][j].setIcon(ClosedTileStatus.CLOSED_CELL.getImageIcon());
+                buttons[i][j].setIcon(Constant.CLOSED_CELL.getImageIcon());
 
                 buttons[i][j].addMouseListener(new MouseActionListener(this, areButtonsActive, buttons, i, j));
 
@@ -99,17 +98,17 @@ public class CenterPanel extends  JPanel {
 
                 String string = buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].getIcon().toString();
 
-                if (ClosedTileStatus.CLOSED_CELL.getImageIcon().toString().equals(string)) {
+                if (Constant.CLOSED_CELL.getImageIcon().toString().equals(string)) {
                     buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            ClosedTileStatus.FLAG.getImageIcon()
+                            Constant.FLAG.getImageIcon()
                     );
-                } else if (ClosedTileStatus.FLAG.getImageIcon().toString().equals(string)) {
+                } else if (Constant.FLAG.getImageIcon().toString().equals(string)) {
                     buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            ClosedTileStatus.NOT_SURE.getImageIcon()
+                            Constant.NOT_SURE.getImageIcon()
                     );
                 } else {
                     buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            ClosedTileStatus.CLOSED_CELL.getImageIcon()
+                            Constant.CLOSED_CELL.getImageIcon()
                     );
                 }
             }
@@ -197,7 +196,7 @@ public class CenterPanel extends  JPanel {
 //            System.out.println(buttons[i][j].getIcon().toString());
 //            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
 
-            if (! buttons[i][j].getIcon().toString().equals(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString())) {
+            if (! buttons[i][j].getIcon().toString().equals(Constant.CLOSED_CELL.getImageIcon().toString())) {
                 return;
             }
         }
@@ -206,19 +205,19 @@ public class CenterPanel extends  JPanel {
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        OpenedTileStatus openedTileStatus;
+        Constant openedTileStatus;
 
         switch (table[i][j]) {
-            case 0 -> openedTileStatus = OpenedTileStatus.ZERO;
-            case 1 -> openedTileStatus = OpenedTileStatus.ONE;
-            case 2 -> openedTileStatus = OpenedTileStatus.TWO;
-            case 3 -> openedTileStatus = OpenedTileStatus.THREE;
-            case 4 -> openedTileStatus = OpenedTileStatus.FOUR;
-            case 5 -> openedTileStatus = OpenedTileStatus.FIVE;
-            case 6 -> openedTileStatus = OpenedTileStatus.SIX;
-            case 7 -> openedTileStatus = OpenedTileStatus.SEVEN;
-            case 8 -> openedTileStatus = OpenedTileStatus.EIGHT;
-            case -1 -> openedTileStatus = OpenedTileStatus.MINE;
+            case 0 -> openedTileStatus = Constant.ZERO;
+            case 1 -> openedTileStatus = Constant.ONE;
+            case 2 -> openedTileStatus = Constant.TWO;
+            case 3 -> openedTileStatus = Constant.THREE;
+            case 4 -> openedTileStatus = Constant.FOUR;
+            case 5 -> openedTileStatus = Constant.FIVE;
+            case 6 -> openedTileStatus = Constant.SIX;
+            case 7 -> openedTileStatus = Constant.SEVEN;
+            case 8 -> openedTileStatus = Constant.EIGHT;
+            case -1 -> openedTileStatus = Constant.MINE;
             default -> throw new IndexOutOfBoundsException("error in parsing");
         }
 
@@ -279,7 +278,7 @@ public class CenterPanel extends  JPanel {
                 buttons[i][j].setEnabled(true);
 
                 try {
-                    buttons[i][j].setIcon(ClosedTileStatus.CLOSED_CELL.getImageIcon());
+                    buttons[i][j].setIcon(Constant.CLOSED_CELL.getImageIcon());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }

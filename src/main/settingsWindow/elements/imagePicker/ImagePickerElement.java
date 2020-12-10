@@ -1,11 +1,12 @@
 package main.settingsWindow.elements.imagePicker;
 
-import main.constants.imageDrivers.OpenedTileStatus;
+import main.constants.Constant;
 import main.settingsWindow.SettingsBuffer;
+import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
+import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
+import main.settingsWindow.elements.imagePicker.driver.ImagePreview;
 
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -49,12 +50,19 @@ public class ImagePickerElement extends JPanel {
 
     private static final int PADDING = 3;   // for example
 
-    private String message;
+    private String jText;
+
+    public ImagePickerElement(String pathID, String jText, String logID) {
+
+
+
+
+        this(jText);
+    }
 
 //    add in consturctor IMageicon for this
-    public ImagePickerElement(String message) {
-
-        this.message = message;
+    public ImagePickerElement(String jText) {
+        this.jText = jText;
 
         setBorder(BorderFactory.createLineBorder(Color.blue));
 
@@ -65,18 +73,16 @@ public class ImagePickerElement extends JPanel {
         log.setEditable(false);
 
 
-        jButton = new JButton(message);
+        jButton = new JButton(jText);
         jButton.addActionListener(this::actionPerformed);
         add(jButton);
 
 
-//        JScrollPane logScrollPane = new JScrollPane(log);
         add(new JScrollPane(log));
 
 
 //        load default image for this or current if exists
-        imageLabel = new JLabel(OpenedTileStatus.FIVE.getImageIcon());
-        add(imageLabel);
+        add(new JLabel(Constant.FIVE.getImageIcon()));
 
 //        ImageIcon imgThisImg = new ImageIcon(PicURL));
 //
@@ -88,9 +94,10 @@ public class ImagePickerElement extends JPanel {
 
 //        ImageIcon imageIcon = new ImageIcon("./img/imageName.png"); // load the image to a imageIcon
 //        Image image = imageIcon.getImage(); // transform it
-        Image newimg =
-                new ImageIcon("./img/imageName.png").getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        ImageIcon imageIcon = new ImageIcon(newimg);  // transform it back
+//        Image newimg =
+//                new ImageIcon("./img/imageName.png").getImage().getScaledInstance(120, 120,
+//                java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+//        ImageIcon imageIcon = new ImageIcon(newimg);  // transform it back
 
         imageLabel.setIcon(new ImageIcon(
                                         new ImageIcon(fileName)
@@ -195,7 +202,7 @@ public class ImagePickerElement extends JPanel {
             log.append("Attaching file: " + file.getName() + "." + "\n");
 //            saves to buffer
 
-            SettingsBuffer.writeToBuffer(message, file.getAbsolutePath());
+            SettingsBuffer.writeToBuffer(jText, file.getAbsolutePath());
 
 
 //            sets right component image to new selected image

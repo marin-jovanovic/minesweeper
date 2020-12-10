@@ -1,11 +1,8 @@
 package main.settingsWindow;
 
-import main.constants.ConstantsManager;
-import main.settingsWindow.elements.imagePicker.ImagePickerElement;
-import main.settingsWindow.elements.reset.RestartDefaultButton;
-import main.settingsWindow.elements.textField.Linker;
-import main.settingsWindow.elements.textField.TextFieldElement;
 import main.constants.LayoutConstants;
+import main.settingsWindow.elements.reset.RestartDefaultButton;
+import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -124,7 +121,7 @@ public class SettingsFrame extends JFrame {
 //        add(new ImagePickerElement("choose image for x"));
 //        add(new ImagePickerElement("dummy image 2"));
 //
-//        add(new RestartDefaultButton());
+        add(new RestartDefaultButton());
 //
 
 

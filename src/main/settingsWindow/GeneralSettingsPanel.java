@@ -12,5 +12,11 @@ public class GeneralSettingsPanel extends JPanel {
         add(new TextFieldElement(Linker.ROW_NUMBER.getFrontEnd(), String.valueOf(ConstantsManager.NUMBER_OF_ROWS)));
         add(new TextFieldElement(Linker.COLUMN_NUMBER.getFrontEnd(),  String.valueOf(ConstantsManager.NUMBER_OF_COLUMNS)));
         add(new TextFieldElement(Linker.MINE_NUMBER.getFrontEnd(), String.valueOf(ConstantsManager.NUMBER_OF_MINES)));
+
+
+
+//        add(new TextFieldElement(Linker.ROW_NUMBER.getFrontEnd(), String.valueOf(ConstantsManager.NUMBER_OF_ROWS)));
+//        add(new TextFieldElement(Linker.COLUMN_NUMBER.getFrontEnd(),  String.valueOf(ConstantsManager.NUMBER_OF_COLUMNS)));
+//        add(new TextFieldElement(Linker.MINE_NUMBER.getFrontEnd(), String.valueOf(ConstantsManager.NUMBER_OF_MINES)));
     }
 }

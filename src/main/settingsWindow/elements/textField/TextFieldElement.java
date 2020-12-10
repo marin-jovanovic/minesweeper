@@ -16,7 +16,7 @@ public class TextFieldElement extends JPanel{
         );
         add(textField);
 
-        checker = new JLabel("checker");
+        checker = new JLabel();
         add(checker);
     }
 
