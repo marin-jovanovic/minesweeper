@@ -1,17 +1,17 @@
 package main.utils.soundDrivers;
 
-import main.constants.Sounds;
+import main.constants.Sound;
 
 public class SoundThread extends Thread {
 
-    private final Sounds sound;
+    private final Sound sound;
 
-    public SoundThread(Sounds sound) {
+    public SoundThread(Sound sound) {
         this.sound = sound;
     }
 
     public SoundThread() {
-        this.sound = Sounds.getRandomSoundDifferentFromCurrent();
+        this.sound = Sound.getRandomSoundDifferentFromCurrent();
     }
 
 

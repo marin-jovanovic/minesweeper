@@ -14,10 +14,9 @@ import java.util.concurrent.TimeUnit;
 //
 
 
-
-
-
-
+/**
+ * images need to be copied to resources/images/usersImages/b
+ */
 public class SettingsManager {
 
 

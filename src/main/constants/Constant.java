@@ -1,73 +1,97 @@
 package main.constants;
 
+import java.util.EnumSet;
 
-import javax.swing.*;
 
+//  delete constants and and change this enum name to constant
 public enum Constant {
-
-//    button
-    VICTORY( "victory", Paths.getButtonPath("victory"), "image__button__victory"),
-    DEFEAT("defeat", Paths.getButtonPath("defeat"), "image__button__defeat"),
-    PLAY_AGAIN("play again", Paths.getButtonPath("playAgain"), "image__button__play_again"),
-//    INIT("play again", Paths.getButtonPath("playAgain"),"image__button__play_again"),
-
-//    closed tiles
-    CLOSED_CELL("closed cell", Paths.getClosedTilePath("closedCell"), "image__closed_tile__closed_cell"),
-    FLAG("flag", Paths.getClosedTilePath("flag"), "image__closed_tile__flag"),
-    NOT_SURE("not sure", Paths.getClosedTilePath("notSure"), "image__closed_tile__not_sure"),
-
-//    opened tiles
-    ZERO("0", Paths.getOpenedTilePath("0"), "image__opened_tile__0"),
-    ONE("1", Paths.getOpenedTilePath("1"), "image__opened_tile__1"),
-    TWO("2" , Paths.getOpenedTilePath("2"), "image__opened_tile__2"),
-    THREE("3", Paths.getOpenedTilePath("3"), "image__opened_tile__3"),
-    FOUR("4", Paths.getOpenedTilePath("4"), "image__opened_tile__4"),
-    FIVE("5", Paths.getOpenedTilePath("5"), "image__opened_tile__5"),
-    SIX("6", Paths.getOpenedTilePath("6"), "image__opened_tile__6"),
-    SEVEN("7",Paths.getOpenedTilePath("7"), "image__opened_tile__7"),
-    EIGHT("8",Paths.getOpenedTilePath("8"), "image__opened_tile__8"),
-    MINE("mine", Paths.getOpenedTilePath("-1"), "image__opened_tile__mine");
+    NUMBER_OF_COLUMNS(10, "number of columns", "columns number:"),
+    NUMBER_OF_ROWS(10, "number of rows", "rows number:"),
+    NUMBER_OF_MINES(10, "number of mines", "mine number"),
+    LOCATION_X(20, "location x"),
+    LOCATION_Y(20, "location y"),
+    WIDTH(500, "width"),
+    HEIGHT(500, "height");
 
 
-    private final String pathID;
-    private final String jText;
-    private final String logID;
-//    row in log
-    private final int logNumber;
 
-//    private static int i = 1;
 
-    private Constant(String jText, String pathID, String logID) {
-        this.pathID = pathID;
-        this.jText = jText;
-        this.logID = logID;
-        this.logNumber = Paths.getRowNumber();
+    private String jText;
 
-    }
-
-    public int getLogNumber() {
-        return logNumber;
-    }
-//
-//    private Constant(String pathIDAndJText, String logID) {
-//        this.pathID = pathIDAndJText;
-//        this.jText = pathIDAndJText;
-//        this.logID = logID;
-//        logNumber = 0;
-//    }
-
-    public ImageIcon getImageIcon() {
-        return new ImageIcon(pathID);
-    }
     public String getJText() {
         return jText;
     }
+
+    Constant(int value, String logID, String jText) {
+        this(value, logID);
+
+        this.jText = jText;
+    }
+
+    private Constant(int value, String logID) {
+        this(value);
+        this.logID = logID;
+    }
+
+    private int value;
+    private String logID;
+
     public String getLogID() {
         return logID;
     }
 
+    private Constant(int value) {
+        this.value = value;
+    }
 
-    public static void main(String[] args) {
-        System.out.println(Constant.EIGHT.getLogNumber());
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+//    @Override
+//    public String toString() {
+//        return this + " " + value;
+//    }
+
+
+    public static void printAll() {
+        System.out.println("printing constant enum");
+        // Note: enum name changed to comply with Java naming conventions
+        for (Constant constant : EnumSet.allOf(Constant.class)) {
+            System.out.println(constant + " -> " + constant.value);
+        }
+        System.out.println();
+    }
+
+    public static Constant getConstant(String logID) {
+        for (Constant constant : EnumSet.allOf(Constant.class)) {
+            if (constant.logID.equals(logID)) {
+                return constant;
+            }
+        }
+
+        return null;
+
+
+
+//        if (logID.equals("number of columns")) {
+//            return NUMBER_OF_COLUMNS;
+//        } else if (logID.equals("number of rows")) {
+//            return NUMBER_OF_ROWS;
+//        } else if (logID.equals("number of mines")) {
+//            return NUMBER_OF_MINES;
+//        } else if (logID.equals("location x")) {
+//            return LOCATION_X;
+//        } else if (logID.equals("location y")) {
+//            return LOCATION_Y;
+//        } else if (logID.equals("width")) {
+//            return WIDTH;
+//        } else {
+//            return HEIGHT;
+//        }
     }
 }

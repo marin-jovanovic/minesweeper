@@ -1,10 +1,9 @@
 package main.constants;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public enum Sounds {
+public enum Sound {
 
     SOUND_PATH_0("j2"),
     SOUND_PATH_1("j3"),
@@ -22,23 +21,23 @@ public enum Sounds {
         return defaultPath + path + end;
     }
 
-    Sounds(String path) {
+    Sound(String path) {
         this.path = path;
     }
 
 
-    private static final List<Sounds> VALUES = List.of(values());
+    private static final List<Sound> VALUES = List.of(values());
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    public static Sounds getRandomSound()  {
+    public static Sound getRandomSound()  {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
-    private static Sounds current = getRandomSound();
+    private static Sound current = getRandomSound();
 
-    public static Sounds getRandomSoundDifferentFromCurrent() {
-        Sounds next = getRandomSound();
+    public static Sound getRandomSoundDifferentFromCurrent() {
+        Sound next = getRandomSound();
 
         while (next == current) {
 //            System.out.println("\t" + next);
@@ -51,14 +50,14 @@ public enum Sounds {
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
-            System.out.println(Sounds.getRandomSound());
+            System.out.println(Sound.getRandomSound());
         }
 
         System.out.println("------");
         System.out.println(current);
 
         for (int i = 0; i < 10; i++) {
-            System.out.println(Sounds.getRandomSoundDifferentFromCurrent());
+            System.out.println(Sound.getRandomSoundDifferentFromCurrent());
         }
     }
 

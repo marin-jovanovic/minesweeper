@@ -1,7 +1,6 @@
 package main.settingsWindow;
 
-import main.constants.LayoutConstants;
-import main.settingsWindow.elements.reset.RestartDefaultButton;
+import main.constants.Constant;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 
 import javax.swing.*;
@@ -40,10 +39,6 @@ import java.awt.event.KeyEvent;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
-//  TODO
-
-
 public class SettingsFrame extends JFrame {
 
     public static void main(String[] args) {
@@ -58,8 +53,8 @@ public class SettingsFrame extends JFrame {
 
     public SettingsFrame() {
         super("Settings");
-        setSize(LayoutConstants.WIDTH, LayoutConstants.HEIGHT);
-        setLocation(LayoutConstants.LOCATION_X, LayoutConstants.LOCATION_Y);
+        setSize(Constant.WIDTH.getValue(), Constant.HEIGHT.getValue());
+        setLocation(Constant.LOCATION_X.getValue(), Constant.LOCATION_Y.getValue());
         setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
@@ -86,7 +81,6 @@ public class SettingsFrame extends JFrame {
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
 
-        add(new RestartDefaultButton());
 //
 
 

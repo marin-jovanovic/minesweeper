@@ -1,6 +1,6 @@
 package main.utils.soundDrivers;
 
-import main.constants.Sounds;
+import main.constants.Sound;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -18,7 +18,7 @@ public class SoundDrivers {
         soundThread.start();
     }
 
-    public static void playClip(Sounds sound) {
+    public static void playClip(Sound sound) {
         System.out.println("sound playing");
 
         File clipFile = new File(sound.getPath());

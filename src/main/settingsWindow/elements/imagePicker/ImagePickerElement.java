@@ -1,6 +1,5 @@
 package main.settingsWindow.elements.imagePicker;
 
-import main.constants.Constant;
 import main.settingsWindow.SettingsBuffer;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
@@ -82,7 +81,7 @@ public class ImagePickerElement extends JPanel {
 
 
 //        load default image for this or current if exists
-        add(new JLabel(Constant.FIVE.getImageIcon()));
+        add(new JLabel(main.constants.Image.FIVE.getImageIcon()));
 
 //        ImageIcon imgThisImg = new ImageIcon(PicURL));
 //

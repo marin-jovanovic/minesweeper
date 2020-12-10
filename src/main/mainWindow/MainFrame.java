@@ -1,8 +1,8 @@
 package main.mainWindow;
 
+import main.constants.Constant;
 import main.constants.ConstantsManager;
 import main.utils.Event;
-import main.constants.LayoutConstants;
 import main.utils.Listener;
 
 import javax.swing.*;
@@ -70,11 +70,17 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("minesweeper");
-        setLocation(LayoutConstants.LOCATION_X, LayoutConstants.LOCATION_Y);
+
+        ConstantsManager.refresh();
+
+        setLocation(Constant.LOCATION_X.getValue(), Constant.LOCATION_Y.getValue());
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(LayoutConstants.WIDTH, LayoutConstants.HEIGHT);
+        setSize(Constant.WIDTH.getValue(), Constant.HEIGHT.getValue());
         setLayout(new BorderLayout());
+
+
+
 
         System.out.println("temp");
         System.out.println(this.getLocation());

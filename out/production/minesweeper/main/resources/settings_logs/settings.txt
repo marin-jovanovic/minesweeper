@@ -1,11 +1,7 @@
-mine number: = 15
-number of columns = 10
-column number: = 10
-number of rows = 10
-number of mines = 14
-row number: = 10
-
-other
-...
-...
-...
+number of columns = 15
+number of rows = 15
+number of mines = 15
+location x = 100
+location y = 20
+width = 500
+height = 500

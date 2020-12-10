@@ -1,15 +1,15 @@
-image__button__victory
-image__button__defeat
-image__button__play_again
-image__closed_tile__closed_cell
-image__closed_tile__flag
-image__closed_tile__not_sure
-image__opened_tile__0
-image__opened_tile__1
-image__opened_tile__2
-image__opened_tile__3
-image__opened_tile__4
-image__opened_tile__5
+image__button__victory = victory
+image__button__defeat = defeat
+image__button__play_again = playAgain
+image__closed_tile__closed_cell = closedCell
+image__closed_tile__flag = c
+image__closed_tile__not_sure = c
+image__opened_tile__0 = c
+image__opened_tile__1 = c
+image__opened_tile__2 = c
+image__opened_tile__3 = c
+image__opened_tile__4 = c
+image__opened_tile__5 = c
 image__opened_tile__6
 image__opened_tile__7
 image__opened_tile__8

@@ -2,7 +2,7 @@ package main.constants;
 
 import main.constants.imageDrivers.ImagesConstants;
 
-public class Paths {
+public class Path {
 
     private static int rowNumber = 0;
 

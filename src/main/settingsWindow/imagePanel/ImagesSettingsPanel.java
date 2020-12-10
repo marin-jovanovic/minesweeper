@@ -1,6 +1,7 @@
 package main.settingsWindow.imagePanel;
 
 import main.settingsWindow.elements.imagePicker.ImagePickerElement;
+import main.settingsWindow.elements.reset.RestartDefaultButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ public class ImagesSettingsPanel extends JPanel{
 
     public ImagesSettingsPanel() {
         setLayout(new GridLayout(1, 1));
+
         JTabbedPane tabbedPane = new JTabbedPane();
 
 
@@ -32,6 +34,8 @@ public class ImagesSettingsPanel extends JPanel{
 
         //Add the tabbed pane to this panel.
         add(tabbedPane);
+//        add(new RestartDefaultButton());
+
 
         //The following line enables to use scrolling tabs.
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -42,6 +46,8 @@ public class ImagesSettingsPanel extends JPanel{
             add(new ImagePickerElement("change victory image"));
             add(new ImagePickerElement("change play again image"));
             add(new ImagePickerElement("change defeat image"));
+            add(new RestartDefaultButton());
+
         }
     }
 
@@ -50,6 +56,8 @@ public class ImagesSettingsPanel extends JPanel{
             add(new ImagePickerElement("change closed cell image"));
             add(new ImagePickerElement("change flag image"));
             add(new ImagePickerElement("change notSure image"));
+            add(new RestartDefaultButton());
+
         }
     }
 
@@ -65,6 +73,8 @@ public class ImagesSettingsPanel extends JPanel{
             add(new ImagePickerElement("change 6 image"));
             add(new ImagePickerElement("change 7 image"));
             add(new ImagePickerElement("change 8 image"));
+            add(new RestartDefaultButton());
+
         }
     }
 
@@ -80,6 +90,8 @@ public class ImagesSettingsPanel extends JPanel{
             add(new ImagePickerElement("change 7 image"));
             add(new ImagePickerElement("change 8 image"));
             add(new ImagePickerElement("change 9 image"));
+            add(new RestartDefaultButton());
+
         }
     }
 }

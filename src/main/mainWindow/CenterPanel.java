@@ -1,6 +1,7 @@
 package main.mainWindow;
 
 import main.constants.Constant;
+import main.constants.Image;
 import main.utils.Event;
 import main.constants.Commands;
 import main.constants.ConstantsManager;
@@ -48,22 +49,22 @@ public class CenterPanel extends  JPanel {
 
     public CenterPanel() {
 
-        setLayout(new GridLayout(ConstantsManager.NUMBER_OF_ROWS, ConstantsManager.NUMBER_OF_COLUMNS));
+        setLayout(new GridLayout(Constant.NUMBER_OF_ROWS.getValue(), Constant.NUMBER_OF_COLUMNS.getValue()));
 
-        numOfCells = ConstantsManager.NUMBER_OF_COLUMNS * ConstantsManager.NUMBER_OF_ROWS;
+        numOfCells = Constant.NUMBER_OF_COLUMNS.getValue() * Constant.NUMBER_OF_ROWS.getValue();
 
-        rightClickTable = new int[ConstantsManager.NUMBER_OF_ROWS][ConstantsManager.NUMBER_OF_COLUMNS];
+        rightClickTable = new int[Constant.NUMBER_OF_ROWS.getValue()][Constant.NUMBER_OF_COLUMNS.getValue()];
 
         table = TableGenerator.getTable();
 
-        buttons = new JButton[ConstantsManager.NUMBER_OF_ROWS][ConstantsManager.NUMBER_OF_COLUMNS];
+        buttons = new JButton[Constant.NUMBER_OF_ROWS.getValue()][Constant.NUMBER_OF_COLUMNS.getValue()];
 
-        for (int i = 0; i < ConstantsManager.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < ConstantsManager.NUMBER_OF_COLUMNS; j++) {
+        for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
+            for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
 
                 buttons[i][j] = new JButton();
 
-                buttons[i][j].setIcon(Constant.CLOSED_CELL.getImageIcon());
+                buttons[i][j].setIcon(Image.CLOSED_CELL.getImageIcon());
 
                 buttons[i][j].addMouseListener(new MouseActionListener(this, areButtonsActive, buttons, i, j));
 
@@ -98,17 +99,17 @@ public class CenterPanel extends  JPanel {
 
                 String string = buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].getIcon().toString();
 
-                if (Constant.CLOSED_CELL.getImageIcon().toString().equals(string)) {
+                if (Image.CLOSED_CELL.getImageIcon().toString().equals(string)) {
                     buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            Constant.FLAG.getImageIcon()
+                            Image.FLAG.getImageIcon()
                     );
-                } else if (Constant.FLAG.getImageIcon().toString().equals(string)) {
+                } else if (Image.FLAG.getImageIcon().toString().equals(string)) {
                     buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            Constant.NOT_SURE.getImageIcon()
+                            Image.NOT_SURE.getImageIcon()
                     );
                 } else {
                     buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            Constant.CLOSED_CELL.getImageIcon()
+                            Image.CLOSED_CELL.getImageIcon()
                     );
                 }
             }
@@ -132,8 +133,8 @@ public class CenterPanel extends  JPanel {
             checkForWin();
             if (areButtonsActive) {
 
-                for (int i = 0; i < ConstantsManager.NUMBER_OF_ROWS; i++){
-                    for (int j = 0; j < ConstantsManager.NUMBER_OF_COLUMNS; j++) {
+                for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++){
+                    for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                         if(buttons[i][j].toString().equals(e.getSource().toString())) {
 
                             System.out.println("clicked " + i + " " + j);
@@ -176,7 +177,7 @@ public class CenterPanel extends  JPanel {
     private final int numOfCells;
 
     public void checkForWin() {
-        if (numOfCells - numOfOpenedCells == ConstantsManager.NUMBER_OF_MINES) {
+        if (numOfCells - numOfOpenedCells == Constant.NUMBER_OF_MINES.getValue()) {
 //            TODO disable statistics
             System.out.println("game is won");
             areButtonsActive = false;
@@ -196,7 +197,7 @@ public class CenterPanel extends  JPanel {
 //            System.out.println(buttons[i][j].getIcon().toString());
 //            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
 
-            if (! buttons[i][j].getIcon().toString().equals(Constant.CLOSED_CELL.getImageIcon().toString())) {
+            if (! buttons[i][j].getIcon().toString().equals(Image.CLOSED_CELL.getImageIcon().toString())) {
                 return;
             }
         }
@@ -205,19 +206,19 @@ public class CenterPanel extends  JPanel {
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        Constant openedTileStatus;
+        Image openedTileStatus;
 
         switch (table[i][j]) {
-            case 0 -> openedTileStatus = Constant.ZERO;
-            case 1 -> openedTileStatus = Constant.ONE;
-            case 2 -> openedTileStatus = Constant.TWO;
-            case 3 -> openedTileStatus = Constant.THREE;
-            case 4 -> openedTileStatus = Constant.FOUR;
-            case 5 -> openedTileStatus = Constant.FIVE;
-            case 6 -> openedTileStatus = Constant.SIX;
-            case 7 -> openedTileStatus = Constant.SEVEN;
-            case 8 -> openedTileStatus = Constant.EIGHT;
-            case -1 -> openedTileStatus = Constant.MINE;
+            case 0 -> openedTileStatus = Image.ZERO;
+            case 1 -> openedTileStatus = Image.ONE;
+            case 2 -> openedTileStatus = Image.TWO;
+            case 3 -> openedTileStatus = Image.THREE;
+            case 4 -> openedTileStatus = Image.FOUR;
+            case 5 -> openedTileStatus = Image.FIVE;
+            case 6 -> openedTileStatus = Image.SIX;
+            case 7 -> openedTileStatus = Image.SEVEN;
+            case 8 -> openedTileStatus = Image.EIGHT;
+            case -1 -> openedTileStatus = Image.MINE;
             default -> throw new IndexOutOfBoundsException("error in parsing");
         }
 
@@ -273,12 +274,12 @@ public class CenterPanel extends  JPanel {
 //    enables all buttons
 //    changes icon to closedCell
     private void restartButtons() {
-        for (int i = 0; i < ConstantsManager.NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < ConstantsManager.NUMBER_OF_COLUMNS; j++) {
+        for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
+            for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                 buttons[i][j].setEnabled(true);
 
                 try {
-                    buttons[i][j].setIcon(Constant.CLOSED_CELL.getImageIcon());
+                    buttons[i][j].setIcon(Image.CLOSED_CELL.getImageIcon());
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
