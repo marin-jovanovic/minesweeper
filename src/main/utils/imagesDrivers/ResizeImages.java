@@ -36,6 +36,7 @@ public class ResizeImages {
 //                "src/main/resources/resized_images/slika.png");
     }
 
+
     public static void resizeAllImagesInFolder(String source, String destination) {
         try (Stream<Path> paths = Files.walk(Paths.get(source))) {
             paths.forEach(path -> {

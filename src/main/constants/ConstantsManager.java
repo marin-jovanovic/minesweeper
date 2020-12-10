@@ -13,8 +13,8 @@ public class ConstantsManager {
     public static int NUMBER_OF_MINES = 15;
 
     //    where this is saved
-    public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings.txt";
-    public static String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/defaultSettings.txt";
+    public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/settings.txt";
+    public static String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/defaultSettings.txt";
 
     public static void refresh() {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(SETTINGS_MEMORY_PATH))) {
@@ -50,8 +50,8 @@ public class ConstantsManager {
                 String[] raw_data = line.split(" = ");
 
 
-                GeneralConstant generalConstant = GeneralConstant.getConstant(raw_data[0]);
-                generalConstant.setValue(Integer.parseInt(raw_data[1]));
+//                GeneralConstant generalConstant = GeneralConstant.getConstant(raw_data[0]);
+//                generalConstant.setValue(Integer.parseInt(raw_data[1]));
 
                 //                String key = raw_data[0];
 //                String value = raw_data[1];

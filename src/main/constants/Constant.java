@@ -1,6 +1,5 @@
 package main.constants;
 
-import main.constants.imageDrivers.ImagesConstants;
 
 import javax.swing.*;
 
@@ -10,7 +9,7 @@ public enum Constant {
     VICTORY( "victory", Paths.getButtonPath("victory"), "image__button__victory"),
     DEFEAT("defeat", Paths.getButtonPath("defeat"), "image__button__defeat"),
     PLAY_AGAIN("play again", Paths.getButtonPath("playAgain"), "image__button__play_again"),
-    INIT("play again", Paths.getButtonPath("playAgain"),"image__button__play_again"),
+//    INIT("play again", Paths.getButtonPath("playAgain"),"image__button__play_again"),
 
 //    closed tiles
     CLOSED_CELL("closed cell", Paths.getClosedTilePath("closedCell"), "image__closed_tile__closed_cell"),
@@ -33,26 +32,42 @@ public enum Constant {
     private final String pathID;
     private final String jText;
     private final String logID;
+//    row in log
+    private final int logNumber;
+
+//    private static int i = 1;
 
     private Constant(String jText, String pathID, String logID) {
         this.pathID = pathID;
         this.jText = jText;
         this.logID = logID;
+        this.logNumber = Paths.getRowNumber();
+
     }
 
-    private Constant(String pathIDAndJText, String logID) {
-        this.pathID = pathIDAndJText;
-        this.jText = pathIDAndJText;
-        this.logID = logID;
+    public int getLogNumber() {
+        return logNumber;
     }
+//
+//    private Constant(String pathIDAndJText, String logID) {
+//        this.pathID = pathIDAndJText;
+//        this.jText = pathIDAndJText;
+//        this.logID = logID;
+//        logNumber = 0;
+//    }
 
     public ImageIcon getImageIcon() {
         return new ImageIcon(pathID);
     }
-    public String getjText() {
+    public String getJText() {
         return jText;
     }
     public String getLogID() {
         return logID;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(Constant.EIGHT.getLogNumber());
     }
 }

@@ -24,7 +24,9 @@ public class NorthPanel extends JPanel{
         oldRestartButton = new JButton();
 
 //        oldRestartButton.setIcon(new ImageIcon(ButtonStatus.INIT.getPath()));
-        oldRestartButton.setIcon(Constant.INIT.getImageIcon());
+
+//        this is init state but it is same as play again
+        oldRestartButton.setIcon(Constant.PLAY_AGAIN.getImageIcon());
 
         add(oldRestartButton);
 

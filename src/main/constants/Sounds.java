@@ -1,5 +1,6 @@
 package main.constants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -13,6 +14,8 @@ public enum Sounds {
 
     private static final String defaultPath = "src/main/resources/sounds/defeat_sounds/";
     private static final String end = ".wav";
+
+//    TODO ability to add new sounds
 
 
     public String getPath() {

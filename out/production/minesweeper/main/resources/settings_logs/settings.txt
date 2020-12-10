@@ -1,6 +1,9 @@
+mine number: = 15
 number of columns = 10
+column number: = 10
 number of rows = 10
 number of mines = 14
+row number: = 10
 
 other
 ...

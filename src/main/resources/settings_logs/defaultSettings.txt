@@ -1,55 +1,31 @@
-# comments
+image__button__victory = victory
+image__button__defeat = defeat
+image__button__play_again = playAgain
+image__closed_tile__closed_cell = closedCell
+image__closed_tile__flag = c
+image__closed_tile__not_sure = c
+image__opened_tile__0 = c
+image__opened_tile__1 = c
+image__opened_tile__2 = c
+image__opened_tile__3 = c
+image__opened_tile__4 = c
+image__opened_tile__5 = c
+image__opened_tile__6
+image__opened_tile__7
+image__opened_tile__8
+image__opened_tile__mine
 
-constants
+todo
 number of columns = 10
 number of rows = 10
 number of mines = 10
 
-images
-
-
-button
-defeat.png
-playAgain.png
-victory.png
-
-closed tiles
-closedCell.png
-flag.png
-notSure.png
-
-opened tiles
--1.png
-0.png
-1.png
-2.png
-3.png
-4.png
-5.png
-6.png
-7.png
-8.png
-
-time
-0.png
-1.png
-2.png
-3.png
-4.png
-5.png
-6.png
-7.png
-8.png
-9.png
-
-sounds
-
-defeat sounds
+#defeat sounds
 0.wav
 ...
 n.wav
 
-victory sounds
+#victory sounds
 0.wav
 ...
 n.wav

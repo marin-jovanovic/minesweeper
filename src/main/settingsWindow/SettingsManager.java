@@ -30,6 +30,19 @@ public class SettingsManager {
         temp.add("b");
 
         System.out.println(temp);
+
+//        key, value
+        SettingsBuffer.writeToBuffer("image__closed_tile__closed_cell", "d");
+        SettingsBuffer.writeToBuffer("image__opened_tile__4", "d");
+        SettingsBuffer.writeToBuffer("image__opened_tile__0", "d");
+        SettingsBuffer.writeToBuffer("image__button__play_again", "d");
+        SettingsBuffer.writeToBuffer("image__opened_tile__4", "d");
+        SettingsBuffer.writeToBuffer("image__button__defeat", "d");
+        SettingsBuffer.writeToBuffer("image__closed_tile__not_sure", "d");
+        SettingsBuffer.writeToBuffer("image__opened_tile__4", "d");
+
+//        restartSettings();
+        saveSettings();
     }
 
     public static void saveSettings() {
@@ -38,11 +51,55 @@ public class SettingsManager {
 
 //        check if settings list is complete
 //        if not add them
-        ArrayList<String> bufferList = completeSettings();
+//        FIXME
+//        ArrayList<String> bufferList = completeSettings();
+        ArrayList<String> bufferList = complete(); //complete()
         System.out.println("SettingsFrame saveSettings");
         System.out.println(bufferList);
         writeToSettings(String.join("\n", bufferList));
     }
+
+    public static ArrayList<String> complete() {
+        ArrayList<String> bufferList = new ArrayList<>();
+        System.out.println("complete method");
+
+        System.out.println(SettingsBuffer.getBuffer());
+
+        try (BufferedReader file = new BufferedReader(new FileReader(ConstantsManager.SETTINGS_MEMORY_PATH))){
+
+            String line = file.readLine();
+
+            ////            check if settings.txt is empty
+
+            //            adds settings&config that are not targeted by settingsFrame elements
+            do {
+                int i = line.lastIndexOf(" ");
+
+                String key = line.substring(0, i);
+                String value = line.substring(i + 1);
+
+                if (! SettingsBuffer.getBuffer().containsKey(key)) {
+                    SettingsBuffer.getBuffer().put(key, value);
+                }
+
+            } while (! (line = file.readLine()).isBlank());
+
+//            adds new settings
+            SettingsBuffer.getBuffer().forEach((key, value) -> bufferList.add(key + " " + value));
+
+            bufferList.add("");
+
+            while ((line = file.readLine()) != null) {
+                bufferList.add(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bufferList;
+    }
+
 
 //    sets to default, sends message to restart default button jpanel it is updated
     public static void restartSettings(RestartDefaultButton restartDefaultButton) {
