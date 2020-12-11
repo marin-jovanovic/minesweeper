@@ -28,6 +28,8 @@ public class ResizeImages {
 
         resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
                 "src/main/resources/images/resized_images/" + a);
+
+
 //        button
 //                closed_tiles
 //                Opened_tiles
@@ -62,7 +64,39 @@ public class ResizeImages {
         }
     }
 
-    private static void resizeAndSaveImage(String source, String destination) {
+    public static void resizeAndSaveImage(File source, File destination) {
+        try {
+
+            BufferedImage originalImage = ImageIO.read(source);
+            int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
+            BufferedImage resizeImage = resizeImage(originalImage, type,
+                    ImagesConstants.PICTURE_WIDTH, ImagesConstants.PICTURE_HEIGHT);
+
+            ImageIO.write(resizeImage, ImagesConstants.IMAGES_FORMAT_NAME, destination);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void resizeAndSaveImage(File source, String destination) {
+        try {
+
+            BufferedImage originalImage = ImageIO.read(source);
+            int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
+            BufferedImage resizeImage = resizeImage(originalImage, type,
+                    ImagesConstants.PICTURE_WIDTH, ImagesConstants.PICTURE_HEIGHT);
+
+            ImageIO.write(resizeImage, ImagesConstants.IMAGES_FORMAT_NAME, new File(destination));
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void resizeAndSaveImage(String source, String destination) {
         try {
 
             BufferedImage originalImage = ImageIO.read(new File(source));
@@ -78,7 +112,8 @@ public class ResizeImages {
         }
     }
 
-    private static BufferedImage resizeImage(BufferedImage originalImage, int type, int IMG_WIDTH, int IMG_HEIGHT) {
+    private static BufferedImage resizeImage(BufferedImage originalImage, int type,
+                                             int IMG_WIDTH, int IMG_HEIGHT) {
         BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
         Graphics2D g = resizedImage.createGraphics();
         g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);

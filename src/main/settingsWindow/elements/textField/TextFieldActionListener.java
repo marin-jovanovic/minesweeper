@@ -1,7 +1,8 @@
 package main.settingsWindow.elements.textField;
 
 
-import main.settingsWindow.SettingsBuffer;
+import main.settingsWindow.settingsManager.SettingsBuffer;
+import main.settingsWindow.settingsManager.SettingsManager;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -18,7 +19,9 @@ public class TextFieldActionListener implements DocumentListener {
         this.source = source;
         this.key = key;
         this.oldValue = source.getTextField().getText();
-        SettingsBuffer.writeToBuffer(key, source.getTextField().getText());
+
+        SettingsManager.addSettingToBuffer(key, source.getTextField().getText());
+//        SettingsBuffer.writeToBuffer(key, source.getTextField().getText());
     }
 
     @Override
@@ -41,7 +44,8 @@ public class TextFieldActionListener implements DocumentListener {
 
         value = reformatValue(value);
 
-        SettingsBuffer.writeToBuffer(key, value);
+        SettingsManager.addSettingToBuffer(key, value);
+//        SettingsBuffer.writeToBuffer(key, value);
 
         source.setCheckerText("new value: " + value);
     }

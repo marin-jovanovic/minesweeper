@@ -1,5 +1,8 @@
 package main.settingsWindow;
 
+import main.settingsWindow.settingsManager.SettingsBuffer;
+import main.settingsWindow.settingsManager.SettingsManager;
+
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -75,7 +78,8 @@ public class SettingsWindowListener implements WindowListener {
     public void windowClosing(WindowEvent e) {
 
         System.out.println("\nnew settings");
-        SettingsBuffer.printBufferContent();
+        SettingsManager.printCurrentStateOfBuffer();
+//        SettingsBuffer.printBufferContent();
 
         SettingsManager.saveSettings();
 

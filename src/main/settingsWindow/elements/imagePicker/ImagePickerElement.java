@@ -1,9 +1,10 @@
 package main.settingsWindow.elements.imagePicker;
 
-import main.settingsWindow.SettingsBuffer;
+import main.settingsWindow.settingsManager.SettingsBuffer;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;
+import main.settingsWindow.settingsManager.SettingsManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -201,7 +202,9 @@ public class ImagePickerElement extends JPanel {
             log.append("Attaching file: " + file.getName() + "." + "\n");
 //            saves to buffer
 
-            SettingsBuffer.writeToBuffer(jText, file.getAbsolutePath());
+
+            SettingsManager.addSettingToBuffer(jText, file.getAbsolutePath());
+//            SettingsBuffer.writeToBuffer(jText, file.getAbsolutePath());
 
 
 //            sets right component image to new selected image
