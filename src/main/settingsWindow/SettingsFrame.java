@@ -1,7 +1,6 @@
 package main.settingsWindow;
 
 import main.constants.Constant;
-import main.mainWindow.MainFrame;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 import main.utils.Event;
 import main.utils.Listener;
@@ -91,12 +90,12 @@ public class SettingsFrame extends JFrame {
 
 //        restart @MainFrame
 //        this.addListener(event -> {
-//            System.out.println("triggered restarting mainframe window");
+//            s
 //            MainFrame.restartSequence();
 //        });
 
 //        saves on close new settings
-        addWindowListener(new SettingsWindowListener(this));
+        addWindowListener(new SettingsWindowListener());
 
 
     }

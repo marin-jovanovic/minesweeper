@@ -40,25 +40,14 @@ public class SettingsWindowListener implements WindowListener {
 
         SettingsManager.saveSettings();
 
-//        fireEvent(new main.utils.Event(this, Command.RESTART_MAINFRAME));
-
-
-//        fireEvent(new main.utils.Event(origin, Com));
-
-////                        FIXME this bellow must be part of the code
-////                    fireEvent(new main.utils.Event(this, "setting saved"));
         fireEvent(new main.utils.Event(this, Command.RESTART_MAINFRAME));
-//
-
     }
 
-    public SettingsWindowListener(SettingsFrame settingsFrame) {
-        this.settingsFrame = settingsFrame;
 
+    public SettingsWindowListener() {
         this.addListener(event -> MainFrame.restartSequence());
     }
 
-    private SettingsFrame settingsFrame;
 
     private EventListenerList listenerList = new EventListenerList();
 

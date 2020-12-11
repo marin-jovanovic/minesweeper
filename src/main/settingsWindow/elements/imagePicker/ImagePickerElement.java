@@ -47,24 +47,16 @@ public class ImagePickerElement extends JPanel {
     private JFileChooser fc;
     private JLabel imageLabel;
     private JButton jButton;
-
-    private static final int PADDING = 3;   // for example
-
     private String jText;
-
-    public ImagePickerElement(String pathID, String jText, String logID) {
-
+    private main.constants.Image image;
 
 
+    public ImagePickerElement(main.constants.Image image) {
+        this.image = image;
 
-        this(jText);
-    }
+        this.jText = image.getjText();
 
-//    add in consturctor IMageicon for this
-    public ImagePickerElement(String jText) {
-        this.jText = jText;
-
-        setBorder(BorderFactory.createLineBorder(Color.blue));
+        setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         log = new JTextArea(5,20);
         //Create the log first, because the action listener
@@ -80,24 +72,13 @@ public class ImagePickerElement extends JPanel {
 
         add(new JScrollPane(log));
 
-
-//        load default image for this or current if exists
-        add(new JLabel(main.constants.Image.FIVE.getImageIcon()));
-
-//        ImageIcon imgThisImg = new ImageIcon(PicURL));
-//
-//        jLabel2.setIcon(imgThisImg);
+        imageLabel = new JLabel(image.getImageIcon());
+        add(imageLabel);
     }
+
 
     private void setImageLabel(String fileName) {
 
-
-//        ImageIcon imageIcon = new ImageIcon("./img/imageName.png"); // load the image to a imageIcon
-//        Image image = imageIcon.getImage(); // transform it
-//        Image newimg =
-//                new ImageIcon("./img/imageName.png").getImage().getScaledInstance(120, 120,
-//                java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-//        ImageIcon imageIcon = new ImageIcon(newimg);  // transform it back
 
         imageLabel.setIcon(new ImageIcon(
                                         new ImageIcon(fileName)
@@ -110,70 +91,6 @@ public class ImagePickerElement extends JPanel {
         imageLabel.setHorizontalTextPosition(JLabel.CENTER);
     }
 
-//    public static class LabelDemo extends JPanel {
-//        public LabelDemo() {
-//            JLabel label1, label2, label3;
-//
-//            label1 = new JLabel("Image and Text",
-//                    OpenedTileStatus.EIGHT.getImageIcon(),
-//                    JLabel.CENTER);
-//
-//            //Set the position of its text, relative to its icon:
-//            label1.setVerticalTextPosition(JLabel.BOTTOM);
-//            label1.setHorizontalTextPosition(JLabel.CENTER);
-//            add(label1);
-//
-//
-//            label2 = new JLabel("Text-Only Label");
-//            add(label2);
-//
-//
-//            label3 = new JLabel(OpenedTileStatus.EIGHT.getImageIcon());
-//            add(label3);
-//
-//        }
-//    }
-
-//    public static void main(String[] args) {
-//        //Schedule a job for the event dispatch thread:
-//        //creating and showing this application's GUI.
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                JFrame frame = new JFrame("LabelDemo");
-//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//                //Add content to the window.
-//                frame.add(new LabelDemo());
-//
-//                //Display the window.
-//                frame.pack();
-//                frame.setVisible(true);
-//            }
-//        });
-//    }
-
-
-//    public ImagePickerElement() {
-//
-//        log = new JTextArea(5,20);
-//
-////Create the log first, because the action listener
-//        //needs to refer to it.
-//        log.setMargin(new Insets(5,5,5,5));
-//        log.setEditable(false);
-//        JScrollPane logScrollPane = new JScrollPane(log);
-//
-//        JButton sendButton = new JButton("Attach...");
-////        sendButton.addActionListener(this);
-//
-//        sendButton.addActionListener(this::actionPerformed);
-//
-//        add(sendButton);
-//        add(logScrollPane);
-//
-//    }
-
-//    private String fileName;
 
     //    used for images
     public void actionPerformed(ActionEvent e) {
@@ -201,10 +118,6 @@ public class ImagePickerElement extends JPanel {
             File file = fc.getSelectedFile();
             log.append("Attaching file: " + file.getName() + "." + "\n");
 //            saves to buffer
-
-
-            SettingsManager.addSettingToBuffer(jText, file.getAbsolutePath());
-//            SettingsBuffer.writeToBuffer(jText, file.getAbsolutePath());
 
 
 //            sets right component image to new selected image

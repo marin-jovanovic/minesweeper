@@ -1,7 +1,7 @@
 number of columns = 12
-location y = 204
+location y = 219
 width = 500
 number of mines = 3
-number of rows = 12
-location x = 716
+number of rows = 11
+location x = 371
 height = 500
