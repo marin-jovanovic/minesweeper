@@ -1,8 +1,6 @@
-package main.mainWindow.centerPanelDrivers;
+package main.mainWindow.swingworkerExample;
 
 import java.awt.*;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 import javax.swing.*;
 
 public class FactorialCalculatorFrame extends JFrame {

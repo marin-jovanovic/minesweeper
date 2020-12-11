@@ -1,7 +1,7 @@
-number of columns = 15
-number of rows = 15
-number of mines = 15
-location x = 100
+number of columns = 3
 location y = 20
 width = 500
+number of mines = 12
+number of rows = 32
+location x = 100
 height = 500

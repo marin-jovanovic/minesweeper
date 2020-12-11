@@ -1,5 +1,6 @@
 package main.settingsWindow;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SettingsBuffer {
@@ -9,13 +10,13 @@ public class SettingsBuffer {
 
     public static void printBufferContent() {
         System.out.println("buffer content");
-        buffer.forEach((key, value) -> System.out.println(key + " " + value));
+        buffer.forEach((key, value) -> System.out.println(key + " -> " + value));
         System.out.println();
     }
 
     public static void writeToBuffer(String key, String value) {
         System.out.println("writing to buffer " + key + " =" + value);
-        buffer.put(key + " =", value);
+        buffer.put(key, value);
         System.out.println(buffer);
     }
 
@@ -23,23 +24,24 @@ public class SettingsBuffer {
         return buffer;
     }
 
+
     public static void main(String[] args) {
 
-        writeToBuffer("row", "1");
-        writeToBuffer("col", "1");
-        writeToBuffer("min", "53");
-        writeToBuffer("row number:", "14");
-        writeToBuffer("min", "5");
-        writeToBuffer("col", "12");
-        writeToBuffer("min", "54");
-        writeToBuffer("col", "1");
-        writeToBuffer("min", "5");
-        writeToBuffer("mine number:", "91203");
+        SettingsBuffer.writeToBuffer("number of columns", "12");
+        SettingsBuffer.writeToBuffer("number of rows", "32");
+        SettingsBuffer.writeToBuffer("number of mines", "12");
+        SettingsBuffer.writeToBuffer("number of columns", "3");
 
 
 
 
         printBufferContent();
+
+        System.out.println("getter");
+
+        HashMap temp = getBuffer();
+
+        System.out.println(temp);
 
 //        SettingsManager.saveSettings();
 

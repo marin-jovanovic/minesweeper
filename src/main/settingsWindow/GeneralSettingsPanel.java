@@ -16,12 +16,12 @@ public class GeneralSettingsPanel extends JPanel {
 
         add(new TextFieldElement(Constant.NUMBER_OF_ROWS.getJText(),
 //                String.valueOf(ConstantsManager.NUMBER_OF_ROWS)));
-                String.valueOf(Constant.NUMBER_OF_ROWS.getValue());
+                String.valueOf(Constant.NUMBER_OF_ROWS.getValue())));
         add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS.getJText(),
 //                String.valueOf(ConstantsManager.NUMBER_OF_COLUMNS)));
-                String.valueOf(Constant.NUMBER_OF_COLUMNS.getValue());
+                String.valueOf(Constant.NUMBER_OF_COLUMNS.getValue())));
         add(new TextFieldElement(Constant.NUMBER_OF_MINES.getJText(),
-                String.valueOf(Constant.NUMBER_OF_MINES.getValue()));
+                String.valueOf(Constant.NUMBER_OF_MINES.getValue())));
 
         add(new RestartDefaultButton());
 

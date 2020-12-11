@@ -1,4 +1,4 @@
-package main.mainWindow.centerPanelDrivers;
+package main.mainWindow.swingworkerExample;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

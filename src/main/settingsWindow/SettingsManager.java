@@ -5,9 +5,9 @@ import main.settingsWindow.elements.reset.RestartDefaultButton;
 
 import java.io.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 
 // TODO
@@ -21,24 +21,21 @@ public class SettingsManager {
 
 
     public static void main(String[] args) {
-        ArrayList<String> temp = new ArrayList<>();
-        temp.add("a");
-        temp.add("c");
-        temp.add("f");
-        temp.add("k");
-        temp.add("b");
-
-        System.out.println(temp);
+//        ArrayList<String> temp = new ArrayList<>();
+//        temp.add("a");
+//        temp.add("c");
+//        temp.add("f");
+//        temp.add("k");
+//        temp.add("b");
+//
+//        System.out.println(temp);
 
 //        key, value
-        SettingsBuffer.writeToBuffer("image__closed_tile__closed_cell", "d");
-        SettingsBuffer.writeToBuffer("image__opened_tile__4", "d");
-        SettingsBuffer.writeToBuffer("image__opened_tile__0", "d");
-        SettingsBuffer.writeToBuffer("image__button__play_again", "d");
-        SettingsBuffer.writeToBuffer("image__opened_tile__4", "d");
-        SettingsBuffer.writeToBuffer("image__button__defeat", "d");
-        SettingsBuffer.writeToBuffer("image__closed_tile__not_sure", "d");
-        SettingsBuffer.writeToBuffer("image__opened_tile__4", "d");
+        SettingsBuffer.writeToBuffer("number of columns", "12");
+        SettingsBuffer.writeToBuffer("number of rows", "32");
+        SettingsBuffer.writeToBuffer("number of mines", "12");
+        SettingsBuffer.writeToBuffer("number of columns", "3");
+
 
 //        restartSettings();
         saveSettings();
@@ -51,52 +48,100 @@ public class SettingsManager {
 //        check if settings list is complete
 //        if not add them
 //        FIXME
+//          if no setting changed -> empty buffer event
+//          all settings changed
+//
 //        ArrayList<String> bufferList = completeSettings();
-        ArrayList<String> bufferList = complete(); //complete()
+//
+//        SettingsBuffer.writeToBuffer("number of columns", "12");
+//        SettingsBuffer.writeToBuffer("number of rows", "32");
+//        SettingsBuffer.writeToBuffer("number of mines", "12");
+//        SettingsBuffer.writeToBuffer("number of columns", "3");
+
+
+        complete();
+//        ArrayList<String> bufferList = complete(); //complete()
         System.out.println("SettingsFrame saveSettings");
-        System.out.println(bufferList);
-        writeToSettings(String.join("\n", bufferList));
+//        System.out.println(bufferList);
+
+        SettingsBuffer.printBufferContent();
+        writeToSettings();
+
+//        writeToSettings(String.join("\n", bufferList));
     }
 
-    public static ArrayList<String> complete() {
-        ArrayList<String> bufferList = new ArrayList<>();
+    public static void complete() {
+//        ArrayList<String> bufferList = new ArrayList<>();
         System.out.println("complete method");
 
         System.out.println(SettingsBuffer.getBuffer());
 
+
+
         try (BufferedReader file = new BufferedReader(new FileReader(ConstantsManager.SETTINGS_MEMORY_PATH))){
 
-            String line = file.readLine();
+            System.out.println("*** try");
+            String line;
 
-            ////            check if settings.txt is empty
+            while ((line = file.readLine()) != null) {
+                System.out.println(line);
 
-            //            adds settings&config that are not targeted by settingsFrame elements
-            do {
-                int i = line.lastIndexOf(" ");
+                String[] raw = line.split(" = ");
 
-                String key = line.substring(0, i);
-                String value = line.substring(i + 1);
+                String key = raw[0];
+                String value = raw[1];
 
                 if (! SettingsBuffer.getBuffer().containsKey(key)) {
                     SettingsBuffer.getBuffer().put(key, value);
                 }
 
-            } while (! (line = file.readLine()).isBlank());
 
-//            adds new settings
-            SettingsBuffer.getBuffer().forEach((key, value) -> bufferList.add(key + " " + value));
 
-            bufferList.add("");
-
-            while ((line = file.readLine()) != null) {
-                bufferList.add(line);
             }
 
+//            String line = file.readLine();
+//
+//            ////            check if settings.txt is empty
+//
+//            //            adds settings&config that are not targeted by settingsFrame elements
+//
+//
+//
+//            do {
+//                int i = line.lastIndexOf(" ");
+//
+//                String key = line.substring(0, i);
+//                String value = line.substring(i + 1);
+//
+//                if (! SettingsBuffer.getBuffer().containsKey(key)) {
+//                    SettingsBuffer.getBuffer().put(key, value);
+//                }
+//
+//            } while (! (line = file.readLine()).isBlank());
+
+//            adds new settings
+//            SettingsBuffer.getBuffer().forEach((key, value) -> bufferList.add(key + " " + value));
+//
+//            bufferList.add("");
+//
+//            while ((line = file.readLine()) != null) {
+//                bufferList.add(line);
+//            }
+
         } catch (IOException e) {
+            System.out.println("ioexception");
             e.printStackTrace();
+        } catch (Exception exception) {
+            System.out.println("exception");
+            exception.printStackTrace();
         }
 
-        return bufferList;
+//        return bufferList;
+//        return SettingsBuffer.getBuffer();
+//        return SettingsBuffer.getBuffer().entrySet()
+//    return SettingsBuffer.getBuffer()ArrayList<Entry<String, Integer> >(SettingsBuffer.getBuffer().entrySet());
+
+
     }
 
 
@@ -136,7 +181,7 @@ public class SettingsManager {
         }
 
 //            write settings to @settings.txt
-        writeToSettings(String.join("\n", lines));
+//        writeToSettings(String.join("\n", lines));
     }
 
     //    completes new settings that will be written in settings.txt
@@ -181,8 +226,20 @@ public class SettingsManager {
         return bufferList;
     }
 
-    private static void writeToSettings(String newSettings) {
+    private static void writeToSettings() {
+        String newSettings = "";
+//        SettingsBuffer.getBuffer().forEach((key, value) -> {
+//            newSettings += key + " = " + value + "\n";
+//        });
+
+        newSettings = SettingsBuffer.getBuffer().keySet().stream().map(
+                key -> key + " = " + SettingsBuffer.getBuffer().get(key) + "\n"
+        ).collect(Collectors.joining());
+
         try (FileOutputStream fileOutputStream = new FileOutputStream(ConstantsManager.SETTINGS_MEMORY_PATH)) {
+//            buffer.forEach((key, value) -> System.out.println(key + " -> " + value));
+
+
             fileOutputStream.write(newSettings.getBytes());
         } catch (IOException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
