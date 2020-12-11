@@ -1,6 +1,7 @@
 package main.mainWindow;
 
 import main.constants.Image;
+import main.settingsWindow.settingsManager.SettingsManager;
 import main.utils.Event;
 import main.constants.Command;
 import main.utils.Listener;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class NorthPanel extends JPanel{
 
@@ -53,7 +55,30 @@ public class NorthPanel extends JPanel{
         });
 
         add(settingsButton);
+
+        temp = new JButton(Image.CLOSED_CELL.getImageIcon());
+        add(temp);
+
+        temp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                SettingsManager.processNewImage(
+                        new File("C:\\git\\minesweeper\\src\\main\\resources\\images\\custom\\button\\victory.png"),
+                        Image.CLOSED_CELL
+                );
+
+                temp.setIcon(Image.CLOSED_CELL.getImageIcon());
+
+
+            }
+        });
+
+
+
     }
+
+    private JButton temp;
 
     private EventListenerList listenerList = new EventListenerList();
 
@@ -100,11 +125,11 @@ public class NorthPanel extends JPanel{
 
     }
 
-    private void buttonSetIcon(Image buttonStatus) {
-        oldRestartButton.setIcon(buttonStatus.getImageIcon());
-//            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
-
-    }
+//    private void buttonSetIcon(Image buttonStatus) {
+//        oldRestartButton.setIcon(buttonStatus.getImageIcon());
+////            oldRestartButton.setIcon( new ImageIcon( defeat.getPath()));
+//
+//    }
 
 
 }

@@ -36,17 +36,13 @@ public enum Image {
 
 //    private static int i = 1;
 
-    private Image(String jText, String pathID, String group) {
+    Image(String jText, String pathID, String group) {
         this.pathID = pathID;
         this.jText = jText;
         this.group = group;
         this.logNumber = Path.getRowNumber();
-
     }
 
-    public String getjText() {
-        return jText;
-    }
 
     public String getPathID() {
         return pathID;
@@ -55,24 +51,19 @@ public enum Image {
     public int getLogNumber() {
         return logNumber;
     }
-//
-//    private Constant(String pathIDAndJText, String logID) {
-//        this.pathID = pathIDAndJText;
-//        this.jText = pathIDAndJText;
-//        this.logID = logID;
-//        logNumber = 0;
-//    }
 
     public ImageIcon getImageIcon() {
         return new ImageIcon(pathID);
     }
+
     public String getJText() {
-        return jText;
+        return "choose \"" + jText + "\" image";
+
     }
+
     public String getGroup() {
         return group;
     }
-
 
     public static void main(String[] args) {
         System.out.println(Image.EIGHT.getLogNumber());

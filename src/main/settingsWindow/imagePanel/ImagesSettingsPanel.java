@@ -27,9 +27,6 @@ public class ImagesSettingsPanel extends JPanel{
         tabbedPane.addTab("opened tiles", new OpenedTilePanel());
         tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
-//        tabbedPane.addTab("settings checker flags", new T);
-//        tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
-
         tabbedPane.addTab("time", new TimePanel());
         tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
@@ -49,9 +46,6 @@ public class ImagesSettingsPanel extends JPanel{
             add(new ImagePickerElement(Image.PLAY_AGAIN));
             add(new ImagePickerElement(Image.DEFEAT));
 
-//            add(new ImagePickerElement("change victory image"));
-//            add(new ImagePickerElement("change play again image"));
-//            add(new ImagePickerElement("change defeat image"));
             add(new RestartDefaultButton());
 
         }
@@ -65,10 +59,6 @@ public class ImagesSettingsPanel extends JPanel{
             add(new ImagePickerElement(Image.FLAG));
             add(new ImagePickerElement(Image.NOT_SURE));
 
-
-//            add(new ImagePickerElement("change closed cell image"));
-//            add(new ImagePickerElement("change flag image"));
-//            add(new ImagePickerElement("change notSure image"));
             add(new RestartDefaultButton());
 
         }
@@ -91,16 +81,6 @@ public class ImagesSettingsPanel extends JPanel{
 
             add(new ImagePickerElement(Image.EIGHT));
 
-//            add(new ImagePickerElement("change mine image"));
-//            add(new ImagePickerElement("change 0 image"));
-//            add(new ImagePickerElement("change 1 image"));
-//            add(new ImagePickerElement("change 2 image"));
-//            add(new ImagePickerElement("change 3 image"));
-//            add(new ImagePickerElement("change 4 image"));
-//            add(new ImagePickerElement("change 5 image"));
-//            add(new ImagePickerElement("change 6 image"));
-//            add(new ImagePickerElement("change 7 image"));
-//            add(new ImagePickerElement("change 8 image"));
             add(new RestartDefaultButton());
 
         }

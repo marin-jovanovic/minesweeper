@@ -1,5 +1,6 @@
 package main.settingsWindow.elements.imagePicker;
 
+import main.constants.Image;
 import main.settingsWindow.settingsManager.SettingsBuffer;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
@@ -54,7 +55,7 @@ public class ImagePickerElement extends JPanel {
     public ImagePickerElement(main.constants.Image image) {
         this.image = image;
 
-        this.jText = image.getjText();
+        this.jText = image.getJText();
 
         setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
@@ -77,15 +78,17 @@ public class ImagePickerElement extends JPanel {
     }
 
 
-    private void setImageLabel(String fileName) {
+    private void setImageLabel(Image image) {
+//String filename
 
+        imageLabel.setIcon(image.getImageIcon());
 
-        imageLabel.setIcon(new ImageIcon(
-                                        new ImageIcon(fileName)
-                                                .getImage()
-                                                .getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)
-                                        )
-                            );
+//        imageLabel.setIcon(new ImageIcon(
+//                                        new ImageIcon(fileName)
+//                                                .getImage()
+//                                                .getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)
+//                                        )
+//                            );
         imageLabel.setText("current image");
         imageLabel.setVerticalTextPosition(JLabel.BOTTOM);
         imageLabel.setHorizontalTextPosition(JLabel.CENTER);
@@ -95,6 +98,37 @@ public class ImagePickerElement extends JPanel {
     //    used for images
     public void actionPerformed(ActionEvent e) {
         //Set up the file chooser.
+        setupFileChooser();
+
+        //Show it.
+        int returnVal = fc.showDialog(this,"Attach");
+
+        //Process the results.
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            log.append("Attaching file: " + file.getName() + "." + "\n");
+//            saves to buffer
+
+
+//            sets right component image to new selected image
+            File newImage = new File(file.getAbsolutePath());
+
+            SettingsManager.processNewImage(newImage, this.image);
+
+
+
+            setImageLabel(this.image);
+//
+        } else {
+            log.append("Attachment cancelled by user." + "\n");
+        }
+        log.setCaretPosition(log.getDocument().getLength());
+
+        //Reset the file chooser for the next time it's shown.
+        fc.setSelectedFile(null);
+    }
+
+    private void setupFileChooser() {
         if (fc == null) {
             fc = new JFileChooser();
 
@@ -109,27 +143,6 @@ public class ImagePickerElement extends JPanel {
             //Add the preview pane.
             fc.setAccessory(new ImagePreview(fc));
         }
-
-        //Show it.
-        int returnVal = fc.showDialog(this,"Attach");
-
-        //Process the results.
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            log.append("Attaching file: " + file.getName() + "." + "\n");
-//            saves to buffer
-
-
-//            sets right component image to new selected image
-            setImageLabel(file.getAbsolutePath());
-//
-        } else {
-            log.append("Attachment cancelled by user." + "\n");
-        }
-        log.setCaretPosition(log.getDocument().getLength());
-
-        //Reset the file chooser for the next time it's shown.
-        fc.setSelectedFile(null);
     }
 
 

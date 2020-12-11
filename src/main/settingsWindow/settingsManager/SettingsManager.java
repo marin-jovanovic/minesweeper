@@ -1,18 +1,17 @@
 package main.settingsWindow.settingsManager;
 
-import main.constants.Constant;
 import main.constants.ConstantsManager;
 import main.constants.Image;
-import main.mainWindow.MainFrame;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.utils.imagesDrivers.ResizeImages;
 
-import javax.swing.plaf.metal.MetalIconFactory;
 import java.io.*;
-import java.util.*;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
 
 /**
  * images need to be copied to resources/images/usersImages/b
@@ -32,14 +31,16 @@ public class SettingsManager {
 //        restartSettings();
 
 
-        processNewImage(new File("C:/Users/Pc/Documents/Lightshot/Screenshot_1.png"),
-                Image.FOUR);
+        restartAllImages();
+//
+//        processNewImage(new File("C:/Users/Pc/Documents/Lightshot/Screenshot_1.png"),
+//                Image.FOUR);
     }
 
 
 
     public static void addSettingToBuffer(String key, String value) {
-        System.out.println(":::: addding " + key + " " + value);
+        System.out.println(":::: adding " + key + " " + value);
         SettingsBuffer.writeToBuffer(key, value);
     }
 
@@ -47,6 +48,14 @@ public class SettingsManager {
         SettingsBuffer.printBufferContent();
     }
 
+
+    /**
+     * checks if buffer is empty, if true returns
+     *
+     * completes buffer from settingsbuffer so that it contains all constant settings
+     *
+     * writes to settings changes made
+     */
     public static void saveSettings() {
         if (SettingsBuffer.getBuffer().isEmpty()) {
             System.out.println("buffer is empty");
@@ -84,14 +93,85 @@ public class SettingsManager {
         SettingsBuffer.printBufferContent();
 
         writeToSettings();
-
-//        MainFrame.restartSequence();
     }
 
+    public static class CopyFileVisitor extends SimpleFileVisitor<Path> {
+        private final Path targetPath;
+        private Path sourcePath = null;
+
+        public CopyFileVisitor(Path targetPath) {
+            this.targetPath = targetPath;
+        }
+
+        @Override
+        public FileVisitResult preVisitDirectory(final Path dir,
+                                                 final BasicFileAttributes attrs) throws IOException {
+            if (sourcePath == null) {
+                sourcePath = dir;
+            }
+            System.out.println();
+            System.out.println(dir);
+
+
+//            else {
+//                Files.createDirectories(targetPath.resolve(sourcePath
+//                        .relativize(dir)));
+//            }
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult visitFile(final Path file,
+                                         final BasicFileAttributes attrs) throws IOException {
+
+            System.out.println(file);
+
+            File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
+
+            System.out.println("** " + String.valueOf(myObj));
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+//
+            Files.copy(file,
+                    targetPath.resolve(sourcePath.relativize(file)));
+            return FileVisitResult.CONTINUE;
+        }
+    }
+    public static void restartAllImages() {
+
+        Path sourcePath =  Paths.get(new File("src/main/resources/images/resized_images").getAbsolutePath());
+        Path targetPath =  Paths.get(new File("src/main/resources/images/custom").getAbsolutePath());
+        
+        try {
+            Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
 
 //    make overload for File
+    /**
+     * @param source
+     * gets image from source
+     *
+     * @param image
+     * from enum Image
+     * gets it path and updates image to that image
+     *
+
+     */
     public static void processNewImage(File source, Image image) {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+        if (source.exists()) {
+            System.out.println("source exists");
+        }
 
         System.out.println(source.exists());
 
@@ -124,8 +204,10 @@ public class SettingsManager {
         ResizeImages.resizeAndSaveImage(source, destination);
     }
 
-    //    sets to default, sends message to restart default button jpanel it is updated
-    public static void restartSettings(RestartDefaultButton restartDefaultButton) {
+    /**
+     *  sets to default, sends message to restart default button jpanel it is updated
+    */
+     public static void restartSettings(RestartDefaultButton restartDefaultButton) {
         restartSettingsDriver();
 
         new Thread(() -> {
@@ -145,9 +227,6 @@ public class SettingsManager {
         //            read settings from @defaultsettings.txt
         restartSettingsDriver();
     }
-
-
-
 
     private static void restartSettingsDriver() {
         ArrayList<String> lines = new ArrayList<>();
@@ -178,6 +257,4 @@ public class SettingsManager {
         ).collect(Collectors.joining());
         writeToSettings(newSettings);
     }
-
-
 }
