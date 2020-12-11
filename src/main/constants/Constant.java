@@ -2,8 +2,18 @@ package main.constants;
 
 import java.util.EnumSet;
 
-
-//  delete constants and and change this enum name to constant
+/**
+ * @value
+ *
+ * @logID
+ * this is left side in settings.txt
+ * it is used to identify variable
+ *
+ * @jText
+ * used for swing GUI
+ * it is string that will be placed in GUI
+ * element will be identifed by this String
+ */
 public enum Constant {
     NUMBER_OF_COLUMNS(10, "number of columns", "columns number:"),
     NUMBER_OF_ROWS(10, "number of rows", "rows number:"),
@@ -12,8 +22,6 @@ public enum Constant {
     LOCATION_Y(20, "location y"),
     WIDTH(500, "width"),
     HEIGHT(500, "height");
-
-
 
 
     private String jText;
@@ -28,7 +36,7 @@ public enum Constant {
         this.jText = jText;
     }
 
-    private Constant(int value, String logID) {
+    Constant(int value, String logID) {
         this(value);
         this.logID = logID;
     }
@@ -40,7 +48,7 @@ public enum Constant {
         return logID;
     }
 
-    private Constant(int value) {
+    Constant(int value) {
         this.value = value;
     }
 
@@ -51,12 +59,6 @@ public enum Constant {
     public void setValue(int value) {
         this.value = value;
     }
-
-//    @Override
-//    public String toString() {
-//        return this + " " + value;
-//    }
-
 
     public static void printAll() {
         System.out.println("printing constant enum");
@@ -75,23 +77,5 @@ public enum Constant {
         }
 
         return null;
-
-
-
-//        if (logID.equals("number of columns")) {
-//            return NUMBER_OF_COLUMNS;
-//        } else if (logID.equals("number of rows")) {
-//            return NUMBER_OF_ROWS;
-//        } else if (logID.equals("number of mines")) {
-//            return NUMBER_OF_MINES;
-//        } else if (logID.equals("location x")) {
-//            return LOCATION_X;
-//        } else if (logID.equals("location y")) {
-//            return LOCATION_Y;
-//        } else if (logID.equals("width")) {
-//            return WIDTH;
-//        } else {
-//            return HEIGHT;
-//        }
     }
 }

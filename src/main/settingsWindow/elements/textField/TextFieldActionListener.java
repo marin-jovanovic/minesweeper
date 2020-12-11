@@ -1,7 +1,5 @@
 package main.settingsWindow.elements.textField;
 
-
-import main.settingsWindow.settingsManager.SettingsBuffer;
 import main.settingsWindow.settingsManager.SettingsManager;
 
 import javax.swing.event.DocumentEvent;
@@ -15,13 +13,10 @@ public class TextFieldActionListener implements DocumentListener {
     private final String oldValue;
     private final TextFieldElement source;
 
-    public TextFieldActionListener(TextFieldElement source, String key) {
+    public TextFieldActionListener(TextFieldElement source) {
         this.source = source;
-        this.key = key;
-        this.oldValue = source.getTextField().getText();
-
-        SettingsManager.addSettingToBuffer(key, source.getTextField().getText());
-//        SettingsBuffer.writeToBuffer(key, source.getTextField().getText());
+        this.key = source.getConstant().getLogID();
+        this.oldValue = String.valueOf(source.getConstant().getValue());
     }
 
     @Override
@@ -45,7 +40,6 @@ public class TextFieldActionListener implements DocumentListener {
         value = reformatValue(value);
 
         SettingsManager.addSettingToBuffer(key, value);
-//        SettingsBuffer.writeToBuffer(key, value);
 
         source.setCheckerText("new value: " + value);
     }

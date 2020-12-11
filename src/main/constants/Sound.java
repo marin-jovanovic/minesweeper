@@ -3,6 +3,8 @@ package main.constants;
 import java.util.List;
 import java.util.Random;
 
+// TODO adding sounds
+
 public enum Sound {
 
     SOUND_PATH_0("j2"),

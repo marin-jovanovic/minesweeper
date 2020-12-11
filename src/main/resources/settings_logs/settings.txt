@@ -1,11 +1,7 @@
-rows number: = 10
-number of columns = 15
-mine number = 10
-location y = 20
+number of columns = 12
+location y = 204
 width = 500
-number of mines = 15
-number of rows = 15
-location x = 100
-change victory image = C:\Users\PC\Documents\Lightshot\Screenshot_5.png
-columns number: = 10
+number of mines = 3
+number of rows = 12
+location x = 716
 height = 500

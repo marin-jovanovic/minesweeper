@@ -1,13 +1,19 @@
 package main.settingsWindow;
 
+import main.constants.Command;
+import main.mainWindow.MainFrame;
 import main.settingsWindow.settingsManager.SettingsBuffer;
 import main.settingsWindow.settingsManager.SettingsManager;
+import main.utils.Event;
+import main.utils.Listener;
 
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class SettingsWindowListener implements WindowListener {
+
     /**
      * Invoked the first time a window is made visible.
      *
@@ -18,55 +24,7 @@ public class SettingsWindowListener implements WindowListener {
 
     }
 
-//    //    for adding lines to settings.txt
-//    private void checkAndAddLine(BufferedReader file, List<String> l, String k, String targ) throws IOException {
-//        try {
-//            l.add("number of " + k + " = " + Integer.parseInt(targ));
-//            file.readLine();
-//        }
-//        catch (NumberFormatException exception) {
-//            if (exception.getMessage().equals("null")) {
-//                l.add(file.readLine());
-//            }
-//            else {
-//                System.out.println(exception);
-//
-//                String replacement = Arrays
-//                        .stream(targ.split(""))
-//                        .filter(s -> "0123456789".contains(s))
-//                        .collect(Collectors.joining());
-//
-//                l.add("number of " + k + " = " + replacement);
-//                file.readLine();
-//            }
-//        }
-//        catch (Exception e) {
-//            System.err.println(e);
-//            System.out.println("check and add line in settings frame");
-//            l.add(file.readLine());
-//        }
-//    }
-//
-//
-//    public ArrayList<String> getPreviousSettings() {
-//        ArrayList<String> l = new ArrayList<>();
-//
-//        try (BufferedReader file = new BufferedReader(new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH))){
-//
-//            String line;
-//
-//
-////            get all file content
-//            while ((line = file.readLine()) != null) {
-//                l.add(line);
-//            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return l;
-//    }
+
 
     /**
      * Invoked when the user attempts to close the window
@@ -79,76 +37,45 @@ public class SettingsWindowListener implements WindowListener {
 
         System.out.println("\nnew settings");
         SettingsManager.printCurrentStateOfBuffer();
-//        SettingsBuffer.printBufferContent();
 
         SettingsManager.saveSettings();
 
-//
-////        newLines
-////        ArrayList<String> newLines = new ArrayList<>();
-////        SettingsBuffer.getAllLines().forEach((key, value) -> newLines.add(key + " " + value));
-////        HashMap<String, String> lines = SettingsBuffer.
-//
-//
-////        current settings
-//        ArrayList<String> oldLines = getPreviousSettings();
-//
-////        update old lines
-////        check if new line exist in old
-////          if exist:
-////            update
-////          else
-////            add
-//
-//
-////        write new settings
-//
-//        try {
-////            BufferedReader file = new BufferedReader(
-////                    new FileReader(GeneralConstants.SETTINGS_MEMORY_PATH)
-////            );
-////
-////            String line;
-////
-////            List<String> l = new ArrayList<>();
-//////            get all file content
-////            while ((line = file.readLine()) != null) {
-////                l.add(line);
-////            }
-////
-////            file.close();
-//
-//
-////                    adds to l -> number of + k + number
-////                    checks exceptions and handles if not int
-////            checkAndAddLine(file, l, "rows", rowNumber);
-////            checkAndAddLine(file, l, "columns", columnNumber);
-////            checkAndAddLine(file, l, "mines", mineNumber);
-//
-//
-//
-//
-////            l = lista
-////            String result = String.join("\n", l);
-////            System.out.println(result);
-////
-//////             write the new string with the replaced line OVER the same file
-////            FileOutputStream fileOut = new FileOutputStream(GeneralConstants.SETTINGS_MEMORY_PATH);
-////            fileOut.write(result.getBytes());
-////            fileOut.close();
-//
-//            GeneralConstants.refresh();
-//
+//        fireEvent(new main.utils.Event(this, Command.RESTART_MAINFRAME));
+
+
+//        fireEvent(new main.utils.Event(origin, Com));
+
 ////                        FIXME this bellow must be part of the code
 ////                    fireEvent(new main.utils.Event(this, "setting saved"));
-////                    fireEvent(new main.utils.Event(origin, "settingsChanged"));
+        fireEvent(new main.utils.Event(this, Command.RESTART_MAINFRAME));
 //
-//        } catch (Exception er) {
-//            System.out.println("Problem reading file.");
-//            er.printStackTrace();
-//        }
 
     }
+
+    public SettingsWindowListener(SettingsFrame settingsFrame) {
+        this.settingsFrame = settingsFrame;
+
+        this.addListener(event -> MainFrame.restartSequence());
+    }
+
+    private SettingsFrame settingsFrame;
+
+    private EventListenerList listenerList = new EventListenerList();
+
+    public void fireEvent(Event event) {
+        Object[] listeners = listenerList.getListenerList();
+
+        for (int i = 0; i < listeners.length; i += 2) {
+            if(listeners[i] == Listener.class) {
+                ((Listener)listeners[i+1]).eventOccurred(event);
+            }
+        }
+    }
+
+    public void addListener(Listener listener) {
+        listenerList.add(Listener.class, listener);
+    }
+
 
     /**
      * Invoked when a window has been closed as the result

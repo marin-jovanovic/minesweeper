@@ -1,9 +1,13 @@
 package main.settingsWindow;
 
 import main.constants.Constant;
+import main.mainWindow.MainFrame;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
+import main.utils.Event;
+import main.utils.Listener;
 
 import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -86,12 +90,31 @@ public class SettingsFrame extends JFrame {
 
 
 //        restart @MainFrame
-//        this.addListener(event -> MainFrame.restartSequence());
+//        this.addListener(event -> {
+//            System.out.println("triggered restarting mainframe window");
+//            MainFrame.restartSequence();
+//        });
 
 //        saves on close new settings
-        addWindowListener(new SettingsWindowListener());
+        addWindowListener(new SettingsWindowListener(this));
 
 
+    }
+
+    private EventListenerList listenerList = new EventListenerList();
+
+    public void fireEvent(Event event) {
+        Object[] listeners = listenerList.getListenerList();
+
+        for (int i = 0; i < listeners.length; i += 2) {
+            if(listeners[i] == Listener.class) {
+                ((Listener)listeners[i+1]).eventOccurred(event);
+            }
+        }
+    }
+
+    public void addListener(Listener listener) {
+        listenerList.add(Listener.class, listener);
     }
 
 }

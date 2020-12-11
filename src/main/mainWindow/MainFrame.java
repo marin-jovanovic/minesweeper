@@ -2,6 +2,7 @@ package main.mainWindow;
 
 import main.constants.Constant;
 import main.constants.ConstantsManager;
+import main.settingsWindow.settingsManager.SettingsManager;
 import main.utils.Event;
 import main.utils.Listener;
 
@@ -40,6 +41,16 @@ public class MainFrame extends JFrame {
 
             System.out.println(jFrame.getSize().getWidth());
             System.out.println(jFrame.getSize().getHeight());
+
+            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getLogID(), String.valueOf(jFrame.getX()));
+            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getLogID(), String.valueOf(jFrame.getY()));
+
+            SettingsManager.addSettingToBuffer(Constant.WIDTH.getLogID(),
+                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getWidth())));
+            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getLogID(),
+                    String.valueOf(Integer.valueOf((int)jFrame.getSize().getHeight())));
+
+            SettingsManager.saveSettings();
         }
 
         @Override
@@ -92,7 +103,7 @@ public class MainFrame extends JFrame {
 
 
         this.mainFrame = this;
-        ConstantsManager.refresh();
+//        ConstantsManager.refresh();
 
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();

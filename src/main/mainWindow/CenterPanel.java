@@ -3,7 +3,7 @@ package main.mainWindow;
 import main.constants.Constant;
 import main.constants.Image;
 import main.utils.Event;
-import main.constants.Commands;
+import main.constants.Command;
 import main.constants.ConstantsManager;
 import main.utils.Listener;
 import main.utils.soundDrivers.SoundDrivers;
@@ -145,7 +145,7 @@ public class CenterPanel extends  JPanel {
                                         System.out.println("game over");
     //                                          TODO halt time
     //                                          extract to new thread (swing worker)
-                                        fireEvent(new Event(this, Commands.GAME_OVER));
+                                        fireEvent(new Event(this, Command.GAME_OVER));
 
                                         SoundDrivers.playGameOverSound();
 
@@ -182,7 +182,7 @@ public class CenterPanel extends  JPanel {
             System.out.println("game is won");
             areButtonsActive = false;
 
-            fireEvent(new Event(this, Commands.GAME_WON));
+            fireEvent(new Event(this, Command.GAME_WON));
         }
     }
 
@@ -252,8 +252,8 @@ public class CenterPanel extends  JPanel {
     }
 
 //    main restart sequence when game is started again
-    public void restart(Commands command) throws Exception {
-        if (command.equals(Commands.NEW_GAME)) {
+    public void restart(Command command) throws Exception {
+        if (command.equals(Command.NEW_GAME)) {
             System.out.println("centerPanel: restart");
 
             areButtonsActive = true;

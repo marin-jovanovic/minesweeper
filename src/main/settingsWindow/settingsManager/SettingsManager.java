@@ -1,6 +1,9 @@
 package main.settingsWindow.settingsManager;
 
+import main.constants.Constant;
 import main.constants.ConstantsManager;
+import main.constants.Image;
+import main.mainWindow.MainFrame;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.utils.imagesDrivers.ResizeImages;
 
@@ -28,14 +31,15 @@ public class SettingsManager {
 //        saveSettings();
 //        restartSettings();
 
-        
-        processNewImage(new File("C:/Users/Pc/Documents/Lightshot/Screenshot_5.png"));
 
+        processNewImage(new File("C:/Users/Pc/Documents/Lightshot/Screenshot_1.png"),
+                Image.FOUR);
     }
 
 
 
     public static void addSettingToBuffer(String key, String value) {
+        System.out.println(":::: addding " + key + " " + value);
         SettingsBuffer.writeToBuffer(key, value);
     }
 
@@ -80,25 +84,35 @@ public class SettingsManager {
         SettingsBuffer.printBufferContent();
 
         writeToSettings();
+
+//        MainFrame.restartSequence();
     }
 
 
 //    make overload for File
-    public static void processNewImage(File source) {
+    public static void processNewImage(File source, Image image) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
         System.out.println(source.exists());
 
-        File destination = new File(
-                System.getProperty("user.dir")+ File.separator +
-                "src" + File.separator +
-                "main" + File.separator +
-                "resources" + File.separator +
-                "images" + File.separator +
-                "custom" +File.separator +
-                "button" + File.separator +
-                "defeat.png"
-        );
+        String folder = image.getGroup();
+        String name = image.getPathID();
+
+        System.out.println("***\n" + folder);
+        System.out.println(name);
+
+
+        File destination = new File(name);
+//        File destination = new File(
+//                System.getProperty("user.dir")+ File.separator +
+//                "src" + File.separator +
+//                "main" + File.separator +
+//                "resources" + File.separator +
+//                "images" + File.separator +
+//                "custom" +File.separator +
+//                folder + File.separator +
+//                name + ".png"
+//        );
 
         System.out.println(destination);
         System.out.println(destination.exists());
@@ -131,6 +145,9 @@ public class SettingsManager {
         //            read settings from @defaultsettings.txt
         restartSettingsDriver();
     }
+
+
+
 
     private static void restartSettingsDriver() {
         ArrayList<String> lines = new ArrayList<>();

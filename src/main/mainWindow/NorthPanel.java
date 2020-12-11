@@ -2,7 +2,7 @@ package main.mainWindow;
 
 import main.constants.Image;
 import main.utils.Event;
-import main.constants.Commands;
+import main.constants.Command;
 import main.utils.Listener;
 import main.settingsWindow.SettingsFrame;
 
@@ -34,7 +34,7 @@ public class NorthPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restart button clicked");
-                fireEvent(new Event(this, Commands.NEW_GAME));
+                fireEvent(new Event(this, Command.NEW_GAME));
                 oldRestartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
 
 //                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));
@@ -76,12 +76,12 @@ public class NorthPanel extends JPanel{
         listenerList.add(Listener.class, listener);
     }
 
-    public void setRestartButton(Commands command) throws Exception {
-        if (command.equals(Commands.GAME_OVER)) {
+    public void setRestartButton(Command command) throws Exception {
+        if (command.equals(Command.GAME_OVER)) {
             oldRestartButton.setIcon(Image.DEFEAT.getImageIcon());
 
 //            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.DEFEAT.getPath()));
-        } else if (command.equals(Commands.GAME_WON)) {
+        } else if (command.equals(Command.GAME_WON)) {
             oldRestartButton.setIcon(Image.VICTORY.getImageIcon());
 
 //            oldRestartButton.setIcon(new ImageIcon(ButtonStatus.VICTORY.getPath()));

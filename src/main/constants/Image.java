@@ -5,44 +5,51 @@ import javax.swing.*;
 
 public enum Image {
 
-//    button
-    VICTORY( "victory", Path.getButtonPath("victory"), "image__button__victory"),
-    DEFEAT("defeat", Path.getButtonPath("defeat"), "image__button__defeat"),
-    PLAY_AGAIN("play again", Path.getButtonPath("playAgain"), "image__button__play_again"),
-//    INIT("play again", Paths.getButtonPath("playAgain"),"image__button__play_again"),
 
-//    closed tiles
-    CLOSED_CELL("closed cell", Path.getClosedTilePath("closedCell"), "image__closed_tile__closed_cell"),
-    FLAG("flag", Path.getClosedTilePath("flag"), "image__closed_tile__flag"),
-    NOT_SURE("not sure", Path.getClosedTilePath("notSure"), "image__closed_tile__not_sure"),
+    VICTORY( "victory", Path.getButtonPath("victory"), "button"),
+    DEFEAT("defeat", Path.getButtonPath("defeat"), "button"),
+    PLAY_AGAIN("play again", Path.getButtonPath("playAgain"), "button"),
 
-//    opened tiles
-    ZERO("0", Path.getOpenedTilePath("0"), "image__opened_tile__0"),
-    ONE("1", Path.getOpenedTilePath("1"), "image__opened_tile__1"),
-    TWO("2" , Path.getOpenedTilePath("2"), "image__opened_tile__2"),
-    THREE("3", Path.getOpenedTilePath("3"), "image__opened_tile__3"),
-    FOUR("4", Path.getOpenedTilePath("4"), "image__opened_tile__4"),
-    FIVE("5", Path.getOpenedTilePath("5"), "image__opened_tile__5"),
-    SIX("6", Path.getOpenedTilePath("6"), "image__opened_tile__6"),
-    SEVEN("7", Path.getOpenedTilePath("7"), "image__opened_tile__7"),
-    EIGHT("8", Path.getOpenedTilePath("8"), "image__opened_tile__8"),
-    MINE("mine", Path.getOpenedTilePath("-1"), "image__opened_tile__mine");
+
+    CLOSED_CELL("closed cell", Path.getClosedTilePath("closedCell"), "closed_tiles"),
+    FLAG("flag", Path.getClosedTilePath("flag"), "closed_tiles"),
+    NOT_SURE("not sure", Path.getClosedTilePath("notSure"), "closed_tiles"),
+
+
+    ZERO("0", Path.getOpenedTilePath("0"), "opened_tiles"),
+    ONE("1", Path.getOpenedTilePath("1"), "opened_tiles"),
+    TWO("2" , Path.getOpenedTilePath("2"), "opened_tiles"),
+    THREE("3", Path.getOpenedTilePath("3"), "opened_tiles"),
+    FOUR("4", Path.getOpenedTilePath("4"), "opened_tiles"),
+    FIVE("5", Path.getOpenedTilePath("5"), "opened_tiles"),
+    SIX("6", Path.getOpenedTilePath("6"), "opened_tiles"),
+    SEVEN("7", Path.getOpenedTilePath("7"), "opened_tiles"),
+    EIGHT("8", Path.getOpenedTilePath("8"), "opened_tiles"),
+    MINE("mine", Path.getOpenedTilePath("-1"), "opened_tiles");
 
 
     private final String pathID;
     private final String jText;
-    private final String logID;
+    private final String group;
 //    row in log
     private final int logNumber;
 
 //    private static int i = 1;
 
-    private Image(String jText, String pathID, String logID) {
+    private Image(String jText, String pathID, String group) {
         this.pathID = pathID;
         this.jText = jText;
-        this.logID = logID;
+        this.group = group;
         this.logNumber = Path.getRowNumber();
 
+    }
+
+    public String getjText() {
+        return jText;
+    }
+
+    public String getPathID() {
+        return pathID;
     }
 
     public int getLogNumber() {
@@ -62,8 +69,8 @@ public enum Image {
     public String getJText() {
         return jText;
     }
-    public String getLogID() {
-        return logID;
+    public String getGroup() {
+        return group;
     }
 
 

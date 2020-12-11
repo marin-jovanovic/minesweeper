@@ -1,7 +1,15 @@
 package main.constants;
 
+import main.mainWindow.swingworkerExample.FactorialCalculatorFrame;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+
+//    TODO initialize
+//  TODO auto save setting for window size and location
+
+//  TODO mute sound option
+
 
 public class ConstantsManager {
 
@@ -35,58 +43,4 @@ public class ConstantsManager {
         }
 
     }
-
-//    TODO initialize
-
-    /**
-     *
-     * @param args
-     */
-//    public static void initializeVariables() {
-//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(SETTINGS_MEMORY_PATH))) {
-//            String line;
-//            while ((line = bufferedReader.readLine()) != null) {
-//                System.out.println(line);
-//
-////                raw_data[0] = key
-////                raw_data[1] = value
-//                String[] raw_data = line.split(" = ");
-//
-//
-////                GeneralConstant generalConstant = GeneralConstant.getConstant(raw_data[0]);
-////                generalConstant.setValue(Integer.parseInt(raw_data[1]));
-//
-//                //                String key = raw_data[0];
-////                String value = raw_data[1];
-//
-//
-//
-//
-//
-////                switch (key) {
-////                    case GeneralConstant.NUMBER_OF_COLUMNS.getSettingsText() ->
-////                            GeneralConstant.NUMBER_OF_COLUMNS.setValue(value);
-////
-////                }
-////
-////                if (key.equals(mineEnum)) {
-////                    NUMBER_OF_MINES = Integer.parseInt(value);
-////                }
-//
-//            }
-//            System.out.println("end of file");
-//
-//        } catch (Exception exception) {
-//            exception.printStackTrace();
-//        }
-//    }
-
-
-//  TODO auto save setting for window size and location
-    public static void main(String[] args) {
-//        initializeVariables();
-//        System.out.println(NUMBER_OF_COLUMNS);
-    }
-
-    public static final String mineEnum = "mine number:";
 }
