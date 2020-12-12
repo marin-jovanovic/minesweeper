@@ -1,12 +1,22 @@
 package main.constants;
 
+import java.io.File;
+
 public class Path {
 
-    public static final String CUSTOM_IMAGES_PATH = "src/main/resources/images/custom/";
+    public static final String CUSTOM_IMAGES_PATH = "src" + File.separator +
+                                                    "main" + File.separator +
+                                                    "resources" + File.separator +
+                                                    "images" + File.separator +
+                                                    "custom" + File.separator;
+
+
+
+//    public static final String CUSTOM_IMAGES_PATH = "src/main/resources/images/custom/";
     public static final String RESIZED_IMAGES_PATH = "src/main/resources/images/resized_images/";
-    public static final String CLOSED_TILES = "closed_tiles/";
-    public static final String OPENED_TILES = "opened_tiles/";
-    public static final String BUTTON_PATH = "button/";
+    public static final String CLOSED_TILES = "closed_tiles" + File.separator;
+    public static final String OPENED_TILES = "opened_tiles" + File.separator;
+    public static final String BUTTON_PATH = "button" + File.separator;
     public static final String DOT = ".";
     public static final String ORIGINAL_IMAGES_PATH = "src/main/resources/original_images/";
     //    formats in which images will be loaded

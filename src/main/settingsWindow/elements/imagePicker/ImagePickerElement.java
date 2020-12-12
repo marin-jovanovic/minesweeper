@@ -1,7 +1,6 @@
 package main.settingsWindow.elements.imagePicker;
 
 import main.constants.Image;
-import main.settingsWindow.settingsManager.SettingsBuffer;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;

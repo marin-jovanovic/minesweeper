@@ -37,6 +37,9 @@ public class ImagesSettingsPanel extends JPanel{
 
         //The following line enables to use scrolling tabs.
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+
+
+
     }
 
     private static class ButtonPanel extends JPanel{

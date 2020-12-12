@@ -144,7 +144,7 @@ public class SettingsManager {
 
         Path sourcePath =  Paths.get(new File("src/main/resources/images/resized_images").getAbsolutePath());
         Path targetPath =  Paths.get(new File("src/main/resources/images/custom").getAbsolutePath());
-        
+
         try {
             Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
         } catch (IOException e) {
