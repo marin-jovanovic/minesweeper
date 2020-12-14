@@ -3,16 +3,14 @@ package main.constants;
 import java.util.EnumSet;
 
 /**
- * @value
- *
- * @logID
+ * logID
  * this is left side in settings.txt
  * it is used to identify variable
  *
- * @jText
+ * jText
  * used for swing GUI
  * it is string that will be placed in GUI
- * element will be identifed by this String
+ * element will be identified by this string
  */
 public enum Constant {
     NUMBER_OF_COLUMNS(10, "number of columns", "columns number:"),
@@ -24,32 +22,28 @@ public enum Constant {
     HEIGHT(500, "height");
 
 
+    private int value;
+    private String logID;
     private String jText;
 
-    public String getJText() {
-        return jText;
-    }
 
     Constant(int value, String logID, String jText) {
         this(value, logID);
-
         this.jText = jText;
     }
 
     Constant(int value, String logID) {
-        this(value);
+        this.value = value;
         this.logID = logID;
     }
 
-    private int value;
-    private String logID;
 
     public String getLogID() {
         return logID;
     }
 
-    Constant(int value) {
-        this.value = value;
+    public String getJText() {
+        return jText;
     }
 
     public int getValue() {
@@ -60,9 +54,13 @@ public enum Constant {
         this.value = value;
     }
 
+    /**
+     *  prints all constants
+     *  constant + -> + constant.value
+     */
     public static void printAll() {
-        System.out.println("printing constant enum");
-        // Note: enum name changed to comply with Java naming conventions
+        System.out.println("Constant: printAll");
+
         for (Constant constant : EnumSet.allOf(Constant.class)) {
             System.out.println(constant + " -> " + constant.value);
         }
@@ -77,5 +75,10 @@ public enum Constant {
         }
 
         return null;
+    }
+
+
+    public static void main(String[] args) {
+        printAll();
     }
 }

@@ -14,24 +14,11 @@ import java.util.stream.Stream;
 public class ResizeImages {
 
     public static void main(String[] args) {
-
-//        resizeAllImagesInFolder("src/main/resources/original_images/time",
-//                "src/main/resources/resized_images/time");
-//
-
-//        List<String> list = new ArrayList<String>();
-//        lis
-
         String a = "time";
 
         resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
                 "src/main/resources/images/resized_images/" + a);
 
-
-//        button
-//                closed_tiles
-//                Opened_tiles
-//                        time
 //        resizeAndSaveImage("src/main/resources/original_images/time/0.png",
 //                "src/main/resources/resized_images/slika.png");
     }

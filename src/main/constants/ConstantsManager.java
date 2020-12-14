@@ -1,7 +1,5 @@
 package main.constants;
 
-import main.mainWindow.swingworkerExample.FactorialCalculatorFrame;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -20,7 +18,7 @@ public class ConstantsManager {
     public static String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/defaultSettings.txt";
 
     public static void refresh() {
-        System.out.println("refreshing constants");
+        System.out.println("ConstantsManager: refresh");
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(SETTINGS_MEMORY_PATH))) {
             String line;

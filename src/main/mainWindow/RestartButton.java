@@ -16,7 +16,7 @@ public class RestartButton extends JButton {
 //        @Override
 //        public void actionPerformed(ActionEvent e) {
 //            System.out.println("restart button clicked");
-//            fireEvent(new main.utils.Event(this, "new game"));
+//            fireEvent(new main.utils.eventDrivers.Event(this, "new game"));
 //            changeIcon("playAgain");
 //        }
 //    }

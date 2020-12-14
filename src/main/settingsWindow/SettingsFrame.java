@@ -2,8 +2,8 @@ package main.settingsWindow;
 
 import main.constants.Constant;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
-import main.utils.Event;
-import main.utils.Listener;
+import main.utils.eventDrivers.Event;
+import main.utils.eventDrivers.Listener;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;

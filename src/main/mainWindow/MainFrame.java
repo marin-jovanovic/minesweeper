@@ -3,8 +3,8 @@ package main.mainWindow;
 import main.constants.Constant;
 import main.constants.ConstantsManager;
 import main.settingsWindow.settingsManager.SettingsManager;
-import main.utils.Event;
-import main.utils.Listener;
+import main.utils.eventDrivers.Event;
+import main.utils.eventDrivers.Listener;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;

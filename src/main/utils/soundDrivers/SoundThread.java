@@ -1,7 +1,5 @@
 package main.utils.soundDrivers;
 
-import main.constants.Sound;
-
 public class SoundThread extends Thread {
 
     private final Sound sound;
@@ -22,5 +20,10 @@ public class SoundThread extends Thread {
         } else {
             System.out.println("sound not active");
         }
+    }
+
+
+    public static void main(String[] args) {
+
     }
 }

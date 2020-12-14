@@ -2,10 +2,10 @@ package main.mainWindow;
 
 import main.constants.Constant;
 import main.constants.Image;
-import main.utils.Event;
-import main.constants.Command;
+import main.utils.eventDrivers.Event;
+import main.utils.eventDrivers.Command;
 import main.constants.ConstantsManager;
-import main.utils.Listener;
+import main.utils.eventDrivers.Listener;
 import main.utils.soundDrivers.SoundDrivers;
 import main.utils.minesweeperDrivers.TableGenerator;
 

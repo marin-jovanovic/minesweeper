@@ -1,10 +1,10 @@
 package main.mainWindow;
 
-import main.constants.Command;
+import main.utils.eventDrivers.Command;
 import main.constants.Image;
 import main.settingsWindow.SettingsFrame;
-import main.utils.Event;
-import main.utils.Listener;
+import main.utils.eventDrivers.Event;
+import main.utils.eventDrivers.Listener;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -36,8 +36,6 @@ public class NorthPanel extends JPanel{
                 System.out.println("restart button clicked");
                 fireEvent(new Event(this, Command.NEW_GAME));
                 oldRestartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
-
-//                oldRestartButton.setIcon(new ImageIcon(ButtonStatus.PLAY_AGAIN.getPath()));
             }
         });
 

@@ -12,6 +12,7 @@ public class Main {
 
 //    TODO extract image loading to separate threads to make program faster
 //    TODO time
+//    TODO gui style
     public static void main(String[] args) {
         windowLauncher();
     }

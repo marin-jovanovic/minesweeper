@@ -1,11 +1,10 @@
 package main.settingsWindow;
 
-import main.constants.Command;
+import main.utils.eventDrivers.Command;
 import main.mainWindow.MainFrame;
-import main.settingsWindow.settingsManager.SettingsBuffer;
 import main.settingsWindow.settingsManager.SettingsManager;
-import main.utils.Event;
-import main.utils.Listener;
+import main.utils.eventDrivers.Event;
+import main.utils.eventDrivers.Listener;
 
 import javax.swing.event.EventListenerList;
 import java.awt.*;
@@ -40,7 +39,7 @@ public class SettingsWindowListener implements WindowListener {
 
         SettingsManager.saveSettings();
 
-        fireEvent(new main.utils.Event(this, Command.RESTART_MAINFRAME));
+        fireEvent(new main.utils.eventDrivers.Event(this, Command.RESTART_MAINFRAME));
     }
 
 

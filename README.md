@@ -1,13 +1,24 @@
 # minesweeper
+minesweeper is a single player game.
+
+Game starts with all tiles closed.
+Open tile by pressing on it with left click.
+Mark tile as bomb with right click. Right click
+on it again if you are not sure. Right click on
+it again to restart to closed tile.
+
 
 
 
 ## settings
-    work in progress
+Change number of tiles and mines.
+Set custom images or restart to default.
+
+
     sounds
     pictures
     dimensions
-    right click options
+    TODO right click options
     
     
 ## instructions

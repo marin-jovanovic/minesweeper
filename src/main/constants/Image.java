@@ -33,7 +33,7 @@ public enum Image {
     private final String jText;
     private final String group;
 //    row in log
-    private final int logNumber;
+//    private final int logNumber;
 
 //    private static int i = 1;
 
@@ -41,7 +41,7 @@ public enum Image {
         this.pathID = pathID;
         this.jText = jText;
         this.group = group;
-        this.logNumber = Path.getRowNumber();
+//        this.logNumber = Path.getRowNumber();
     }
 
 
@@ -49,9 +49,9 @@ public enum Image {
         return pathID;
     }
 
-    public int getLogNumber() {
-        return logNumber;
-    }
+//    public int getLogNumber() {
+//        return logNumber;
+//    }
 
     public ImageIcon getImageIcon() {
         return new ImageIcon(pathID);
@@ -61,11 +61,9 @@ public enum Image {
         new ImageIcon(pathID).getImage().flush();
     }
 
-
     public static void flushAllImageIcons() {
 
         for (Image image : EnumSet.allOf(Image.class)) {
-//            iamge.getImage().flush();
             image.getImageIcon().getImage().flush();
             System.out.println(image);
         }
@@ -74,7 +72,6 @@ public enum Image {
 
     public String getJText() {
         return "choose \"" + jText + "\" image";
-
     }
 
     public String getGroup() {
@@ -82,23 +79,8 @@ public enum Image {
     }
 
     public static void main(String[] args) {
-
-//        public static Constant getConstant(String logID) {
-
         for (Image image : EnumSet.allOf(Image.class)) {
             System.out.println(image);
         }
-
-//        for (Constant constant : EnumSet.allOf(Constant.class)) {
-//            System.out.println();
-
-            //            if (constant.logID.equals(logID)) {
-//                return constant;
-//            }
-//        }
-
-//        return null;
-//        }
-//        System.out.println(Image.EIGHT.getLogNumber());
     }
 }
