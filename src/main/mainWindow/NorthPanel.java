@@ -1,17 +1,15 @@
 package main.mainWindow;
 
-import main.constants.Image;
-import main.settingsWindow.settingsManager.SettingsManager;
-import main.utils.Event;
 import main.constants.Command;
-import main.utils.Listener;
+import main.constants.Image;
 import main.settingsWindow.SettingsFrame;
+import main.utils.Event;
+import main.utils.Listener;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 public class NorthPanel extends JPanel{
 
@@ -56,62 +54,116 @@ public class NorthPanel extends JPanel{
 
         add(settingsButton);
 
-        temp = new JButton(Image.CLOSED_CELL.getImageIcon());
-        add(temp);
-
-
-        JButton btn2 = new JButton();
-
-        add(btn2);
-
-        temp.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                SettingsManager.processNewImage(
-                        new File("C:\\git\\minesweeper\\src\\main\\resources\\images\\custom\\button\\playAgain.png"),
-                        Image.CLOSED_CELL
-                );
+//        btn1 = new JButton(Image.CLOSED_CELL.getImageIcon());
+//        add(btn1);
 //
-                new Thread(() -> {
-                    temp.setIcon(Image.EIGHT.getImageIcon());
-                    temp.setIcon(Image.CLOSED_CELL.getImageIcon());
-                    btn2.setIcon(Image.CLOSED_CELL.getImageIcon());
-                }).start();
-
-//                MyRunnable myRunnable = new MyRunnable(10);
-//                Thread t = new Thread(myRunnable);
-//                t.start();
-                //                temp.setIcon(new ImageIcon("main/resources/images/custom/closed_tiles/notSure.png"));
-
-
-//                temp.setIcon(new ImageIcon("main/resources/images/custom/button/defeat.png"));
-
-            }
-        });
+//
+//        JButton btn2 = new JButton();
+//
+//        add(btn2);
+//
+////        btn1.setIcon(new ImageIcon("main/resources/images/custom/closed_til" +
+////                "es/closedCell.png"));
+//
+//        btn1.addActionListener(new ActionListener() {
+//
+//            ImageIcon img = Image.CLOSED_CELL.getImageIcon();
+//
+//
+//
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////
+//                SettingsManager.processNewImage(
+//                            new File("C:\\git\\minesweeper\\src\\main\\resources\\im" +
+//                                    "ages\\custom\\button\\victory.png"),
+//                            Image.CLOSED_CELL
+//                );
+////                img.getImage().flush();
+//                btn1.setIcon(img);
+//                MainFrame.restartSequence();
+//
+////                btn1.setIcon(Image.NOT_SURE.getImageIcon());
+////                btn1.setIcon(Image.CLOSED_CELL.getImageIcon());
+//
+////                Thread seter = new Thread(() -> {
+////
+////                    btn2.setIcon(new ImageIcon("main/resources/images/custom/closed_til" +
+////                            "es/closedCell.png"));
+////                });
+////
+////                Thread t =  new Thread(() -> {
+////                    SettingsManager.processNewImage(
+////                            new File("C:\\git\\minesweeper\\src\\main\\resources\\im" +
+////                                    "ages\\custom\\button\\victory.png"),
+////                            Image.CLOSED_CELL
+////                    );
+////                });
+////                ExecutorService threadpool = Executors.newCachedThreadPool();
+////                Future<String> futureTask = threadpool.submit(() ->  SettingsManager.processNewImage(
+////                        new File("C:\\git\\minesweeper\\src\\main\\resources\\im" +
+////                                "ages\\custom\\button\\victory.png"),
+////                        Image.CLOSED_CELL, "c"
+////                ));
+////                threadpool.submit(seter);
+////
+////                while (!futureTask.isDone()) {
+////                    System.out.println("FutureTask is not finished yet...");
+////                }
+////
+////                try {
+////                    String result = futureTask.get();
+////                    System.out.println("done");
+////
+////
+////
+////                    btn1.setIcon((Icon) ImageIO.read(new File("main/resources/images/custom/closed_til" +
+////                            "es/closedCell.png")));
+////
+////                    btn2.setIcon(new ImageIcon( ImageIO.read(new File("main/resources/images/custom/closed_til" +
+////                            "es/closedCell.png"))));
+////
+////
+////                } catch (InterruptedException interruptedException) {
+////                    interruptedException.printStackTrace();
+////                } catch (ExecutionException executionException) {
+////                    executionException.printStackTrace();
+////                } catch (IOException ioException) {
+////                    ioException.printStackTrace();
+////                }
+////
+////                threadpool.shutdown();
+//
+////                btn1.setIcon(new ImageIcon("main/resources/images/custom/closed_til" +
+////                        "es/closedCell.png"));
+////                btn2.setIcon(new ImageIcon("main/resources/images/custom/closed_til" +
+////                        "es/closedCell.png"));
+//
+//            }
+//        });
 
 
 
     }
+//
+//    public class MyRunnable implements Runnable {
+//
+//        private int var;
+//
+//        public MyRunnable(int var) {
+//            this.var = var;
+//        }
+//
+//        public void run() {
+//            // code in the other thread, can reference "var" variable
+//            btn1.setIcon(Image.EIGHT.getImageIcon());
+//            btn1.setIcon(Image.CLOSED_CELL.getImageIcon());
+//            btn2.setIcon(Image.CLOSED_CELL.getImageIcon());
+//        }
+//    }
 
-    public class MyRunnable implements Runnable {
-
-        private int var;
-
-        public MyRunnable(int var) {
-            this.var = var;
-        }
-
-        public void run() {
-            // code in the other thread, can reference "var" variable
-            temp.setIcon(Image.EIGHT.getImageIcon());
-            temp.setIcon(Image.CLOSED_CELL.getImageIcon());
-            btn2.setIcon(Image.CLOSED_CELL.getImageIcon());
-        }
-    }
-
-    JButton btn2;
-    private JButton temp;
+//    JButton btn2;
+//    private JButton btn1;
 
     private EventListenerList listenerList = new EventListenerList();
 

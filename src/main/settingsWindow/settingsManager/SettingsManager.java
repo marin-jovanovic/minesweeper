@@ -151,9 +151,64 @@ public class SettingsManager {
             e.printStackTrace();
         }
 
-
-
+//        flushaj sve slike
+        Image.flushAllImageIcons();
     }
+
+    //    make overload for File
+    /**
+     * @param source
+     * gets image from source
+     *
+     * @param image
+     * from enum Image
+     * gets it path and updates image to that image
+     *
+
+     */
+    public static String processNewImage(File source, Image image, String in) {
+//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+        if (source.exists()) {
+            System.out.println("source exists");
+        }
+
+        System.out.println(source.exists());
+
+        String folder = image.getGroup();
+        String name = image.getPathID();
+
+        System.out.println("***\n" + folder);
+        System.out.println(name);
+
+
+        File destination = new File(name);
+//        File destination = new File(
+//                System.getProperty("user.dir")+ File.separator +
+//                "src" + File.separator +
+//                "main" + File.separator +
+//                "resources" + File.separator +
+//                "images" + File.separator +
+//                "custom" +File.separator +
+//                folder + File.separator +
+//                name + ".png"
+//        );
+
+        System.out.println(destination);
+        System.out.println(destination.exists());
+
+        File f = new File("src/main/resources/images/resized_images/");
+
+        System.out.println(f.exists());
+
+        ResizeImages.resizeAndSaveImage(source, destination);
+
+
+
+
+        return "done";
+    }
+
 
 //    make overload for File
     /**
@@ -202,6 +257,10 @@ public class SettingsManager {
         System.out.println(f.exists());
 
         ResizeImages.resizeAndSaveImage(source, destination);
+
+        image.flushImageIcon();
+
+
     }
 
     /**
@@ -209,6 +268,7 @@ public class SettingsManager {
     */
      public static void restartSettings(RestartDefaultButton restartDefaultButton) {
         restartSettingsDriver();
+        restartAllImages();
 
         new Thread(() -> {
             restartDefaultButton.setCheckerText("settings restarted");

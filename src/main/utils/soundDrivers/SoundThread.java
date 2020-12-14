@@ -17,6 +17,10 @@ public class SoundThread extends Thread {
 
     @Override
     public void run() {
-        SoundDrivers.playClip(sound);
+        if (Sound.getIsSoundActive()) {
+            SoundDrivers.playClip(sound);
+        } else {
+            System.out.println("sound not active");
+        }
     }
 }

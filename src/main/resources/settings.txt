@@ -1,0 +1,39 @@
+image__button__victory = victory
+image__button__defeat = defeat
+image__button__play_again = playAgain
+image__closed_tile__closed_cell = closedCell
+image__closed_tile__flag = c
+image__closed_tile__not_sure = c
+image__opened_tile__0 = c
+image__opened_tile__1 = c
+image__opened_tile__2 = c
+image__opened_tile__3 = c
+image__opened_tile__4 = c
+image__opened_tile__5 = c
+image__opened_tile__6
+image__opened_tile__7
+image__opened_tile__8
+image__opened_tile__mine
+
+todo
+number of columns = 10
+number of rows = 10
+number of mines = 10
+
+#defeat sounds
+0.wav
+...
+n.wav
+
+#victory sounds
+0.wav
+...
+n.wav
+
+number of columns = 15
+number of rows = 15
+number of mines = 15
+location x = 100
+location y = 20
+width = 500
+height = 500

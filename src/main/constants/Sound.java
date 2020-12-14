@@ -11,6 +11,8 @@ public enum Sound {
     SOUND_PATH_1("j3"),
     SOUND_PATH_2("i");
 
+    private static boolean is_sound_active = false;
+
     private final String path;
 
     private static final String defaultPath = "src/main/resources/sounds/defeat_sounds/";
@@ -18,25 +20,25 @@ public enum Sound {
 
 //    TODO ability to add new sounds
 
-
-    public String getPath() {
-        return defaultPath + path + end;
-    }
-
-    Sound(String path) {
-        this.path = path;
-    }
-
+    private static Sound current = getRandomSound();
 
     private static final List<Sound> VALUES = List.of(values());
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    public static Sound getRandomSound()  {
+    private static Sound getRandomSound()  {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
+    public static boolean getIsSoundActive() {
+        return is_sound_active;
+    }
 
-    private static Sound current = getRandomSound();
+    public static void setIsSoundActive(boolean flag) {
+        is_sound_active = flag;
+    }
+    public String getPath() {
+        return defaultPath + path + end;
+    }
 
     public static Sound getRandomSoundDifferentFromCurrent() {
         Sound next = getRandomSound();
@@ -50,17 +52,21 @@ public enum Sound {
         return next;
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            System.out.println(Sound.getRandomSound());
-        }
+//    public static void main(String[] args) {
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(Sound.getRandomSound());
+//        }
+//
+//        System.out.println("------");
+//        System.out.println(current);
+//
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(Sound.getRandomSoundDifferentFromCurrent());
+//        }
+//    }
 
-        System.out.println("------");
-        System.out.println(current);
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println(Sound.getRandomSoundDifferentFromCurrent());
-        }
+    Sound(String path) {
+        this.path = path;
     }
 
 

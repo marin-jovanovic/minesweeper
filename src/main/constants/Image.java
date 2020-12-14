@@ -2,6 +2,7 @@ package main.constants;
 
 
 import javax.swing.*;
+import java.util.EnumSet;
 
 public enum Image {
 
@@ -56,6 +57,21 @@ public enum Image {
         return new ImageIcon(pathID);
     }
 
+    public void flushImageIcon() {
+        new ImageIcon(pathID).getImage().flush();
+    }
+
+
+    public static void flushAllImageIcons() {
+
+        for (Image image : EnumSet.allOf(Image.class)) {
+//            iamge.getImage().flush();
+            image.getImageIcon().getImage().flush();
+            System.out.println(image);
+        }
+
+    }
+
     public String getJText() {
         return "choose \"" + jText + "\" image";
 
@@ -66,6 +82,23 @@ public enum Image {
     }
 
     public static void main(String[] args) {
-        System.out.println(Image.EIGHT.getLogNumber());
+
+//        public static Constant getConstant(String logID) {
+
+        for (Image image : EnumSet.allOf(Image.class)) {
+            System.out.println(image);
+        }
+
+//        for (Constant constant : EnumSet.allOf(Constant.class)) {
+//            System.out.println();
+
+            //            if (constant.logID.equals(logID)) {
+//                return constant;
+//            }
+//        }
+
+//        return null;
+//        }
+//        System.out.println(Image.EIGHT.getLogNumber());
     }
 }
