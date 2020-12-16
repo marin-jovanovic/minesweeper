@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.reset;
 
-import main.settingsWindow.settingsManager.SettingsManager;
+import main.ConstantModule.SettingsManager;
 
 import javax.swing.*;
 

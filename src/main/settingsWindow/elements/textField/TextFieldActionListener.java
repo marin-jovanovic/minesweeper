@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.textField;
 
-import main.settingsWindow.settingsManager.SettingsManager;
+import main.ConstantModule.SettingsManager;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -16,7 +16,7 @@ public class TextFieldActionListener implements DocumentListener {
     public TextFieldActionListener(TextFieldElement source) {
         this.source = source;
         this.key = source.getConstant().getLogID();
-        this.oldValue = String.valueOf(source.getConstant().getValue());
+        this.oldValue = String.valueOf((Integer) source.getConstant().getValue());
     }
 
     @Override

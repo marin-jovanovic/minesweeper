@@ -4,7 +4,7 @@ import main.constants.Image;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;
-import main.settingsWindow.settingsManager.SettingsManager;
+import main.ConstantModule.SettingsManager;
 
 import javax.swing.*;
 import java.awt.*;

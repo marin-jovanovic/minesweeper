@@ -2,7 +2,7 @@ package main.settingsWindow;
 
 import main.utils.eventDrivers.Command;
 import main.mainWindow.MainFrame;
-import main.settingsWindow.settingsManager.SettingsManager;
+import main.ConstantModule.SettingsManager;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 

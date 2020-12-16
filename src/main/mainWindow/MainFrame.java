@@ -1,8 +1,8 @@
 package main.mainWindow;
 
-import main.constants.Constant;
-import main.constants.ConstantsManager;
-import main.settingsWindow.settingsManager.SettingsManager;
+import main.ConstantModule.Constant;
+import main.ConstantModule.ConstantsManager;
+import main.ConstantModule.SettingsManager;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 
@@ -84,10 +84,13 @@ public class MainFrame extends JFrame {
 
         ConstantsManager.refresh();
 
-        setLocation(Constant.LOCATION_X.getValue(), Constant.LOCATION_Y.getValue());
+//        int x = (int) Constant.LOCATION_X.getValue();
+//        int y = (Integer) Constant.LOCATION_Y.getValue();
+
+        setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(Constant.WIDTH.getValue(), Constant.HEIGHT.getValue());
+        setSize((Integer) Constant.WIDTH.getValue(), (Integer) Constant.HEIGHT.getValue());
         setLayout(new BorderLayout());
 
 

@@ -1,6 +1,5 @@
-package main.settingsWindow.settingsManager;
+package main.ConstantModule;
 
-import main.constants.ConstantsManager;
 import main.constants.Image;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.utils.imagesDrivers.ResizeImages;
@@ -13,9 +12,6 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-/**
- * images need to be copied to resources/images/usersImages/b
- */
 public class SettingsManager {
 
     public static void main(String[] args) {
@@ -36,8 +32,6 @@ public class SettingsManager {
 //        processNewImage(new File("C:/Users/Pc/Documents/Lightshot/Screenshot_1.png"),
 //                Image.FOUR);
     }
-
-
 
     public static void addSettingToBuffer(String key, String value) {
         System.out.println(":::: adding " + key + " " + value);
@@ -66,7 +60,7 @@ public class SettingsManager {
 
         System.out.println(SettingsBuffer.getBuffer());
 
-        try (BufferedReader file = new BufferedReader(new FileReader(ConstantsManager.SETTINGS_MEMORY_PATH))){
+        try (BufferedReader file = new BufferedReader(new FileReader(Config.SETTINGS_MEMORY_PATH))){
 
             System.out.println("*** try");
             String line;
@@ -95,7 +89,8 @@ public class SettingsManager {
         writeToSettings();
     }
 
-    public static class CopyFileVisitor extends SimpleFileVisitor<Path> {
+
+    private static class CopyFileVisitor extends SimpleFileVisitor<Path> {
         private final Path targetPath;
         private Path sourcePath = null;
 
@@ -142,8 +137,8 @@ public class SettingsManager {
     }
     public static void restartAllImages() {
 
-        Path sourcePath =  Paths.get(new File("src/main/resources/images/resized_images").getAbsolutePath());
-        Path targetPath =  Paths.get(new File("src/main/resources/images/custom").getAbsolutePath());
+        Path sourcePath =  Paths.get(new File(Config.IMAGES_SOURCE_PATH).getAbsolutePath());
+        Path targetPath =  Paths.get(new File(Config.IMAGES_DESTINATION_PATH).getAbsolutePath());
 
         try {
             Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
@@ -154,61 +149,6 @@ public class SettingsManager {
 //        flushaj sve slike
         Image.flushAllImageIcons();
     }
-
-    //    make overload for File
-    /**
-     * @param source
-     * gets image from source
-     *
-     * @param image
-     * from enum Image
-     * gets it path and updates image to that image
-     *
-
-     */
-    public static String processNewImage(File source, Image image, String in) {
-//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
-        if (source.exists()) {
-            System.out.println("source exists");
-        }
-
-        System.out.println(source.exists());
-
-        String folder = image.getGroup();
-        String name = image.getPathID();
-
-        System.out.println("***\n" + folder);
-        System.out.println(name);
-
-
-        File destination = new File(name);
-//        File destination = new File(
-//                System.getProperty("user.dir")+ File.separator +
-//                "src" + File.separator +
-//                "main" + File.separator +
-//                "resources" + File.separator +
-//                "images" + File.separator +
-//                "custom" +File.separator +
-//                folder + File.separator +
-//                name + ".png"
-//        );
-
-        System.out.println(destination);
-        System.out.println(destination.exists());
-
-        File f = new File("src/main/resources/images/resized_images/");
-
-        System.out.println(f.exists());
-
-        ResizeImages.resizeAndSaveImage(source, destination);
-
-
-
-
-        return "done";
-    }
-
 
 //    make overload for File
     /**
@@ -222,11 +162,6 @@ public class SettingsManager {
 
      */
     public static void processNewImage(File source, Image image) {
-//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
-        if (source.exists()) {
-            System.out.println("source exists");
-        }
 
         System.out.println(source.exists());
 
@@ -238,23 +173,9 @@ public class SettingsManager {
 
 
         File destination = new File(name);
-//        File destination = new File(
-//                System.getProperty("user.dir")+ File.separator +
-//                "src" + File.separator +
-//                "main" + File.separator +
-//                "resources" + File.separator +
-//                "images" + File.separator +
-//                "custom" +File.separator +
-//                folder + File.separator +
-//                name + ".png"
-//        );
 
         System.out.println(destination);
         System.out.println(destination.exists());
-
-        File f = new File("src/main/resources/images/resized_images/");
-
-        System.out.println(f.exists());
 
         ResizeImages.resizeAndSaveImage(source, destination);
 
@@ -284,13 +205,12 @@ public class SettingsManager {
 
     //    sets to default
     public static void restartSettings() {
-        //            read settings from @defaultsettings.txt
         restartSettingsDriver();
     }
 
     private static void restartSettingsDriver() {
         ArrayList<String> lines = new ArrayList<>();
-        try (Scanner myReader = new Scanner(new File(ConstantsManager.DEFAULT_SETTINGS_MEMORY_PATH))) {
+        try (Scanner myReader = new Scanner(new File(Config.DEFAULT_SETTINGS_MEMORY_PATH))) {
             while (myReader.hasNextLine()) {
                 lines.add(myReader.nextLine());
             }
@@ -303,7 +223,7 @@ public class SettingsManager {
     }
 
     private static void writeToSettings(String newSettings) {
-        try (FileOutputStream fileOutputStream = new FileOutputStream(ConstantsManager.SETTINGS_MEMORY_PATH)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(Config.SETTINGS_MEMORY_PATH)) {
             fileOutputStream.write(newSettings.getBytes());
         } catch (IOException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

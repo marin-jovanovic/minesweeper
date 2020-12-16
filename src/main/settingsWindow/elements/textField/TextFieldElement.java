@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.textField;
 
-import main.constants.Constant;
+import main.ConstantModule.Constant;
 
 import javax.swing.*;
 
@@ -16,7 +16,7 @@ public class TextFieldElement extends JPanel{
         this.constant = constant;
 
         textField = new JTextField(10);
-        textField.setText(String.valueOf(constant.getValue()));
+        textField.setText(String.valueOf((Integer) constant.getValue()));
         textField.getDocument().addDocumentListener(
                 new TextFieldActionListener(this)
         );

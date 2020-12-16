@@ -1,4 +1,4 @@
-package main.settingsWindow.settingsManager;
+package main.ConstantModule;
 
 import java.util.HashMap;
 
@@ -23,27 +23,4 @@ public class SettingsBuffer {
         return buffer;
     }
 
-
-//    public static void main(String[] args) {
-//
-//        SettingsBuffer.writeToBuffer("number of columns", "12");
-//        SettingsBuffer.writeToBuffer("number of rows", "32");
-//        SettingsBuffer.writeToBuffer("number of mines", "12");
-//        SettingsBuffer.writeToBuffer("number of columns", "3");
-//
-//
-//
-//
-//        printBufferContent();
-//
-//        System.out.println("getter");
-//
-//        HashMap temp = getBuffer();
-//
-//        System.out.println(temp);
-//
-////        SettingsManager.saveSettings();
-//
-////        printBufferContent();
-//    }
 }

@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.reset;
 
-import main.constants.Constant;
+import main.ConstantModule.Constant;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

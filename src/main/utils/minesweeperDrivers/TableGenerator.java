@@ -1,7 +1,6 @@
 package main.utils.minesweeperDrivers;
 
-import main.constants.Constant;
-import main.constants.ConstantsManager;
+import main.ConstantModule.Constant;
 
 import java.util.Random;
 
@@ -20,19 +19,19 @@ public class TableGenerator  {
 
     private static void generateTable() {
 
-        table = new int[Constant.NUMBER_OF_ROWS.getValue()][Constant.NUMBER_OF_COLUMNS.getValue()];
-        isRowFull = new boolean[Constant.NUMBER_OF_ROWS.getValue()];
+        table = new int[(int) Constant.NUMBER_OF_ROWS.getValue()][(int) Constant.NUMBER_OF_COLUMNS.getValue()];
+        isRowFull = new boolean[(int) Constant.NUMBER_OF_ROWS.getValue()];
 //        case: row number of column number == 0
 
 
 //        case: more mines or equal to size of table
-        if (Constant.NUMBER_OF_MINES.getValue() >=
-                Constant.NUMBER_OF_ROWS.getValue() * Constant.NUMBER_OF_COLUMNS.getValue()) {
+        if ((int) Constant.NUMBER_OF_MINES.getValue() >=
+                (int) Constant.NUMBER_OF_ROWS.getValue() * (int) Constant.NUMBER_OF_COLUMNS.getValue()) {
 
 
 //        if (ConstantsManager.NUMBER_OF_MINES >= ConstantsManager.NUMBER_OF_ROWS * ConstantsManager.NUMBER_OF_COLUMNS) {
-            for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
-                for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
+            for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
+                for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                     table[i][j] = -1;
                 }
             }
@@ -53,7 +52,7 @@ public class TableGenerator  {
 
 //        printTable();
 
-        for (int i = 0; i < Constant.NUMBER_OF_MINES.getValue(); i++) {
+        for (int i = 0; i < (Integer) Constant.NUMBER_OF_MINES.getValue(); i++) {
             int row = getRow();
             insertMineInRow(row);
             updateIsRowFull(row);
@@ -65,8 +64,8 @@ public class TableGenerator  {
 
 //    generates numbers on table aka hints
     private static void generateHints() {
-        for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
-            for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
+        for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
+            for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
 
 //              not a bomb selected
                 if(table[i][j] != -1) {
@@ -74,8 +73,8 @@ public class TableGenerator  {
                     for (int m = -1; m < 2; m++) {
                         for (int n = -1; n < 2; n++) {
 
-                            if (i+m < 0 || j+n < 0 || i+m >= Constant.NUMBER_OF_ROWS.getValue()
-                                    || j+n >= Constant.NUMBER_OF_COLUMNS.getValue()) {
+                            if (i+m < 0 || j+n < 0 || i+m >= (Integer) Constant.NUMBER_OF_ROWS.getValue()
+                                    || j+n >= (Integer) Constant.NUMBER_OF_COLUMNS.getValue()) {
                                 continue;
                             }
 
@@ -91,7 +90,7 @@ public class TableGenerator  {
 
 //    sets all to boolean(false)
     private static void initializeIsRowFull() {
-        for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
+        for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
             isRowFull[i] = false;
         }
     }
@@ -103,7 +102,7 @@ public class TableGenerator  {
 
         do {
 //                row in which mine will be placed
-            row = rand.nextInt(Constant.NUMBER_OF_ROWS.getValue());
+            row = rand.nextInt((Integer) Constant.NUMBER_OF_ROWS.getValue());
 
         } while (isRowFull[row]);
 
@@ -117,7 +116,7 @@ public class TableGenerator  {
         Random rand = new Random();
 
         while (true) {
-            int column = rand.nextInt(Constant.NUMBER_OF_COLUMNS.getValue());
+            int column = rand.nextInt((Integer) Constant.NUMBER_OF_COLUMNS.getValue());
 
             if (table[row][column] != -1) {
                 table[row][column] = -1;
@@ -131,7 +130,7 @@ public class TableGenerator  {
 //    if false: isRowFull[row] = true
     private static void updateIsRowFull(int row) {
 
-        for (int i = 0; i < Constant.NUMBER_OF_COLUMNS.getValue(); i++) {
+        for (int i = 0; i < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); i++) {
             if (table[row][i] != -1){
                 return;
             }
@@ -143,8 +142,8 @@ public class TableGenerator  {
 //    formatted print of @table
     private static void printTable() {
         System.out.println("board:");
-        for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
-            for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
+        for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
+            for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
 
 //                mark for bomb
                 if (table[i][j] == -1) {
@@ -163,8 +162,8 @@ public class TableGenerator  {
 
 //    set all to int(0) in @table
     private static void initializeTable() {
-        for (int i = 0; i < Constant.NUMBER_OF_ROWS.getValue(); i++) {
-            for (int j = 0; j < Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
+        for (int i = 0; i < (Integer)  Constant.NUMBER_OF_ROWS.getValue(); i++) {
+            for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                 table[i][j] = 0;
             }
         }

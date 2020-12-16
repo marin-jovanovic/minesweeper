@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.constants.Constant;
+import main.ConstantModule.Constant;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
@@ -56,8 +56,8 @@ public class SettingsFrame extends JFrame {
 
     public SettingsFrame() {
         super("Settings");
-        setSize(Constant.WIDTH.getValue(), Constant.HEIGHT.getValue());
-        setLocation(Constant.LOCATION_X.getValue(), Constant.LOCATION_Y.getValue());
+        setSize((Integer) Constant.WIDTH.getValue(), (Integer) Constant.HEIGHT.getValue());
+        setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
         setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
