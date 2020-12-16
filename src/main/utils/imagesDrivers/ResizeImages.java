@@ -35,7 +35,7 @@ public class ResizeImages {
                 System.out.println(name);
 
 //                extension
-                String format = path.toString().substring(path.toString().lastIndexOf('.')+1);
+                String format = path.toString().substring(path.toString().lastIndexOf('.') + 1);
 
                 if (Arrays.asList(main.constants.Path.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {
                     resizeAndSaveImage(String.valueOf(path), (destination + "/" + name + ".png"));

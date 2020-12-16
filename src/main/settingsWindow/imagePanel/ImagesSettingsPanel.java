@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class ImagesSettingsPanel extends JPanel{
+public class ImagesSettingsPanel extends JPanel {
 
     public ImagesSettingsPanel() {
         setLayout(new GridLayout(1, 1));
@@ -20,7 +20,7 @@ public class ImagesSettingsPanel extends JPanel{
         tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
 
-        tabbedPane.addTab("closed tiles",  new ClosedTilePanel());
+        tabbedPane.addTab("closed tiles", new ClosedTilePanel());
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
 
@@ -39,10 +39,9 @@ public class ImagesSettingsPanel extends JPanel{
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
 
-
     }
 
-    private static class ButtonPanel extends JPanel{
+    private static class ButtonPanel extends JPanel {
         private ButtonPanel() {
 
             add(new ImagePickerElement(Image.VICTORY));

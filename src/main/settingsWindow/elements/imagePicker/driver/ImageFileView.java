@@ -33,8 +33,8 @@ package main.settingsWindow.elements.imagePicker.driver;
 
 //package components;
 
+import javax.swing.filechooser.FileView;
 import java.io.File;
-import javax.swing.filechooser.*;
 
 /* ImageFileView.java is used by FileChooserDemo2.java. */
 public class ImageFileView extends FileView {
@@ -63,12 +63,12 @@ public class ImageFileView extends FileView {
             if (extension.equals(Utils.jpeg) ||
                     extension.equals(Utils.jpg)) {
                 type = "JPEG Image";
-            } else if (extension.equals(Utils.gif)){
+            } else if (extension.equals(Utils.gif)) {
                 type = "GIF Image";
             } else if (extension.equals(Utils.tiff) ||
                     extension.equals(Utils.tif)) {
                 type = "TIFF Image";
-            } else if (extension.equals(Utils.png)){
+            } else if (extension.equals(Utils.png)) {
                 type = "PNG Image";
             }
         }

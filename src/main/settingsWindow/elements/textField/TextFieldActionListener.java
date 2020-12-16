@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.textField;
 
-import main.ConstantModule.SettingsManager;
+import main.constantModule.SettingsManager;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -16,7 +16,7 @@ public class TextFieldActionListener implements DocumentListener {
     public TextFieldActionListener(TextFieldElement source) {
         this.source = source;
         this.key = source.getConstant().getLogID();
-        this.oldValue = String.valueOf((Integer) source.getConstant().getValue());
+        this.oldValue = String.valueOf(source.getConstant().getValue());
     }
 
     @Override
@@ -44,12 +44,12 @@ public class TextFieldActionListener implements DocumentListener {
         source.setCheckerText("new value: " + value);
     }
 
-//    checks for errors and formats it to int type
+    //    checks for errors and formats it to int type
     private String reformatValue(String value) {
         if (value.equals("")) {
             value = oldValue;
         } else {
-            if (! value.matches("[1-9][0-9]*")) {
+            if (!value.matches("[1-9][0-9]*")) {
                 value = Arrays
                         .stream(value.split(""))
                         .filter("0123456789"::contains)

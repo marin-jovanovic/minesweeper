@@ -1,8 +1,8 @@
 package main.mainWindow;
 
-import main.ConstantModule.Constant;
-import main.ConstantModule.ConstantsManager;
-import main.ConstantModule.SettingsManager;
+import main.constantModule.Constant;
+import main.constantModule.ConstantsManager;
+import main.constantModule.SettingsManager;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 
@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 
     private class MainFrameWindowListener implements WindowListener {
 
-        private JFrame jFrame;
+        private final JFrame jFrame;
 
         public MainFrameWindowListener(JFrame jFrame) {
             this.jFrame = jFrame;
@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
             SettingsManager.addSettingToBuffer(Constant.WIDTH.getLogID(),
                     String.valueOf(Integer.valueOf((int) jFrame.getSize().getWidth())));
             SettingsManager.addSettingToBuffer(Constant.HEIGHT.getLogID(),
-                    String.valueOf(Integer.valueOf((int)jFrame.getSize().getHeight())));
+                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getHeight())));
 
             SettingsManager.saveSettings();
         }
@@ -94,8 +94,6 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout());
 
 
-
-
         System.out.println("temp");
         System.out.println(this.getLocation());
 
@@ -105,7 +103,7 @@ public class MainFrame extends JFrame {
         addWindowListener(new MainFrameWindowListener(this));
 
 
-        this.mainFrame = this;
+        mainFrame = this;
 //        ConstantsManager.refresh();
 
         northPanel = new NorthPanel();
@@ -138,14 +136,14 @@ public class MainFrame extends JFrame {
     }
 
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
         for (int i = 0; i < listeners.length; i += 2) {
-            if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).eventOccurred(event);
+            if (listeners[i] == Listener.class) {
+                ((Listener) listeners[i + 1]).eventOccurred(event);
             }
         }
     }

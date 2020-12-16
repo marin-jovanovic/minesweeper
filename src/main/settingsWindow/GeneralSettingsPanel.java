@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.ConstantModule.Constant;
+import main.constantModule.Constant;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.settingsWindow.elements.textField.TextFieldElement;
 
@@ -11,12 +11,11 @@ public class GeneralSettingsPanel extends JPanel {
 
     public GeneralSettingsPanel() {
 
-        setLayout(new GridLayout(0,1));
+        setLayout(new GridLayout(0, 1));
 
         add(new TextFieldElement(Constant.NUMBER_OF_ROWS));
         add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS));
         add(new TextFieldElement(Constant.NUMBER_OF_MINES));
-
 
 
 //TODO
@@ -24,5 +23,5 @@ public class GeneralSettingsPanel extends JPanel {
 
         add(new RestartDefaultButton());
 
-  }
+    }
 }

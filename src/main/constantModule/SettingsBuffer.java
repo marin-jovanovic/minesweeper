@@ -1,4 +1,4 @@
-package main.ConstantModule;
+package main.constantModule;
 
 import java.util.HashMap;
 

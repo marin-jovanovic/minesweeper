@@ -7,7 +7,7 @@ import java.util.EnumSet;
 public enum Image {
 
 
-    VICTORY( "victory", Path.getButtonPath("victory"), "button"),
+    VICTORY("victory", Path.getButtonPath("victory"), "button"),
     DEFEAT("defeat", Path.getButtonPath("defeat"), "button"),
     PLAY_AGAIN("play again", Path.getButtonPath("playAgain"), "button"),
 
@@ -19,7 +19,7 @@ public enum Image {
 
     ZERO("0", Path.getOpenedTilePath("0"), "opened_tiles"),
     ONE("1", Path.getOpenedTilePath("1"), "opened_tiles"),
-    TWO("2" , Path.getOpenedTilePath("2"), "opened_tiles"),
+    TWO("2", Path.getOpenedTilePath("2"), "opened_tiles"),
     THREE("3", Path.getOpenedTilePath("3"), "opened_tiles"),
     FOUR("4", Path.getOpenedTilePath("4"), "opened_tiles"),
     FIVE("5", Path.getOpenedTilePath("5"), "opened_tiles"),

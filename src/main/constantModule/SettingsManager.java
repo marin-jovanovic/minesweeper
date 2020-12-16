@@ -1,4 +1,4 @@
-package main.ConstantModule;
+package main.constantModule;
 
 import main.constants.Image;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
@@ -45,9 +45,9 @@ public class SettingsManager {
 
     /**
      * checks if buffer is empty, if true returns
-     *
+     * <p>
      * completes buffer from settingsbuffer so that it contains all constant settings
-     *
+     * <p>
      * writes to settings changes made
      */
     public static void saveSettings() {
@@ -60,7 +60,7 @@ public class SettingsManager {
 
         System.out.println(SettingsBuffer.getBuffer());
 
-        try (BufferedReader file = new BufferedReader(new FileReader(Config.SETTINGS_MEMORY_PATH))){
+        try (BufferedReader file = new BufferedReader(new FileReader(Config.SETTINGS_MEMORY_PATH))) {
 
             System.out.println("*** try");
             String line;
@@ -72,7 +72,7 @@ public class SettingsManager {
                 String[] raw = line.split(" = ");
 
 
-                if (! SettingsBuffer.getBuffer().containsKey(raw[0])) {
+                if (!SettingsBuffer.getBuffer().containsKey(raw[0])) {
                     SettingsBuffer.getBuffer().put(raw[0], raw[1]);
                 }
 
@@ -123,7 +123,7 @@ public class SettingsManager {
 
             File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
 
-            System.out.println("** " + String.valueOf(myObj));
+            System.out.println("** " + myObj);
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
@@ -135,10 +135,11 @@ public class SettingsManager {
             return FileVisitResult.CONTINUE;
         }
     }
+
     public static void restartAllImages() {
 
-        Path sourcePath =  Paths.get(new File(Config.IMAGES_SOURCE_PATH).getAbsolutePath());
-        Path targetPath =  Paths.get(new File(Config.IMAGES_DESTINATION_PATH).getAbsolutePath());
+        Path sourcePath = Paths.get(new File(Config.IMAGES_SOURCE_PATH).getAbsolutePath());
+        Path targetPath = Paths.get(new File(Config.IMAGES_DESTINATION_PATH).getAbsolutePath());
 
         try {
             Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
@@ -151,15 +152,11 @@ public class SettingsManager {
     }
 
 //    make overload for File
-    /**
-     * @param source
-     * gets image from source
-     *
-     * @param image
-     * from enum Image
-     * gets it path and updates image to that image
-     *
 
+    /**
+     * @param source gets image from source
+     * @param image  from enum Image
+     *               gets it path and updates image to that image
      */
     public static void processNewImage(File source, Image image) {
 
@@ -185,9 +182,9 @@ public class SettingsManager {
     }
 
     /**
-     *  sets to default, sends message to restart default button jpanel it is updated
-    */
-     public static void restartSettings(RestartDefaultButton restartDefaultButton) {
+     * sets to default, sends message to restart default button jpanel it is updated
+     */
+    public static void restartSettings(RestartDefaultButton restartDefaultButton) {
         restartSettingsDriver();
         restartAllImages();
 

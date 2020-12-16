@@ -1,10 +1,10 @@
 package main.settingsWindow.elements.textField;
 
-import main.ConstantModule.Constant;
+import main.constantModule.Constant;
 
 import javax.swing.*;
 
-public class TextFieldElement extends JPanel{
+public class TextFieldElement extends JPanel {
     private final JTextField textField;
     private final JLabel checker;
 
@@ -16,7 +16,7 @@ public class TextFieldElement extends JPanel{
         this.constant = constant;
 
         textField = new JTextField(10);
-        textField.setText(String.valueOf((Integer) constant.getValue()));
+        textField.setText(String.valueOf(constant.getValue()));
         textField.getDocument().addDocumentListener(
                 new TextFieldActionListener(this)
         );

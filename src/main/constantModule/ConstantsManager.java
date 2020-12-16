@@ -1,4 +1,4 @@
-package main.ConstantModule;
+package main.constantModule;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,7 +31,7 @@ public class ConstantsManager {
 
                 if (isNumeric(value)) {
                     System.out.println("int");
-                    Constant.getConstant(key).setValue(Integer.parseInt(String.valueOf(value)));
+                    Constant.getConstant(key).setValue(Integer.parseInt(value));
 //                    return ;
                 } else if (value instanceof String) {
                     System.out.println("str");

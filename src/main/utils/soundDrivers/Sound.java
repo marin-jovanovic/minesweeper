@@ -30,7 +30,7 @@ public enum Sound {
         this.path = path;
     }
 
-    public static Sound getRandomSound()  {
+    public static Sound getRandomSound() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 

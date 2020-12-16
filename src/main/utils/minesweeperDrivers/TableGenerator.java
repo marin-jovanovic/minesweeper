@@ -1,10 +1,10 @@
 package main.utils.minesweeperDrivers;
 
-import main.ConstantModule.Constant;
+import main.constantModule.Constant;
 
 import java.util.Random;
 
-public class TableGenerator  {
+public class TableGenerator {
 
     private static int[][] table;
     private static boolean[] isRowFull;
@@ -62,23 +62,23 @@ public class TableGenerator  {
 
     }
 
-//    generates numbers on table aka hints
+    //    generates numbers on table aka hints
     private static void generateHints() {
         for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
             for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
 
 //              not a bomb selected
-                if(table[i][j] != -1) {
+                if (table[i][j] != -1) {
 
                     for (int m = -1; m < 2; m++) {
                         for (int n = -1; n < 2; n++) {
 
-                            if (i+m < 0 || j+n < 0 || i+m >= (Integer) Constant.NUMBER_OF_ROWS.getValue()
-                                    || j+n >= (Integer) Constant.NUMBER_OF_COLUMNS.getValue()) {
+                            if (i + m < 0 || j + n < 0 || i + m >= (Integer) Constant.NUMBER_OF_ROWS.getValue()
+                                    || j + n >= (Integer) Constant.NUMBER_OF_COLUMNS.getValue()) {
                                 continue;
                             }
 
-                            if (table[i+m][j+n] == -1) {
+                            if (table[i + m][j + n] == -1) {
                                 table[i][j]++;
                             }
                         }
@@ -88,14 +88,14 @@ public class TableGenerator  {
         }
     }
 
-//    sets all to boolean(false)
+    //    sets all to boolean(false)
     private static void initializeIsRowFull() {
         for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
             isRowFull[i] = false;
         }
     }
 
-//    returns random empty row
+    //    returns random empty row
     private static int getRow() {
         Random rand = new Random();
         int row = -1;
@@ -109,7 +109,7 @@ public class TableGenerator  {
         return row;
     }
 
-//    in @table in int(row) selects random empty spot
+    //    in @table in int(row) selects random empty spot
 //    and places bomb -> int(-1)
     private static void insertMineInRow(int row) {
 
@@ -125,13 +125,13 @@ public class TableGenerator  {
         }
     }
 
-//    checks if int(row) in @table contains empty spot
+    //    checks if int(row) in @table contains empty spot
 //    if true: pass
 //    if false: isRowFull[row] = true
     private static void updateIsRowFull(int row) {
 
         for (int i = 0; i < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); i++) {
-            if (table[row][i] != -1){
+            if (table[row][i] != -1) {
                 return;
             }
         }
@@ -139,7 +139,7 @@ public class TableGenerator  {
         isRowFull[row] = true;
     }
 
-//    formatted print of @table
+    //    formatted print of @table
     private static void printTable() {
         System.out.println("board:");
         for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
@@ -160,9 +160,9 @@ public class TableGenerator  {
         System.out.println();
     }
 
-//    set all to int(0) in @table
+    //    set all to int(0) in @table
     private static void initializeTable() {
-        for (int i = 0; i < (Integer)  Constant.NUMBER_OF_ROWS.getValue(); i++) {
+        for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
             for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                 table[i][j] = 0;
             }

@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.ConstantModule.Constant;
+import main.constantModule.Constant;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
@@ -47,8 +47,7 @@ public class SettingsFrame extends JFrame {
     public static void main(String[] args) {
         try {
             SwingUtilities.invokeLater(SettingsFrame::new);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -70,7 +69,7 @@ public class SettingsFrame extends JFrame {
         tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
 
-        tabbedPane.addTab("Images",  new ImagesSettingsPanel());
+        tabbedPane.addTab("Images", new ImagesSettingsPanel());
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
 
@@ -87,7 +86,6 @@ public class SettingsFrame extends JFrame {
 //
 
 
-
 //        restart @MainFrame
 //        this.addListener(event -> {
 //            s
@@ -100,14 +98,14 @@ public class SettingsFrame extends JFrame {
 
     }
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
         for (int i = 0; i < listeners.length; i += 2) {
-            if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).eventOccurred(event);
+            if (listeners[i] == Listener.class) {
+                ((Listener) listeners[i + 1]).eventOccurred(event);
             }
         }
     }

@@ -1,12 +1,12 @@
 package main.mainWindow;
 
-import main.ConstantModule.Constant;
+import main.constantModule.Constant;
 import main.constants.Image;
-import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Command;
+import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
-import main.utils.soundDrivers.SoundDrivers;
 import main.utils.minesweeperDrivers.TableGenerator;
+import main.utils.soundDrivers.SoundDrivers;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -16,14 +16,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CenterPanel extends  JPanel {
+public class CenterPanel extends JPanel {
 
 //    TODO
 //      add ability to block all buttons under flag
 
     private final JButton[][] buttons;
 
-//    table that shows board mines
+    //    table that shows board mines
     private int[][] table;
 
 
@@ -32,12 +32,12 @@ public class CenterPanel extends  JPanel {
 //    used for right click actions
 //    private JButton currentHoveredButton;
 
-//    if field with mine is opened game is over
+    //    if field with mine is opened game is over
 //    all buttons must be locked
 //    this is controller for it
     private boolean areButtonsActive = true;
 
-//    used to check if you can declare win
+    //    used to check if you can declare win
     private int numOfOpenedCells = 0;
 
 
@@ -75,21 +75,21 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-//    handles right click operations
+    //    handles right click operations
     private static class MouseActionListener extends MouseAdapter {
         private final int x;
         private final int y;
-    private CenterPanel panel;
-    private boolean areButtonsActive;
-    private JButton[][] buttons;
+        private final CenterPanel panel;
+        private final boolean areButtonsActive;
+        private final JButton[][] buttons;
 
-    public MouseActionListener(CenterPanel panel, boolean areButtonsActive, JButton[][] buttons, int x, int y) {
+        public MouseActionListener(CenterPanel panel, boolean areButtonsActive, JButton[][] buttons, int x, int y) {
             this.x = x;
             this.y = y;
-        this.panel = panel;
-        this.areButtonsActive = areButtonsActive;
-        this.buttons = buttons;
-    }
+            this.panel = panel;
+            this.areButtonsActive = areButtonsActive;
+            this.buttons = buttons;
+        }
 
         @Override
         public void mousePressed(MouseEvent e) {
@@ -115,8 +115,8 @@ public class CenterPanel extends  JPanel {
         }
 
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panel.currentHoveredButtonX = x;
-                panel.currentHoveredButtonY = y;
+            panel.currentHoveredButtonX = x;
+            panel.currentHoveredButtonY = y;
         }
 
         public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -132,40 +132,40 @@ public class CenterPanel extends  JPanel {
             checkForWin();
             if (areButtonsActive) {
 
-                for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++){
+                for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++) {
                     for (int j = 0; j < (int) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
-                        if(buttons[i][j].toString().equals(e.getSource().toString())) {
+                        if (buttons[i][j].toString().equals(e.getSource().toString())) {
 
                             System.out.println("clicked " + i + " " + j);
 
-                                if (table[i][j] != 0) {
-                                    openCell(i, j);
-                                    if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
-                                        System.out.println("game over");
-    //                                          TODO halt time
-    //                                          extract to new thread (swing worker)
-                                        fireEvent(new Event(this, Command.GAME_OVER));
+                            if (table[i][j] != 0) {
+                                openCell(i, j);
+                                if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
+                                    System.out.println("game over");
+                                    //                                          TODO halt time
+                                    //                                          extract to new thread (swing worker)
+                                    fireEvent(new Event(this, Command.GAME_OVER));
 
-                                        SoundDrivers.playGameOverSound();
+                                    SoundDrivers.playGameOverSound();
 
 //                                        SoundThread soundThread = new SoundThread();
 //                                        soundThread.start();
 
-                                        areButtonsActive = false;
-                                        return;
-                                    }
+                                    areButtonsActive = false;
+                                    return;
                                 }
+                            }
 
-                                if (table[i][j] == 0) {
-                                    openBlanks(i, j);
+                            if (table[i][j] == 0) {
+                                openBlanks(i, j);
 
-                                }
+                            }
 
-                                checkForWin();
+                            checkForWin();
 
-                                System.out.println("*** halt ***");
-                                System.out.println();
-                                return;
+                            System.out.println("*** halt ***");
+                            System.out.println();
+                            return;
                         }
                     }
                 }
@@ -185,20 +185,19 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-//  opens targeted cell
-    public void openCell(int i, int j){
+    //  opens targeted cell
+    public void openCell(int i, int j) {
 
         if (!buttons[i][j].isEnabled()) {
             return;
         }
 
 
-
-        if (! (Boolean) Constant.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN.getValue()) {
+        if (!(Boolean) Constant.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN.getValue()) {
 //            System.out.println(buttons[i][j].getIcon().toString());
 //            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
 
-            if (! buttons[i][j].getIcon().toString().equals(Image.CLOSED_CELL.getImageIcon().toString())) {
+            if (!buttons[i][j].getIcon().toString().equals(Image.CLOSED_CELL.getImageIcon().toString())) {
                 return;
             }
         }
@@ -227,14 +226,14 @@ public class CenterPanel extends  JPanel {
 
     }
 
-//    opens all blank that are NEWS, ne, ns, ...,  of targeted cell
+    //    opens all blank that are NEWS, ne, ns, ...,  of targeted cell
     public void openBlanks(int x, int y) {
 
         if (!buttons[x][y].isEnabled()) {
             return;
         }
 
-        openCell(x,y);
+        openCell(x, y);
 
         if (table[x][y] != 0) {
             return;
@@ -244,7 +243,7 @@ public class CenterPanel extends  JPanel {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 try {
-                    openBlanks(x+i, y+j);
+                    openBlanks(x + i, y + j);
                 } catch (Exception ignored) {
 
                 }
@@ -252,7 +251,7 @@ public class CenterPanel extends  JPanel {
         }
     }
 
-//    main restart sequence when game is started again
+    //    main restart sequence when game is started again
     public void restart(Command command) throws Exception {
         if (command.equals(Command.NEW_GAME)) {
             System.out.println("centerPanel: restart");
@@ -272,7 +271,7 @@ public class CenterPanel extends  JPanel {
 
     }
 
-//    enables all buttons
+    //    enables all buttons
 //    changes icon to closedCell
     private void restartButtons() {
         for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++) {
@@ -297,8 +296,8 @@ public class CenterPanel extends  JPanel {
         for (int i = 0; i < listeners.length; i += 2) {
 
 
-            if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).eventOccurred(event);
+            if (listeners[i] == Listener.class) {
+                ((Listener) listeners[i + 1]).eventOccurred(event);
             }
         }
     }

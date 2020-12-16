@@ -1,8 +1,8 @@
 package main.mainWindow;
 
-import main.utils.eventDrivers.Command;
 import main.constants.Image;
 import main.settingsWindow.SettingsFrame;
+import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 
@@ -11,9 +11,9 @@ import javax.swing.event.EventListenerList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NorthPanel extends JPanel{
+public class NorthPanel extends JPanel {
 
-    private JButton oldRestartButton;
+    private final JButton oldRestartButton;
 
 //    private RestartButton restartButton;
 
@@ -44,8 +44,7 @@ public class NorthPanel extends JPanel{
         settingsButton.addActionListener(event -> {
             try {
                 SwingUtilities.invokeLater(SettingsFrame::new);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -141,7 +140,6 @@ public class NorthPanel extends JPanel{
 //        });
 
 
-
     }
 //
 //    public class MyRunnable implements Runnable {
@@ -163,7 +161,7 @@ public class NorthPanel extends JPanel{
 //    JButton btn2;
 //    private JButton btn1;
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
@@ -174,7 +172,7 @@ public class NorthPanel extends JPanel{
 
         for (int i = 0; i < listeners.length; i++) {
             if (listeners[i] instanceof Listener) {
-                ((Listener)listeners[i]).eventOccurred(event);
+                ((Listener) listeners[i]).eventOccurred(event);
                 return;
             }
         }

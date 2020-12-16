@@ -1,4 +1,4 @@
-package main.ConstantModule;
+package main.constantModule;
 
 public class Config {
     //    where this is saved

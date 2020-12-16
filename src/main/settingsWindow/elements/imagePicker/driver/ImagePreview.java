@@ -34,8 +34,9 @@ package main.settingsWindow.elements.imagePicker.driver;
 //package components;
 
 import javax.swing.*;
-import java.beans.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 
 /* ImagePreview.java by FileChooserDemo2.java. */
@@ -99,8 +100,8 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
             loadImage();
         }
         if (thumbnail != null) {
-            int x = getWidth()/2 - thumbnail.getIconWidth()/2;
-            int y = getHeight()/2 - thumbnail.getIconHeight()/2;
+            int x = getWidth() / 2 - thumbnail.getIconWidth() / 2;
+            int y = getHeight() / 2 - thumbnail.getIconHeight() / 2;
 
             if (y < 0) {
                 y = 0;

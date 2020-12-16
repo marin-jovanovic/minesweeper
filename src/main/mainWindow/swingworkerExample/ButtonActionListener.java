@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 public class ButtonActionListener implements ActionListener {
 
     private final JButton[][] buttons;
-    private int[][] table;
-    private JButton currentHoveredButton;
+    private final int[][] table;
+    private final JButton currentHoveredButton;
 
     //    if field with mine is opened game is over
 //    all buttons must be locked

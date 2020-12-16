@@ -13,8 +13,7 @@ public class Timer extends JPanel {
 //
 //            JLabel picLabel = new JLabel(new ImageIcon(ImageIO.read(new File(Constants.getPathImageTime("0")))));
 //            add(picLabel);
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
 

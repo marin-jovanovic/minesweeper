@@ -4,11 +4,11 @@ package main.utils.eventDrivers;
  * used for firing events
  */
 public enum Command {
-//    center panel
+    //    center panel
     GAME_OVER,
     GAME_WON,
 
-//    north panel
+    //    north panel
     NEW_GAME,
     RESTART_MAINFRAME
 

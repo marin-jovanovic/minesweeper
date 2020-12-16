@@ -28,16 +28,21 @@ public class SoundDrivers {
 
         class AudioListener implements LineListener {
             private boolean done = false;
-            @Override public synchronized void update(LineEvent event) {
+
+            @Override
+            public synchronized void update(LineEvent event) {
                 LineEvent.Type eventType = event.getType();
                 if (eventType == LineEvent.Type.STOP || eventType == LineEvent.Type.CLOSE) {
                     done = true;
                     notifyAll();
                 }
             }
+
             public synchronized void waitUntilDone() {
                 try {
-                    while (!done) { wait(); }
+                    while (!done) {
+                        wait();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

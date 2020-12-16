@@ -1,7 +1,7 @@
 package main.mainWindow.swingworkerExample;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class FactorialCalculatorFrame extends JFrame {
 

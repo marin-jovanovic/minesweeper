@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.reset;
 
-import main.ConstantModule.Constant;
+import main.constantModule.Constant;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +22,7 @@ public class RestartCurrentButton extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("restarting this settings");
-                for (Constant c: constants) {
+                for (Constant c : constants) {
                     System.out.println(c);
                 }
             }

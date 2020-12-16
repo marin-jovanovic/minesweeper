@@ -11,7 +11,7 @@ public class Event extends EventObject {
         this.command = command;
 
         System.out.println(source.getClass());
-        System.out.println("created new event: " + source  + "; " + command);
+        System.out.println("created new event: " + source + "; " + command);
     }
 
     public Command getCommand() {

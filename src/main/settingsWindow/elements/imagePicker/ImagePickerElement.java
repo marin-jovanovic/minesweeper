@@ -1,10 +1,10 @@
 package main.settingsWindow.elements.imagePicker;
 
+import main.constantModule.SettingsManager;
 import main.constants.Image;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;
-import main.ConstantModule.SettingsManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,12 +43,12 @@ import java.io.File;
  */
 
 public class ImagePickerElement extends JPanel {
-    private JTextArea log;
+    private final JTextArea log;
     private JFileChooser fc;
-    private JLabel imageLabel;
-    private JButton jButton;
-    private String jText;
-    private main.constants.Image image;
+    private final JLabel imageLabel;
+    private final JButton jButton;
+    private final String jText;
+    private final main.constants.Image image;
 
 
     public ImagePickerElement(main.constants.Image image) {
@@ -58,10 +58,10 @@ public class ImagePickerElement extends JPanel {
 
         setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
-        log = new JTextArea(5,20);
+        log = new JTextArea(5, 20);
         //Create the log first, because the action listener
         //needs to refer to it.
-        log.setMargin(new Insets(5,5,5,5));
+        log.setMargin(new Insets(5, 5, 5, 5));
         log.setEditable(false);
 
 
@@ -100,7 +100,7 @@ public class ImagePickerElement extends JPanel {
         setupFileChooser();
 
         //Show it.
-        int returnVal = fc.showDialog(this,"Attach");
+        int returnVal = fc.showDialog(this, "Attach");
 
         //Process the results.
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -113,7 +113,6 @@ public class ImagePickerElement extends JPanel {
             File newImage = new File(file.getAbsolutePath());
 
             SettingsManager.processNewImage(newImage, this.image);
-
 
 
             setImageLabel(this.image);

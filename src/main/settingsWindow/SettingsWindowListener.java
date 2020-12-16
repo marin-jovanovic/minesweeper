@@ -1,8 +1,8 @@
 package main.settingsWindow;
 
-import main.utils.eventDrivers.Command;
+import main.constantModule.SettingsManager;
 import main.mainWindow.MainFrame;
-import main.ConstantModule.SettingsManager;
+import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 
@@ -22,7 +22,6 @@ public class SettingsWindowListener implements WindowListener {
     public void windowOpened(WindowEvent e) {
 
     }
-
 
 
     /**
@@ -48,14 +47,14 @@ public class SettingsWindowListener implements WindowListener {
     }
 
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
         for (int i = 0; i < listeners.length; i += 2) {
-            if(listeners[i] == Listener.class) {
-                ((Listener)listeners[i+1]).eventOccurred(event);
+            if (listeners[i] == Listener.class) {
+                ((Listener) listeners[i + 1]).eventOccurred(event);
             }
         }
     }

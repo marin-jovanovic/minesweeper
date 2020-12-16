@@ -1,4 +1,4 @@
-package main.ConstantModule;
+package main.constantModule;
 
 import java.util.EnumSet;
 
@@ -6,7 +6,7 @@ import java.util.EnumSet;
  * logID
  * this is left side in settings.txt
  * it is used to identify variable
- *
+ * <p>
  * jText
  * used for swing GUI
  * it is string that will be placed in GUI
@@ -32,7 +32,7 @@ public enum Constant {
 
 
     private Object value;
-    private String logID;
+    private final String logID;
     private String jText;
 
 
