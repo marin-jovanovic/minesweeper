@@ -11,6 +11,8 @@ public class SoundDrivers {
         soundThread.start();
     }
 
+
+
     public static void playGameOverSound() {
         if (Sound.getIsSoundActive()) {
             SoundThread soundThread = new SoundThread();
@@ -18,7 +20,6 @@ public class SoundDrivers {
         } else {
             System.out.println("sound not active");
         }
-
     }
 
     public static void playClip(Sound sound) {
