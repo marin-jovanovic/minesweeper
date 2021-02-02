@@ -1,4 +1,4 @@
-package main.constants;
+package main.constantModule;
 
 
 import javax.swing.*;
@@ -32,26 +32,17 @@ public enum Image {
     private final String pathID;
     private final String jText;
     private final String group;
-//    row in log
-//    private final int logNumber;
 
-//    private static int i = 1;
 
     Image(String jText, String pathID, String group) {
         this.pathID = pathID;
         this.jText = jText;
         this.group = group;
-//        this.logNumber = Path.getRowNumber();
     }
-
 
     public String getPathID() {
         return pathID;
     }
-
-//    public int getLogNumber() {
-//        return logNumber;
-//    }
 
     public ImageIcon getImageIcon() {
         return new ImageIcon(pathID);

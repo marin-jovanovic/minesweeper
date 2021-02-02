@@ -1,6 +1,6 @@
 package main.settingsWindow.imagePanel;
 
-import main.constants.Image;
+import main.constantModule.Image;
 import main.settingsWindow.elements.imagePicker.ImagePickerElement;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 

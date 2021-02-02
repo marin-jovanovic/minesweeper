@@ -32,26 +32,19 @@ public class ConstantsManager {
                 if (isNumeric(value)) {
                     System.out.println("int");
                     Constant.getConstant(key).setValue(Integer.parseInt(value));
-//                    return ;
                 } else if (value instanceof String) {
                     System.out.println("str");
                     Constant.getConstant(key).setValue(value);
-//                    return String.valueOf(value);
                 } else if (value.equals("true") || value.equals("false")) {
                     System.out.println("bool");
                     Constant.getConstant(key).setValue(Boolean.valueOf(String.valueOf(value)));
-//                    return ;
                 } else {
                     Constant.getConstant(key).setValue(value);
                 }
-
-//
             }
             System.out.println("end of file");
             System.out.println("printing constants");
             printAll();
-
-
         } catch (Exception exception) {
             exception.printStackTrace();
         }

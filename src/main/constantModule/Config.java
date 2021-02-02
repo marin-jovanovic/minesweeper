@@ -1,7 +1,10 @@
 package main.constantModule;
 
 public class Config {
-    //    where this is saved
+    /**
+     * defines paths for logs and images
+     */
+
     public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/settings.txt";
     public static String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/defaultSettings.txt";
 

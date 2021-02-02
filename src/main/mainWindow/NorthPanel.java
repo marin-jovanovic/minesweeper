@@ -1,6 +1,6 @@
 package main.mainWindow;
 
-import main.constants.Image;
+import main.constantModule.Image;
 import main.settingsWindow.SettingsFrame;
 import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;

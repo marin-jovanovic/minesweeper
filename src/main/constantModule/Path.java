@@ -1,14 +1,14 @@
-package main.constants;
+package main.constantModule;
 
 import java.io.File;
 
 public class Path {
 
     public static final String CUSTOM_IMAGES_PATH = "src" + File.separator +
-            "main" + File.separator +
-            "resources" + File.separator +
-            "images" + File.separator +
-            "custom" + File.separator;
+                                                    "main" + File.separator +
+                                                    "resources" + File.separator +
+                                                    "images" + File.separator +
+                                                    "custom" + File.separator;
 
     public static final String CLOSED_TILES = "closed_tiles" + File.separator;
     public static final String OPENED_TILES = "opened_tiles" + File.separator;
@@ -23,8 +23,7 @@ public class Path {
     public static int PICTURE_HEIGHT = 50;
 
     private static String calc(String folder, String name) {
-        return CUSTOM_IMAGES_PATH + folder + name +
-                DOT + IMAGES_FORMAT_NAME;
+        return CUSTOM_IMAGES_PATH + folder + name + DOT + IMAGES_FORMAT_NAME;
     }
 
 

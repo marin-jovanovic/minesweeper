@@ -1,6 +1,5 @@
 package main.constantModule;
 
-import main.constants.Image;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.utils.imagesDrivers.ResizeImages;
 

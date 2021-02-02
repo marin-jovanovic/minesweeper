@@ -37,7 +37,7 @@ public class ResizeImages {
 //                extension
                 String format = path.toString().substring(path.toString().lastIndexOf('.') + 1);
 
-                if (Arrays.asList(main.constants.Path.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {
+                if (Arrays.asList(main.constantModule.Path.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {
                     resizeAndSaveImage(String.valueOf(path), (destination + "/" + name + ".png"));
                     System.out.println(destination + path.getFileName());
                 }
@@ -56,9 +56,9 @@ public class ResizeImages {
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
             BufferedImage resizeImage = resizeImage(originalImage, type,
-                    main.constants.Path.PICTURE_WIDTH, main.constants.Path.PICTURE_HEIGHT);
+                    main.constantModule.Path.PICTURE_WIDTH, main.constantModule.Path.PICTURE_HEIGHT);
 
-            ImageIO.write(resizeImage, main.constants.Path.IMAGES_FORMAT_NAME, destination);
+            ImageIO.write(resizeImage, main.constantModule.Path.IMAGES_FORMAT_NAME, destination);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -72,9 +72,9 @@ public class ResizeImages {
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
             BufferedImage resizeImage = resizeImage(originalImage, type,
-                    main.constants.Path.PICTURE_WIDTH, main.constants.Path.PICTURE_HEIGHT);
+                    main.constantModule.Path.PICTURE_WIDTH, main.constantModule.Path.PICTURE_HEIGHT);
 
-            ImageIO.write(resizeImage, main.constants.Path.IMAGES_FORMAT_NAME, new File(destination));
+            ImageIO.write(resizeImage, main.constantModule.Path.IMAGES_FORMAT_NAME, new File(destination));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

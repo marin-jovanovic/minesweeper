@@ -1,7 +1,7 @@
 package main.settingsWindow.elements.imagePicker;
 
 import main.constantModule.SettingsManager;
-import main.constants.Image;
+import main.constantModule.Image;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;
@@ -48,10 +48,10 @@ public class ImagePickerElement extends JPanel {
     private final JLabel imageLabel;
     private final JButton jButton;
     private final String jText;
-    private final main.constants.Image image;
+    private final Image image;
 
 
-    public ImagePickerElement(main.constants.Image image) {
+    public ImagePickerElement(Image image) {
         this.image = image;
 
         this.jText = image.getJText();
