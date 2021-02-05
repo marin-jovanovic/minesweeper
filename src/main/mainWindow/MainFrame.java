@@ -42,12 +42,12 @@ public class MainFrame extends JFrame {
             System.out.println(jFrame.getSize().getWidth());
             System.out.println(jFrame.getSize().getHeight());
 
-            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getLogID(), String.valueOf(jFrame.getX()));
-            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getLogID(), String.valueOf(jFrame.getY()));
+            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getId(), String.valueOf(jFrame.getX()));
+            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getId(), String.valueOf(jFrame.getY()));
 
-            SettingsManager.addSettingToBuffer(Constant.WIDTH.getLogID(),
+            SettingsManager.addSettingToBuffer(Constant.WIDTH.getId(),
                     String.valueOf(Integer.valueOf((int) jFrame.getSize().getWidth())));
-            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getLogID(),
+            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getId(),
                     String.valueOf(Integer.valueOf((int) jFrame.getSize().getHeight())));
 
             SettingsManager.saveSettings();

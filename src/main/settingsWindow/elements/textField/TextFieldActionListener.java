@@ -15,7 +15,7 @@ public class TextFieldActionListener implements DocumentListener {
 
     public TextFieldActionListener(TextFieldElement source) {
         this.source = source;
-        this.key = source.getConstant().getLogID();
+        this.key = source.getConstant().getId();
         this.oldValue = String.valueOf(source.getConstant().getValue());
     }
 
