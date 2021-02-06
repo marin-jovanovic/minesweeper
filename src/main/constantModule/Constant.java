@@ -112,23 +112,43 @@ public enum Constant {
     private static LinkedHashMap<Integer, String> initializeConstants() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
-        Constant[] backup_states = new Constant[Tool.numOfConstants];
-        int i = 0;
-
-        for (Constant constant : EnumSet.allOf(Constant.class)) {
-            backup_states[i++] = constant;
-        }
+        File f = new File(Config.SETTINGS_MEMORY_PATH);
+//        if(f.exists() && !f.isDirectory()) {
+//            // do something
+//            System.out.println("file exists");
+//        } else {
+//            System.out.println("file does not exist");
+//        }
         LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
-        try(FileReader fr = new FileReader(Config.SETTINGS_MEMORY_PATH);
-            BufferedReader bw = new BufferedReader(fr)) {
+        if(!f.exists()){
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            String line;
+
+
+        }else{
+            System.out.println("File already exists");
+
+            Constant[] backup_states = new Constant[Tool.numOfConstants];
+            int i = 0;
+
+            for (Constant constant : EnumSet.allOf(Constant.class)) {
+                backup_states[i++] = constant;
+            }
+
+            try(FileReader fr = new FileReader(Config.SETTINGS_MEMORY_PATH);
+                BufferedReader bw = new BufferedReader(fr)) {
+
+                String line;
 
 //            which token is being processed
-            int index = 0;
-            for (Constant constant : EnumSet.allOf(Constant.class)) {
-                System.out.println(constant);
+                int index = 0;
+                for (Constant constant : EnumSet.allOf(Constant.class)) {
+                    System.out.println(constant);
 /*
 
                   constants.txt contains less lines than sum of constants is
@@ -137,64 +157,68 @@ public enum Constant {
                   constants use predefined values
                  */
 
-                if ((line = bw.readLine()) == null) {
-                    error_log.put(index, "not enough lines from this line");
-                    break;
-                }
-
-                index++;
-
-
-                if ((line.split(" ")).length != 2) {
-
-                    if (line.equals("")) {
-                        error_log.put(index, "empty line");
-                    } else {
-                        if ((line.split(" "))[0].equals(constant.id)) {
-
-                            if (line.split(" ").length > 2) {
-
-                                handleValue(error_log, line, index, constant, "too much tokens");
-
-                            } else {
-                                error_log.put(index, "not enough tokens");
-                            }
-
-                        } else {
-                            error_log.put(index, "id mismatch");
-                        }
+                    if ((line = bw.readLine()) == null) {
+                        error_log.put(index, "not enough lines from this line");
+                        break;
                     }
 
-                } else {
+                    index++;
 
-                    handleValue(error_log, line, index, constant, "");
+
+                    if ((line.split(" ")).length != 2) {
+
+                        if (line.equals("")) {
+                            error_log.put(index, "empty line");
+                        } else {
+                            if ((line.split(" "))[0].equals(constant.id)) {
+
+                                if (line.split(" ").length > 2) {
+
+                                    handleValue(error_log, line, index, constant, "too much tokens");
+
+                                } else {
+                                    error_log.put(index, "not enough tokens");
+                                }
+
+                            } else {
+                                error_log.put(index, "id mismatch");
+                            }
+                        }
+
+                    } else {
+
+                        handleValue(error_log, line, index, constant, "");
+
+                    }
+
+                    System.out.println(constant);
+                    System.out.println();
 
                 }
 
-                System.out.println(constant);
-                System.out.println();
+            } catch (IOException e) {
+                System.out.println("IOException");
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Exception");
+                System.out.println(e.getMessage());
+                printAll();
 
-            }
+                i = 0;
+                for (Constant constant : EnumSet.allOf(Constant.class)) {
+                    constant = backup_states[i++];
+                }
 
-        } catch (IOException e) {
-            System.out.println("IOException");
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Exception");
-            System.out.println(e.getMessage());
-            printAll();
+                for (Constant constant : EnumSet.allOf(Constant.class)) {
+                    System.out.println(constant);
+                }
 
-            i = 0;
-            for (Constant constant : EnumSet.allOf(Constant.class)) {
-                constant = backup_states[i++];
-            }
-
-            for (Constant constant : EnumSet.allOf(Constant.class)) {
-                System.out.println(constant);
             }
 
         }
+
+
 
         error_log.forEach((key, value) -> System.out.println(key + ":" + value));
 
