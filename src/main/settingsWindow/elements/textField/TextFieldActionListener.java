@@ -41,10 +41,18 @@ public class TextFieldActionListener implements DocumentListener {
 
         value = reformatValue(value);
 
-        constant.setValue(value);
-//        SettingsManager.addSettingToBuffer(key, value);
+        if (value.matches("[1-9][0-9]*")) {
+            constant.setValue(Integer.parseInt(value));
+        } else if (value.matches("[0-9]+\\.[0-9]+")) {
+            constant.setValue(Double.parseDouble(value));
+        } else if (value.equals("true") || value.equals("false")) {
+            constant.setValue(Boolean.parseBoolean(value));
+        } else {
+            constant.setValue(value);
+        }
 
         source.setCheckerText("new value: " + value);
+
     }
 
     //    checks for errors and formats it to int type

@@ -1,9 +1,16 @@
 package main.imageModule;
 
+import main.Loader;
 import main.utils.imagesDrivers.ResizeImages;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 
 public class ImageManager {
     public static void restartAllImages() {
@@ -94,5 +101,64 @@ public class ImageManager {
         image.flushImageIcon();
 
 
+    }
+
+    public static BufferedImage loadImage(String path){
+        try {
+            return ImageIO.read(Loader.class.getResource(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return null;
+
+    }
+
+    private static class CopyFileVisitor extends SimpleFileVisitor<Path> {
+        private final Path targetPath;
+        private Path sourcePath = null;
+
+        public CopyFileVisitor(Path targetPath) {
+            this.targetPath = targetPath;
+        }
+
+        @Override
+        public FileVisitResult preVisitDirectory(final Path dir,
+                                                 final BasicFileAttributes attrs) throws IOException {
+            if (sourcePath == null) {
+                sourcePath = dir;
+            }
+            System.out.println();
+            System.out.println(dir);
+
+
+//            else {
+//                Files.createDirectories(targetPath.resolve(sourcePath
+//                        .relativize(dir)));
+//            }
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult visitFile(final Path file,
+                                         final BasicFileAttributes attrs) throws IOException {
+//              fixme
+//            System.out.println(file);
+//
+//            File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
+//
+//
+//            System.out.println("** " + myObj);
+//            if (myObj.delete()) {
+//                System.out.println("Deleted the file: " + myObj.getName());
+//            } else {
+//                System.out.println("Failed to delete the file.");
+//            }
+////
+//
+//            Files.copy(file,
+//                    targetPath.resolve(sourcePath.relativize(file)));
+            return FileVisitResult.CONTINUE;
+        }
     }
 }

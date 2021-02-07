@@ -2,6 +2,9 @@ package main;
 
 //import main.mainWindow.MainFrame;
 
+import main.imageModule.ImageManager;
+import main.mainWindow.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,9 +12,9 @@ import java.io.File;
 
 public class Main {
 
-//    public static void windowLauncher() {
-//        SwingUtilities.invokeLater(MainFrame::new);
-//    }
+    public static void windowLauncher() {
+        SwingUtilities.invokeLater(MainFrame::new);
+    }
 
 //    TODO extract image loading to separate threads to make program faster
 //    TODO time
@@ -23,9 +26,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-//        windowLauncher();
+        windowLauncher();
 
-        SwingUtilities.invokeLater(TestWindow::new);
+//        SwingUtilities.invokeLater(TestWindow::new);
     }
 
     private static class TestWindow extends JFrame {
@@ -39,7 +42,7 @@ public class Main {
             setSize(1000, 1000);
             setLayout(new BorderLayout());
 
-            BufferedImage bi = Loader.loadImage("/main/resources/images/custom/opened_tiles/-1.png");
+            BufferedImage bi = ImageManager.loadImage("/main/resources/images/custom/opened_tiles/-1.png");
 
             JButton oldRestartButton = new JButton();
 

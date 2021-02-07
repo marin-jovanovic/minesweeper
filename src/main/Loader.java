@@ -8,17 +8,6 @@ import java.io.IOException;
 
 public class Loader {
 
-    public static BufferedImage loadImage(String path){
-        try {
-            return ImageIO.read(Loader.class.getResource(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        return null;
-
-    }
-
     public static Clip LoadSound(String direction){
         try{
             Clip clip = AudioSystem.getClip();

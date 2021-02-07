@@ -1,6 +1,6 @@
 package main.constantModule;
 
-import main.Loader;
+import main.imageModule.ImageManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +10,8 @@ import java.io.File;
 /**
  * what needs to be tested?
  *
- * Constant
- *  setValue
  *
- * ConstantsManager
- *  initializeConstants
- *  handleValue
- *  updateConstants
+
  *
  *
  * SettingsManager
@@ -48,7 +43,7 @@ public class Test {
             setSize(1000, 1000);
             setLayout(new BorderLayout());
 
-            BufferedImage bi = Loader.loadImage("/main/resources/images/custom/opened_tiles/-1.png");
+            BufferedImage bi = ImageManager.loadImage("/main/resources/images/custom/opened_tiles/-1.png");
 
             JButton oldRestartButton = new JButton();
 

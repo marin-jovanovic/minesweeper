@@ -42,7 +42,7 @@ public class MainFrame extends JFrame {
             System.out.println(jFrame.getSize().getHeight());
 
 
-            Constant.LOCATION_X.setValue(String.valueOf(jFrame.getX()));
+            Constant.LOCATION_X.setValue(jFrame.getX());
             Constant.LOCATION_Y.setValue(jFrame.getY());
 //            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getId(), String.valueOf(jFrame.getX()));
 //            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getId(), String.valueOf(jFrame.getY()));

@@ -35,7 +35,7 @@ public class ConstantsManager {
      * if file contains modified line (no words (empty line), one word, multiple words):
      *  this constant uses preassigned value from this file
      */
-    static LinkedHashMap<Integer, String> initializeConstants() {
+    public static LinkedHashMap<Integer, String> initializeConstants() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
         File f = new File(Config.SETTINGS_MEMORY_PATH);

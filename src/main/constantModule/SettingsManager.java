@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+// todo what if default settings file is deleted
+
+// todo handle restart settings with thread wait differently
 public class SettingsManager {
 
     /**
