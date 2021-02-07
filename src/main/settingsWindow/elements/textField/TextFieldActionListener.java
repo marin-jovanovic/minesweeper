@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.textField;
 
-import main.constantModule.SettingsManager;
+import main.constantModule.Constant;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -9,13 +9,15 @@ import java.util.stream.Collectors;
 
 public class TextFieldActionListener implements DocumentListener {
 
-    private final String key;
+    private final Constant constant;
+//    private final String key;
     private final String oldValue;
     private final TextFieldElement source;
 
     public TextFieldActionListener(TextFieldElement source) {
         this.source = source;
-        this.key = source.getConstant().getId();
+        this.constant = source.getConstant();
+//        this.key = source.getConstant().getId();
         this.oldValue = String.valueOf(source.getConstant().getValue());
     }
 
@@ -39,7 +41,8 @@ public class TextFieldActionListener implements DocumentListener {
 
         value = reformatValue(value);
 
-        SettingsManager.addSettingToBuffer(key, value);
+        constant.setValue(value);
+//        SettingsManager.addSettingToBuffer(key, value);
 
         source.setCheckerText("new value: " + value);
     }

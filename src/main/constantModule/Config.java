@@ -5,9 +5,7 @@ public class Config {
      * defines paths for logs and images
      */
 
-    public static String SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/settings.txt";
-    public static String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/defaultSettings.txt";
+    public static final String SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/settings.txt";
+    public static final String DEFAULT_SETTINGS_MEMORY_PATH = "src/main/resources/settings_logs/defaultSettings.txt";
 
-    static String IMAGES_SOURCE_PATH = "src/main/resources/images/resized_images";
-    static String IMAGES_DESTINATION_PATH = "src/main/resources/images/custom";
 }

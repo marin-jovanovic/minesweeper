@@ -1,4 +1,4 @@
-package main.constantModule;
+package main.imageModule;
 
 
 import javax.swing.*;

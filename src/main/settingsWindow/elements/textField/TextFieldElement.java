@@ -11,7 +11,7 @@ public class TextFieldElement extends JPanel {
     private final Constant constant;
 
     public TextFieldElement(Constant constant) {
-        add(new JLabel(constant.getJText()));
+        add(new JLabel("todo 1"));
 
         this.constant = constant;
 

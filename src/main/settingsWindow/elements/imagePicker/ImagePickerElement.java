@@ -1,7 +1,7 @@
 package main.settingsWindow.elements.imagePicker;
 
-import main.constantModule.SettingsManager;
-import main.constantModule.Image;
+import main.imageModule.Image;
+import main.imageModule.ImageManager;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;
@@ -112,7 +112,7 @@ public class ImagePickerElement extends JPanel {
 //            sets right component image to new selected image
             File newImage = new File(file.getAbsolutePath());
 
-            SettingsManager.processNewImage(newImage, this.image);
+            ImageManager.processNewImage(newImage, this.image);
 
 
             setImageLabel(this.image);

@@ -2,7 +2,6 @@ package main.mainWindow;
 
 import main.constantModule.Constant;
 import main.constantModule.ConstantsManager;
-import main.constantModule.SettingsManager;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 
@@ -42,15 +41,22 @@ public class MainFrame extends JFrame {
             System.out.println(jFrame.getSize().getWidth());
             System.out.println(jFrame.getSize().getHeight());
 
-            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getId(), String.valueOf(jFrame.getX()));
-            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getId(), String.valueOf(jFrame.getY()));
 
-            SettingsManager.addSettingToBuffer(Constant.WIDTH.getId(),
-                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getWidth())));
-            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getId(),
-                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getHeight())));
+            Constant.LOCATION_X.setValue(String.valueOf(jFrame.getX()));
+            Constant.LOCATION_Y.setValue(jFrame.getY());
+//            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getId(), String.valueOf(jFrame.getX()));
+//            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getId(), String.valueOf(jFrame.getY()));
 
-            SettingsManager.saveSettings();
+            Constant.WIDTH.setValue(jFrame.getSize().getWidth());
+            Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
+
+//            SettingsManager.addSettingToBuffer(Constant.WIDTH.getId(),
+//                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getWidth())));
+//            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getId(),
+//                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getHeight())));
+//
+            ConstantsManager.updateConstants();
+//            SettingsManager.saveSettings();
         }
 
         @Override
@@ -82,7 +88,8 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("minesweeper");
 
-        ConstantsManager.refresh();
+        ConstantsManager.updateConstants();
+//        ConstantsManager.refresh();
 
 //        int x = (int) Constant.LOCATION_X.getValue();
 //        int y = (Integer) Constant.LOCATION_Y.getValue();

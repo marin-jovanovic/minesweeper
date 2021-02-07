@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.constantModule.SettingsManager;
+import main.constantModule.ConstantsManager;
 import main.mainWindow.MainFrame;
 import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
@@ -34,9 +34,12 @@ public class SettingsWindowListener implements WindowListener {
     public void windowClosing(WindowEvent e) {
 
         System.out.println("\nnew settings");
-        SettingsManager.printCurrentStateOfBuffer();
 
-        SettingsManager.saveSettings();
+        ConstantsManager.printAll();
+
+        ConstantsManager.updateConstants();
+
+//        SettingsManager.saveSettings();
 
         fireEvent(new main.utils.eventDrivers.Event(this, Command.RESTART_MAINFRAME));
     }
