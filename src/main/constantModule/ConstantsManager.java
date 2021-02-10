@@ -42,12 +42,13 @@ public class ConstantsManager {
     public static LinkedHashMap<Integer, String> initializeConstants() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
-        File f = new File(Config.CONSTANTS_MEMORY_PATH);
+        File f = new File(Config.getConstantsMemoryPath());
 
         LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
         if(!f.exists()){
             try {
+                System.out.println("file does not exist");
                 f.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -66,7 +67,7 @@ public class ConstantsManager {
                 backup_states[i++] = constant;
             }
 
-            try(FileReader fr = new FileReader(Config.CONSTANTS_MEMORY_PATH);
+            try(FileReader fr = new FileReader(Config.getConstantsMemoryPath());
                 BufferedReader bw = new BufferedReader(fr)) {
 
                 String line;
@@ -123,6 +124,8 @@ public class ConstantsManager {
                     System.out.println();
 
                 }
+
+
 
             } catch (IOException e) {
                 System.out.println("IOException");
@@ -258,7 +261,7 @@ public class ConstantsManager {
     public static void restartConstants() {
         ArrayList<String> lines = new ArrayList<>();
 
-        File f = new File(Config.DEFAULT_CONSTANTS_MEMORY_PATH);
+        File f = new File(Config.getDefaultConstantsMemoryPath());
 
         if (!f.exists()) {
             try {
@@ -285,7 +288,7 @@ public class ConstantsManager {
             }
 
 //            copy from default to custom
-            try (FileOutputStream fileOutputStream = new FileOutputStream(Config.CONSTANTS_MEMORY_PATH)) {
+            try (FileOutputStream fileOutputStream = new FileOutputStream(Config.getConstantsMemoryPath())) {
                 fileOutputStream.write(String.join("\n", lines).getBytes());
             } catch (IOException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();

@@ -2,6 +2,8 @@ package main;
 
 //import main.mainWindow.MainFrame;
 
+import main.constantModule.Config;
+import main.constantModule.ConstantsManager;
 import main.imageModule.ImageManager;
 import main.mainWindow.MainFrame;
 
@@ -27,7 +29,6 @@ public class Main {
 
     public static void main(String[] args) {
         windowLauncher();
-
 //        SwingUtilities.invokeLater(TestWindow::new);
     }
 
@@ -41,6 +42,8 @@ public class Main {
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setSize(1000, 1000);
             setLayout(new BorderLayout());
+            ConstantsManager.initializeConstants();
+            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
 
             BufferedImage bi = ImageManager.loadImage("/main/resources/images/custom/opened_tiles/-1.png");
 
@@ -65,7 +68,6 @@ public class Main {
 //        }
 
         public void writeFile(String value){
-            String PATH = "/remote/dir/server/";
 //            String directoryName = PATH.concat(this.getClassName());
 //            String fileName = id + getTimeStamp() + ".txt";
 

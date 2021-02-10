@@ -9,8 +9,8 @@ public enum Constant {
     NUMBER_OF_MINES(10),
     LOCATION_X(20),
     LOCATION_Y(20),
-    WIDTH(500),
-    HEIGHT(500),
+    WIDTH(500.0),
+    HEIGHT(500.0),
 
     IS_VICTORY_SOUND_ACTIVE(true),
     IS_DEFEAT_SOUND_ACTIVE(true),

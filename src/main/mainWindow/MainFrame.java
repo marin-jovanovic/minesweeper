@@ -45,8 +45,6 @@ public class MainFrame extends JFrame {
 
             Constant.LOCATION_X.setValue(jFrame.getX());
             Constant.LOCATION_Y.setValue(jFrame.getY());
-//            SettingsManager.addSettingToBuffer(Constant.LOCATION_X.getId(), String.valueOf(jFrame.getX()));
-//            SettingsManager.addSettingToBuffer(Constant.LOCATION_Y.getId(), String.valueOf(jFrame.getY()));
 
             Constant.WIDTH.setValue(jFrame.getSize().getWidth());
             Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
@@ -89,7 +87,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("minesweeper");
 
-        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+        ConstantsManager.initializeConstants();
 //        ConstantsManager.refresh();
 
 //        int x = (int) Constant.LOCATION_X.getValue();
@@ -98,7 +96,9 @@ public class MainFrame extends JFrame {
         setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize((Integer) Constant.WIDTH.getValue(), (Integer) Constant.HEIGHT.getValue());
+        setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
+//        setSize((int) Double.parseDouble(String.valueOf(Constant.WIDTH.getValue())),
+//                (int) Double.parseDouble((String.valueOf(Constant.HEIGHT.getValue()))));
         setLayout(new BorderLayout());
 
 

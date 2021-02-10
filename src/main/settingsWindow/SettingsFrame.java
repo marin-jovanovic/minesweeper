@@ -55,7 +55,7 @@ public class SettingsFrame extends JFrame {
 
     public SettingsFrame() {
         super("Settings");
-        setSize((Integer) Constant.WIDTH.getValue(), (Integer) Constant.HEIGHT.getValue());
+        setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
         setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
         setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
