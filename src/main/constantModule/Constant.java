@@ -18,7 +18,18 @@ public enum Constant {
 
     CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN(false);
 
+    private static class ConstantCounterManager {
 
+        private static int numOfConstants = 0;
+
+        static int getNumOfConstants() {
+            return numOfConstants;
+        }
+
+        static void setNumOfConstants(int numOfConstants) {
+            ConstantCounterManager.numOfConstants = numOfConstants;
+        }
+    }
     private String id;
     private Object value;
 
@@ -29,6 +40,9 @@ public enum Constant {
         ConstantCounterManager.setNumOfConstants(ConstantCounterManager.getNumOfConstants() + 1);
     }
 
+    public static int getNumOfConstants() {
+        return ConstantCounterManager.getNumOfConstants();
+    }
 
     @Override
     public String toString() {
@@ -52,14 +66,10 @@ public enum Constant {
 
     public static void main(String[] args) {
 
-//        System.out.println(IS_ACTIVE.name());
-//
-//        System.out.println(Tool.numOfConstants);
         ConstantsManager.initializeConstants();
         ConstantsManager.printAll();
 
-
-        ConstantsManager.updateConstants();
+        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
     }
 
     public String getId() {

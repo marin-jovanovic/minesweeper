@@ -4,11 +4,15 @@ package main.constantModule;
 //  TODO mute sound option
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedHashMap;
+import java.util.Scanner;
 
+// todo what if default settings file is deleted
+
+// todo handle restart settings with thread wait differently
 public class ConstantsManager {
-
 
     /**
      * reads from constants.txt
@@ -38,7 +42,7 @@ public class ConstantsManager {
     public static LinkedHashMap<Integer, String> initializeConstants() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
-        File f = new File(Config.SETTINGS_MEMORY_PATH);
+        File f = new File(Config.CONSTANTS_MEMORY_PATH);
 
         LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
@@ -54,14 +58,15 @@ public class ConstantsManager {
         }else{
             System.out.println("File already exists");
 
-            Constant[] backup_states = new Constant[ConstantCounterManager.getNumOfConstants()];
+            Constant[] backup_states = new Constant[Constant.getNumOfConstants()];
+
             int i = 0;
 
             for (Constant constant : EnumSet.allOf(Constant.class)) {
                 backup_states[i++] = constant;
             }
 
-            try(FileReader fr = new FileReader(Config.SETTINGS_MEMORY_PATH);
+            try(FileReader fr = new FileReader(Config.CONSTANTS_MEMORY_PATH);
                 BufferedReader bw = new BufferedReader(fr)) {
 
                 String line;
@@ -227,24 +232,66 @@ public class ConstantsManager {
     }
 
     /**
-     * writes to constants.txt
+     * writes to path
      * writes constant values to constants.txt
      *
      * use this at the end of program to save new settings
      */
-    public static void updateConstants() {
+    public static void updateConstants(String path) {
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, false)))) {
 
-        try(FileWriter fw = new FileWriter(Config.SETTINGS_MEMORY_PATH, false);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw)) {
-
-            for(Constant constant : EnumSet.allOf(Constant.class)) {
-                out.println(constant.getId() + " " + constant.getValue());
-            }
+                for(Constant constant : EnumSet.allOf(Constant.class)) {
+                    out.println(constant.getId() + " " + constant.getValue());
+                }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    /**
+     * sets to default constants
+     *
+     *
+     */
+    public static void restartConstants() {
+        ArrayList<String> lines = new ArrayList<>();
+
+        File f = new File(Config.DEFAULT_CONSTANTS_MEMORY_PATH);
+
+        if (!f.exists()) {
+            try {
+                f.createNewFile();
+
+//                copy current to default and custom
+                updateConstants(Config.getDefaultConstantsMemoryPath());
+                updateConstants(Config.getConstantsMemoryPath());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+
+//            read from default
+            try (Scanner myReader = new Scanner(f)) {
+                while (myReader.hasNextLine()) {
+                    lines.add(myReader.nextLine());
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+//            copy from default to custom
+            try (FileOutputStream fileOutputStream = new FileOutputStream(Config.CONSTANTS_MEMORY_PATH)) {
+                fileOutputStream.write(String.join("\n", lines).getBytes());
+            } catch (IOException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+
+        }
+    }
+
 }

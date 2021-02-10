@@ -1,11 +1,11 @@
+This package allows storing constants in memory.
+
+
 Config.java
     
-    setup paths
+    setup paths  
     
-Constant
-    
-    
-use this for checking type
+use this for checking type in Constant.java
 
         String value;
         if (value.matches("[1-9][0-9]*")) {
@@ -17,3 +17,15 @@ use this for checking type
         } else {
             constant.setValue(value);
         }
+        
+public methods
+
+    ConstantsManager.restartSettings()
+    ConstantsManager.LinkedHashMap<Integer, String> initializeConstants()
+    ConstantsManager.printAll()
+    ConstantsManager.updateConstants()
+    
+    Constant.getId()
+    Constant.getValue()
+    Constant.setValue(Object value)  
+    

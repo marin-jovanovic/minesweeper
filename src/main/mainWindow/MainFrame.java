@@ -1,5 +1,6 @@
 package main.mainWindow;
 
+import main.constantModule.Config;
 import main.constantModule.Constant;
 import main.constantModule.ConstantsManager;
 import main.utils.eventDrivers.Event;
@@ -55,7 +56,7 @@ public class MainFrame extends JFrame {
 //            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getId(),
 //                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getHeight())));
 //
-            ConstantsManager.updateConstants();
+            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
 //            SettingsManager.saveSettings();
         }
 
@@ -88,7 +89,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("minesweeper");
 
-        ConstantsManager.updateConstants();
+        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
 //        ConstantsManager.refresh();
 
 //        int x = (int) Constant.LOCATION_X.getValue();

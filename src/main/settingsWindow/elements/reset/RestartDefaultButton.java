@@ -1,8 +1,9 @@
 package main.settingsWindow.elements.reset;
 
-import main.constantModule.SettingsManager;
+import main.constantModule.ConstantsManager;
 
 import javax.swing.*;
+import java.util.concurrent.TimeUnit;
 
 public class RestartDefaultButton extends JPanel {
     private final JButton jButton;
@@ -11,7 +12,23 @@ public class RestartDefaultButton extends JPanel {
 
     public RestartDefaultButton() {
         jButton = new JButton("restart to default settings");
-        jButton.addActionListener(e -> SettingsManager.restartSettings(this));
+        jButton.addActionListener(e ->
+        {
+            ConstantsManager.restartConstants();
+//            fixme
+//            ImageManager.restartAllImages();
+
+            new Thread(() -> {
+                this.setCheckerText("settings restarted");
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+                this.setCheckerText("");
+            }).start();
+
+        });
         add(jButton);
 
         checker = new JLabel();
@@ -23,6 +40,6 @@ public class RestartDefaultButton extends JPanel {
     }
 
     public void main(String[] args) {
-        SettingsManager.restartSettings();
+        ConstantsManager.restartConstants();
     }
 }

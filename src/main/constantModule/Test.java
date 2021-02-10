@@ -7,29 +7,24 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-/**
- * what needs to be tested?
- *
- *
-
- *
- *
- * SettingsManager
- *  restartSettings
- *
- * **************************************
- * what I want to make public
- *
- *
- *
- *
- */
-
-
 public class Test {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Test.TestWindow::new);
+        ConstantsManager.initializeConstants();
+
+        ConstantsManager.printAll();
+
+        if ((boolean) Constant.IS_ANY_SOUND_ACTIVE.getValue()) {
+            Constant.IS_ANY_SOUND_ACTIVE.setValue(false);
+        } else {
+            Constant.IS_ANY_SOUND_ACTIVE.setValue(true);
+        }
+
+        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+
+        ConstantsManager.restartConstants();
+
+//        SwingUtilities.invokeLater(Test.TestWindow::new);
     }
 
     private static class TestWindow extends JFrame {

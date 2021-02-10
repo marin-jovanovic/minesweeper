@@ -1,5 +1,6 @@
 package main.settingsWindow;
 
+import main.constantModule.Config;
 import main.constantModule.ConstantsManager;
 import main.mainWindow.MainFrame;
 import main.utils.eventDrivers.Command;
@@ -37,7 +38,7 @@ public class SettingsWindowListener implements WindowListener {
 
         ConstantsManager.printAll();
 
-        ConstantsManager.updateConstants();
+        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
 
 //        SettingsManager.saveSettings();
 
