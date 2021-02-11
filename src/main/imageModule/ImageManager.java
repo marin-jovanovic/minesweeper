@@ -3,14 +3,12 @@ package main.imageModule;
 import main.Loader;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -32,8 +30,8 @@ public class ImageManager {
 
         // todo write logic which copy from source to target and deletes target
 
-        Path sourcePath = (Path) Paths.get(new File(Config.getImagesSourcePath()).getAbsolutePath());
-        Path targetPath = (Path) Paths.get(new File(Config.getImagesDestinationPath()).getAbsolutePath());
+        Path sourcePath = Paths.get(new File(Config.getResizedImagesPath()).getAbsolutePath());
+        Path targetPath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
 //    private static class CopyFileVisitor extends SimpleFileVisitor<Path> implements FileVisitor<java.nio.file.Path> {
 //        private final Path targetPath;
 //        private Path sourcePath = null;
@@ -91,34 +89,38 @@ public class ImageManager {
     /**
      * resize, save, flush image
      *
-     * @param source gets image from source
+     * @param destinationImage gets image from source
      * @param image  from enum Image
      *               gets it path and updates image to that image
      */
-    public static void processNewImage(File source, Image image) {
+    public static void processNewImage(File destinationImage, File sourceImage, Image image) {
 
-        System.out.println(source.exists());
+        System.out.println(destinationImage);
+        System.out.println(sourceImage);
+        System.out.println(image);
 
-        String name = image.getPath();
+        System.out.println(new File(image.getPath()).exists());
 
-        File destination = new File(name);
+        System.out.println(image.getImageIcon());
+//        File destination = sourceImage;
 
-        resizeAndSaveImage(source, destination);
+//        resizeAndSaveImage(sourceImage, new File(image.getPath()));
+//        resizeAndSaveImage(destinationImage, destination);
 
+//        destinationImage
+//        File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file)))
         image.flushImageIcon();
-
 
     }
 
-    public static BufferedImage loadImage(String path){
+    public static ImageIcon loadImage(String path) {
         try {
-            return ImageIO.read(Loader.class.getResource(path));
+            return new ImageIcon(ImageIO.read(Loader.class.getResource(path)));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
+            return null;
         }
-        return null;
-
     }
 
     public static void resizeAllImagesInFolder(String source, String destination) {
@@ -134,9 +136,28 @@ public class ImageManager {
 //                extension
                 String format = path.toString().substring(path.toString().lastIndexOf('.') + 1);
 
-                if (Arrays.asList(Image.ORIGINAL_IMAGES_FORMATS_NAMES).contains(format)) {
-                    resizeAndSaveImage(String.valueOf(path), (destination + "/" + name + ".png"));
-                    System.out.println(destination + path.getFileName());
+                if (Arrays.asList(Config.getOriginalImagesFormatsNames()).contains(format)) {
+
+//                    resize and save
+                    try {
+                        BufferedImage originalImage = ImageIO.read(new File(String.valueOf(path)));
+
+                        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB :
+                                originalImage.getType();
+
+                        BufferedImage resizeImage = resizeImage(originalImage, type,
+                                Config.getPictureWidth(), Config.getPictureHeight());
+
+                        ImageIO.write(resizeImage, Config.getImagesFormatName(),
+                                new File(destination + File.separator + name +
+                                        Config.getDOT() + Config.getImagesFormatName()));
+
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                     System.out.println(destination + path.getFileName());
+
                 }
 
                 System.out.println();
@@ -146,38 +167,33 @@ public class ImageManager {
         }
     }
 
-    public static void resizeAndSaveImage(File source, File destination) {
+    private static void resizeAndSaveImage(File source, File destination) {
         try {
 
             BufferedImage originalImage = ImageIO.read(source);
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
-            BufferedImage resizeImage = resizeImage(originalImage, type,
-                    Image.PICTURE_WIDTH, Image.PICTURE_HEIGHT);
+            BufferedImage resizedImage = resizeImage(originalImage, type,
+                    Config.getPictureWidth(), Config.getPictureHeight());
 
-            ImageIO.write(resizeImage, Image.ImageConstants.getImagesFormatName(), destination);
-//            ImageIO.write(resizeImage, Image.IMAGES_FORMAT_NAME, destination);
+            System.out.println(destination.exists());
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void resizeAndSaveImage(String source, String destination) {
-        try {
-            BufferedImage originalImage = ImageIO.read(new File(source));
-            int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-
-            BufferedImage resizeImage = resizeImage(originalImage, type,
-                    Image.PICTURE_WIDTH, Image.PICTURE_HEIGHT);
-
-            ImageIO.write(resizeImage, Image.ImageConstants.getImagesFormatName(), new File(destination));
+            ImageIO.write(resizedImage, Config.getImagesFormatName(), destination);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * returns resized original image
+     *
+     * @param originalImage original
+     * @param type ex. .jpg
+     * @param IMG_WIDTH image width - resized (not original)
+     * @param IMG_HEIGHT image height - resized (not original)
+     * @return
+     */
     private static BufferedImage resizeImage(BufferedImage originalImage, int type,
                                              int IMG_WIDTH, int IMG_HEIGHT) {
         BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
@@ -188,6 +204,9 @@ public class ImageManager {
         return resizedImage;
     }
 
+    /**
+     * flushes all images in Image.java
+     */
     public static void flushAllImageIcons() {
 
         for (Image image : EnumSet.allOf(Image.class)) {

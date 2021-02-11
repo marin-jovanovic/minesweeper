@@ -17,27 +17,27 @@ public class ConstantsManager {
     /**
      * reads from constants.txt
      * sets constants values to values from constants instead of defined in this
-     *
+     * <p>
      * use this at the start of program to get latest constants
-     *
+     * <p>
      * handling errors:
-     *  if constants.txt is modified there is rollback mechanism
-     *  returns list of constants that could not be initialized from constants.txt
-     *
+     * if constants.txt is modified there is rollback mechanism
+     * returns list of constants that could not be initialized from constants.txt
+     * <p>
      * if file is empty:
-     *  use constants defined in this file
-     *
+     * use constants defined in this file
+     * <p>
      * if file contains modified line (two words, first word is not constant):
-     *  this constant uses preassigned value from this file
-     *
+     * this constant uses preassigned value from this file
+     * <p>
      * if file contains modified line (two words, second word wrong type):
-     *  this constant uses preassigned value from this file
-     *
+     * this constant uses preassigned value from this file
+     * <p>
      * if file contains modified line (two words, first word is not constant, second word wrong type):
-     *  this constant uses preassigned value from this file
-     *
+     * this constant uses preassigned value from this file
+     * <p>
      * if file contains modified line (no words (empty line), one word, multiple words):
-     *  this constant uses preassigned value from this file
+     * this constant uses preassigned value from this file
      */
     public static LinkedHashMap<Integer, String> initializeConstants() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
@@ -46,7 +46,7 @@ public class ConstantsManager {
 
         LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
-        if(!f.exists()){
+        if (!f.exists()) {
             try {
                 System.out.println("file does not exist");
                 f.createNewFile();
@@ -55,8 +55,7 @@ public class ConstantsManager {
             }
 
 
-
-        }else{
+        } else {
             System.out.println("File already exists");
 
             Constant[] backup_states = new Constant[Constant.getNumOfConstants()];
@@ -67,8 +66,8 @@ public class ConstantsManager {
                 backup_states[i++] = constant;
             }
 
-            try(FileReader fr = new FileReader(Config.getConstantsMemoryPath());
-                BufferedReader bw = new BufferedReader(fr)) {
+            try (FileReader fr = new FileReader(Config.getConstantsMemoryPath());
+                 BufferedReader bw = new BufferedReader(fr)) {
 
                 String line;
 
@@ -126,7 +125,6 @@ public class ConstantsManager {
                 }
 
 
-
             } catch (IOException e) {
                 System.out.println("IOException");
                 System.out.println(e.getMessage());
@@ -150,7 +148,6 @@ public class ConstantsManager {
         }
 
 
-
         error_log.forEach((key, value) -> System.out.println(key + ":" + value));
 
         return error_log;
@@ -160,10 +157,10 @@ public class ConstantsManager {
      * Assigns new value to constants if that can be done.
      * If that can not be done; appends new error to log and does not change value (it uses predefined value).
      *
-     * @param error_log (k, v) -> (index, error message)
-     * @param line line in .txt
-     * @param index index of constant
-     * @param constant current constant that we try to assign new value
+     * @param error_log          (k, v) -> (index, error message)
+     * @param line               line in .txt
+     * @param index              index of constant
+     * @param constant           current constant that we try to assign new value
      * @param errorMessagePrefix if line in .txt contains more than 2 tokens append message, else ""
      */
     private static void handleValue(LinkedHashMap<Integer, String> error_log, String line,
@@ -175,7 +172,7 @@ public class ConstantsManager {
             if (value.toString().matches("[1-9][0-9]*")) {
                 constant.setValue(Integer.parseInt(String.valueOf(value)));
 
-                if (! errorMessagePrefix.equals("")) {
+                if (!errorMessagePrefix.equals("")) {
                     error_log.put(index, errorMessagePrefix);
                 }
 
@@ -186,7 +183,7 @@ public class ConstantsManager {
         } else if (constant.getValue() instanceof Double) {
             if (value.toString().matches("[0-9]+\\.[0-9]+")) {
                 constant.setValue(Double.parseDouble(String.valueOf(value)));
-                if (! errorMessagePrefix.equals("")) {
+                if (!errorMessagePrefix.equals("")) {
                     error_log.put(index, errorMessagePrefix);
                 }
 
@@ -199,7 +196,7 @@ public class ConstantsManager {
             if (value.toString().equals("true") || value.toString().equals("false")) {
                 constant.setValue(Boolean.parseBoolean(String.valueOf(value)));
 
-                if (! errorMessagePrefix.equals("")) {
+                if (!errorMessagePrefix.equals("")) {
                     error_log.put(index, errorMessagePrefix);
                 }
 
@@ -211,7 +208,7 @@ public class ConstantsManager {
         } else if (constant.getValue() instanceof String) {
             constant.setValue(value);
 
-            if (! errorMessagePrefix.equals("")) {
+            if (!errorMessagePrefix.equals("")) {
                 error_log.put(index, errorMessagePrefix);
             }
 
@@ -237,15 +234,15 @@ public class ConstantsManager {
     /**
      * writes to path
      * writes constant values to constants.txt
-     *
+     * <p>
      * use this at the end of program to save new settings
      */
     public static void updateConstants(String path) {
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, false)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, false)))) {
 
-                for(Constant constant : EnumSet.allOf(Constant.class)) {
-                    out.println(constant.getId() + " " + constant.getValue());
-                }
+            for (Constant constant : EnumSet.allOf(Constant.class)) {
+                out.println(constant.getId() + " " + constant.getValue());
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -255,8 +252,6 @@ public class ConstantsManager {
 
     /**
      * sets to default constants
-     *
-     *
      */
     public static void restartConstants() {
         ArrayList<String> lines = new ArrayList<>();

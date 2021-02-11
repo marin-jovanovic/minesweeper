@@ -4,7 +4,6 @@ package main;
 
 import main.constantModule.Config;
 import main.constantModule.ConstantsManager;
-import main.imageModule.ImageManager;
 import main.mainWindow.MainFrame;
 
 import javax.swing.*;
@@ -21,9 +20,13 @@ public class Main {
 //    TODO time
 //    TODO gui style
 
+//    fixme
+//      when game is won right click operations are still enabled
+//      check what happens when game over
+
     //    FIXME
-//        1. when pressed "restart all settings" images in settings window are not restarted automatically
-//        2. fix position on screen of mainframe and settingswindow
+//          1. when pressed "restart all settings" images in settings window are not restarted automatically
+//          2. fix position on screen of mainframe and settingswindow
 
 
     public static void main(String[] args) {
@@ -49,8 +52,9 @@ public class Main {
 
             JButton oldRestartButton = new JButton();
 
-            oldRestartButton.setIcon(new ImageIcon(ImageManager.loadImage(
-                    "/main/resources/images/custom/opened_tiles/-1.png")));
+//            oldRestartButton.setIcon();
+//            oldRestartButton.setIcon(new ImageIcon(ImageManager.loadImage(
+//                    "/main/resources/images/custom/opened_tiles/-1.png")));
 
             add(oldRestartButton);
 

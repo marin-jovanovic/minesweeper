@@ -111,13 +111,15 @@ public class ImagePickerElement extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             log.append("Attaching file: " + file.getName() + "." + "\n");
-//            saves to buffer
+
+
+            //            saves to buffer
 
 
 //            sets right component image to new selected image
             File newImage = new File(file.getAbsolutePath());
 
-            ImageManager.processNewImage(newImage, this.image);
+            ImageManager.processNewImage(newImage, file, this.image);
 
 
             setImageLabel(this.image);

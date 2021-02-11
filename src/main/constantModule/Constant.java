@@ -30,7 +30,8 @@ public enum Constant {
             ConstantCounterManager.numOfConstants = numOfConstants;
         }
     }
-    private String id;
+
+    private final String id;
     private Object value;
 
     Constant(Object value) {
@@ -54,7 +55,7 @@ public enum Constant {
             type = "Double";
         } else if (value instanceof Boolean) {
             type = "Boolean";
-        } else if (value instanceof String){
+        } else if (value instanceof String) {
             type = "String";
         } else {
             type = "error";
@@ -84,7 +85,7 @@ public enum Constant {
             return Double.parseDouble(String.valueOf(value));
         } else if (value instanceof Boolean) {
             return Boolean.parseBoolean(String.valueOf(value));
-        } else if (value instanceof String){
+        } else if (value instanceof String) {
             return value;
         } else {
             System.out.println("error; getValue");
