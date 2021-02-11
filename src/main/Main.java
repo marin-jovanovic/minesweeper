@@ -9,7 +9,6 @@ import main.mainWindow.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Main {
@@ -45,11 +44,13 @@ public class Main {
             ConstantsManager.initializeConstants();
             ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
 
-            BufferedImage bi = ImageManager.loadImage("/main/resources/images/custom/opened_tiles/-1.png");
+//            BufferedImage bi = ImageManager.loadImage("/main/resources/images/resized_images/0.png");
+
 
             JButton oldRestartButton = new JButton();
 
-            oldRestartButton.setIcon(new ImageIcon(bi));
+            oldRestartButton.setIcon(new ImageIcon(ImageManager.loadImage(
+                    "/main/resources/images/custom/opened_tiles/-1.png")));
 
             add(oldRestartButton);
 

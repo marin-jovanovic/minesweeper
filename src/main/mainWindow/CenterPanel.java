@@ -27,9 +27,7 @@ public class CenterPanel extends JPanel {
     private int[][] table;
 
 
-    private final int[][] rightClickTable;
-
-//    used for right click actions
+    //    used for right click actions
 //    private JButton currentHoveredButton;
 
     //    if field with mine is opened game is over
@@ -52,7 +50,7 @@ public class CenterPanel extends JPanel {
 
         numOfCells = (Integer) Constant.NUMBER_OF_COLUMNS.getValue() * (Integer) Constant.NUMBER_OF_ROWS.getValue();
 
-        rightClickTable = new int[(int) Constant.NUMBER_OF_ROWS.getValue()][(int) Constant.NUMBER_OF_COLUMNS.getValue()];
+//        int[][] rightClickTable = new int[(int) Constant.NUMBER_OF_ROWS.getValue()][(int) Constant.NUMBER_OF_COLUMNS.getValue()];
 
         table = TableGenerator.getTable();
 
@@ -140,6 +138,8 @@ public class CenterPanel extends JPanel {
 
                             if (table[i][j] != 0) {
                                 openCell(i, j);
+
+//                                game over check
                                 if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
                                     System.out.println("game over");
                                     //                                          TODO halt time
@@ -192,38 +192,36 @@ public class CenterPanel extends JPanel {
             return;
         }
 
-
         if (!(Boolean) Constant.CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN.getValue()) {
-//            System.out.println(buttons[i][j].getIcon().toString());
-//            System.out.println(ClosedTileStatus.CLOSED_CELL.getImageIcon().toString());
-
             if (!buttons[i][j].getIcon().toString().equals(Image.CLOSED_CELL.getImageIcon().toString())) {
                 return;
             }
         }
 
+        System.out.println("opening cell");
 
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        Image openedTileStatus;
+        Image disabledIcon;
 
         switch (table[i][j]) {
-            case 0 -> openedTileStatus = Image.ZERO;
-            case 1 -> openedTileStatus = Image.ONE;
-            case 2 -> openedTileStatus = Image.TWO;
-            case 3 -> openedTileStatus = Image.THREE;
-            case 4 -> openedTileStatus = Image.FOUR;
-            case 5 -> openedTileStatus = Image.FIVE;
-            case 6 -> openedTileStatus = Image.SIX;
-            case 7 -> openedTileStatus = Image.SEVEN;
-            case 8 -> openedTileStatus = Image.EIGHT;
-            case -1 -> openedTileStatus = Image.MINE;
+            case 0 -> disabledIcon = Image.ZERO;
+            case 1 -> disabledIcon = Image.ONE;
+            case 2 -> disabledIcon = Image.TWO;
+            case 3 -> disabledIcon = Image.THREE;
+            case 4 -> disabledIcon = Image.FOUR;
+            case 5 -> disabledIcon = Image.FIVE;
+            case 6 -> disabledIcon = Image.SIX;
+            case 7 -> disabledIcon = Image.SEVEN;
+            case 8 -> disabledIcon = Image.EIGHT;
+            case -1 -> disabledIcon = Image.MINE;
             default -> throw new IndexOutOfBoundsException("error in parsing");
         }
 
-        buttons[i][j].setDisabledIcon(openedTileStatus.getImageIcon());
+        buttons[i][j].setDisabledIcon(disabledIcon.getImageIcon());
 
+        System.out.println("done opening cell");
     }
 
     //    opens all blank that are NEWS, ne, ns, ...,  of targeted cell

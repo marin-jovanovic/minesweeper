@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
     public static MainFrame mainFrame;
 
 
-    private class MainFrameWindowListener implements WindowListener {
+    private static class MainFrameWindowListener implements WindowListener {
 
         private final JFrame jFrame;
 
@@ -88,21 +88,14 @@ public class MainFrame extends JFrame {
         super("minesweeper");
 
         ConstantsManager.initializeConstants();
-//        ConstantsManager.refresh();
 
-//        int x = (int) Constant.LOCATION_X.getValue();
-//        int y = (Integer) Constant.LOCATION_Y.getValue();
-
-        setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
-//        setSize((int) Double.parseDouble(String.valueOf(Constant.WIDTH.getValue())),
-//                (int) Double.parseDouble((String.valueOf(Constant.HEIGHT.getValue()))));
         setLayout(new BorderLayout());
 
+        setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
+        setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
 
-        System.out.println("temp");
         System.out.println(this.getLocation());
 
         System.out.println(this.getX());
@@ -112,7 +105,6 @@ public class MainFrame extends JFrame {
 
 
         mainFrame = this;
-//        ConstantsManager.refresh();
 
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();

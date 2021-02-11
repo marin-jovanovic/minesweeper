@@ -42,6 +42,10 @@ import java.io.File;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+/**
+ * for choosing image
+ */
 public class ImagePickerElement extends JPanel {
     private final JTextArea log;
     private JFileChooser fc;
@@ -54,7 +58,8 @@ public class ImagePickerElement extends JPanel {
     public ImagePickerElement(Image image) {
         this.image = image;
 
-        this.jText = image.getJText();
+        this.jText = "todo jtext";
+//        this.jText = image.getJText();
 
         setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
