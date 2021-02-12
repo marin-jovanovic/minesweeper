@@ -84,10 +84,13 @@ public class ImagePickerElement extends JPanel {
 
     private void setImageLabel(Image image) {
 //String filename
-
         imageLabel.setIcon(image.getImageIcon());
 
-//        imageLabel.setIcon(new ImageIcon(
+//        imageLabel.repaint();
+//        imageLabel.setIcon(image.getImageIcon());
+////        imageLabel.paint(image.getImageIcon());
+//        imageLabel.repaint();
+////        imageLabel.setIcon(new ImageIcon(
 //                                        new ImageIcon(fileName)
 //                                                .getImage()
 //                                                .getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH)

@@ -32,7 +32,7 @@ public enum Image {
 //    private final File pathAsFile;
     private final String path;
     private ImageIcon imageIcon;
-    private File fullPath;
+    private final File fullPath;
 
     public void setImageIcon(ImageIcon imageIcon) {
         this.imageIcon = imageIcon;
@@ -68,8 +68,9 @@ public enum Image {
 //        this.imageIcon = ImageManager.loadImage(this.path);
 
         try {
+
             this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-                Config.getReducedResizedImagesPath() + Config.getBackslash() +
+                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
                 folder + Config.getBackslash() +
                 name + Config.getDOT() + Config.getImagesFormatName())));
 
