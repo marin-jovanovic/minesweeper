@@ -1,9 +1,13 @@
 package main.imageModule;
 
-import java.io.File;
-
 //fixme prev values did not have file.separator at end
 public class Config {
+
+    private static final String backslash = "/";
+
+    public static String getBackslash() {
+        return backslash;
+    }
 
     //    formats in which images will be loaded
     private static final String[] ORIGINAL_IMAGES_FORMATS_NAMES = {"png", "jpg"};
@@ -16,12 +20,25 @@ public class Config {
     private static final String IMAGES_FORMAT_NAME = "png";
 
     private static final String RESIZED_IMAGES_PATH =
-        "resources" + File.separator +
-        "images" + File.separator +
+            "src" + backslash +
+               "main" + backslash +
+        "resources" + backslash +
+        "images" + backslash +
         "resized_images";
+
+    private static final String REDUCED_RESIZED_IMAGES_PATH =
+
+                    "resources" + backslash +
+                    "images" + backslash +
+                    "resized_images";
+
+    public static String getReducedResizedImagesPath() {
+        return REDUCED_RESIZED_IMAGES_PATH;
+    }
+
     private static final String ORIGINAL_IMAGES_PATH =
-        "resources" + File.separator +
-        "images" + File.separator +
+        "resources" + backslash +
+        "images" + backslash +
         "custom";
 
     private static final int PICTURE_WIDTH = 50;

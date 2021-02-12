@@ -109,6 +109,8 @@ public class ImagePickerElement extends JPanel {
 
         //Process the results.
         if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+//            source
             File file = fc.getSelectedFile();
             log.append("Attaching file: " + file.getName() + "." + "\n");
 
@@ -119,8 +121,16 @@ public class ImagePickerElement extends JPanel {
 //            sets right component image to new selected image
             File newImage = new File(file.getAbsolutePath());
 
-            ImageManager.processNewImage(newImage, file, this.image);
 
+            File destination = new File(new File(this.image.getPath()).getAbsolutePath());
+
+//            System.out.println(new File(new File(this.image.getPath()).getAbsolutePath()));
+
+            ImageManager.processNewImage(destination, file, this.image);
+            System.out.println(this.image.getFullPath());
+            System.out.println(this.image.getPath());
+
+            System.out.println(new File(this.image.getPath()).exists());
 
             setImageLabel(this.image);
 //

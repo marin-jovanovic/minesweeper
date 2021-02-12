@@ -86,6 +86,8 @@ public class ImageManager {
         flushAllImageIcons();
     }
 
+    private static int imageCounter = 0;
+
     /**
      * resize, save, flush image
      *
@@ -95,24 +97,108 @@ public class ImageManager {
      */
     public static void processNewImage(File destinationImage, File sourceImage, Image image) {
 
+
+
+
         System.out.println(destinationImage);
         System.out.println(sourceImage);
-        System.out.println(image);
+//        System.out.println(image);
+        System.out.println("_--");
 
+
+// make temp location
+
+        File tempFile = new File(Config.getResizedImagesPath() + Config.getBackslash() + "temp");
+
+//        todo cleanup at end
+        if (! tempFile.exists()) {
+            tempFile.mkdir();
+        }
+
+        resizeAndSaveImage(sourceImage, new File(Config.getResizedImagesPath() +
+                Config.getBackslash() + "temp"
+        + Config.getBackslash() + String.valueOf(imageCounter) + Config.getDOT() + Config.getImagesFormatName()));
+
+
+        System.out.println(imageCounter);
+        System.out.println(new File(image.getPath()));
         System.out.println(new File(image.getPath()).exists());
 
-        System.out.println(image.getImageIcon());
-//        File destination = sourceImage;
+        System.out.println(new File(Config.getResizedImagesPath() +
+                Config.getBackslash() + "temp"
+                + Config.getBackslash() + (imageCounter++) + Config.getDOT() + Config.getImagesFormatName()));
 
-//        resizeAndSaveImage(sourceImage, new File(image.getPath()));
-//        resizeAndSaveImage(destinationImage, destination);
+        System.out.println(new File(
+                Config.getResizedImagesPath() + Config.getBackslash() +
+                        "temp" + Config.getBackslash() +
+                        (imageCounter-1) + Config.getDOT() + Config.getImagesFormatName()
+                ).exists());
 
-//        destinationImage
-//        File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file)))
-        image.flushImageIcon();
+        System.out.println(new File(
+                Config.getReducedResizedImagesPath() + Config.getBackslash() +
+                        "temp" + Config.getBackslash() +
+                        (imageCounter-1) + Config.getDOT() + Config.getImagesFormatName()
+        ).exists());
+
+        try {
+//            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+//                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
+//                            "temp" + Config.getBackslash() +
+//                            "0" + Config.getDOT() + Config.getImagesFormatName()
+//            )));
+            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+                    String.valueOf(sourceImage)
+            )));
+//            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+//                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
+//                            "temp" + Config.getBackslash() +
+//                            (imageCounter-1) + Config.getDOT() + Config.getImagesFormatName()
+//            )));
+            image.setImageIcon(imageIcon);
+            System.out.println(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        imageCounter--;
+
+//        try {
+//            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+//                    Config.getResizedImagesPath() + Config.getBackslash() +
+//                            "temp" + Config.getBackslash() +
+//                            (imageCounter-1) + Config.getDOT() + Config.getImagesFormatName()
+//            )));
+//            image.setImageIcon(imageIcon);
+//            System.out.println("2");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            System.exit(-1);
+//        }
+//        imageCounter++;
+
+//
+//
+////        System.out.println(new File(image.getPath()).exists());
+//
+//        System.out.println(image.getImageIcon());
+////        File destination = sourceImage;
+//
+//        resizeAndSaveImage(sourceImage, destinationImage);
+////        resizeAndSaveImage(sourceImage, new File(image.getPath()));
+////        resizeAndSaveImage(destinationImage, destination);
+//
+////        destinationImage
+////        File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file)))
+//        image.flushImageIcon();
 
     }
 
+    /**
+     * returns new image icon for given path
+     * @param path
+     * @return
+     */
     public static ImageIcon loadImage(String path) {
         try {
             return new ImageIcon(ImageIO.read(Loader.class.getResource(path)));
@@ -149,7 +235,7 @@ public class ImageManager {
                                 Config.getPictureWidth(), Config.getPictureHeight());
 
                         ImageIO.write(resizeImage, Config.getImagesFormatName(),
-                                new File(destination + File.separator + name +
+                                new File(destination + Config.getBackslash() + name +
                                         Config.getDOT() + Config.getImagesFormatName()));
 
                     } catch (IOException e) {

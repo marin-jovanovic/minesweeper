@@ -32,28 +32,56 @@ public enum Image {
 //    private final File pathAsFile;
     private final String path;
     private ImageIcon imageIcon;
+    private File fullPath;
+
+    public void setImageIcon(ImageIcon imageIcon) {
+        this.imageIcon = imageIcon;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public File getFullPath() {
+        return fullPath;
+    }
+
+    String t;
 
     Image(String folder, String name) {
         this.path =
-            Config.getOriginalImagesPath() + File.separator +
-            folder + File.separator +
+            Config.getResizedImagesPath() + Config.getBackslash() +
+            folder + Config.getBackslash() +
             name + Config.getDOT() + Config.getImagesFormatName();
+
+        t =  Config.getBackslash() +
+                folder + Config.getBackslash() +
+                name + Config.getDOT() + Config.getImagesFormatName();
+
+        System.out.println(new File(this.path).getAbsolutePath());
+
+//        both return true
+        System.out.println(new File(new File(this.path).getAbsolutePath()).exists());
+        System.out.println(new File(this.path).exists());
 
 //        this is slower, do not know why
 //        this.imageIcon = ImageManager.loadImage(this.path);
 
         try {
-            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(this.path)));
-            System.out.println(Loader.class.getResource(this.path));
-            System.out.println(ImageIO.read(Loader.class.getResource(this.path)));
+            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+                Config.getReducedResizedImagesPath() + Config.getBackslash() +
+                folder + Config.getBackslash() +
+                name + Config.getDOT() + Config.getImagesFormatName())));
+
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
         }
-    }
 
-    public String getPath() {
-        return path;
+        fullPath = new File(this.path).getAbsoluteFile();
+
+        System.out.println();
+
     }
 
     public ImageIcon getImageIcon() {
@@ -61,7 +89,28 @@ public enum Image {
     }
 
     public void flushImageIcon() {
+//        this.imageIcon = new ImageIcon(getClass().getResource(this.path));
         new ImageIcon(path).getImage().flush();
+        try {
+            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+                    Config.getReducedResizedImagesPath() + t)));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        new ImageIcon(path).getImage().flush();
+        try {
+            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+                    Config.getReducedResizedImagesPath() + t)));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+//        this.imageIcon.paintIcon();
+
     }
 
     @Override
