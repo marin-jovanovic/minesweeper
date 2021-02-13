@@ -20,37 +20,37 @@ public class Config {
     private static final String IMAGES_FORMAT_NAME = "png";
 
     private static final String RESIZED_IMAGES_PATH =
-            "src" + backslash +
-               "main" + backslash +
+        "src" + backslash +
+        "main" + backslash +
         "resources" + backslash +
         "images" + backslash +
         "resized_images";
 
     private static final String REDUCED_RESIZED_IMAGES_PATH =
+        "resources" + backslash +
+        "images" + backslash +
+        "resized_images";
 
-                    "resources" + backslash +
-                    "images" + backslash +
-                    "resized_images";
+
+//    private static final String ORIGINAL_IMAGES_PATH =
+//        "resources" + backslash +
+//        "images" + backslash +
+//        "custom";
+
+    private static final int PICTURE_WIDTH = 50;
+    private static final int PICTURE_HEIGHT = 50;
 
     public static String getReducedResizedImagesPath() {
         return REDUCED_RESIZED_IMAGES_PATH;
     }
 
-    private static final String ORIGINAL_IMAGES_PATH =
-        "resources" + backslash +
-        "images" + backslash +
-        "custom";
-
-    private static final int PICTURE_WIDTH = 50;
-    private static final int PICTURE_HEIGHT = 50;
-
     public static String getResizedImagesPath() {
         return RESIZED_IMAGES_PATH;
     }
 
-    public static String getOriginalImagesPath() {
-        return ORIGINAL_IMAGES_PATH;
-    }
+//    public static String getOriginalImagesPath() {
+//        return ORIGINAL_IMAGES_PATH;
+//    }
 
     public static String getImagesFormatName() {
         return IMAGES_FORMAT_NAME;

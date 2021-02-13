@@ -31,7 +31,7 @@ public class ImageManager {
         // todo write logic which copy from source to target and deletes target
 
         Path sourcePath = Paths.get(new File(Config.getResizedImagesPath()).getAbsolutePath());
-        Path targetPath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
+//        Path targetPath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
 //    private static class CopyFileVisitor extends SimpleFileVisitor<Path> implements FileVisitor<java.nio.file.Path> {
 //        private final Path targetPath;
 //        private Path sourcePath = null;
@@ -86,7 +86,6 @@ public class ImageManager {
         flushAllImageIcons();
     }
 
-    private static int imageCounter = 0;
 
     /**
      * resize, save, flush image
@@ -97,97 +96,22 @@ public class ImageManager {
      */
     public static void processNewImage(File destinationImage, File sourceImage, Image image) {
 
-
-
-
-        System.out.println(destinationImage);
-        System.out.println(sourceImage);
-//        System.out.println(image);
-        System.out.println("_--");
-
-
-// make temp location
-
-        File tempFile = new File(Config.getResizedImagesPath() + Config.getBackslash() + "temp");
-
-//        todo cleanup at end
-        if (! tempFile.exists()) {
-            tempFile.mkdir();
-        }
-
-        resizeAndSaveImage(sourceImage, new File(Config.getResizedImagesPath() +
-                Config.getBackslash() + "temp"
-        + Config.getBackslash() + imageCounter + Config.getDOT() + Config.getImagesFormatName()));
-
         resizeAndSaveImage(sourceImage, destinationImage);
-
-        System.out.println(new File(sourceImage.getAbsolutePath()));
-        System.out.println(new File(sourceImage.getAbsolutePath()).exists());
 
 
         try {
-            image.setImageIcon(new ImageIcon(ImageIO.read(new File(sourceImage.getAbsolutePath()))));
+            BufferedImage originalImage = ImageIO.read(new File(sourceImage.getAbsolutePath()));
+            int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+            BufferedImage resizedImage = resizeImage(originalImage, type,
+                    Config.getPictureWidth(), Config.getPictureHeight());
 
-//            image.setImageIcon(new ImageIcon(ImageIO.read(System.class.getResource(sourceImage.getAbsolutePath()))));
+            image.setImageIcon(new ImageIcon(resizedImage));
+
+
+//            image.setImageIcon(new ImageIcon(ImageIO.read(new File(sourceImage.getAbsolutePath()))));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        image.setImageIcon(new ImageIcon(System.class.getResource(sourceImage.getAbsolutePath())));
-//        image.setImageIcon(new ImageIcon());
-//        try {
-//
-//
-////            image.setImageIcon(new ImageIcon(ImageIO.read(System.
-////                    class.getResource(sourceImage.getAbsolutePath()))));
-////
-////            image.setImageIcon(new ImageIcon(ImageIO.read(Loader.
-////                    class.getResource("/C:/Users/PC/Desktop/tic-tac-toe/playAgain.png"))));
-////            image.setImageIcon(new ImageIcon(ImageIO.read(Loader.class.getResource(
-////                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
-////                            "button" + Config.getBackslash() +
-////                            "victory.png"
-////            ))));
-////
-////            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-////                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
-////                            "button" + Config.getBackslash() +
-////                            "victory.png"
-////            )));
-//////            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-//////                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
-//////                            "temp" + Config.getBackslash() +
-//////                            "0" + Config.getDOT() + Config.getImagesFormatName()
-//////            )));
-//////            ImageIcon imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-//////                    String.valueOf(sourceImage)
-//////            )));
-//////            image.setImageIcon(imageIcon);
-////            imageIcon.getImage().flush();
-//////            image.setImageIcon(null);
-////            image.getImageIcon().getImage().flush();
-////            image.flushImageIcon();
-////
-////            image.setImageIcon(null);
-////            image.setImageIcon(imageIcon);
-////
-////
-//////            image.setImageIcon(new ImageIcon(ImageIO.read(Loader.class.getResource(
-//////                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
-//////                            "button" + Config.getBackslash() +
-//////                            "victory.png"
-//////            ))));
-////
-////
-////
-////            System.out.println(1);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.exit(-1);
-//        }
-
-
-        imageCounter++;
 
 //        image.flushImageIcon();
 
