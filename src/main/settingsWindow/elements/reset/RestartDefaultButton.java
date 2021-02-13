@@ -1,6 +1,7 @@
 package main.settingsWindow.elements.reset;
 
 import main.constantModule.ConstantsManager;
+import main.imagesModule.ImageManager;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +16,7 @@ public class RestartDefaultButton extends JPanel {
         jButton.addActionListener(e ->
         {
             ConstantsManager.restartConstants();
-//            fixme
+            ImageManager.restartAllImages();
 //            ImageManager.restartAllImages();
 
             new Thread(() -> {

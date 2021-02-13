@@ -17,9 +17,8 @@ import java.util.stream.Stream;
 public class ImageManager {
 
     public static void main(String[] args) {
-        String a = "time";
 
-        restartAllImages();
+//        restartAllImages();
 
 //        ImageManager.resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
 //                "src/main/resources/images/resized_images/" + a);
@@ -30,64 +29,20 @@ public class ImageManager {
 
     public static void restartAllImages() {
 
-        // todo write logic which copy from source to target and deletes target
+        Path targetPath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
 
-        Path sourcePath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
-        Path targetPath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
+        Path sourcePath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
 
         System.out.println(sourcePath);
         System.out.println(targetPath);
 
-//    private static class CopyFileVisitor extends SimpleFileVisitor<Path> implements FileVisitor<java.nio.file.Path> {
-//        private final Path targetPath;
-//        private Path sourcePath = null;
-//
-//        public CopyFileVisitor(Path targetPath) {
-//            this.targetPath = targetPath;
-//        }
-//
-//        @Override
-//        public FileVisitResult preVisitDirectory(final Path dir,
-//                                                 final BasicFileAttributes attrs) throws IOException {
-//            if (sourcePath == null) {
-//                sourcePath = dir;
-//            }
-//            System.out.println();
-//            System.out.println(dir);
-//
-//
-////            else {
-////                Files.createDirectories(targetPath.resolve(sourcePath
-////                        .relativize(dir)));
-////            }
-//            return FileVisitResult.CONTINUE;
-//        }
-//
-//        @Override
-//        public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) {
-//
-//            System.out.println(file);
-//
-//            File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
-//
-//            System.out.println("** " + myObj);
-//            if (myObj.delete()) {
-//                System.out.println("Deleted the file: " + myObj.getName());
-//            } else {
-//                System.out.println("Failed to delete the file.");
-//            }
-////
-//            Files.copy(file, targetPath.resolve(sourcePath.relativize(file)));
-//            return FileVisitResult.CONTINUE;
-//        }
-//    }
+        try {
+            Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-//        try {
-//            Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
+//        fixme
 //        flush all images
 //        flushAllImageIcons();
     }
@@ -184,6 +139,10 @@ public class ImageManager {
         return resizedImage;
     }
 
+    /**
+     * used for restarting images
+     * copy from original to custom
+     */
     private static class CopyFileVisitor extends SimpleFileVisitor<Path> {
         private final Path targetPath;
         private Path sourcePath = null;
@@ -194,41 +153,36 @@ public class ImageManager {
 
         @Override
         public FileVisitResult preVisitDirectory(final Path dir,
-                                                 final BasicFileAttributes attrs) throws IOException {
+                                                 final BasicFileAttributes attrs) {
             if (sourcePath == null) {
                 sourcePath = dir;
             }
             System.out.println();
             System.out.println(dir);
 
-
-//            else {
-//                Files.createDirectories(targetPath.resolve(sourcePath
-//                        .relativize(dir)));
-//            }
             return FileVisitResult.CONTINUE;
         }
 
         @Override
         public FileVisitResult visitFile(final Path file,
                                          final BasicFileAttributes attrs) throws IOException {
-//              fixme
-//            System.out.println(file);
-//
-//            File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
-//
-//
-//            System.out.println("** " + myObj);
-//            if (myObj.delete()) {
-//                System.out.println("Deleted the file: " + myObj.getName());
-//            } else {
-//                System.out.println("Failed to delete the file.");
-//            }
-////
-//
-//            Files.copy(file,
-//                    targetPath.resolve(sourcePath.relativize(file)));
+
+            System.out.println(file);
+
+            File myObj = new File(String.valueOf(targetPath.resolve(sourcePath.relativize(file))));
+
+            System.out.println("** " + myObj);
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+
+            Files.copy(file,
+                    targetPath.resolve(sourcePath.relativize(file)));
             return FileVisitResult.CONTINUE;
         }
     }
+
+
 }
