@@ -1,4 +1,4 @@
-package main.imageModule;
+package main.imagesModule;
 
 import main.Loader;
 
@@ -50,7 +50,7 @@ public enum Image {
 
     Image(String folder, String name) {
         this.path =
-            Config.getResizedImagesPath() + Config.getBackslash() +
+            Config.getCustomImagesPath() + Config.getBackslash() +
             folder + Config.getBackslash() +
             name + Config.getDOT() + Config.getImagesFormatName();
 
@@ -70,7 +70,7 @@ public enum Image {
         try {
 
             this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-                    Config.getReducedResizedImagesPath() + Config.getBackslash() +
+                    Config.getReducedCustomImagesPath() + Config.getBackslash() +
                 folder + Config.getBackslash() +
                 name + Config.getDOT() + Config.getImagesFormatName())));
 
@@ -94,7 +94,7 @@ public enum Image {
         new ImageIcon(path).getImage().flush();
         try {
             this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-                    Config.getReducedResizedImagesPath() + t)));
+                    Config.getReducedCustomImagesPath() + t)));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,7 +103,7 @@ public enum Image {
         new ImageIcon(path).getImage().flush();
         try {
             this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-                    Config.getReducedResizedImagesPath() + t)));
+                    Config.getReducedCustomImagesPath() + t)));
 
         } catch (IOException e) {
             e.printStackTrace();

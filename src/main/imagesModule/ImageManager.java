@@ -1,6 +1,4 @@
-package main.imageModule;
-
-import main.Loader;
+package main.imagesModule;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,16 +9,20 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.stream.Stream;
 
+
+//            image.flushImageIcon();
+//            image.getImageIcon().getImage().flush();
 public class ImageManager {
 
     public static void main(String[] args) {
         String a = "time";
 
-        ImageManager.resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
-                "src/main/resources/images/resized_images/" + a);
+        restartAllImages();
+
+//        ImageManager.resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
+//                "src/main/resources/images/resized_images/" + a);
 
 //        resizeAndSaveImage("src/main/resources/original_images/time/0.png",
 //                "src/main/resources/resized_images/slika.png");
@@ -30,8 +32,12 @@ public class ImageManager {
 
         // todo write logic which copy from source to target and deletes target
 
-        Path sourcePath = Paths.get(new File(Config.getResizedImagesPath()).getAbsolutePath());
-//        Path targetPath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
+        Path sourcePath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
+        Path targetPath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
+
+        System.out.println(sourcePath);
+        System.out.println(targetPath);
+
 //    private static class CopyFileVisitor extends SimpleFileVisitor<Path> implements FileVisitor<java.nio.file.Path> {
 //        private final Path targetPath;
 //        private Path sourcePath = null;
@@ -83,7 +89,7 @@ public class ImageManager {
 //        }
 
 //        flush all images
-        flushAllImageIcons();
+//        flushAllImageIcons();
     }
 
 
@@ -96,40 +102,23 @@ public class ImageManager {
      */
     public static void processNewImage(File destinationImage, File sourceImage, Image image) {
 
-        resizeAndSaveImage(sourceImage, destinationImage);
-
-
         try {
-            BufferedImage originalImage = ImageIO.read(new File(sourceImage.getAbsolutePath()));
+
+            BufferedImage originalImage = ImageIO.read(sourceImage);
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
             BufferedImage resizedImage = resizeImage(originalImage, type,
                     Config.getPictureWidth(), Config.getPictureHeight());
 
+            System.out.println(destinationImage.exists());
             image.setImageIcon(new ImageIcon(resizedImage));
 
+            ImageIO.write(resizedImage, Config.getImagesFormatName(), destinationImage);
 
-//            image.setImageIcon(new ImageIcon(ImageIO.read(new File(sourceImage.getAbsolutePath()))));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
-//        image.flushImageIcon();
-
-    }
-
-    /**
-     * returns new image icon for given path
-     * @param path
-     * @return
-     */
-    public static ImageIcon loadImage(String path) {
-        try {
-            return new ImageIcon(ImageIO.read(Loader.class.getResource(path)));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-            return null;
-        }
     }
 
     public static void resizeAllImagesInFolder(String source, String destination) {
@@ -176,24 +165,6 @@ public class ImageManager {
         }
     }
 
-    private static void resizeAndSaveImage(File source, File destination) {
-        try {
-
-            BufferedImage originalImage = ImageIO.read(source);
-            int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-
-            BufferedImage resizedImage = resizeImage(originalImage, type,
-                    Config.getPictureWidth(), Config.getPictureHeight());
-
-            System.out.println(destination.exists());
-
-            ImageIO.write(resizedImage, Config.getImagesFormatName(), destination);
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     /**
      * returns resized original image
      *
@@ -211,20 +182,6 @@ public class ImageManager {
         g.dispose();
 
         return resizedImage;
-    }
-
-    /**
-     * flushes all images in Image.java
-     */
-    public static void flushAllImageIcons() {
-
-        for (Image image : EnumSet.allOf(Image.class)) {
-            image.flushImageIcon();
-//            image.getImageIcon().getImage().flush();
-        }
-
-        System.out.println("flushed all images");
-
     }
 
     private static class CopyFileVisitor extends SimpleFileVisitor<Path> {

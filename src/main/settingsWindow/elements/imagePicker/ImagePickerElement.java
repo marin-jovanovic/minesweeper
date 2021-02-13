@@ -1,7 +1,7 @@
 package main.settingsWindow.elements.imagePicker;
 
-import main.imageModule.Image;
-import main.imageModule.ImageManager;
+import main.imagesModule.Image;
+import main.imagesModule.ImageManager;
 import main.settingsWindow.elements.imagePicker.driver.ImageFileView;
 import main.settingsWindow.elements.imagePicker.driver.ImageFilter;
 import main.settingsWindow.elements.imagePicker.driver.ImagePreview;

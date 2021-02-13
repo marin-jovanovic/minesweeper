@@ -1,7 +1,7 @@
 package main.mainWindow;
 
 import main.constantModule.Constant;
-import main.imageModule.Image;
+import main.imagesModule.Image;
 import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
