@@ -1,4 +1,4 @@
-package main.utils.soundDrivers;
+package main.soundsModule;
 
 // TODO adding sounds
 //    TODO ability to add new sounds
@@ -17,7 +17,22 @@ public enum Sound {
     private static final List<Sound> VALUES = List.of(values());
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
-    private static final String defaultPath = "src/main/resources/sounds/defeat_sounds/";
+    private static final String separator = "/";
+    private static final String defaultPath = "src" + separator +
+            "main" + separator +
+            "resources" + separator +
+            "sounds" + separator +
+            "defeat_sounds" + separator;
+
+    private static final String REDUCED_DEFAULT_PATH = "resources" + separator +
+            "sounds" + separator +
+            "defeat_sounds" + separator;
+
+    public String getReducedDefaultPath() {
+        return REDUCED_DEFAULT_PATH + path + end;
+    }
+
+    //    private static final String defaultPath = "src/main/resources/sounds/defeat_sounds/";
     private static final String end = ".wav";
     private static Sound current = getRandomSound();
 
@@ -45,8 +60,7 @@ public enum Sound {
         return next;
     }
 
-
-    private static boolean is_sound_active = false;
+    private static boolean is_sound_active = true;
 
     public static boolean getIsSoundActive() {
         return is_sound_active;

@@ -1,4 +1,6 @@
-package main.utils.soundDrivers;
+package main.soundsModule;
+
+import main.Main;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -12,6 +14,16 @@ public class SoundDrivers {
     }
 
 
+    public static Clip LoadSound(String direction){
+        try{
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(SoundDrivers.class.getResource(direction)));
+            return clip;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static void playGameOverSound() {
         if (Sound.getIsSoundActive()) {
@@ -25,7 +37,6 @@ public class SoundDrivers {
     public static void playClip(Sound sound) {
         System.out.println("sound playing");
 
-        File clipFile = new File(sound.getPath());
 
         class AudioListener implements LineListener {
             private boolean done = false;
@@ -53,8 +64,14 @@ public class SoundDrivers {
         AudioListener listener = new AudioListener();
         AudioInputStream audioInputStream = null;
 
+        File clipFile = new File(sound.getPath());
+
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(clipFile);
+//            audioInputStream = AudioSystem.getAudioInputStream(clipFile);
+
+            System.out.println();
+
+            audioInputStream = AudioSystem.getAudioInputStream(Main.class.getResource(sound.getReducedDefaultPath()));
 
             Clip clip = AudioSystem.getClip();
             clip.addLineListener(listener);

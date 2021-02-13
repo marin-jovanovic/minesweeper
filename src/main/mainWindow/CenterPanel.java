@@ -6,7 +6,7 @@ import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
-import main.utils.soundDrivers.SoundDrivers;
+import main.soundsModule.SoundDrivers;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;

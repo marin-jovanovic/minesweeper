@@ -48,7 +48,6 @@ public class ConstantsManager {
 
         if (!f.exists()) {
             try {
-                System.out.println("file does not exist");
                 f.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -56,7 +55,6 @@ public class ConstantsManager {
 
 
         } else {
-            System.out.println("File already exists");
 
             Constant[] backup_states = new Constant[Constant.getNumOfConstants()];
 
@@ -74,7 +72,6 @@ public class ConstantsManager {
 //            which token is being processed
                 int index = 0;
                 for (Constant constant : EnumSet.allOf(Constant.class)) {
-                    System.out.println(constant);
 /*
 
                   constants.txt contains less lines than sum of constants is
@@ -118,9 +115,6 @@ public class ConstantsManager {
                         handleValue(error_log, line, index, constant, "");
 
                     }
-
-                    System.out.println(constant);
-                    System.out.println();
 
                 }
 

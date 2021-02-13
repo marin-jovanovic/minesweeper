@@ -1,10 +1,9 @@
 package main.imagesModule;
 
-import main.Loader;
+import main.Main;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.EnumSet;
 
@@ -40,19 +39,17 @@ public enum Image {
                         folder + Config.getBackslash() +
                         name + Config.getDOT() + Config.getImagesFormatName();
 
-        System.out.println(new File(this.path).getAbsolutePath());
-
 //        this is slower, do not know why
 //        this.imageIcon = ImageManager.loadImage(this.path);
 
         try {
 
-            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+            this.imageIcon = new ImageIcon(ImageIO.read(Main.class.getResource(
                     Config.getReducedCustomImagesPath() + Config.getBackslash() +
                             folder + Config.getBackslash() +
                             name + Config.getDOT() + Config.getImagesFormatName())));
 
-            defaultImageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+            defaultImageIcon = new ImageIcon(ImageIO.read(Main.class.getResource(
                     Config.getReducedOriginalImagesPath() + Config.getBackslash() +
                             folder + Config.getBackslash() +
                             name + Config.getDOT() + Config.getImagesFormatName())));
@@ -61,8 +58,6 @@ public enum Image {
             e.printStackTrace();
             System.exit(-1);
         }
-
-        System.out.println();
 
     }
 

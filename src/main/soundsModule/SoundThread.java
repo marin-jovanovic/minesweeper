@@ -1,4 +1,4 @@
-package main.utils.soundDrivers;
+package main.soundsModule;
 
 public class SoundThread extends Thread {
 
