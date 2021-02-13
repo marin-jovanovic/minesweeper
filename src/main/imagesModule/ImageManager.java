@@ -8,8 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.EnumSet;
 
 
 //            image.flushImageIcon();
@@ -18,8 +17,6 @@ public class ImageManager {
 
     public static void main(String[] args) {
 
-//        restartAllImages();
-
 //        ImageManager.resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
 //                "src/main/resources/images/resized_images/" + a);
 
@@ -27,6 +24,10 @@ public class ImageManager {
 //                "src/main/resources/resized_images/slika.png");
     }
 
+    /**
+     * copy all from source to target path
+     *
+     */
     public static void restartAllImages() {
 
         Path targetPath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
@@ -42,18 +43,19 @@ public class ImageManager {
             e.printStackTrace();
         }
 
-//        fixme
-//        flush all images
-//        flushAllImageIcons();
-    }
 
+        for (Image image : EnumSet.allOf(Image.class)) {
+            image.flushToDefaultImage();
+        }
+
+    }
 
     /**
      * resize, save, flush image
      *
      * @param destinationImage gets image from source
-     * @param image  from enum Image
-     *               gets it path and updates image to that image
+     * @param image            from enum Image
+     *                         gets it path and updates image to that image
      */
     public static void processNewImage(File destinationImage, File sourceImage, Image image) {
 
@@ -76,57 +78,13 @@ public class ImageManager {
 
     }
 
-    public static void resizeAllImagesInFolder(String source, String destination) {
-        try (Stream<java.nio.file.Path> paths = Files.walk(Paths.get(source))) {
-            paths.forEach(path -> {
-                System.out.println(path);
-                System.out.println(path.getFileName());
-
-
-                String name = (path.getFileName()).toString().replaceFirst("[.][^.]+$", "");
-                System.out.println(name);
-
-//                extension
-                String format = path.toString().substring(path.toString().lastIndexOf('.') + 1);
-
-                if (Arrays.asList(Config.getOriginalImagesFormatsNames()).contains(format)) {
-
-//                    resize and save
-                    try {
-                        BufferedImage originalImage = ImageIO.read(new File(String.valueOf(path)));
-
-                        int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB :
-                                originalImage.getType();
-
-                        BufferedImage resizeImage = resizeImage(originalImage, type,
-                                Config.getPictureWidth(), Config.getPictureHeight());
-
-                        ImageIO.write(resizeImage, Config.getImagesFormatName(),
-                                new File(destination + Config.getBackslash() + name +
-                                        Config.getDOT() + Config.getImagesFormatName()));
-
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                    }
-
-                     System.out.println(destination + path.getFileName());
-
-                }
-
-                System.out.println();
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * returns resized original image
      *
      * @param originalImage original
-     * @param type ex. .jpg
-     * @param IMG_WIDTH image width - resized (not original)
-     * @param IMG_HEIGHT image height - resized (not original)
+     * @param type          ex. .jpg
+     * @param IMG_WIDTH     image width - resized (not original)
+     * @param IMG_HEIGHT    image height - resized (not original)
      * @return
      */
     private static BufferedImage resizeImage(BufferedImage originalImage, int type,
@@ -183,6 +141,5 @@ public class ImageManager {
             return FileVisitResult.CONTINUE;
         }
     }
-
 
 }

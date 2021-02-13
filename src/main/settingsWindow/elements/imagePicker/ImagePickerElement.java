@@ -130,7 +130,7 @@ public class ImagePickerElement extends JPanel {
 //            System.out.println(new File(new File(this.image.getPath()).getAbsolutePath()));
 
             ImageManager.processNewImage(destination, file, this.image);
-            System.out.println(this.image.getFullPath());
+//            System.out.println(this.image.getFullPath());
             System.out.println(this.image.getPath());
 
             System.out.println(new File(this.image.getPath()).exists());

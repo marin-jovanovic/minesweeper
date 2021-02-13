@@ -16,8 +16,8 @@ public class RestartDefaultButton extends JPanel {
         jButton.addActionListener(e ->
         {
             ConstantsManager.restartConstants();
+
             ImageManager.restartAllImages();
-//            ImageManager.restartAllImages();
 
             new Thread(() -> {
                 this.setCheckerText("settings restarted");

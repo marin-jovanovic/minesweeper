@@ -4,46 +4,46 @@ package main.imagesModule;
 public class Config {
 
     private static final String backslash = "/";
-
-    public static String getBackslash() {
-        return backslash;
-    }
-
     //    formats in which images will be loaded
     private static final String[] ORIGINAL_IMAGES_FORMATS_NAMES = {"png", "jpg"};
-
     private static final String OPENED_TILES = "opened_tiles";
     private static final String CLOSED_TILES = "closed_tiles";
     private static final String BUTTON_PATH = "button";
-
     private static final String DOT = ".";
     private static final String IMAGES_FORMAT_NAME = "png";
-
     private static final String CUSTOM_IMAGES_PATH =
-        "src" + backslash +
-        "main" + backslash +
-        "resources" + backslash +
-        "images" + backslash +
-        "resized_images";
-
+            "src" + backslash +
+                    "main" + backslash +
+                    "resources" + backslash +
+                    "images" + backslash +
+                    "resized_images";
     private static final String ORIGINAL_IMAGES_PATH =
             "src" + backslash +
                     "main" + backslash +
                     "resources" + backslash +
                     "images" + backslash +
                     "original_images";
-
-
     private static final String REDUCED_CUSTOM_IMAGES_PATH =
-        "resources" + backslash +
-        "images" + backslash +
-        "resized_images";
-
+            "resources" + backslash +
+                    "images" + backslash +
+                    "resized_images";
+    private static final String REDUCED_ORIGINAL_IMAGES_PATH =
+            "resources" + backslash +
+                    "images" + backslash +
+                    "resized_images";
     private static final int PICTURE_WIDTH = 50;
     private static final int PICTURE_HEIGHT = 50;
 
+    public static String getBackslash() {
+        return backslash;
+    }
+
     public static String getOriginalImagesPath() {
         return ORIGINAL_IMAGES_PATH;
+    }
+
+    public static String getReducedOriginalImagesPath() {
+        return REDUCED_ORIGINAL_IMAGES_PATH;
     }
 
     public static String getReducedCustomImagesPath() {

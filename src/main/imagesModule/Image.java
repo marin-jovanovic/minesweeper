@@ -29,40 +29,18 @@ public enum Image {
     EIGHT(Config.getOpenedTiles(), "8"),
     MINE(Config.getOpenedTiles(), "-1");
 
-//    private final File pathAsFile;
     private final String path;
     private ImageIcon imageIcon;
-    private final File fullPath;
+    private ImageIcon defaultImageIcon;
 
-    public void setImageIcon(ImageIcon imageIcon) {
-        this.imageIcon = imageIcon;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public File getFullPath() {
-        return fullPath;
-    }
-
-    String t;
 
     Image(String folder, String name) {
         this.path =
-            Config.getCustomImagesPath() + Config.getBackslash() +
-            folder + Config.getBackslash() +
-            name + Config.getDOT() + Config.getImagesFormatName();
-
-        t =  Config.getBackslash() +
-                folder + Config.getBackslash() +
-                name + Config.getDOT() + Config.getImagesFormatName();
+                Config.getCustomImagesPath() + Config.getBackslash() +
+                        folder + Config.getBackslash() +
+                        name + Config.getDOT() + Config.getImagesFormatName();
 
         System.out.println(new File(this.path).getAbsolutePath());
-
-//        both return true
-        System.out.println(new File(new File(this.path).getAbsolutePath()).exists());
-        System.out.println(new File(this.path).exists());
 
 //        this is slower, do not know why
 //        this.imageIcon = ImageManager.loadImage(this.path);
@@ -71,47 +49,43 @@ public enum Image {
 
             this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
                     Config.getReducedCustomImagesPath() + Config.getBackslash() +
-                folder + Config.getBackslash() +
-                name + Config.getDOT() + Config.getImagesFormatName())));
+                            folder + Config.getBackslash() +
+                            name + Config.getDOT() + Config.getImagesFormatName())));
+
+            defaultImageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
+                    Config.getReducedOriginalImagesPath() + Config.getBackslash() +
+                            folder + Config.getBackslash() +
+                            name + Config.getDOT() + Config.getImagesFormatName())));
 
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
         }
 
-        fullPath = new File(this.path).getAbsoluteFile();
-
         System.out.println();
 
+    }
+
+    public static void main(String[] args) {
+        for (Image image : EnumSet.allOf(Image.class)) {
+            System.out.println(image);
+        }
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void flushToDefaultImage() {
+        imageIcon = defaultImageIcon;
     }
 
     public ImageIcon getImageIcon() {
         return imageIcon;
     }
 
-    public void flushImageIcon() {
-//        this.imageIcon = new ImageIcon(getClass().getResource(this.path));
-        new ImageIcon(path).getImage().flush();
-        try {
-            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-                    Config.getReducedCustomImagesPath() + t)));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-        new ImageIcon(path).getImage().flush();
-        try {
-            this.imageIcon = new ImageIcon(ImageIO.read(Loader.class.getResource(
-                    Config.getReducedCustomImagesPath() + t)));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-//        this.imageIcon.paintIcon();
-
+    public void setImageIcon(ImageIcon imageIcon) {
+        this.imageIcon = imageIcon;
     }
 
     @Override
@@ -119,12 +93,6 @@ public enum Image {
         return this.name() + " {" +
                 "pathID='" + path + '\'' +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        for (Image image : EnumSet.allOf(Image.class)) {
-            System.out.println(image);
-        }
     }
 
 }
