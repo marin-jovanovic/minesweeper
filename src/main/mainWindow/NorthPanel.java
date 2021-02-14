@@ -2,7 +2,7 @@ package main.mainWindow;
 
 import main.imagesModule.Image;
 import main.settingsWindow.SettingsFrame;
-import main.soundsModule.SoundDrivers;
+import main.soundsModule.SoundsManager;
 import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
@@ -64,7 +64,7 @@ public class NorthPanel extends JPanel {
         testButton.addActionListener(event -> {
             System.out.println("******************************************\ntest button pressed");
 
-            SoundDrivers.playGameOverSound();
+            SoundsManager.playGameOverSound();
         });
 
         add(testButton);

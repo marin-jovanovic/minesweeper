@@ -6,7 +6,7 @@ import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
-import main.soundsModule.SoundDrivers;
+import main.soundsModule.SoundsManager;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -146,7 +146,7 @@ public class CenterPanel extends JPanel {
                                     //                                          extract to new thread (swing worker)
                                     fireEvent(new Event(this, Command.GAME_OVER));
 
-                                    SoundDrivers.playGameOverSound();
+                                    SoundsManager.playGameOverSound();
 
 //                                        SoundThread soundThread = new SoundThread();
 //                                        soundThread.start();

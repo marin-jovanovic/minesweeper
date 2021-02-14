@@ -15,6 +15,7 @@ public enum Constant {
     IS_VICTORY_SOUND_ACTIVE(true),
     IS_DEFEAT_SOUND_ACTIVE(true),
     IS_ANY_SOUND_ACTIVE(true),
+    IS_SOUND_ACTIVE(true),
 
     CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN(false);
 
