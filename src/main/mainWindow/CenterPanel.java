@@ -127,6 +127,7 @@ public class CenterPanel extends JPanel {
 
     //    opens all blank that are NEWS, ne, ns, ...,  of targeted cell
     public void openBlanks(int x, int y) {
+        System.out.println("try: " + x + " " + y);
 
         if (!buttons[x][y].isEnabled()) {
             return;
@@ -142,6 +143,7 @@ public class CenterPanel extends JPanel {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 try {
+//                    System.out.println("open " + (x+i) + " " + (y+j));
                     openBlanks(x + i, y + j);
                 } catch (Exception ignored) {
 
