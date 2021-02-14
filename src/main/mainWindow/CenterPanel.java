@@ -1,12 +1,12 @@
 package main.mainWindow;
 
-import main.constantModule.Constant;
+import main.constantsModule.Constant;
 import main.imagesModule.Image;
+import main.soundsModule.SoundsManager;
 import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
-import main.soundsModule.SoundsManager;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -22,35 +22,37 @@ public class CenterPanel extends JPanel {
 //      add ability to block all buttons under flag
 
     private final JButton[][] buttons;
-
-    //    table that shows board mines
-    private int[][] table;
+    private final int numOfCells;
 
 
     //    used for right click actions
-//    private JButton currentHoveredButton;
-
+    private final EventListenerList listenerList = new EventListenerList();
+    //    table that shows board mines
+    private int[][] table;
     //    if field with mine is opened game is over
 //    all buttons must be locked
 //    this is controller for it
     private boolean areButtonsActive = true;
 
+    private void setButtons(boolean value) {
+        areButtonsActive = value;
+
+        MouseActionListener.setAreButtonsActive(value);
+    }
+
     //    used to check if you can declare win
     private int numOfOpenedCells = 0;
 
-
     //    for navigation in table
-//
     private int currentHoveredButtonX;
     private int currentHoveredButtonY;
 
     public CenterPanel() {
 
-        setLayout(new GridLayout((int) Constant.NUMBER_OF_ROWS.getValue(), (int) Constant.NUMBER_OF_COLUMNS.getValue()));
+        setLayout(new GridLayout((int) Constant.NUMBER_OF_ROWS.getValue(),
+                (int) Constant.NUMBER_OF_COLUMNS.getValue()));
 
         numOfCells = (Integer) Constant.NUMBER_OF_COLUMNS.getValue() * (Integer) Constant.NUMBER_OF_ROWS.getValue();
-
-//        int[][] rightClickTable = new int[(int) Constant.NUMBER_OF_ROWS.getValue()][(int) Constant.NUMBER_OF_COLUMNS.getValue()];
 
         table = TableGenerator.getTable();
 
@@ -73,113 +75,12 @@ public class CenterPanel extends JPanel {
         }
     }
 
-    //    handles right click operations
-    private static class MouseActionListener extends MouseAdapter {
-        private final int x;
-        private final int y;
-        private final CenterPanel panel;
-        private final boolean areButtonsActive;
-        private final JButton[][] buttons;
-
-        public MouseActionListener(CenterPanel panel, boolean areButtonsActive, JButton[][] buttons, int x, int y) {
-            this.x = x;
-            this.y = y;
-            this.panel = panel;
-            this.areButtonsActive = areButtonsActive;
-            this.buttons = buttons;
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            if (areButtonsActive && e.getButton() != MouseEvent.BUTTON1 && panel.currentHoveredButtonX != -1) {
-                System.out.println("RIGHT CLICK");
-
-                String string = buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].getIcon().toString();
-
-                if (Image.CLOSED_CELL.getImageIcon().toString().equals(string)) {
-                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            Image.FLAG.getImageIcon()
-                    );
-                } else if (Image.FLAG.getImageIcon().toString().equals(string)) {
-                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            Image.NOT_SURE.getImageIcon()
-                    );
-                } else {
-                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
-                            Image.CLOSED_CELL.getImageIcon()
-                    );
-                }
-            }
-        }
-
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-            panel.currentHoveredButtonX = x;
-            panel.currentHoveredButtonY = y;
-        }
-
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-            panel.currentHoveredButtonX = -1;
-        }
-
-    }
-
-    private class ButtonActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            checkForWin();
-            if (areButtonsActive) {
-
-                for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++) {
-                    for (int j = 0; j < (int) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
-                        if (buttons[i][j].toString().equals(e.getSource().toString())) {
-
-                            System.out.println("clicked " + i + " " + j);
-
-                            if (table[i][j] != 0) {
-                                openCell(i, j);
-
-//                                game over check
-                                if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
-                                    System.out.println("game over");
-                                    //                                          TODO halt time
-                                    //                                          extract to new thread (swing worker)
-                                    fireEvent(new Event(this, Command.GAME_OVER));
-
-                                    SoundsManager.playGameOverSound();
-
-//                                        SoundThread soundThread = new SoundThread();
-//                                        soundThread.start();
-
-                                    areButtonsActive = false;
-                                    return;
-                                }
-                            }
-
-                            if (table[i][j] == 0) {
-                                openBlanks(i, j);
-
-                            }
-
-                            checkForWin();
-
-                            System.out.println("*** halt ***");
-                            System.out.println();
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private final int numOfCells;
-
     public void checkForWin() {
         if (numOfCells - numOfOpenedCells == (Integer) Constant.NUMBER_OF_MINES.getValue()) {
 //            TODO disable statistics
             System.out.println("game is won");
-            areButtonsActive = false;
+            setButtons(false);
+//            areButtonsActive = false;
 
             fireEvent(new Event(this, Command.GAME_WON));
         }
@@ -254,7 +155,8 @@ public class CenterPanel extends JPanel {
         if (command.equals(Command.NEW_GAME)) {
             System.out.println("centerPanel: restart");
 
-            areButtonsActive = true;
+            setButtons(true);
+//            areButtonsActive = true;
             numOfOpenedCells = 0;
 
             restartButtons();
@@ -286,8 +188,6 @@ public class CenterPanel extends JPanel {
         }
     }
 
-    private final EventListenerList listenerList = new EventListenerList();
-
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
@@ -302,6 +202,112 @@ public class CenterPanel extends JPanel {
 
     public void addListener(Listener listener) {
         listenerList.add(Listener.class, listener);
+    }
+
+    //    handles right click operations
+    private static class MouseActionListener extends MouseAdapter {
+        private final int x;
+        private final int y;
+        private final CenterPanel panel;
+        private static boolean areButtonsActive = true;
+        private final JButton[][] buttons;
+
+        public MouseActionListener(CenterPanel panel, boolean areButtonsActive, JButton[][] buttons, int x, int y) {
+            this.x = x;
+            this.y = y;
+            this.panel = panel;
+            this.buttons = buttons;
+        }
+
+
+        public static void setAreButtonsActive(boolean value) {
+            areButtonsActive = value;
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            if (areButtonsActive && e.getButton() != MouseEvent.BUTTON1 && panel.currentHoveredButtonX != -1) {
+                System.out.println("RIGHT CLICK");
+
+
+                String string = buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].getIcon().toString();
+
+                if (Image.CLOSED_CELL.getImageIcon().toString().equals(string)) {
+                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
+                            Image.FLAG.getImageIcon()
+                    );
+                } else if (Image.FLAG.getImageIcon().toString().equals(string)) {
+                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
+                            Image.NOT_SURE.getImageIcon()
+                    );
+                } else {
+                    buttons[panel.currentHoveredButtonX][panel.currentHoveredButtonY].setIcon(
+                            Image.CLOSED_CELL.getImageIcon()
+                    );
+                }
+            }
+        }
+
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            panel.currentHoveredButtonX = x;
+            panel.currentHoveredButtonY = y;
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            panel.currentHoveredButtonX = -1;
+        }
+
+    }
+
+    private class ButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            checkForWin();
+
+            if (areButtonsActive) {
+
+                for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++) {
+                    for (int j = 0; j < (int) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
+                        if (buttons[i][j].toString().equals(e.getSource().toString())) {
+
+                            System.out.println("clicked " + i + " " + j);
+
+                            if (table[i][j] != 0) {
+                                openCell(i, j);
+
+//                                game over check
+                                if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
+                                    System.out.println("game over");
+//                                  TODO halt time
+//                                    extract to new thread (swing worker)
+
+                                    fireEvent(new Event(this, Command.GAME_OVER));
+
+                                    SoundsManager.playGameOverSound();
+
+                                    setButtons(false);
+//                                    areButtonsActive = false;
+                                    return;
+                                }
+                            }
+
+                            if (table[i][j] == 0) {
+                                openBlanks(i, j);
+
+                            }
+
+                            checkForWin();
+
+                            System.out.println("*** halt ***");
+                            System.out.println();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

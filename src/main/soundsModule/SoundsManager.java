@@ -1,7 +1,7 @@
 package main.soundsModule;
 
 import main.Main;
-import main.constantModule.Constant;
+import main.constantsModule.Constant;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class SoundsManager {
     public static void playVictorySound() {
         System.out.println("TODO victory sound");
     }
-    
+
     private static void playClip(Sound sound) {
 
         AudioListener listener = new AudioListener();

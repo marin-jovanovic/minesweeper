@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.constantModule.Constant;
+import main.constantsModule.Constant;
 import main.settingsWindow.elements.reset.RestartDefaultButton;
 import main.settingsWindow.elements.textField.TextFieldElement;
 

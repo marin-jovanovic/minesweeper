@@ -1,8 +1,8 @@
 package main.mainWindow;
 
-import main.constantModule.Config;
-import main.constantModule.Constant;
-import main.constantModule.ConstantsManager;
+import main.constantsModule.Config;
+import main.constantsModule.Constant;
+import main.constantsModule.ConstantsManager;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 
@@ -14,75 +14,10 @@ import java.awt.event.WindowListener;
 
 public class MainFrame extends JFrame {
 
+    public static MainFrame mainFrame;
     private final NorthPanel northPanel;
     private final CenterPanel centerPanel;
-
-    public static MainFrame mainFrame;
-
-
-    private static class MainFrameWindowListener implements WindowListener {
-
-        private final JFrame jFrame;
-
-        public MainFrameWindowListener(JFrame jFrame) {
-            this.jFrame = jFrame;
-        }
-
-        @Override
-        public void windowOpened(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowClosing(WindowEvent e) {
-            System.out.println("closing");
-            System.out.println(jFrame.getX());
-            System.out.println(jFrame.getY());
-
-            System.out.println(jFrame.getSize().getWidth());
-            System.out.println(jFrame.getSize().getHeight());
-
-
-            Constant.LOCATION_X.setValue(jFrame.getX());
-            Constant.LOCATION_Y.setValue(jFrame.getY());
-
-            Constant.WIDTH.setValue(jFrame.getSize().getWidth());
-            Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
-
-//            SettingsManager.addSettingToBuffer(Constant.WIDTH.getId(),
-//                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getWidth())));
-//            SettingsManager.addSettingToBuffer(Constant.HEIGHT.getId(),
-//                    String.valueOf(Integer.valueOf((int) jFrame.getSize().getHeight())));
-//
-            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
-//            SettingsManager.saveSettings();
-        }
-
-        @Override
-        public void windowClosed(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowIconified(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowDeiconified(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowActivated(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowDeactivated(WindowEvent e) {
-
-        }
-    }
+    private final EventListenerList listenerList = new EventListenerList();
 
     public MainFrame() {
         super("minesweeper");
@@ -116,6 +51,7 @@ public class MainFrame extends JFrame {
                 exception.printStackTrace();
             }
         });
+
         centerPanel.addListener(event -> {
             try {
                 northPanel.setRestartButton(event.getCommand());
@@ -135,9 +71,6 @@ public class MainFrame extends JFrame {
         new MainFrame();
     }
 
-
-    private final EventListenerList listenerList = new EventListenerList();
-
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
@@ -150,6 +83,64 @@ public class MainFrame extends JFrame {
 
     public void addListener(Listener listener) {
         listenerList.add(Listener.class, listener);
+    }
+
+    private static class MainFrameWindowListener implements WindowListener {
+
+        private final JFrame jFrame;
+
+        public MainFrameWindowListener(JFrame jFrame) {
+            this.jFrame = jFrame;
+        }
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            System.out.println("closing");
+            System.out.println(jFrame.getX());
+            System.out.println(jFrame.getY());
+
+            System.out.println(jFrame.getSize().getWidth());
+            System.out.println(jFrame.getSize().getHeight());
+
+
+            Constant.LOCATION_X.setValue(jFrame.getX());
+            Constant.LOCATION_Y.setValue(jFrame.getY());
+
+            Constant.WIDTH.setValue(jFrame.getSize().getWidth());
+            Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
+
+            ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+
+        }
     }
 
 }

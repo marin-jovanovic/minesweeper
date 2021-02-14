@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 public class NorthPanel extends JPanel {
 
     private final JButton restartButton;
+    private final EventListenerList listenerList = new EventListenerList();
 
     public NorthPanel() {
 
@@ -70,8 +71,6 @@ public class NorthPanel extends JPanel {
         add(testButton);
 
     }
-
-    private final EventListenerList listenerList = new EventListenerList();
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();

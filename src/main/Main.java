@@ -14,10 +14,6 @@ public class Main {
 //    TODO time
 //    TODO gui style
 
-//    fixme
-//      when game is won right click operations are still enabled
-//      check what happens when game over
-
     //    FIXME
 //          1. when pressed "restart all settings" images in settings window are not restarted automatically
 //          2. fix position on screen of mainframe and settingswindow

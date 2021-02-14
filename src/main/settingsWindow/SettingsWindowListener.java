@@ -1,7 +1,7 @@
 package main.settingsWindow;
 
-import main.constantModule.Config;
-import main.constantModule.ConstantsManager;
+import main.constantsModule.Config;
+import main.constantsModule.ConstantsManager;
 import main.mainWindow.MainFrame;
 import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;

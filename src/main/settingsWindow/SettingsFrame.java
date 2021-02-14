@@ -1,6 +1,6 @@
 package main.settingsWindow;
 
-import main.constantModule.Constant;
+import main.constantsModule.Constant;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;

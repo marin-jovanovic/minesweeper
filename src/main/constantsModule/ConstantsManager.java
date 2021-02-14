@@ -1,4 +1,4 @@
-package main.constantModule;
+package main.constantsModule;
 
 //  TODO auto save setting for window size and location
 //  TODO mute sound option

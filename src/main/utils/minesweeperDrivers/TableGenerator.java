@@ -1,6 +1,6 @@
 package main.utils.minesweeperDrivers;
 
-import main.constantModule.Constant;
+import main.constantsModule.Constant;
 
 import java.util.Random;
 
@@ -28,8 +28,6 @@ public class TableGenerator {
         if ((int) Constant.NUMBER_OF_MINES.getValue() >=
                 (int) Constant.NUMBER_OF_ROWS.getValue() * (int) Constant.NUMBER_OF_COLUMNS.getValue()) {
 
-
-//        if (ConstantsManager.NUMBER_OF_MINES >= ConstantsManager.NUMBER_OF_ROWS * ConstantsManager.NUMBER_OF_COLUMNS) {
             for (int i = 0; i < (Integer) Constant.NUMBER_OF_ROWS.getValue(); i++) {
                 for (int j = 0; j < (Integer) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                     table[i][j] = -1;
@@ -38,11 +36,6 @@ public class TableGenerator {
 
             return;
         }
-
-//        case: num of mines < num of empty spots
-
-//        case: num of mines > num of empty spots
-
 
 //        set all to 0
         initializeTable();

@@ -1,6 +1,6 @@
 package main.settingsWindow.elements.textField;
 
-import main.constantModule.Constant;
+import main.constantsModule.Constant;
 
 import javax.swing.*;
 
