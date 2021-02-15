@@ -31,26 +31,14 @@ public class MainFrame extends JFrame {
         setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
         setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
 
-        System.out.println(this.getLocation());
-
-        System.out.println(this.getX());
-        System.out.println(this.getY());
-
         addWindowListener(new MainFrameWindowListener(this));
-
 
         mainFrame = this;
 
         northPanel = new NorthPanel();
         centerPanel = new CenterPanel();
 
-        northPanel.addListener(event -> {
-            try {
-                centerPanel.restart(event.getCommand());
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
+        northPanel.addListener(event -> centerPanel.restart(event.getCommand()));
 
         centerPanel.addListener(event -> {
             try {
@@ -94,19 +82,8 @@ public class MainFrame extends JFrame {
         }
 
         @Override
-        public void windowOpened(WindowEvent e) {
-
-        }
-
-        @Override
         public void windowClosing(WindowEvent e) {
             System.out.println("closing");
-            System.out.println(jFrame.getX());
-            System.out.println(jFrame.getY());
-
-            System.out.println(jFrame.getSize().getWidth());
-            System.out.println(jFrame.getSize().getHeight());
-
 
             Constant.LOCATION_X.setValue(jFrame.getX());
             Constant.LOCATION_Y.setValue(jFrame.getY());
@@ -115,6 +92,11 @@ public class MainFrame extends JFrame {
             Constant.HEIGHT.setValue(jFrame.getSize().getHeight());
 
             ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+        }
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
         }
 
         @Override

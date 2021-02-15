@@ -4,25 +4,12 @@ import main.constantsModule.Constant;
 
 import java.util.Random;
 
+/**
+ * generates table with mines and hints
+ */
 public class TableGenerator {
 
-    private enum CellStatus {
-        MINE,
-        ONE,
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        SIX,
-        SEVEN,
-        EIGHT;
-
-
-    }
-
-
-
-    private static int[][] table;
+    private static CellStatus[][] table;
     private static boolean[] isRowFull;
 
     public static void main(String[] args) {
@@ -44,7 +31,7 @@ public class TableGenerator {
         return (int) Constant.NUMBER_OF_MINES.getValue();
     }
 
-    public static int[][] getTable() {
+    public static CellStatus[][] getTable() {
         generateTable();
 
         printTable();
@@ -54,26 +41,25 @@ public class TableGenerator {
 
     private static void generateTable() {
 
-        table = new int[getNumberOfRows()][getNumberOfColumns()];
+        table = new CellStatus[getNumberOfRows()][getNumberOfColumns()];
         isRowFull = new boolean[getNumberOfRows()];
 
-//
 //        case: more mines or equal to size of table
         if (getNumberOfMines() >= getNumberOfRows() * getNumberOfColumns()) {
 
             for (int i = 0; i < getNumberOfRows(); i++) {
                 for (int j = 0; j < getNumberOfColumns(); j++) {
-                    table[i][j] = -1;
+                    table[i][j] = CellStatus.MINE;
                 }
             }
 
             return;
         }
 
-//        set all to 0
-        initializeTable();
+//        all cells in table set to {CellStatus.ZERO}
+        setAllCellsToZero();
 
-//        set all to false
+//        sets all isRowFull to false
         initializeIsRowFull();
 
         for (int i = 0; i < getNumberOfMines(); i++) {
@@ -86,13 +72,16 @@ public class TableGenerator {
 
     }
 
-    //    generates numbers on table aka hints
+    /**
+     * generates numbers on table
+     */
     private static void generateHints() {
         for (int i = 0; i < getNumberOfRows(); i++) {
             for (int j = 0; j < getNumberOfColumns(); j++) {
 
-//              not a bomb selected
-                if (table[i][j] != -1) {
+                if (table[i][j] != CellStatus.MINE) {
+
+                    int sum = 0;
 
                     for (int m = -1; m < 2; m++) {
                         for (int n = -1; n < 2; n++) {
@@ -102,27 +91,66 @@ public class TableGenerator {
                                 continue;
                             }
 
-                            if (table[i + m][j + n] == -1) {
-                                table[i][j]++;
+                            if (table[i + m][j + n] == CellStatus.MINE) {
+                                sum++;
                             }
+
                         }
                     }
+
+                    switch (sum) {
+                        case 0:
+                            table[i][j] = CellStatus.ZERO;
+                            break;
+                        case 1:
+                            table[i][j] = CellStatus.ONE;
+                            break;
+                        case 2:
+                            table[i][j] = CellStatus.TWO;
+                            break;
+                        case 3:
+                            table[i][j] = CellStatus.THREE;
+                            break;
+                        case 4:
+                            table[i][j] = CellStatus.FOUR;
+                            break;
+                        case 5:
+                            table[i][j] = CellStatus.FIVE;
+                            break;
+                        case 6:
+                            table[i][j] = CellStatus.SIX;
+                            break;
+                        case 7:
+                            table[i][j] = CellStatus.SEVEN;
+                            break;
+                        case 8:
+                            table[i][j] = CellStatus.EIGHT;
+                            break;
+                    }
+
                 }
+
             }
         }
     }
 
-    //    sets all to boolean(false)
+    /**
+     * sets all values to false
+     */
     private static void initializeIsRowFull() {
         for (int i = 0; i < getNumberOfRows(); i++) {
             isRowFull[i] = false;
         }
     }
 
-    //    returns random empty row
+    /**
+     * gets random non-full row
+     *
+     * @return random non-full row
+     */
     private static int getRow() {
         Random rand = new Random();
-//        int row = -1;
+
         int row;
         do {
 //                row in which mine will be placed
@@ -133,8 +161,11 @@ public class TableGenerator {
         return row;
     }
 
-    //    in @table in int(row) selects random empty spot
-//    and places bomb -> int(-1)
+    /**
+     * inserts mine in {@code row} at random position (checks if position is occupied)
+     *
+     * @param row row in which mine is to be inserted
+     */
     private static void insertMineInRow(int row) {
 
         Random rand = new Random();
@@ -142,20 +173,23 @@ public class TableGenerator {
         while (true) {
             int column = rand.nextInt(getNumberOfColumns());
 
-            if (table[row][column] != -1) {
-                table[row][column] = -1;
+            if (table[row][column] != CellStatus.MINE) {
+                table[row][column] = CellStatus.MINE;
                 break;
             }
         }
     }
 
-    //    checks if int(row) in @table contains empty spot
-//    if true: pass
-//    if false: isRowFull[row] = true
+    /**
+     * if row contains only mines sets {@code isRowFull[row]} to true,
+     * else returns
+     *
+     * @param row row which is being checked
+     */
     private static void updateIsRowFull(int row) {
 
         for (int i = 0; i < getNumberOfColumns(); i++) {
-            if (table[row][i] != -1) {
+            if (table[row][i] != CellStatus.MINE) {
                 return;
             }
         }
@@ -163,32 +197,30 @@ public class TableGenerator {
         isRowFull[row] = true;
     }
 
-    //    formatted print of @table
+    /**
+     * formatted print of {@code table}
+     *
+     */
     private static void printTable() {
-        System.out.println("board:");
+        System.out.println("table:");
+
         for (int i = 0; i < getNumberOfRows(); i++) {
             for (int j = 0; j < getNumberOfColumns(); j++) {
-
-//                mark for bomb
-                if (table[i][j] == -1) {
-                    System.out.print("_ ");
-                }
-
-//                not bomb
-                else {
-                    System.out.print(table[i][j] + " ");
-                }
+                System.out.print(table[i][j] + " ");
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    //    set all to int(0) in @table
-    private static void initializeTable() {
+    /**
+     * sets all cells in {@code table} to {@code CellStatus.ZERO}
+     *
+     */
+    private static void setAllCellsToZero() {
         for (int i = 0; i < getNumberOfRows(); i++) {
             for (int j = 0; j < getNumberOfColumns(); j++) {
-                table[i][j] = 0;
+                table[i][j] = CellStatus.ZERO;
             }
         }
     }

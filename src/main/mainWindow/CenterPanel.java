@@ -7,6 +7,7 @@ import main.utils.eventDrivers.Command;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
 import main.utils.minesweeperDrivers.TableGenerator;
+import main.utils.minesweeperDrivers.CellStatus;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
@@ -16,28 +17,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CenterPanel extends JPanel {
-
 //    TODO
-//      add ability to block all buttons under flag
+//      enable/ disable left click operations while under right click element (flag, question mark)
+
+public class CenterPanel extends JPanel {
 
     private final JButton[][] buttons;
     private final int numOfCells;
 
-
-    //    used for right click actions
     private final EventListenerList listenerList = new EventListenerList();
-    //    table that shows board mines
-    private int[][] table;
-    //    if field with mine is opened game is over
-//    all buttons must be locked
-//    this is controller for it
+
+//    table - blueprint of field
+    private CellStatus[][] table;
+
+//    can you click on button (including left and right click operations)
     private boolean areButtonsActive = true;
 
     private void setButtons(boolean value) {
         areButtonsActive = value;
 
-        MouseActionListener.setAreButtonsActive(value);
+        RightClickListener.setAreButtonsActive(value);
     }
 
     //    used to check if you can declare win
@@ -65,9 +64,9 @@ public class CenterPanel extends JPanel {
 
                 buttons[i][j].setIcon(Image.CLOSED_CELL.getImageIcon());
 
-                buttons[i][j].addMouseListener(new MouseActionListener(this, areButtonsActive, buttons, i, j));
+                buttons[i][j].addMouseListener(new RightClickListener(this, buttons, i, j));
 
-                buttons[i][j].addActionListener(new ButtonActionListener());
+                buttons[i][j].addActionListener(new LeftClickListener());
 
                 this.add(buttons[i][j]);
 
@@ -86,7 +85,12 @@ public class CenterPanel extends JPanel {
         }
     }
 
-    //  opens targeted cell
+    /**
+     * opens selected cell
+     *
+     * @param i row
+     * @param j column
+     */
     public void openCell(int i, int j) {
 
         if (!buttons[i][j].isEnabled()) {
@@ -104,30 +108,36 @@ public class CenterPanel extends JPanel {
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        Image disabledIcon;
-
-        switch (table[i][j]) {
-            case 0 -> disabledIcon = Image.ZERO;
-            case 1 -> disabledIcon = Image.ONE;
-            case 2 -> disabledIcon = Image.TWO;
-            case 3 -> disabledIcon = Image.THREE;
-            case 4 -> disabledIcon = Image.FOUR;
-            case 5 -> disabledIcon = Image.FIVE;
-            case 6 -> disabledIcon = Image.SIX;
-            case 7 -> disabledIcon = Image.SEVEN;
-            case 8 -> disabledIcon = Image.EIGHT;
-            case -1 -> disabledIcon = Image.MINE;
-            default -> throw new IndexOutOfBoundsException("error in parsing");
+        if (table[i][j] == CellStatus.MINE) {
+            buttons[i][j].setDisabledIcon(Image.MINE.getImageIcon());
+        } else if (table[i][j] == CellStatus.ZERO) {
+            buttons[i][j].setDisabledIcon(Image.ZERO.getImageIcon());
+        } else if (table[i][j] == CellStatus.ONE) {
+            buttons[i][j].setDisabledIcon(Image.ONE.getImageIcon());
+        } else if (table[i][j] == CellStatus.TWO) {
+            buttons[i][j].setDisabledIcon(Image.TWO.getImageIcon());
+        } else if (table[i][j] == CellStatus.THREE) {
+            buttons[i][j].setDisabledIcon(Image.THREE.getImageIcon());
+        } else if (table[i][j] == CellStatus.FOUR) {
+            buttons[i][j].setDisabledIcon(Image.FOUR.getImageIcon());
+        } else if (table[i][j] == CellStatus.FIVE) {
+            buttons[i][j].setDisabledIcon(Image.FIVE.getImageIcon());
+        } else if (table[i][j] == CellStatus.SIX) {
+            buttons[i][j].setDisabledIcon(Image.SIX.getImageIcon());
+        } else if (table[i][j] == CellStatus.SEVEN) {
+            buttons[i][j].setDisabledIcon(Image.SEVEN.getImageIcon());
+        } else if (table[i][j] == CellStatus.EIGHT) {
+            buttons[i][j].setDisabledIcon(Image.EIGHT.getImageIcon());
         }
-
-        buttons[i][j].setDisabledIcon(disabledIcon.getImageIcon());
 
         System.out.println("done opening cell");
     }
 
+//    fixme
+//      if there are flags or question marks then cells beyond them should not be opened but they are
+
     //    opens all blank that are NEWS, ne, ns, ...,  of targeted cell
     public void openBlanks(int x, int y) {
-        System.out.println("try: " + x + " " + y);
 
         if (!buttons[x][y].isEnabled()) {
             return;
@@ -135,30 +145,35 @@ public class CenterPanel extends JPanel {
 
         openCell(x, y);
 
-        if (table[x][y] != 0) {
-            return;
-        }
+        if (table[x][y] == CellStatus.ZERO) {
+            //        table[x][y] already opened but first if statement in openCell handles that
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    try {
+                        openBlanks(x + i, y + j);
+                    } catch (Exception ignored) {
 
-//        table[x][y] already opened but first if statement in openCell handles that
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                try {
-//                    System.out.println("open " + (x+i) + " " + (y+j));
-                    openBlanks(x + i, y + j);
-                } catch (Exception ignored) {
-
+                    }
                 }
             }
         }
+
     }
 
+
+    /**
+     * when game is started again
+     *
+     * @param command
+     * @throws Exception
+     */
     //    main restart sequence when game is started again
-    public void restart(Command command) throws Exception {
+    public void restart(Command command) {
         if (command.equals(Command.NEW_GAME)) {
             System.out.println("centerPanel: restart");
 
             setButtons(true);
-//            areButtonsActive = true;
+
             numOfOpenedCells = 0;
 
             restartButtons();
@@ -167,54 +182,35 @@ public class CenterPanel extends JPanel {
             table = TableGenerator.getTable();
 
         } else {
-            throw new Exception("unsupported command");
+            System.out.println("unsupported command");
+            System.out.println(command);
+            System.exit(-1);
         }
 
 
     }
 
-    //    enables all buttons
-//    changes icon to closedCell
+    /**
+     * enables all buttons and sets icon to {@code CLOSED_CELL}
+     *
+     */
     private void restartButtons() {
         for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++) {
             for (int j = 0; j < (int) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                 buttons[i][j].setEnabled(true);
-
-                try {
-                    buttons[i][j].setIcon(Image.CLOSED_CELL.getImageIcon());
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-
+                buttons[i][j].setIcon(Image.CLOSED_CELL.getImageIcon());
             }
         }
     }
 
-    public void fireEvent(Event event) {
-        Object[] listeners = listenerList.getListenerList();
-
-        for (int i = 0; i < listeners.length; i += 2) {
-
-
-            if (listeners[i] == Listener.class) {
-                ((Listener) listeners[i + 1]).eventOccurred(event);
-            }
-        }
-    }
-
-    public void addListener(Listener listener) {
-        listenerList.add(Listener.class, listener);
-    }
-
-    //    handles right click operations
-    private static class MouseActionListener extends MouseAdapter {
+    private static class RightClickListener extends MouseAdapter {
         private final int x;
         private final int y;
         private final CenterPanel panel;
         private static boolean areButtonsActive = true;
         private final JButton[][] buttons;
 
-        public MouseActionListener(CenterPanel panel, boolean areButtonsActive, JButton[][] buttons, int x, int y) {
+        public RightClickListener(CenterPanel panel, JButton[][] buttons, int x, int y) {
             this.x = x;
             this.y = y;
             this.panel = panel;
@@ -261,7 +257,7 @@ public class CenterPanel extends JPanel {
 
     }
 
-    private class ButtonActionListener implements ActionListener {
+    private class LeftClickListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -276,11 +272,15 @@ public class CenterPanel extends JPanel {
 
                             System.out.println("clicked " + i + " " + j);
 
-                            if (table[i][j] != 0) {
+                            if (table[i][j] == CellStatus.ZERO) {
+                                openBlanks(i, j);
+
+                            } else {
+
                                 openCell(i, j);
 
 //                                game over check
-                                if (table[i][j] == -1 && !buttons[i][j].isEnabled()) {
+                                if (table[i][j] == CellStatus.MINE && !buttons[i][j].isEnabled()) {
                                     System.out.println("game over");
 //                                  TODO halt time
 //                                    extract to new thread (swing worker)
@@ -290,26 +290,35 @@ public class CenterPanel extends JPanel {
                                     SoundsManager.playGameOverSound();
 
                                     setButtons(false);
-//                                    areButtonsActive = false;
                                     return;
                                 }
                             }
 
-                            if (table[i][j] == 0) {
-                                openBlanks(i, j);
-
-                            }
-
                             checkForWin();
 
-                            System.out.println("*** halt ***");
-                            System.out.println();
                             return;
                         }
                     }
                 }
             }
         }
+    }
+
+
+    public void fireEvent(Event event) {
+        Object[] listeners = listenerList.getListenerList();
+
+        for (int i = 0; i < listeners.length; i += 2) {
+
+
+            if (listeners[i] == Listener.class) {
+                ((Listener) listeners[i + 1]).eventOccurred(event);
+            }
+        }
+    }
+
+    public void addListener(Listener listener) {
+        listenerList.add(Listener.class, listener);
     }
 
 }
