@@ -3,28 +3,31 @@ package main.mainWindow;
 import main.constantsModule.Constant;
 import main.constantsModule.ConstantsManager;
 import main.imagesModule.Image;
+import main.utils.eventDrivers.Command;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.concurrent.TimeUnit;
 
 //            System.out.println(new java.text.SimpleDateFormat("hh:mm:ss").format(TimerElement.time));
 
-public class TimerElement extends JPanel {
+// todo log times in db
+public class TimerElement extends JPanel implements PropertyChangeListener {
 
     private final long startTime = 1;
-//    private final int delay = 1000;
-    private long time;
     private final Timer timer;
     private final JLabel mostSigMinDigitLabel;
     private final JLabel leastSigMinDigitLabel;
     private final JLabel mostSigSecDigitLabel;
     private final JLabel leastSigSecDigitLabel;
-
+    //    private final int delay = 1000;
+    private long time;
 
     public TimerElement() {
-
+        setBorder(BorderFactory.createLineBorder(Color.black));
         setLayout(new FlowLayout());
 
         mostSigMinDigitLabel = new JLabel(Image.T_ZERO.getImageIcon());
@@ -97,26 +100,24 @@ public class TimerElement extends JPanel {
         SwingUtilities.invokeLater(TestFrame::new);
     }
 
-    private boolean isStarted = false;
+    public void startOrContinueTimer() {
 
-    private void startOrContinueTimer() {
+//        if (!isStarted) {
+        timer.start();
 
-        if (!isStarted) {
-            timer.start();
-
-            isStarted = true;
-        } else {
-            System.out.println("timer already started");
-        }
+//            isStarted = true;
+//        } else {
+//            System.out.println("timer already started");
+//        }
     }
 
-    private void stopTimer() {
+    public void stopTimer() {
 
         timer.stop();
 
     }
 
-    private void restartTimer() {
+    public void restartTimer() {
 
         timer.stop();
 
@@ -159,4 +160,17 @@ public class TimerElement extends JPanel {
         }
     }
 
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() == Command.RESTART_TIMER) {
+            System.out.println("property changed: restarting timer");
+            restartTimer();
+        } else {
+            System.out.println("unsupported command in timer element");
+            System.out.println(evt);
+            System.out.println();
+//            System.exit(-1);
+        }
+    }
 }

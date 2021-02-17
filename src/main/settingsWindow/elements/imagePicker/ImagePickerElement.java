@@ -48,11 +48,11 @@ import java.io.File;
  */
 public class ImagePickerElement extends JPanel {
     private final JTextArea log;
-    private JFileChooser fc;
     private final JLabel imageLabel;
     private final JButton jButton;
     private final String jText;
     private final Image image;
+    private JFileChooser fc;
 
 
     public ImagePickerElement(Image image) {

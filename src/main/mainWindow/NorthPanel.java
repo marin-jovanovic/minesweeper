@@ -4,47 +4,39 @@ import main.imagesModule.Image;
 import main.settingsWindow.SettingsFrame;
 import main.soundsModule.SoundsManager;
 import main.utils.eventDrivers.Command;
-import main.utils.eventDrivers.Event;
-import main.utils.eventDrivers.Listener;
 
 import javax.swing.*;
-import javax.swing.event.EventListenerList;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class NorthPanel extends JPanel {
+public class NorthPanel extends JPanel implements PropertyChangeListener {
 
-    private final JButton restartButton;
-    private final EventListenerList listenerList = new EventListenerList();
+    private final static NorthPanel instance = new NorthPanel();
+    private final TimerElement timerElement;
 
-    public NorthPanel() {
+    private final RestartButton restartButton;
 
-//        TODO statistics, time
-
-        restartButton = new JButton();
-
-//        this is init state but it is same as play again
-//        old
-//        oldRestartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
-
-        restartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
-//        restartButton.setIcon(Image.getImageIcon(Image.PLAY_AGAIN.getPath()));
+    private NorthPanel() {
 
 
-        restartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("restart button clicked");
-                fireEvent(new Event(this, Command.NEW_GAME));
+//        TODO statistics, time, pause button
 
-                restartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
-//                restartButton.setIcon(Image.getImageIcon(Image.PLAY_AGAIN.getPath()));
 
-            }
-        });
+        /* todo
+            restart timer when settings are closed
 
+            stop timer when settings are opened
+            start timer when first button is clicked
+            stop timer when game is over
+            restart timer when new game is pressed
+         */
+        timerElement = new TimerElement();
+        add(timerElement);
+
+        restartButton = RestartButton.getInstance();
+//        restartButton.addListener(timerElement);
+//        restartButton.addPropertyChangeListener(timerElement);
         add(restartButton);
-
 
         JButton settingsButton = new JButton("settings");
 
@@ -55,7 +47,6 @@ public class NorthPanel extends JPanel {
                 e.printStackTrace();
             }
         });
-
 
         add(settingsButton);
 
@@ -72,26 +63,15 @@ public class NorthPanel extends JPanel {
 
     }
 
-    public void fireEvent(Event event) {
-        Object[] listeners = listenerList.getListenerList();
-
-        for (int i = 0; i < listeners.length; i++) {
-            System.out.println(listeners[i]);
-        }
-
-        for (int i = 0; i < listeners.length; i++) {
-            if (listeners[i] instanceof Listener) {
-                ((Listener) listeners[i]).eventOccurred(event);
-                return;
-            }
-        }
+    public static NorthPanel getInstance() {
+        return instance;
     }
 
-    public void addListener(Listener listener) {
-        listenerList.add(Listener.class, listener);
+    public TimerElement getTimerElement() {
+        return timerElement;
     }
 
-    public void setRestartButton(Command command) throws Exception {
+    public void setRestartButton(Command command) {
         if (command.equals(Command.GAME_OVER)) {
             restartButton.setIcon(Image.DEFEAT.getImageIcon());
 
@@ -99,9 +79,32 @@ public class NorthPanel extends JPanel {
             restartButton.setIcon(Image.VICTORY.getImageIcon());
 
         } else {
-            throw new Exception("unsupported command");
+            System.out.println("error set restart button in north panel");
+            System.exit(-1);
         }
 
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+        if (evt.getNewValue() == Command.GAME_OVER) {
+            restartButton.setIcon(Image.DEFEAT.getImageIcon());
+            setRestartButton(Command.GAME_OVER);
+            timerElement.stopTimer();
+        } else if (evt.getNewValue() == Command.GAME_WON) {
+//            setRestartButton(Command.GAME_WON);
+            restartButton.setIcon(Image.VICTORY.getImageIcon());
+            timerElement.stopTimer();
+        } else if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
+            restartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
+            timerElement.restartTimer();
+//            setRestartButton();
+
+        } else {
+                System.out.println("north panel unknown event");
+            }
+    }
+
 }
+

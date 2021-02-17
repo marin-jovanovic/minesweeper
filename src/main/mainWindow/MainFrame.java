@@ -3,21 +3,24 @@ package main.mainWindow;
 import main.constantsModule.Config;
 import main.constantsModule.Constant;
 import main.constantsModule.ConstantsManager;
-import main.utils.eventDrivers.Event;
-import main.utils.eventDrivers.Listener;
+import main.settingsWindow.SettingsWindowListener;
+import main.utils.eventDrivers.Command;
 
 import javax.swing.*;
-import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class MainFrame extends JFrame {
+
+public class MainFrame extends JFrame implements PropertyChangeListener {
 
     public static MainFrame mainFrame;
     private final NorthPanel northPanel;
     private final CenterPanel centerPanel;
-    private final EventListenerList listenerList = new EventListenerList();
+
+    private static boolean isFirstTime = true;
 
     public MainFrame() {
         super("minesweeper");
@@ -35,42 +38,47 @@ public class MainFrame extends JFrame {
 
         mainFrame = this;
 
-        northPanel = new NorthPanel();
-        centerPanel = new CenterPanel();
+        northPanel = NorthPanel.getInstance();
+        centerPanel = CenterPanel.getInstance();
 
-        northPanel.addListener(event -> centerPanel.restart(event.getCommand()));
+        if (isFirstTime) {
+            isFirstTime = false;
+        } else {
+            centerPanel.restartPanel();
+        }
 
-        centerPanel.addListener(event -> {
-            try {
-                northPanel.setRestartButton(event.getCommand());
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
+        RestartButton restartButton = RestartButton.getInstance();
 
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
 
+
+        restartButton.addListener(centerPanel);
+        restartButton.addListener(NorthPanel.getInstance().getTimerElement());
+        centerPanel.addListener(northPanel);
+        SettingsWindowListener.getInstance().addListener(this);
+        SettingsWindowListener.getInstance().addListener(NorthPanel.getInstance());
     }
 
 
     public static void restartSequence() {
+        System.out.println("restart seq started");
+
         mainFrame.dispose();
-        new MainFrame();
+        mainFrame = new MainFrame();
     }
 
-    public void fireEvent(Event event) {
-        Object[] listeners = listenerList.getListenerList();
 
-        for (int i = 0; i < listeners.length; i += 2) {
-            if (listeners[i] == Listener.class) {
-                ((Listener) listeners[i + 1]).eventOccurred(event);
-            }
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
+            SettingsWindowListener.getInstance().removeListener(mainFrame);
+            restartSequence();
+        } else {
+            System.out.println("non good var in mainframe ");
         }
-    }
 
-    public void addListener(Listener listener) {
-        listenerList.add(Listener.class, listener);
+
     }
 
     private static class MainFrameWindowListener implements WindowListener {

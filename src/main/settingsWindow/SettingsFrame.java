@@ -1,6 +1,7 @@
 package main.settingsWindow;
 
 import main.constantsModule.Constant;
+import main.mainWindow.NorthPanel;
 import main.settingsWindow.imagePanel.ImagesSettingsPanel;
 import main.utils.eventDrivers.Event;
 import main.utils.eventDrivers.Listener;
@@ -44,14 +45,7 @@ import java.awt.event.KeyEvent;
 
 public class SettingsFrame extends JFrame {
 
-    public static void main(String[] args) {
-        try {
-            SwingUtilities.invokeLater(SettingsFrame::new);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
+    private final EventListenerList listenerList = new EventListenerList();
 
     public SettingsFrame() {
         super("Settings");
@@ -60,18 +54,16 @@ public class SettingsFrame extends JFrame {
         setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
+        NorthPanel.getInstance().getTimerElement().stopTimer();
 
         setLayout(new GridLayout(1, 1));
         JTabbedPane tabbedPane = new JTabbedPane();
 
-
         tabbedPane.addTab("General", new GeneralSettingsPanel());
         tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-
         tabbedPane.addTab("Images", new ImagesSettingsPanel());
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-
 
         tabbedPane.addTab("Sound", new SoundSettingsPanel());
         tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
@@ -81,7 +73,6 @@ public class SettingsFrame extends JFrame {
 
         //The following line enables to use scrolling tabs.
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-
 
 //
 
@@ -93,12 +84,21 @@ public class SettingsFrame extends JFrame {
 //        });
 
 //        saves on close new settings
-        addWindowListener(new SettingsWindowListener());
+
+        SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
+        addWindowListener(settingsWindowListener);
 
 
     }
 
-    private final EventListenerList listenerList = new EventListenerList();
+    public static void main(String[] args) {
+        try {
+            SwingUtilities.invokeLater(SettingsFrame::new);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();

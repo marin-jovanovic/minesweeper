@@ -2,17 +2,35 @@ package main.settingsWindow;
 
 import main.constantsModule.Config;
 import main.constantsModule.ConstantsManager;
-import main.mainWindow.MainFrame;
 import main.utils.eventDrivers.Command;
-import main.utils.eventDrivers.Event;
-import main.utils.eventDrivers.Listener;
 
-import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class SettingsWindowListener implements WindowListener {
+
+    private static final SettingsWindowListener instance = new SettingsWindowListener();
+
+    public static SettingsWindowListener getInstance() {
+        return instance;
+    }
+
+    private final PropertyChangeSupport support;
+    public void addListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
+
+    private SettingsWindowListener() {
+        support = new PropertyChangeSupport(this);
+//        this.addListener(event -> MainFrame.restartSequence());
+    }
 
     /**
      * Invoked the first time a window is made visible.
@@ -24,7 +42,6 @@ public class SettingsWindowListener implements WindowListener {
 
     }
 
-
     /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
@@ -34,38 +51,28 @@ public class SettingsWindowListener implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
 
-        System.out.println("\nnew settings");
-
-        ConstantsManager.printAll();
-
         ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
+        support.firePropertyChange("settings window closing", null, Command.RESTART_MAINFRAME);
 
-//        SettingsManager.saveSettings();
-
-        fireEvent(new main.utils.eventDrivers.Event(this, Command.RESTART_MAINFRAME));
+//        fireEvent(new main.utils.eventDrivers.Event(this, Command.RESTART_MAINFRAME));
     }
 
+//    private final EventListenerList listenerList = new EventListenerList();
 
-    public SettingsWindowListener() {
-        this.addListener(event -> MainFrame.restartSequence());
-    }
-
-
-    private final EventListenerList listenerList = new EventListenerList();
-
-    public void fireEvent(Event event) {
-        Object[] listeners = listenerList.getListenerList();
-
-        for (int i = 0; i < listeners.length; i += 2) {
-            if (listeners[i] == Listener.class) {
-                ((Listener) listeners[i + 1]).eventOccurred(event);
-            }
-        }
-    }
-
-    public void addListener(Listener listener) {
-        listenerList.add(Listener.class, listener);
-    }
+//    public void fireEvent(Event event) {
+//        Object[] listeners = listenerList.getListenerList();
+//
+//        for (Object listener : listeners) {
+//            if (listener instanceof Listener) {
+//                ((Listener) listener).eventOccurred(event);
+//                return;
+//            }
+//        }
+//    }
+//
+//    public void addListener(Listener listener) {
+//        listenerList.add(Listener.class, listener);
+//    }
 
 
     /**

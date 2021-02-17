@@ -10,6 +10,8 @@ public enum Command {
 
     //    north panel
     NEW_GAME,
-    RESTART_MAINFRAME
+    RESTART_MAINFRAME,
+
+    RESTART_TIMER
 
 }

@@ -7,6 +7,10 @@ import javax.swing.*;
 public class Main {
 
     public static void windowLauncher() {
+//        SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
+//
+//        settingsWindowListener.addListener(MainFrame);
+
         SwingUtilities.invokeLater(MainFrame::new);
     }
 
