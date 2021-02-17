@@ -9,6 +9,12 @@ public class Config {
     private static final String OPENED_TILES = "opened_tiles";
     private static final String CLOSED_TILES = "closed_tiles";
     private static final String BUTTON_PATH = "button";
+    private static final String TIME_TILES = "time";
+
+    public static String getTimeTiles() {
+        return TIME_TILES;
+    }
+
     private static final String DOT = ".";
     private static final String IMAGES_FORMAT_NAME = "png";
     private static final String CUSTOM_IMAGES_PATH =

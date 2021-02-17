@@ -26,7 +26,18 @@ public enum Image {
     SIX(Config.getOpenedTiles(), "6"),
     SEVEN(Config.getOpenedTiles(), "7"),
     EIGHT(Config.getOpenedTiles(), "8"),
-    MINE(Config.getOpenedTiles(), "-1");
+    MINE(Config.getOpenedTiles(), "-1"),
+
+    T_ZERO(Config.getTimeTiles(), "0"),
+    T_ONE(Config.getTimeTiles(), "1"),
+    T_TWO(Config.getTimeTiles(), "2"),
+    T_THREE(Config.getTimeTiles(), "3"),
+    T_FOUR(Config.getTimeTiles(), "4"),
+    T_FIVE(Config.getTimeTiles(), "5"),
+    T_SIX(Config.getTimeTiles(), "6"),
+    T_SEVEN(Config.getTimeTiles(), "7"),
+    T_EIGHT(Config.getTimeTiles(), "8"),
+    T_NINE(Config.getTimeTiles(), "9");
 
     private final String path;
     private ImageIcon imageIcon;
