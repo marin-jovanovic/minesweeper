@@ -26,6 +26,11 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
     //    private final int delay = 1000;
     private long time;
 
+    private int mostSigMinDigit;
+    private int leastSigMinDigit;
+    private int mostSigSecDigit;
+    private int leastSigSecDigit;
+
     public TimerElement() {
         setBorder(BorderFactory.createLineBorder(Color.black));
         setLayout(new FlowLayout());
@@ -56,11 +61,11 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
             int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(time);
 
-            int mostSigMinDigit = minutes / 10;
-            int leastSigMinDigit = minutes % 10;
+            mostSigMinDigit = minutes / 10;
+            leastSigMinDigit = minutes % 10;
 
-            int mostSigSecDigit = seconds / 10;
-            int leastSigSecDigit = seconds % 10;
+            mostSigSecDigit = seconds / 10;
+            leastSigSecDigit = seconds % 10;
 
             updateImage(mostSigMinDigitLabel, mostSigMinDigit);
             updateImage(leastSigMinDigitLabel, leastSigMinDigit);
@@ -117,6 +122,11 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
     }
 
+
+    public String getTime() {
+        return String.valueOf(mostSigMinDigit + leastSigMinDigit + mostSigSecDigit + leastSigSecDigit);
+    }
+
     public void restartTimer() {
 
         timer.stop();
@@ -170,7 +180,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
             System.out.println("unsupported command in timer element");
             System.out.println(evt);
             System.out.println();
-//            System.exit(-1);
         }
     }
 }

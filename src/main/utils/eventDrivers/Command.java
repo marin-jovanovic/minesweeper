@@ -10,6 +10,9 @@ public enum Command {
 
     //    north panel
     NEW_GAME,
+
+
+//    when settings window is closed this command is fired
     RESTART_MAINFRAME,
 
     RESTART_TIMER

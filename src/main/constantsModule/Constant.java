@@ -17,6 +17,9 @@ public enum Constant {
     IS_ANY_SOUND_ACTIVE(true),
     IS_SOUND_ACTIVE(true),
 
+    NUMBER_OF_WINS(0),
+    NUMBER_OF_LOSSES(0),
+
     CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN(false);
 
     private static class ConstantCounterManager {

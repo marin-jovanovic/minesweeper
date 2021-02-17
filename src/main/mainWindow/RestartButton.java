@@ -2,11 +2,8 @@ package main.mainWindow;
 
 import main.imagesModule.Image;
 import main.utils.eventDrivers.Command;
-import main.utils.eventDrivers.Event;
-import main.utils.eventDrivers.Listener;
 
 import javax.swing.*;
-import javax.swing.event.EventListenerList;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -38,6 +35,10 @@ public class RestartButton extends JButton {
             support.firePropertyChange("restart timer", null, Command.RESTART_TIMER);
             support.firePropertyChange("new game", null, Command.NEW_GAME);
 
+            NorthPanel.getInstance().setGameOver(false);
+
+
+
 
             setIcon(Image.PLAY_AGAIN.getImageIcon());
 
@@ -45,36 +46,8 @@ public class RestartButton extends JButton {
 
     }
 
-
     public void addListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
-    }
-//    @Override
-//    public void addPropertyChangeListener(PropertyChangeListener pcl) {
-//        support.addPropertyChangeListener(pcl);
-//    }
-
-
-    private final EventListenerList listenerList = new EventListenerList();
-
-
-    public void fireEvent(Event event) {
-        Object[] listeners = listenerList.getListenerList();
-
-        for (Object listener : listeners) {
-            System.out.println(listener);
-        }
-
-        for (Object listener : listeners) {
-            if (listener instanceof Listener) {
-                ((Listener) listener).eventOccurred(event);
-                return;
-            }
-        }
-    }
-
-    public void addListener(Listener listener) {
-        listenerList.add(Listener.class, listener);
     }
 
 }

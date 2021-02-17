@@ -15,12 +15,15 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
     private final TimerElement timerElement;
 
     private final RestartButton restartButton;
+    private boolean isGameOver = false;
+
+    public void setGameOver(boolean gameOver) {
+        isGameOver = gameOver;
+    }
 
     private NorthPanel() {
 
-
 //        TODO statistics, time, pause button
-
 
         /* todo
             restart timer when settings are closed
@@ -37,6 +40,10 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 //        restartButton.addListener(timerElement);
 //        restartButton.addPropertyChangeListener(timerElement);
         add(restartButton);
+
+
+        add(ResultComponent.getInstance());
+
 
         JButton settingsButton = new JButton("settings");
 
@@ -71,35 +78,44 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
         return timerElement;
     }
 
-    public void setRestartButton(Command command) {
-        if (command.equals(Command.GAME_OVER)) {
-            restartButton.setIcon(Image.DEFEAT.getImageIcon());
-
-        } else if (command.equals(Command.GAME_WON)) {
-            restartButton.setIcon(Image.VICTORY.getImageIcon());
-
-        } else {
-            System.out.println("error set restart button in north panel");
-            System.exit(-1);
-        }
-
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
         if (evt.getNewValue() == Command.GAME_OVER) {
-            restartButton.setIcon(Image.DEFEAT.getImageIcon());
-            setRestartButton(Command.GAME_OVER);
-            timerElement.stopTimer();
+            if (! isGameOver) {
+
+                restartButton.setIcon(Image.DEFEAT.getImageIcon());
+                timerElement.stopTimer();
+                ResultLogger.processResult(ResultLogger.Result.DEFEAT, timerElement.getTime());
+
+                isGameOver = true;
+            } else {
+                System.out.println("inspect game over signal");
+            }
+
         } else if (evt.getNewValue() == Command.GAME_WON) {
-//            setRestartButton(Command.GAME_WON);
-            restartButton.setIcon(Image.VICTORY.getImageIcon());
-            timerElement.stopTimer();
+            if (! isGameOver) {
+
+                restartButton.setIcon(Image.VICTORY.getImageIcon());
+                timerElement.stopTimer();
+                ResultLogger.processResult(ResultLogger.Result.VICTORY, timerElement.getTime());
+
+                isGameOver = true;
+            } else {
+                System.out.println("inspect game won signal");
+            }
+
+
+
         } else if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
+//            settings changed
+
             restartButton.setIcon(Image.PLAY_AGAIN.getImageIcon());
             timerElement.restartTimer();
-//            setRestartButton();
+
+
+            isGameOver = false;
 
         } else {
                 System.out.println("north panel unknown event");
