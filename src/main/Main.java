@@ -1,6 +1,6 @@
 package main;
 
-import main.mainWindow.MainFrame;
+import main.windows.mainWindow.MainFrame;
 
 import javax.swing.*;
 
