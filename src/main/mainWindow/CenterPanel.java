@@ -22,7 +22,6 @@ import java.beans.PropertyChangeSupport;
 
 public class CenterPanel extends JPanel implements PropertyChangeListener {
 
-    private static CenterPanel instance = new CenterPanel();
     private final PropertyChangeSupport support;
     private final JButton[][] buttons;
     private final int numOfCells;
@@ -68,16 +67,8 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-    public static CenterPanel getInstance() {
-        return instance;
-    }
-
     public void addListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
-    }
-
-    public void restartPanel() {
-        instance = new CenterPanel();
     }
 
     /**
@@ -180,8 +171,10 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
     public void restart() {
         System.out.println("center panel: restart");
 
-        setButtons(true);
+        isFirstButtonClicked = false;
         numOfOpenedCells = 0;
+
+        setButtons(true);
         restartButtons();
 
         table = TableGenerator.getTable();
@@ -191,6 +184,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
      * enables all buttons and sets icon to {@code CLOSED_CELL}
      */
     private void restartButtons() {
+
         for (int i = 0; i < (int) Constant.NUMBER_OF_ROWS.getValue(); i++) {
             for (int j = 0; j < (int) Constant.NUMBER_OF_COLUMNS.getValue(); j++) {
                 buttons[i][j].setEnabled(true);
@@ -199,24 +193,19 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-    public boolean isFirstButtonClicked() {
-        return isFirstButtonClicked;
-    }
-
-    public void setFirstButtonClicked(boolean firstButtonClicked) {
-        isFirstButtonClicked = firstButtonClicked;
-    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() == Command.NEW_GAME) {
             restart();
-            isFirstButtonClicked = false;
         } else {
             System.out.println("unsupported command in center panel");
             System.out.println(evt);
             System.out.println();
         }
+    }
+
+    public void removeListener(PropertyChangeListener p) {
+        support.removePropertyChangeListener(p);
     }
 
     private static class RightClickListener extends MouseAdapter {

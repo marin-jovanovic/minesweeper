@@ -20,6 +20,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
     private static boolean isFirstTime = true;
     private final NorthPanel northPanel;
     private final CenterPanel centerPanel;
+    private final RestartButton restartButton;
 
     public MainFrame() {
         super("minesweeper");
@@ -39,15 +40,8 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
         northPanel = NorthPanel.getInstance();
         centerPanel = new CenterPanel();
-//        centerPanel = CenterPanel.getInstance();
 
-        if (isFirstTime) {
-            isFirstTime = false;
-        } else {
-            centerPanel.restartPanel();
-        }
-
-        RestartButton restartButton = RestartButton.getInstance();
+        restartButton = RestartButton.getInstance();
 
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
@@ -60,7 +54,6 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         SettingsWindowListener.getInstance().addListener(NorthPanel.getInstance());
     }
 
-
     public static void restartSequence() {
         System.out.println("restart seq started");
 
@@ -68,11 +61,14 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         mainFrame = new MainFrame();
     }
 
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
             SettingsWindowListener.getInstance().removeListener(mainFrame);
+            SettingsWindowListener.getInstance().removeListener(NorthPanel.getInstance());
+            restartButton.removeListener(centerPanel);
+            restartButton.removeListener(NorthPanel.getInstance().getTimerElement());
+            centerPanel.removeListener(northPanel);
             restartSequence();
         } else {
             System.out.println("non good var in mainframe ");

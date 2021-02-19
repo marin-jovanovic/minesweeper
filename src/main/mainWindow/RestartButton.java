@@ -47,5 +47,7 @@ public class RestartButton extends JButton {
     }
 
 
-
+    public void removeListener(PropertyChangeListener propertyChangeListener) {
+        support.removePropertyChangeListener(propertyChangeListener);
+    }
 }
