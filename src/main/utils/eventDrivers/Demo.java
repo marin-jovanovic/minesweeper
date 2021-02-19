@@ -5,6 +5,19 @@ import javax.swing.event.EventListenerList;
 public class Demo {
     private final EventListenerList listenerList = new EventListenerList();
 
+    public static void main(String[] args) {
+
+//
+//        centerPanel.addListener(event -> {
+//            try {
+//                northPanel.setRestartButton(event.getCommand());
+//            } catch (Exception exception) {
+//                exception.printStackTrace();
+//            }
+//        });
+
+    }
+
     public void fireEvent(Event event) {
         Object[] listeners = listenerList.getListenerList();
 
@@ -22,19 +35,5 @@ public class Demo {
 
     public void addListener(Listener listener) {
         listenerList.add(Listener.class, listener);
-    }
-
-
-    public static void main(String[] args) {
-
-//
-//        centerPanel.addListener(event -> {
-//            try {
-//                northPanel.setRestartButton(event.getCommand());
-//            } catch (Exception exception) {
-//                exception.printStackTrace();
-//            }
-//        });
-
     }
 }

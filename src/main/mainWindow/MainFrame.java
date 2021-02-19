@@ -17,10 +17,9 @@ import java.beans.PropertyChangeListener;
 public class MainFrame extends JFrame implements PropertyChangeListener {
 
     public static MainFrame mainFrame;
+    private static boolean isFirstTime = true;
     private final NorthPanel northPanel;
     private final CenterPanel centerPanel;
-
-    private static boolean isFirstTime = true;
 
     public MainFrame() {
         super("minesweeper");
@@ -39,7 +38,8 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         mainFrame = this;
 
         northPanel = NorthPanel.getInstance();
-        centerPanel = CenterPanel.getInstance();
+        centerPanel = new CenterPanel();
+//        centerPanel = CenterPanel.getInstance();
 
         if (isFirstTime) {
             isFirstTime = false;

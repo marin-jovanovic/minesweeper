@@ -17,10 +17,6 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
     private final RestartButton restartButton;
     private boolean isGameOver = false;
 
-    public void setGameOver(boolean gameOver) {
-        isGameOver = gameOver;
-    }
-
     private NorthPanel() {
 
 //        TODO statistics, time, pause button
@@ -74,6 +70,10 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
         return instance;
     }
 
+    public void setGameOver(boolean gameOver) {
+        isGameOver = gameOver;
+    }
+
     public TimerElement getTimerElement() {
         return timerElement;
     }
@@ -83,7 +83,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
 
         if (evt.getNewValue() == Command.GAME_OVER) {
-            if (! isGameOver) {
+            if (!isGameOver) {
 
                 restartButton.setIcon(Image.DEFEAT.getImageIcon());
                 timerElement.stopTimer();
@@ -95,7 +95,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
             }
 
         } else if (evt.getNewValue() == Command.GAME_WON) {
-            if (! isGameOver) {
+            if (!isGameOver) {
 
                 restartButton.setIcon(Image.VICTORY.getImageIcon());
                 timerElement.stopTimer();
@@ -105,7 +105,6 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
             } else {
                 System.out.println("inspect game won signal");
             }
-
 
 
         } else if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
@@ -118,8 +117,8 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
             isGameOver = false;
 
         } else {
-                System.out.println("north panel unknown event");
-            }
+            System.out.println("north panel unknown event");
+        }
     }
 
 }

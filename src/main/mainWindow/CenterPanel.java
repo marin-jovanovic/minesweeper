@@ -22,19 +22,11 @@ import java.beans.PropertyChangeSupport;
 
 public class CenterPanel extends JPanel implements PropertyChangeListener {
 
-    public void addListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
-
-    private final PropertyChangeSupport support;
-    public void restartPanel() {
-        instance = new CenterPanel();
-    }
-
     private static CenterPanel instance = new CenterPanel();
+    private final PropertyChangeSupport support;
     private final JButton[][] buttons;
     private final int numOfCells;
-//    private final EventListenerList listenerList = new EventListenerList();
+    //    private final EventListenerList listenerList = new EventListenerList();
     //    table - blueprint of field
     private CellStatus[][] table;
     //    can you click on button (including left and right click operations)
@@ -46,7 +38,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
     private int currentHoveredButtonY;
     private boolean isFirstButtonClicked = false;
 
-    private CenterPanel() {
+    public CenterPanel() {
 
         support = new PropertyChangeSupport(this);
 
@@ -68,7 +60,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
                 buttons[i][j].addMouseListener(new RightClickListener(this, buttons, i, j));
 
-                buttons[i][j].addActionListener(new LeftClickListener());
+                buttons[i][j].addActionListener(new LeftClickListener(this));
 
                 this.add(buttons[i][j]);
 
@@ -78,6 +70,14 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
     public static CenterPanel getInstance() {
         return instance;
+    }
+
+    public void addListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void restartPanel() {
+        instance = new CenterPanel();
     }
 
     /**
@@ -207,21 +207,17 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         isFirstButtonClicked = firstButtonClicked;
     }
 
-//    public void fireEvent(Event event) {
-//        Object[] listeners = listenerList.getListenerList();
-//
-//        for (int i = 0; i < listeners.length; i += 2) {
-//
-//
-//            if (listeners[i] == Listener.class) {
-//                ((Listener) listeners[i + 1]).eventOccurred(event);
-//            }
-//        }
-//    }
-
-//    public void addListener(Listener listener) {
-//        listenerList.add(Listener.class, listener);
-//    }
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() == Command.NEW_GAME) {
+            restart();
+            isFirstButtonClicked = false;
+        } else {
+            System.out.println("unsupported command in center panel");
+            System.out.println(evt);
+            System.out.println();
+        }
+    }
 
     private static class RightClickListener extends MouseAdapter {
         private static boolean areButtonsActive = true;
@@ -279,6 +275,12 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
     private class LeftClickListener implements ActionListener {
 
+        private CenterPanel centerPanel;
+
+        public LeftClickListener(CenterPanel centerPanel) {
+            this.centerPanel = centerPanel;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -292,10 +294,16 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
                             System.out.println("clicked " + i + " " + j);
 
-                            if (!CenterPanel.getInstance().isFirstButtonClicked) {
+                            if (! centerPanel.isFirstButtonClicked) {
                                 NorthPanel.getInstance().getTimerElement().startOrContinueTimer();
-                                CenterPanel.getInstance().isFirstButtonClicked = true;
+                                centerPanel.isFirstButtonClicked = true;
                             }
+
+
+//                            if (!CenterPanel.getInstance().isFirstButtonClicked) {
+//                                NorthPanel.getInstance().getTimerElement().startOrContinueTimer();
+//                                CenterPanel.getInstance().isFirstButtonClicked = true;
+//                            }
 
 
                             if (table[i][j] == CellStatus.ZERO) {
@@ -335,19 +343,6 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                 return true;
             }
             return false;
-        }
-    }
-
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getNewValue() == Command.NEW_GAME) {
-            restart();
-        } else {
-            System.out.println("unsupported command in center panel");
-            System.out.println(evt);
-            System.out.println();
-//            System.exit(-1);
         }
     }
 }

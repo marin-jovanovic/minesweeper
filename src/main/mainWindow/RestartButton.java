@@ -9,14 +9,8 @@ import java.beans.PropertyChangeSupport;
 
 public class RestartButton extends JButton {
 
-//    private Command command;
+    private static final RestartButton instance = new RestartButton();
     private final PropertyChangeSupport support;
-
-    private static RestartButton instance = new RestartButton();
-
-    public static RestartButton getInstance() {
-        return instance;
-    }
 
     private RestartButton() {
 
@@ -28,17 +22,15 @@ public class RestartButton extends JButton {
             System.out.println("restart button clicked");
 
 
-            if (CenterPanel.getInstance().isFirstButtonClicked()) {
-                CenterPanel.getInstance().setFirstButtonClicked(false);
-            }
+//
+//            if (CenterPanel.getInstance().isFirstButtonClicked()) {
+//                CenterPanel.getInstance().setFirstButtonClicked(false);
+//            }
 
             support.firePropertyChange("restart timer", null, Command.RESTART_TIMER);
             support.firePropertyChange("new game", null, Command.NEW_GAME);
 
             NorthPanel.getInstance().setGameOver(false);
-
-
-
 
             setIcon(Image.PLAY_AGAIN.getImageIcon());
 
@@ -46,8 +38,14 @@ public class RestartButton extends JButton {
 
     }
 
+    public static RestartButton getInstance() {
+        return instance;
+    }
+
     public void addListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
+
+
 
 }

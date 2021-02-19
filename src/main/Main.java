@@ -6,6 +6,9 @@ import javax.swing.*;
 
 public class Main {
 
+//    fixme
+//      error while changing dimensions
+
     public static void windowLauncher() {
 //        SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
 //

@@ -140,6 +140,18 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() == Command.RESTART_TIMER) {
+            System.out.println("property changed: restarting timer");
+            restartTimer();
+        } else {
+            System.out.println("unsupported command in timer element");
+            System.out.println(evt);
+            System.out.println();
+        }
+    }
+
     private static class TestFrame extends JFrame {
         TestFrame() {
             ConstantsManager.initializeConstants();
@@ -167,19 +179,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
             restart.addActionListener(e -> timer.restartTimer());
             add(restart);
 
-        }
-    }
-
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getNewValue() == Command.RESTART_TIMER) {
-            System.out.println("property changed: restarting timer");
-            restartTimer();
-        } else {
-            System.out.println("unsupported command in timer element");
-            System.out.println(evt);
-            System.out.println();
         }
     }
 }

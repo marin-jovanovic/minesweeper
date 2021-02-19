@@ -13,23 +13,23 @@ import java.beans.PropertyChangeSupport;
 public class SettingsWindowListener implements WindowListener {
 
     private static final SettingsWindowListener instance = new SettingsWindowListener();
+    private final PropertyChangeSupport support;
+
+    private SettingsWindowListener() {
+        support = new PropertyChangeSupport(this);
+//        this.addListener(event -> MainFrame.restartSequence());
+    }
 
     public static SettingsWindowListener getInstance() {
         return instance;
     }
 
-    private final PropertyChangeSupport support;
     public void addListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
     public void removeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
-    }
-
-    private SettingsWindowListener() {
-        support = new PropertyChangeSupport(this);
-//        this.addListener(event -> MainFrame.restartSequence());
     }
 
     /**

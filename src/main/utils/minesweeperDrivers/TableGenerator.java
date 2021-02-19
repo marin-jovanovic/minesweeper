@@ -199,7 +199,6 @@ public class TableGenerator {
 
     /**
      * formatted print of {@code table}
-     *
      */
     private static void printTable() {
         System.out.println("table:");
@@ -215,7 +214,6 @@ public class TableGenerator {
 
     /**
      * sets all cells in {@code table} to {@code CellStatus.ZERO}
-     *
      */
     private static void setAllCellsToZero() {
         for (int i = 0; i < getNumberOfRows(); i++) {

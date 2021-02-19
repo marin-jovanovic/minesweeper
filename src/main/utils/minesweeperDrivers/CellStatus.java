@@ -12,7 +12,7 @@ public enum CellStatus {
     SEVEN("7"),
     EIGHT("8");
 
-    private String string;
+    private final String string;
 
     CellStatus(String string) {
         this.string = string;

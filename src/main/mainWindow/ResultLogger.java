@@ -7,13 +7,7 @@ import java.util.ArrayList;
 
 public class ResultLogger {
 
-    public enum Result {
-        VICTORY,
-        DEFEAT;
-    };
-
     private static final String PATH = "statistics.txt";
-    // todo result constants
 
     public static void processResult(Result result, String time) {
 //        increment result constants
@@ -45,7 +39,7 @@ public class ResultLogger {
     }
 
 
-//    todo handle errors
+    //    todo handle errors
     public static ArrayList<String> readResults() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
@@ -66,8 +60,6 @@ public class ResultLogger {
 
         } else {
 
-            int i = 0;
-
             try (FileReader fr = new FileReader(PATH);
                  BufferedReader bw = new BufferedReader(fr)) {
 
@@ -79,10 +71,8 @@ public class ResultLogger {
                 }
 
 
-            } catch (FileNotFoundException fileNotFoundException) {
+            } catch (IOException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
 
@@ -101,17 +91,12 @@ public class ResultLogger {
         results.forEach(System.out::println);
 
 
-
     }
 
 
-
-
-
-
-
-    public ResultLogger() {
-
+    public enum Result {
+        VICTORY,
+        DEFEAT
     }
 
 }

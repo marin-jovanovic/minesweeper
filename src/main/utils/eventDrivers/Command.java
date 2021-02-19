@@ -12,7 +12,7 @@ public enum Command {
     NEW_GAME,
 
 
-//    when settings window is closed this command is fired
+    //    when settings window is closed this command is fired
     RESTART_MAINFRAME,
 
     RESTART_TIMER

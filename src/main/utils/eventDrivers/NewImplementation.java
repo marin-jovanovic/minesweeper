@@ -29,9 +29,8 @@ public class NewImplementation {
 
 
     public static class PCLNewsAgency {
-        private String news;
-
         private final PropertyChangeSupport support;
+        private String news;
 
         public PCLNewsAgency() {
             support = new PropertyChangeSupport(this);

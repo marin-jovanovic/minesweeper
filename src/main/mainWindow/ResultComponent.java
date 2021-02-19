@@ -8,23 +8,9 @@ import java.awt.*;
 
 public class ResultComponent extends JPanel {
 
-    private static ResultComponent instance = new ResultComponent();
-
-    public static ResultComponent getInstance() {
-        return instance;
-    }
-
-    private JLabel winLabel;
-    private JLabel loseLabel;
-
-    public void refreshLoseLabel() {
-        loseLabel.setText(String.valueOf(Constant.NUMBER_OF_LOSSES.getValue()));
-    }
-
-    public void refreshWinLabel() {
-        winLabel.setText(String.valueOf(Constant.NUMBER_OF_WINS.getValue()));
-    }
-
+    private static final ResultComponent instance = new ResultComponent();
+    private final JLabel winLabel;
+    private final JLabel loseLabel;
     private ResultComponent() {
         setBorder(BorderFactory.createLineBorder(Color.black));
         setLayout(new FlowLayout());
@@ -41,8 +27,20 @@ public class ResultComponent extends JPanel {
 
     }
 
+    public static ResultComponent getInstance() {
+        return instance;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ResultComponent.TestFrame::new);
+    }
+
+    public void refreshLoseLabel() {
+        loseLabel.setText(String.valueOf(Constant.NUMBER_OF_LOSSES.getValue()));
+    }
+
+    public void refreshWinLabel() {
+        winLabel.setText(String.valueOf(Constant.NUMBER_OF_WINS.getValue()));
     }
 
     private static class TestFrame extends JFrame {
