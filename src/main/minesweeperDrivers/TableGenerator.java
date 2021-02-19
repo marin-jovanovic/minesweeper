@@ -1,6 +1,6 @@
 package main.minesweeperDrivers;
 
-import main.constants.Constant;
+import main.resourceManagers.constants.Constant;
 
 import java.util.Random;
 
