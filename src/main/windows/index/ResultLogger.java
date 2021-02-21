@@ -9,6 +9,10 @@ public class ResultLogger {
 
     private static final String PATH = "statistics.txt";
 
+    private static final String currentDate = String.valueOf(java.time.LocalDate.now());
+
+    private static boolean isFirstEntry = true;
+
     public static void processResult(Result result, String time) {
 //        increment result constants
 //        update gui result
@@ -30,8 +34,27 @@ public class ResultLogger {
 
     private static void writeResult(Result result, String time) {
 
+        if (isFirstEntry) {
+            isFirstEntry = false;
+
+            try (FileOutputStream fos = new FileOutputStream(PATH, true)) {
+                fos.write((java.time.LocalDate.now() + "\n").getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try (FileOutputStream fos = new FileOutputStream(PATH, true)) {
-            fos.write((result + ";" + time + "\n").getBytes());
+            String resultCompressed;
+            if (result == Result.VICTORY) {
+                resultCompressed = "V";
+            } else if (result == Result.DEFEAT) {
+                resultCompressed = "D";
+            } else {
+                resultCompressed = "E";
+            }
+
+            fos.write((resultCompressed + ";" + time + "\n").getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
