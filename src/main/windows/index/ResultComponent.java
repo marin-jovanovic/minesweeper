@@ -6,7 +6,7 @@ import main.resourceManagers.constants.ConstantsManager;
 import javax.swing.*;
 import java.awt.*;
 
-public class ResultComponent extends JPanel {
+public class ResultComponent extends JButton {
 
     private static final ResultComponent instance = new ResultComponent();
     private final JLabel winLabel;
@@ -19,13 +19,16 @@ public class ResultComponent extends JPanel {
         winLabel = new JLabel(String.valueOf(Constant.NUMBER_OF_WINS.getValue()));
         loseLabel = new JLabel(String.valueOf(Constant.NUMBER_OF_LOSSES.getValue()));
 
-        add(winLabel);
-
         JLabel separator = new JLabel(":");
-        add(separator);
 
+        add(winLabel);
+        add(separator);
         add(loseLabel);
 
+
+        addActionListener((actionEvent) -> {
+            GraphPanel.run();
+        });
     }
 
     public static ResultComponent getInstance() {

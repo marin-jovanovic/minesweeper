@@ -10,7 +10,7 @@ public class ResultLogger {
     private static final String PATH = "statistics.txt";
 
     private static final String currentDate = String.valueOf(java.time.LocalDate.now());
-    
+
     public static void processResult(Result result, String time) {
 //        increment result constants
 //        update gui result
@@ -123,13 +123,14 @@ public class ResultLogger {
 
     public static void main(String[] args) {
 
-        writeResult(Result.VICTORY, "12");
-        writeResult(Result.DEFEAT, "4");
+//        writeResult(Result.VICTORY, "12");
+//        writeResult(Result.DEFEAT, "4");
 
         ArrayList<String> results = readResults();
 
         System.out.println("*** results ***");
         results.forEach(System.out::println);
+
 
 
     }
