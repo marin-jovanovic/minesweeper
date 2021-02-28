@@ -10,9 +10,7 @@ public class ResultLogger {
     private static final String PATH = "statistics.txt";
 
     private static final String currentDate = String.valueOf(java.time.LocalDate.now());
-
-    private static boolean isFirstEntry = true;
-
+    
     public static void processResult(Result result, String time) {
 //        increment result constants
 //        update gui result
@@ -32,16 +30,36 @@ public class ResultLogger {
 
     }
 
+    /**
+     * appends results to file {@code PATH} in following format:
+     * D;1;2021-2-15
+     *
+     * first token is "D" or "V" as in "victory" and "defeat"
+     * "E" means tie
+     *
+     * second token:
+     * time in seconds
+     *
+     * third token:
+     * date in format year-month-day
+     *
+     * @param result
+     * @param time
+     */
     private static void writeResult(Result result, String time) {
 
-        if (isFirstEntry) {
-            isFirstEntry = false;
+        if (! Constant.LAST_LOGGED_DAY.getValue().equals(currentDate)) {
+            System.out.println("new day");
+            Constant.LAST_LOGGED_DAY.setValue(currentDate);
 
             try (FileOutputStream fos = new FileOutputStream(PATH, true)) {
-                fos.write((java.time.LocalDate.now() + "\n").getBytes());
+                fos.write((currentDate + "\n").getBytes());
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+        } else {
+            System.out.println("day already logged");
         }
 
         try (FileOutputStream fos = new FileOutputStream(PATH, true)) {

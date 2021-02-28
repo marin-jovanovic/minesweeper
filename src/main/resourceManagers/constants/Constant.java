@@ -20,9 +20,12 @@ public enum Constant {
     NUMBER_OF_WINS(0),
     NUMBER_OF_LOSSES(0),
 
+    LAST_LOGGED_DAY(ConstantCounterManager.initValue),
+
     CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN(false);
 
     private static class ConstantCounterManager {
+        private static final String initValue = "init value";
 
         private static int numOfConstants = 0;
 
@@ -47,6 +50,12 @@ public enum Constant {
 
     public static int getNumOfConstants() {
         return ConstantCounterManager.getNumOfConstants();
+    }
+
+    private static final String initValue = ConstantCounterManager.initValue;
+
+    public static String getInitValue() {
+        return initValue;
     }
 
     @Override
