@@ -23,7 +23,6 @@ public class GeneralSettingsPanel extends JPanel {
         add(new TogglePanel("is sound active", Constant.IS_SOUND_ACTIVE));
 
 
-
     }
 
     private static class TogglePanel extends JPanel {
@@ -80,7 +79,6 @@ public class GeneralSettingsPanel extends JPanel {
         }
 
     }
-
 
 
 }

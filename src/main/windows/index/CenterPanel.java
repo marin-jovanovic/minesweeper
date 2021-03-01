@@ -1,11 +1,11 @@
 package main.windows.index;
 
-import main.resourceManagers.constants.Constant;
-import main.resourceManagers.images.Image;
-import main.resourceManagers.sounds.SoundsManager;
 import main.eventDrivers.Command;
 import main.minesweeperDrivers.CellStatus;
 import main.minesweeperDrivers.TableGenerator;
+import main.resourceManagers.constants.Constant;
+import main.resourceManagers.images.Image;
+import main.resourceManagers.sounds.SoundsManager;
 
 import javax.swing.*;
 import java.awt.*;

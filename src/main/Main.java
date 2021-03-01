@@ -6,30 +6,26 @@ import javax.swing.*;
 
 public class Main {
 
-//    fixme
-//      error while changing dimensions
-
-    public static void windowLauncher() {
-//        SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
-//
-//        settingsWindowListener.addListener(MainFrame);
-
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(MainFrame::new);
     }
 
-//    TODO extract image loading to separate threads to make program faster
-//    TODO time
+//    TODO extract image loading to separate thread
 //    TODO gui style
+//      todo one settings window instance
+
 
     //    FIXME
-//          1. when pressed "restart all settings" images in settings window are not restarted automatically
-//          2. fix position on screen of mainframe and settingswindow
+//          when pressed "restart all settings" images in settings window are not restarted automatically
+//          fix position on screen of mainframe and settingswindow
+//          when index window is moved and settings window is opened; make sure that new window opens at same location
+//          fix algorithm for game
+//              first cell that is clicked must not be mine
+//              check that game is solvable without brute fore
+//              first cell opened must be zero
+//                  dont generate any mine around that tile
+//          error while changing dimensions
 
 
-    public static void main(String[] args) {
-        windowLauncher();
-
-//        SwingUtilities.invokeLater(TestWindow::new);
-    }
 
 }

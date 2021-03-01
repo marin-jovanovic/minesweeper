@@ -26,7 +26,6 @@ public class ImageManager {
 
     /**
      * copy all from source to target path
-     *
      */
     public static void restartAllImages() {
 

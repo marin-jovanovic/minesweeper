@@ -33,13 +33,13 @@ public class ResultLogger {
     /**
      * appends results to file {@code PATH} in following format:
      * D;1;2021-2-15
-     *
+     * <p>
      * first token is "D" or "V" as in "victory" and "defeat"
      * "E" means tie
-     *
+     * <p>
      * second token:
      * time in seconds
-     *
+     * <p>
      * third token:
      * date in format year-month-day
      *
@@ -48,7 +48,7 @@ public class ResultLogger {
      */
     private static void writeResult(Result result, String time) {
 
-        if (! Constant.LAST_LOGGED_DAY.getValue().equals(currentDate)) {
+        if (!Constant.LAST_LOGGED_DAY.getValue().equals(currentDate)) {
             System.out.println("new day");
             Constant.LAST_LOGGED_DAY.setValue(currentDate);
 
@@ -130,7 +130,6 @@ public class ResultLogger {
 
         System.out.println("*** results ***");
         results.forEach(System.out::println);
-
 
 
     }

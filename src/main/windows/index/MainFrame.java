@@ -1,10 +1,10 @@
 package main.windows.index;
 
+import main.eventDrivers.Command;
 import main.resourceManagers.constants.Config;
 import main.resourceManagers.constants.Constant;
 import main.resourceManagers.constants.ConstantsManager;
 import main.windows.settings.SettingsWindowListener;
-import main.eventDrivers.Command;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +29,8 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
+        setSize(((Double) Constant.WIDTH.getValue()).intValue(),
+                ((Double) Constant.HEIGHT.getValue()).intValue());
         setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
 
         addWindowListener(new MainFrameWindowListener(this));
@@ -44,7 +45,6 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         add(centerPanel, BorderLayout.CENTER);
 
         restartButton.addListener(centerPanel);
-//        restartButton.addListener(NorthPanel.getInstance().getTimerElement());
         centerPanel.addListener(northPanel);
         SettingsWindowListener.getInstance().addListener(this);
         SettingsWindowListener.getInstance().addListener(NorthPanel.getInstance());
@@ -108,32 +108,26 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
         @Override
         public void windowOpened(WindowEvent e) {
-
         }
 
         @Override
         public void windowClosed(WindowEvent e) {
-
         }
 
         @Override
         public void windowIconified(WindowEvent e) {
-
         }
 
         @Override
         public void windowDeiconified(WindowEvent e) {
-
         }
 
         @Override
         public void windowActivated(WindowEvent e) {
-
         }
 
         @Override
         public void windowDeactivated(WindowEvent e) {
-
         }
     }
 

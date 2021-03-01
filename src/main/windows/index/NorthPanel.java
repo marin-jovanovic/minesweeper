@@ -16,9 +16,15 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
     private final RestartButton restartButton;
     private boolean isGameOver = false;
 
+    private JButton settingsButton;
+
+    public void enableSettingsButton() {
+        settingsButton.setEnabled(true);
+    }
+
     private NorthPanel() {
 
-//        TODO statistics, time, pause button
+//        TODO pause button
 
         timerElement = new TimerElement();
         add(timerElement);
@@ -29,18 +35,19 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 
         add(ResultComponent.getInstance());
 
-        JButton settingsButton = new JButton("settings");
+        settingsButton = new JButton("settings");
 
         settingsButton.addActionListener(event -> {
             try {
-                SwingUtilities.invokeLater(SettingsFrame::new);
+                SwingUtilities.invokeLater(SettingsFrame::new );
+                settingsButton.setEnabled(false);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
         add(settingsButton);
-
 
 //        JButton testButton = new JButton("test button");
 //

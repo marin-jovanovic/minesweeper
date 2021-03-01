@@ -1,8 +1,9 @@
 package main.windows.settings;
 
+import main.eventDrivers.Command;
 import main.resourceManagers.constants.Config;
 import main.resourceManagers.constants.ConstantsManager;
-import main.eventDrivers.Command;
+import main.windows.index.NorthPanel;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -51,7 +52,11 @@ public class SettingsWindowListener implements WindowListener {
     public void windowClosing(WindowEvent e) {
 
         ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
-        support.firePropertyChange("settings window closing", null, Command.RESTART_MAINFRAME);
+        support.firePropertyChange("settings window closing", null,
+                Command.RESTART_MAINFRAME);
+
+        NorthPanel.getInstance().enableSettingsButton();
+
 
     }
 

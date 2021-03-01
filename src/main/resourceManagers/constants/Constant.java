@@ -24,20 +24,7 @@ public enum Constant {
 
     CAN_BUTTONS_BE_ACTIVATED_WHILE_UNDER_FLAG_OR_UNKNOWN(false);
 
-    private static class ConstantCounterManager {
-        private static final String initValue = "init value";
-
-        private static int numOfConstants = 0;
-
-        static int getNumOfConstants() {
-            return numOfConstants;
-        }
-
-        static void setNumOfConstants(int numOfConstants) {
-            ConstantCounterManager.numOfConstants = numOfConstants;
-        }
-    }
-
+    private static final String initValue = ConstantCounterManager.initValue;
     private final String id;
     private Object value;
 
@@ -52,10 +39,16 @@ public enum Constant {
         return ConstantCounterManager.getNumOfConstants();
     }
 
-    private static final String initValue = ConstantCounterManager.initValue;
-
     public static String getInitValue() {
         return initValue;
+    }
+
+    public static void main(String[] args) {
+
+        ConstantsManager.initializeConstants();
+        ConstantsManager.printAll();
+
+        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
     }
 
     @Override
@@ -76,14 +69,6 @@ public enum Constant {
         }
 
         return "Constant{ id= " + id + ", value= " + value + ", type= " + type + "}";
-    }
-
-    public static void main(String[] args) {
-
-        ConstantsManager.initializeConstants();
-        ConstantsManager.printAll();
-
-        ConstantsManager.updateConstants(Config.getConstantsMemoryPath());
     }
 
     public String getId() {
@@ -115,6 +100,20 @@ public enum Constant {
         } else {
             System.out.println("objects not of same type");
             System.exit(-1);
+        }
+    }
+
+    private static class ConstantCounterManager {
+        private static final String initValue = "init value";
+
+        private static int numOfConstants = 0;
+
+        static int getNumOfConstants() {
+            return numOfConstants;
+        }
+
+        static void setNumOfConstants(int numOfConstants) {
+            ConstantCounterManager.numOfConstants = numOfConstants;
         }
     }
 

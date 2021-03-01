@@ -1,9 +1,9 @@
 package main.windows.index;
 
+import main.eventDrivers.Command;
 import main.resourceManagers.constants.Constant;
 import main.resourceManagers.constants.ConstantsManager;
 import main.resourceManagers.images.Image;
-import main.eventDrivers.Command;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +23,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
     private final JLabel leastSigMinDigitLabel;
     private final JLabel mostSigSecDigitLabel;
     private final JLabel leastSigSecDigitLabel;
-    //    private final int delay = 1000;
     private long time;
 
     private int mostSigMinDigit;

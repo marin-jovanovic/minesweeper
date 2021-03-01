@@ -1,7 +1,7 @@
 package main.windows.index;
 
-import main.resourceManagers.images.Image;
 import main.eventDrivers.Command;
+import main.resourceManagers.images.Image;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
