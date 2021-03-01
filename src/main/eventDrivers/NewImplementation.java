@@ -6,33 +6,18 @@ import java.beans.PropertyChangeSupport;
 
 public class NewImplementation {
     public static void main(String[] args) {
-        PCLNewsAgency observable = new PCLNewsAgency();
-        PCLNewsChannel observer = new PCLNewsChannel();
+        Sender sender = new Sender();
+        Receiver receiver = new Receiver();
 
-        observable.addPropertyChangeListener(observer);
+        sender.addPropertyChangeListener(receiver);
 
-        observable.setNews("newsName");
-
-        System.out.println(observer.getNews());
+        sender.fire();
     }
 
-    /*
+    public static class Sender {
         private final PropertyChangeSupport support;
 
-        public void addListener(PropertyChangeListener listener) {
-            support.addPropertyChangeListener(listener);
-        }
-
-        support = new PropertyChangeSupport(this);
-
-     */
-
-
-    public static class PCLNewsAgency {
-        private final PropertyChangeSupport support;
-        private String news;
-
-        public PCLNewsAgency() {
+        public Sender() {
             support = new PropertyChangeSupport(this);
         }
 
@@ -44,28 +29,17 @@ public class NewImplementation {
             support.removePropertyChangeListener(pcl);
         }
 
-        public void setNews(String value) {
-            support.firePropertyChange("news", this.news, value);
-            this.news = value;
-
+        public void fire() {
+            support.firePropertyChange("news", null, "new val");
         }
+
     }
 
-    public static class PCLNewsChannel implements PropertyChangeListener {
-
-        private String news;
+    public static class Receiver implements PropertyChangeListener {
 
         public void propertyChange(PropertyChangeEvent evt) {
-            this.setNews((String) evt.getNewValue());
+            System.out.println((String) evt.getNewValue());
         }
 
-        public String getNews() {
-            return news;
-        }
-
-        public void setNews(String news) {
-            this.news = news;
-        }
     }
-
 }

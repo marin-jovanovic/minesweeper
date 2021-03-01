@@ -81,6 +81,16 @@ public class SettingsFrame extends JFrame {
 
     }
 
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+
+//        todo handle this listener
+//        this is fired whatever listener is added
+        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
+    }
+
     public static void main(String[] args) {
         try {
             SwingUtilities.invokeLater(SettingsFrame::new);
@@ -88,14 +98,6 @@ public class SettingsFrame extends JFrame {
             System.out.println(e.getMessage());
         }
 
-    }
-
-    @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-
-        System.out.println("added listener " + listener);
-        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
     }
 
 }

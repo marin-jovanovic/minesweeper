@@ -10,7 +10,6 @@ import java.beans.PropertyChangeListener;
 
 public class NorthPanel extends JPanel implements PropertyChangeListener {
 
-    private final static NorthPanel instance = new NorthPanel();
     private final TimerElement timerElement;
 
     private final RestartButton restartButton;
@@ -70,10 +69,6 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 
     }
 
-    public static NorthPanel getInstance() {
-        return instance;
-    }
-
     public void enableSettingsButton() {
         settingsButton.setEnabled(true);
     }
@@ -118,6 +113,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
             timerElement.startOrContinueTimer();
         } else if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
             timerElement.restartTimer();
+            settingsButton.setEnabled(true);
         } else {
             System.out.println("north panel unknown event");
         }
