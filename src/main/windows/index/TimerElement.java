@@ -144,6 +144,9 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
         if (evt.getNewValue() == Command.RESTART_TIMER) {
             System.out.println("property changed: restarting timer");
             restartTimer();
+        } else if (evt.getNewValue() == Command.STOP_TIMER) {
+            System.out.println("property changed: stopping timer");
+            stopTimer();
         } else {
             System.out.println("unsupported command in timer element");
             System.out.println(evt);

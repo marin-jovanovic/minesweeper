@@ -12,7 +12,6 @@ public class Main {
 
 //    TODO extract image loading to separate thread
 //    TODO gui style
-//      todo one settings window instance
 
 
     //    FIXME
@@ -25,7 +24,7 @@ public class Main {
 //              first cell opened must be zero
 //                  dont generate any mine around that tile
 //          error while changing dimensions
-
+//          statistics graph
 
 
 }

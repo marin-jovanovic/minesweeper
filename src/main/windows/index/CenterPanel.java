@@ -84,8 +84,6 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
     public void checkForWin() {
         if (numOfCells - numOfOpenedCells == (Integer) Constant.NUMBER_OF_MINES.getValue()) {
-//            TODO disable statistics
-            NorthPanel.getInstance().getTimerElement().stopTimer();
 
             System.out.println("game is won");
             setButtons(false);
@@ -284,16 +282,9 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                             System.out.println("clicked " + i + " " + j);
 
                             if (!centerPanel.isFirstButtonClicked) {
-                                NorthPanel.getInstance().getTimerElement().startOrContinueTimer();
+                                support.firePropertyChange("start timer", null, Command.START_TIMER);
                                 centerPanel.isFirstButtonClicked = true;
                             }
-
-
-//                            if (!CenterPanel.getInstance().isFirstButtonClicked) {
-//                                NorthPanel.getInstance().getTimerElement().startOrContinueTimer();
-//                                CenterPanel.getInstance().isFirstButtonClicked = true;
-//                            }
-
 
                             if (table[i][j] == CellStatus.ZERO) {
                                 openBlanks(i, j);
@@ -319,12 +310,9 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
             if (table[i][j] == CellStatus.MINE && !buttons[i][j].isEnabled()) {
                 System.out.println("game over");
 
-                NorthPanel.getInstance().getTimerElement().stopTimer();
 //              TODO extract to new thread (swing worker)
 
                 support.firePropertyChange("game over", null, Command.GAME_OVER);
-
-//                fireEvent(new Event(this, Command.GAME_OVER));
 
                 SoundsManager.playGameOverSound();
 

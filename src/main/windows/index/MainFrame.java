@@ -45,11 +45,11 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         add(centerPanel, BorderLayout.CENTER);
 
         restartButton.addListener(centerPanel);
+        restartButton.addListener(NorthPanel.getInstance());
         centerPanel.addListener(northPanel);
         SettingsWindowListener.getInstance().addListener(this);
         SettingsWindowListener.getInstance().addListener(NorthPanel.getInstance());
 
-        restartButton.addListener(NorthPanel.getInstance());
 
     }
 
@@ -59,7 +59,6 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         SettingsWindowListener.getInstance().removeListener(this);
         SettingsWindowListener.getInstance().removeListener(NorthPanel.getInstance());
         restartButton.removeListener(centerPanel);
-        restartButton.removeListener(NorthPanel.getInstance().getTimerElement());
         centerPanel.removeListener(northPanel);
         restartButton.removeListener(NorthPanel.getInstance());
 

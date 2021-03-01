@@ -1,13 +1,14 @@
 package main.windows.settings;
 
+import main.eventDrivers.Command;
 import main.resourceManagers.constants.Constant;
-import main.windows.index.NorthPanel;
 import main.windows.settings.imagePanel.ImagesSettingsPanel;
 
 import javax.swing.*;
-import javax.swing.event.EventListenerList;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 
 /*
@@ -43,7 +44,15 @@ import java.awt.event.KeyEvent;
 
 public class SettingsFrame extends JFrame {
 
-    private final EventListenerList listenerList = new EventListenerList();
+    private PropertyChangeSupport support;
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+
+        System.out.println("added listener " + listener);
+        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
+    }
 
     public SettingsFrame() {
         super("Settings");
@@ -53,7 +62,8 @@ public class SettingsFrame extends JFrame {
         setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-        NorthPanel.getInstance().getTimerElement().stopTimer();
+//        NorthPanel.getInstance().getTimerElement().stopTimer();
+        support = new PropertyChangeSupport(this);
 
         setLayout(new GridLayout(1, 1));
         JTabbedPane tabbedPane = new JTabbedPane();

@@ -17,6 +17,8 @@ public enum Command {
 
     RESTART_NORTH_PANEL,
 
-    RESTART_TIMER
+    RESTART_TIMER,
+    STOP_TIMER,
+    START_TIMER
 
 }
