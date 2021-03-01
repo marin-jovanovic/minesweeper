@@ -3,7 +3,6 @@ package main.windows.settings;
 import main.eventDrivers.Command;
 import main.resourceManagers.constants.Config;
 import main.resourceManagers.constants.ConstantsManager;
-import main.windows.index.NorthPanel;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -33,16 +32,6 @@ public class SettingsWindowListener implements WindowListener {
     }
 
     /**
-     * Invoked the first time a window is made visible.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    /**
      * Invoked when the user attempts to close the window
      * from the window's system menu.
      *
@@ -55,8 +44,18 @@ public class SettingsWindowListener implements WindowListener {
         support.firePropertyChange("settings window closing", null,
                 Command.RESTART_MAINFRAME);
 
-        NorthPanel.getInstance().enableSettingsButton();
+//        fixme
+//          NorthPanel.getInstance().enableSettingsButton();
 
+    }
+
+    /**
+     * Invoked the first time a window is made visible.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void windowOpened(WindowEvent e) {
 
     }
 

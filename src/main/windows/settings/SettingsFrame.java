@@ -44,15 +44,7 @@ import java.beans.PropertyChangeSupport;
 
 public class SettingsFrame extends JFrame {
 
-    private PropertyChangeSupport support;
-
-    @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-
-        System.out.println("added listener " + listener);
-        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
-    }
+    private final PropertyChangeSupport support;
 
     public SettingsFrame() {
         super("Settings");
@@ -84,10 +76,8 @@ public class SettingsFrame extends JFrame {
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
 //        saves on close new settings
-
         SettingsWindowListener settingsWindowListener = SettingsWindowListener.getInstance();
         addWindowListener(settingsWindowListener);
-
 
     }
 
@@ -98,6 +88,14 @@ public class SettingsFrame extends JFrame {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+
+        System.out.println("added listener " + listener);
+        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
     }
 
 }

@@ -35,7 +35,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
         addWindowListener(new MainFrameWindowListener(this));
 
-        northPanel = NorthPanel.getInstance();
+        northPanel = new NorthPanel();
 
         centerPanel = new CenterPanel();
 
@@ -45,10 +45,10 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         add(centerPanel, BorderLayout.CENTER);
 
         restartButton.addListener(centerPanel);
-        restartButton.addListener(NorthPanel.getInstance());
+        restartButton.addListener(northPanel);
         centerPanel.addListener(northPanel);
         SettingsWindowListener.getInstance().addListener(this);
-        SettingsWindowListener.getInstance().addListener(NorthPanel.getInstance());
+        SettingsWindowListener.getInstance().addListener(northPanel);
 
 
     }
@@ -57,10 +57,10 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         System.out.println("restart seq started");
 
         SettingsWindowListener.getInstance().removeListener(this);
-        SettingsWindowListener.getInstance().removeListener(NorthPanel.getInstance());
+        SettingsWindowListener.getInstance().removeListener(northPanel);
         restartButton.removeListener(centerPanel);
         centerPanel.removeListener(northPanel);
-        restartButton.removeListener(NorthPanel.getInstance());
+        restartButton.removeListener(northPanel);
 
         dispose();
         new MainFrame();

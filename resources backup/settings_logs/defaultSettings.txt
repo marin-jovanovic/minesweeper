@@ -15,7 +15,6 @@ image__opened_tile__7
 image__opened_tile__8
 image__opened_tile__mine
 
-todo
 number of columns = 10
 number of rows = 10
 number of mines = 10

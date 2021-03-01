@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 //            System.out.println(new java.text.SimpleDateFormat("hh:mm:ss").format(TimerElement.time));
 
-// todo log times in db
 public class TimerElement extends JPanel implements PropertyChangeListener {
 
     private final long startTime = 1;
@@ -29,6 +28,8 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
     private int leastSigMinDigit;
     private int mostSigSecDigit;
     private int leastSigSecDigit;
+
+    private boolean isTicking = false;
 
     public TimerElement() {
         setBorder(BorderFactory.createLineBorder(Color.black));
@@ -104,10 +105,16 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
         SwingUtilities.invokeLater(TestFrame::new);
     }
 
+    public boolean isTicking() {
+        return isTicking;
+    }
+
     public void startOrContinueTimer() {
 
 //        if (!isStarted) {
         timer.start();
+        isTicking = true;
+
 
 //            isStarted = true;
 //        } else {
@@ -118,13 +125,10 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
     public void stopTimer() {
 
         timer.stop();
-
+//        isTicking = false;
     }
 
 
-    public String getTime() {
-        return String.valueOf(mostSigMinDigit + leastSigMinDigit + mostSigSecDigit + leastSigSecDigit);
-    }
 
     public void restartTimer() {
 
@@ -132,12 +136,19 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
         time = startTime;
 
+        isTicking = false;
+
         mostSigMinDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
         leastSigMinDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
         mostSigSecDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
         leastSigSecDigitLabel.setIcon(Image.T_ZERO.getImageIcon());
 
     }
+
+    public String getTime() {
+        return String.valueOf(mostSigMinDigit + leastSigMinDigit + mostSigSecDigit + leastSigSecDigit);
+    }
+
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {

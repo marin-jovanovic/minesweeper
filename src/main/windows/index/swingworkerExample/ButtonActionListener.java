@@ -38,7 +38,6 @@ public class ButtonActionListener implements ActionListener {
 //                            openCell(i, j);
 //                            if (table[i][j] == -1) {
 //                                System.out.println("game over");
-//                                //                                          TODO halt time
 //                                //                                          extract to new thread (swing worker)
 //                                //                                                defeat
 //                                fireEvent(new main.eventDrivers.Event(this, "gameOver"));
