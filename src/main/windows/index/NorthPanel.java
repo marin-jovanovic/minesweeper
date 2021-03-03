@@ -28,11 +28,9 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
         restartButton = new RestartButton();
         add(restartButton);
 
-
         add(ResultComponent.getInstance());
 
         settingsButton = new JButton("settings");
-
         settingsButton.addActionListener(e -> {
             try {
                 SwingUtilities.invokeLater(() -> {
@@ -46,15 +44,13 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 
             settingsButton.setEnabled(false);
         });
-
         add(settingsButton);
 
         JButton haltButton = new JButton("stop");
-
         haltButton.addActionListener(event -> {
             if (timerElement.isTicking()) {
                 if (haltButton.getText().equals("stop")) {
-//                    todo dissable center panel operations
+//                    todo disable center panel operations
 //                    todo when restarted or settings closed move state to stop
                     timerElement.stopTimer();
                     haltButton.setText("continue");
@@ -64,7 +60,6 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
                 }
             }
         });
-
         add(haltButton);
 
     }
@@ -107,9 +102,11 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 
         } else if (evt.getNewValue() == Command.START_TIMER) {
             timerElement.startOrContinueTimer();
+
         } else if (evt.getNewValue() == Command.RESTART_MAINFRAME) {
             timerElement.restartTimer();
             settingsButton.setEnabled(true);
+
         } else {
             System.out.println("north panel unknown event");
         }

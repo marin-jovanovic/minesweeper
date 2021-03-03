@@ -9,6 +9,31 @@ import java.util.Random;
  */
 public class TableGenerator {
 
+
+
+//    private class Cell {
+//        private CellModifier cellModifier;
+//        private CellStatus cellStatus;
+//
+//        public CellModifier getCellModifier() {
+//            return cellModifier;
+//        }
+//
+//        public void setCellModifier(CellModifier cellModifier) {
+//            this.cellModifier = cellModifier;
+//        }
+//
+//        public CellStatus getCellStatus() {
+//            return cellStatus;
+//        }
+//
+//        public void setCellStatus(CellStatus cellStatus) {
+//            this.cellStatus = cellStatus;
+//        }
+//
+//
+//    }
+
     private static CellStatus[][] table;
     private static boolean[] isRowFull;
 

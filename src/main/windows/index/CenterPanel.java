@@ -23,19 +23,27 @@ import java.beans.PropertyChangeSupport;
 public class CenterPanel extends JPanel implements PropertyChangeListener {
 
     private final PropertyChangeSupport support;
-    private final JButton[][] buttons;
+
+    // columns * rows
     private final int numOfCells;
-    //    private final EventListenerList listenerList = new EventListenerList();
+
     //    table - blueprint of field
     private CellStatus[][] table;
+
     //    can you click on button (including left and right click operations)
     private boolean areButtonsActive = true;
+
     //    used to check if you can declare win
     private int numOfOpenedCells = 0;
+
     //    for navigation in table
     private int currentHoveredButtonX;
     private int currentHoveredButtonY;
+
+//    used for starting timer
     private boolean isFirstButtonClicked = false;
+
+    private final JButton[][] buttons;
 
     public CenterPanel() {
 
@@ -67,9 +75,6 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-    public void addListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
 
     /**
      * all logic for setting buttons
@@ -190,6 +195,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         }
     }
 
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() == Command.NEW_GAME) {
@@ -197,8 +203,11 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         } else {
             System.out.println("unsupported command in center panel");
             System.out.println(evt);
-            System.out.println();
         }
+    }
+
+    public void addListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
     }
 
     public void removeListener(PropertyChangeListener p) {

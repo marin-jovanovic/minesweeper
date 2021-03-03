@@ -79,7 +79,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
 
     }
-    
+
     /**
      * saves all constants on close
      * logs location and dimensions
