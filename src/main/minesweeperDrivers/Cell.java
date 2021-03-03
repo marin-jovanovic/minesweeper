@@ -20,6 +20,10 @@ public class Cell {
         this.cellStatus = cellStatus;
     }
 
+    public Cell() {
+        this.cellModifier = CellModifier.COVERED;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(cellStatus);
@@ -52,7 +56,8 @@ public class Cell {
         FIVE("5"),
         SIX("6"),
         SEVEN("7"),
-        EIGHT("8");
+        EIGHT("8"),
+        USER("u");
 
         private final String string;
 

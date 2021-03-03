@@ -2,7 +2,7 @@ package main.windows.index;
 
 import main.eventDrivers.Command;
 import main.minesweeperDrivers.Cell;
-import main.minesweeperDrivers.TableGenerator;
+import main.minesweeperDrivers.Table;
 import main.resourceManagers.constants.Constant;
 import main.resourceManagers.images.Image;
 import main.resourceManagers.sounds.SoundsManager;
@@ -28,7 +28,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
     private final int numOfCells;
 
     //    table - blueprint of field
-    private Cell[][] table;
+    private Table table;
 
     //    can you click on button (including left and right click operations)
     private boolean areButtonsActive = true;
@@ -54,7 +54,8 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
         numOfCells = (Integer) Constant.NUMBER_OF_COLUMNS.getValue() * (Integer) Constant.NUMBER_OF_ROWS.getValue();
 
-        table = TableGenerator.getTable();
+//        table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(), (int) Constant.NUMBER_OF_COLUMNS.getValue(),
+//                (int) Constant.NUMBER_OF_MINES.getValue());
 
         buttons = new JButton[(int) Constant.NUMBER_OF_ROWS.getValue()][(int) Constant.NUMBER_OF_COLUMNS.getValue()];
 
@@ -122,25 +123,25 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        if (table[i][j].getCellStatus() == Cell.CellStatus.MINE) {
+        if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.MINE) {
             buttons[i][j].setDisabledIcon(Image.MINE.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.ZERO) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.ZERO) {
             buttons[i][j].setDisabledIcon(Image.ZERO.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.ONE) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.ONE) {
             buttons[i][j].setDisabledIcon(Image.ONE.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.TWO) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.TWO) {
             buttons[i][j].setDisabledIcon(Image.TWO.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.THREE) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.THREE) {
             buttons[i][j].setDisabledIcon(Image.THREE.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.FOUR) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.FOUR) {
             buttons[i][j].setDisabledIcon(Image.FOUR.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.FIVE) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.FIVE) {
             buttons[i][j].setDisabledIcon(Image.FIVE.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.SIX) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.SIX) {
             buttons[i][j].setDisabledIcon(Image.SIX.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.SEVEN) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.SEVEN) {
             buttons[i][j].setDisabledIcon(Image.SEVEN.getImageIcon());
-        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.EIGHT) {
+        } else if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.EIGHT) {
             buttons[i][j].setDisabledIcon(Image.EIGHT.getImageIcon());
         }
 
@@ -155,7 +156,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
         openCell(x, y);
 
-        if (table[x][y].getCellStatus()  == Cell.CellStatus.ZERO) {
+        if (table.getCell(x, y).getCellStatus()  == Cell.CellStatus.ZERO) {
             //        table[x][y] already opened but first if statement in openCell handles that
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
@@ -179,7 +180,9 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         setButtons(true);
         restartButtons();
 
-        table = TableGenerator.getTable();
+//        table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(),
+//                (int) Constant.NUMBER_OF_COLUMNS.getValue(),
+//                (int) Constant.NUMBER_OF_MINES.getValue());
     }
 
     /**
@@ -290,11 +293,14 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                             System.out.println("clicked " + i + " " + j);
 
                             if (!centerPanel.isFirstButtonClicked) {
+                                table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(), (int) Constant.NUMBER_OF_COLUMNS.getValue(),
+                                        (int) Constant.NUMBER_OF_MINES.getValue(), i, j);
+
                                 support.firePropertyChange("start timer", null, Command.START_TIMER);
                                 centerPanel.isFirstButtonClicked = true;
                             }
 
-                            if (table[i][j].getCellStatus()  == Cell.CellStatus.ZERO) {
+                            if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.ZERO) {
                                 openBlanks(i, j);
 
                             } else {
@@ -315,7 +321,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         }
 
         private boolean checkForGameOver(int i, int j) {
-            if (table[i][j].getCellStatus()  == Cell.CellStatus.MINE && !buttons[i][j].isEnabled()) {
+            if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.MINE && !buttons[i][j].isEnabled()) {
                 System.out.println("game over");
 
 //              TODO extract to new thread (swing worker)
