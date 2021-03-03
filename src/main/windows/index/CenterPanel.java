@@ -50,7 +50,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         support = new PropertyChangeSupport(this);
 
         setLayout(new GridLayout((int) Constant.NUMBER_OF_ROWS.getValue(),
-                (int) Constant.NUMBER_OF_COLUMNS.getValue()));
+                                 (int) Constant.NUMBER_OF_COLUMNS.getValue()));
 
         numOfCells = (Integer) Constant.NUMBER_OF_COLUMNS.getValue() * (Integer) Constant.NUMBER_OF_ROWS.getValue();
 
@@ -293,14 +293,16 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                             System.out.println("clicked " + i + " " + j);
 
                             if (!centerPanel.isFirstButtonClicked) {
-                                table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(), (int) Constant.NUMBER_OF_COLUMNS.getValue(),
+                                table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(),
+                                        (int) Constant.NUMBER_OF_COLUMNS.getValue(),
                                         (int) Constant.NUMBER_OF_MINES.getValue(), i, j);
 
-                                support.firePropertyChange("start timer", null, Command.START_TIMER);
+                                support.firePropertyChange("start timer", null,
+                                        Command.START_TIMER);
                                 centerPanel.isFirstButtonClicked = true;
                             }
 
-                            if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.ZERO) {
+                            if (table.getCell(i, j).getCellStatus()  == Cell.CellStatus.ZERO ) {
                                 openBlanks(i, j);
 
                             } else {

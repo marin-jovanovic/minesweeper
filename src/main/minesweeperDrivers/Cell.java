@@ -4,6 +4,10 @@ public class Cell {
     private CellModifier cellModifier;
     private CellStatus cellStatus;
 
+    public Cell() {
+        this.cellModifier = CellModifier.COVERED;
+    }
+
     public CellModifier getCellModifier() {
         return cellModifier;
     }
@@ -18,10 +22,6 @@ public class Cell {
 
     public void setCellStatus(CellStatus cellStatus) {
         this.cellStatus = cellStatus;
-    }
-
-    public Cell() {
-        this.cellModifier = CellModifier.COVERED;
     }
 
     @Override

@@ -13,17 +13,13 @@ public class Table {
 //    todo hints
 
     private final Cell[][] table;
-    private final boolean[] isRowFull ;
+    private final boolean[] isRowFull;
 
     private final int numberOfRows;
     private final int numberOfColumns;
     private final int numberOfMines;
 
-    public Cell getCell(int x, int y) {
-        return table[x][y];
-    }
-
-//  fixme edge cases
+    //  fixme edge cases
     public Table(int numberOfRows, int numberOfColumns, int numberOfMines, int userX, int userY) {
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
@@ -71,7 +67,7 @@ public class Table {
                 boolean isPlaced = false;
 
                 if (table[row][column].getCellStatus() != Cell.CellStatus.MINE &&
-                    table[row][column].getCellStatus() != Cell.CellStatus.USER) {
+                        table[row][column].getCellStatus() != Cell.CellStatus.USER) {
 
 
 //                    for (int m = -1; m < 2; m++) {
@@ -83,8 +79,8 @@ public class Table {
 //                                if (! isPlaced) {
 //                                    isPlaced = true;
 
-                                    table[row][column].setCellStatus(Cell.CellStatus.MINE);
-                                    numOfPlacedMines++;
+                    table[row][column].setCellStatus(Cell.CellStatus.MINE);
+                    numOfPlacedMines++;
 //                                }
 //                            }
 //                        }
@@ -93,12 +89,14 @@ public class Table {
                 }
 
 
-
             }
 
 //            generateHints();
 
         }
+
+
+        table[userX][userY].setCellStatus(Cell.CellStatus.ZERO);
 
     }
 
@@ -160,6 +158,10 @@ public class Table {
 //        t.printTable();
 
         System.out.println(t.isSolvable());
+    }
+
+    public Cell getCell(int x, int y) {
+        return table[x][y];
     }
 
     private boolean isSolvable() {
