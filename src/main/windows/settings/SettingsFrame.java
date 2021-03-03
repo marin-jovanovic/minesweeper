@@ -46,6 +46,10 @@ public class SettingsFrame extends JFrame {
 
     private final PropertyChangeSupport support;
 
+    public SettingsWindowListener getSettingsWindowListener() {
+        return SettingsWindowListener.getInstance();
+    }
+
     public SettingsFrame() {
         super("Settings");
 
@@ -54,7 +58,6 @@ public class SettingsFrame extends JFrame {
         setVisible(true);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-//        NorthPanel.getInstance().getTimerElement().stopTimer();
         support = new PropertyChangeSupport(this);
 
         setLayout(new GridLayout(1, 1));
@@ -80,7 +83,6 @@ public class SettingsFrame extends JFrame {
         addWindowListener(settingsWindowListener);
 
     }
-
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {

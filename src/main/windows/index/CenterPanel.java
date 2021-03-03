@@ -89,7 +89,6 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
             setButtons(false);
 
             support.firePropertyChange("game won", null, Command.GAME_WON);
-//            fireEvent(new Event(this, Command.GAME_WON));
         }
     }
 

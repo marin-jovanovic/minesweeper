@@ -9,10 +9,9 @@ import java.beans.PropertyChangeSupport;
 
 public class RestartButton extends JButton {
 
-    private static final RestartButton instance = new RestartButton();
     private final PropertyChangeSupport support;
 
-    private RestartButton() {
+    public RestartButton() {
 
         support = new PropertyChangeSupport(this);
 
@@ -27,10 +26,6 @@ public class RestartButton extends JButton {
 
         });
 
-    }
-
-    public static RestartButton getInstance() {
-        return instance;
     }
 
     public void addListener(PropertyChangeListener listener) {

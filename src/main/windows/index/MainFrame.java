@@ -39,7 +39,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
         centerPanel = new CenterPanel();
 
-        restartButton = RestartButton.getInstance();
+        restartButton = northPanel.getRestartButton();
 
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
@@ -47,9 +47,9 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
         restartButton.addListener(centerPanel);
         restartButton.addListener(northPanel);
         centerPanel.addListener(northPanel);
+
         SettingsWindowListener.getInstance().addListener(this);
         SettingsWindowListener.getInstance().addListener(northPanel);
-
 
     }
 
@@ -58,6 +58,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
         SettingsWindowListener.getInstance().removeListener(this);
         SettingsWindowListener.getInstance().removeListener(northPanel);
+
         restartButton.removeListener(centerPanel);
         centerPanel.removeListener(northPanel);
         restartButton.removeListener(northPanel);
@@ -78,8 +79,7 @@ public class MainFrame extends JFrame implements PropertyChangeListener {
 
 
     }
-
-
+    
     /**
      * saves all constants on close
      * logs location and dimensions
