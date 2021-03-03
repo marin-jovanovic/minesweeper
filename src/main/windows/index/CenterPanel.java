@@ -1,7 +1,7 @@
 package main.windows.index;
 
 import main.eventDrivers.Command;
-import main.minesweeperDrivers.CellStatus;
+import main.minesweeperDrivers.Cell;
 import main.minesweeperDrivers.TableGenerator;
 import main.resourceManagers.constants.Constant;
 import main.resourceManagers.images.Image;
@@ -28,7 +28,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
     private final int numOfCells;
 
     //    table - blueprint of field
-    private CellStatus[][] table;
+    private Cell[][] table;
 
     //    can you click on button (including left and right click operations)
     private boolean areButtonsActive = true;
@@ -122,25 +122,25 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        if (table[i][j] == CellStatus.MINE) {
+        if (table[i][j].getCellStatus() == Cell.CellStatus.MINE) {
             buttons[i][j].setDisabledIcon(Image.MINE.getImageIcon());
-        } else if (table[i][j] == CellStatus.ZERO) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.ZERO) {
             buttons[i][j].setDisabledIcon(Image.ZERO.getImageIcon());
-        } else if (table[i][j] == CellStatus.ONE) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.ONE) {
             buttons[i][j].setDisabledIcon(Image.ONE.getImageIcon());
-        } else if (table[i][j] == CellStatus.TWO) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.TWO) {
             buttons[i][j].setDisabledIcon(Image.TWO.getImageIcon());
-        } else if (table[i][j] == CellStatus.THREE) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.THREE) {
             buttons[i][j].setDisabledIcon(Image.THREE.getImageIcon());
-        } else if (table[i][j] == CellStatus.FOUR) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.FOUR) {
             buttons[i][j].setDisabledIcon(Image.FOUR.getImageIcon());
-        } else if (table[i][j] == CellStatus.FIVE) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.FIVE) {
             buttons[i][j].setDisabledIcon(Image.FIVE.getImageIcon());
-        } else if (table[i][j] == CellStatus.SIX) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.SIX) {
             buttons[i][j].setDisabledIcon(Image.SIX.getImageIcon());
-        } else if (table[i][j] == CellStatus.SEVEN) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.SEVEN) {
             buttons[i][j].setDisabledIcon(Image.SEVEN.getImageIcon());
-        } else if (table[i][j] == CellStatus.EIGHT) {
+        } else if (table[i][j].getCellStatus()  == Cell.CellStatus.EIGHT) {
             buttons[i][j].setDisabledIcon(Image.EIGHT.getImageIcon());
         }
 
@@ -155,7 +155,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
         openCell(x, y);
 
-        if (table[x][y] == CellStatus.ZERO) {
+        if (table[x][y].getCellStatus()  == Cell.CellStatus.ZERO) {
             //        table[x][y] already opened but first if statement in openCell handles that
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
@@ -294,7 +294,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                                 centerPanel.isFirstButtonClicked = true;
                             }
 
-                            if (table[i][j] == CellStatus.ZERO) {
+                            if (table[i][j].getCellStatus()  == Cell.CellStatus.ZERO) {
                                 openBlanks(i, j);
 
                             } else {
@@ -315,7 +315,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         }
 
         private boolean checkForGameOver(int i, int j) {
-            if (table[i][j] == CellStatus.MINE && !buttons[i][j].isEnabled()) {
+            if (table[i][j].getCellStatus()  == Cell.CellStatus.MINE && !buttons[i][j].isEnabled()) {
                 System.out.println("game over");
 
 //              TODO extract to new thread (swing worker)

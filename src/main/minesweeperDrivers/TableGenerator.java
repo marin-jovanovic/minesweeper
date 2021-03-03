@@ -9,32 +9,7 @@ import java.util.Random;
  */
 public class TableGenerator {
 
-
-
-//    private class Cell {
-//        private CellModifier cellModifier;
-//        private CellStatus cellStatus;
-//
-//        public CellModifier getCellModifier() {
-//            return cellModifier;
-//        }
-//
-//        public void setCellModifier(CellModifier cellModifier) {
-//            this.cellModifier = cellModifier;
-//        }
-//
-//        public CellStatus getCellStatus() {
-//            return cellStatus;
-//        }
-//
-//        public void setCellStatus(CellStatus cellStatus) {
-//            this.cellStatus = cellStatus;
-//        }
-//
-//
-//    }
-
-    private static CellStatus[][] table;
+    private static Cell[][] table;
     private static boolean[] isRowFull;
 
     public static void main(String[] args) {
@@ -56,7 +31,7 @@ public class TableGenerator {
         return (int) Constant.NUMBER_OF_MINES.getValue();
     }
 
-    public static CellStatus[][] getTable() {
+    public static Cell[][] getTable() {
         generateTable();
 
         printTable();
@@ -66,15 +41,21 @@ public class TableGenerator {
 
     private static void generateTable() {
 
-        table = new CellStatus[getNumberOfRows()][getNumberOfColumns()];
+        table = new Cell[getNumberOfRows()][getNumberOfColumns()];
         isRowFull = new boolean[getNumberOfRows()];
+
+        for (int i = 0; i < getNumberOfRows(); i++) {
+            for (int j = 0; j < getNumberOfColumns(); j++) {
+                table[i][j] = new Cell();
+            }
+        }
 
 //        case: more mines or equal to size of table
         if (getNumberOfMines() >= getNumberOfRows() * getNumberOfColumns()) {
 
             for (int i = 0; i < getNumberOfRows(); i++) {
                 for (int j = 0; j < getNumberOfColumns(); j++) {
-                    table[i][j] = CellStatus.MINE;
+                    table[i][j].setCellStatus(Cell.CellStatus.MINE);
                 }
             }
 
@@ -104,7 +85,7 @@ public class TableGenerator {
         for (int i = 0; i < getNumberOfRows(); i++) {
             for (int j = 0; j < getNumberOfColumns(); j++) {
 
-                if (table[i][j] != CellStatus.MINE) {
+                if (table[i][j].getCellStatus() != Cell.CellStatus.MINE) {
 
                     int sum = 0;
 
@@ -116,7 +97,7 @@ public class TableGenerator {
                                 continue;
                             }
 
-                            if (table[i + m][j + n] == CellStatus.MINE) {
+                            if (table[i + m][j + n].getCellStatus() == Cell.CellStatus.MINE) {
                                 sum++;
                             }
 
@@ -125,31 +106,31 @@ public class TableGenerator {
 
                     switch (sum) {
                         case 0:
-                            table[i][j] = CellStatus.ZERO;
+                            table[i][j].setCellStatus(Cell.CellStatus.ZERO);
                             break;
                         case 1:
-                            table[i][j] = CellStatus.ONE;
+                            table[i][j].setCellStatus(Cell.CellStatus.ONE);
                             break;
                         case 2:
-                            table[i][j] = CellStatus.TWO;
+                            table[i][j].setCellStatus(Cell.CellStatus.TWO);
                             break;
                         case 3:
-                            table[i][j] = CellStatus.THREE;
+                            table[i][j].setCellStatus(Cell.CellStatus.THREE);
                             break;
                         case 4:
-                            table[i][j] = CellStatus.FOUR;
+                            table[i][j].setCellStatus(Cell.CellStatus.FOUR);
                             break;
                         case 5:
-                            table[i][j] = CellStatus.FIVE;
+                            table[i][j].setCellStatus(Cell.CellStatus.FIVE);
                             break;
                         case 6:
-                            table[i][j] = CellStatus.SIX;
+                            table[i][j].setCellStatus(Cell.CellStatus.SIX);
                             break;
                         case 7:
-                            table[i][j] = CellStatus.SEVEN;
+                            table[i][j].setCellStatus(Cell.CellStatus.SEVEN);
                             break;
                         case 8:
-                            table[i][j] = CellStatus.EIGHT;
+                            table[i][j].setCellStatus(Cell.CellStatus.EIGHT);
                             break;
                     }
 
@@ -198,8 +179,8 @@ public class TableGenerator {
         while (true) {
             int column = rand.nextInt(getNumberOfColumns());
 
-            if (table[row][column] != CellStatus.MINE) {
-                table[row][column] = CellStatus.MINE;
+            if (table[row][column].getCellStatus() != Cell.CellStatus.MINE) {
+                table[row][column].setCellStatus(Cell.CellStatus.MINE);
                 break;
             }
         }
@@ -214,7 +195,7 @@ public class TableGenerator {
     private static void updateIsRowFull(int row) {
 
         for (int i = 0; i < getNumberOfColumns(); i++) {
-            if (table[row][i] != CellStatus.MINE) {
+            if (table[row][i].getCellStatus() != Cell.CellStatus.MINE) {
                 return;
             }
         }
@@ -243,7 +224,7 @@ public class TableGenerator {
     private static void setAllCellsToZero() {
         for (int i = 0; i < getNumberOfRows(); i++) {
             for (int j = 0; j < getNumberOfColumns(); j++) {
-                table[i][j] = CellStatus.ZERO;
+                table[i][j].setCellStatus(Cell.CellStatus.ZERO);
             }
         }
     }
