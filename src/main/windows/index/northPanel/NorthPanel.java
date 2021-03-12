@@ -1,4 +1,4 @@
-package main.windows.index;
+package main.windows.index.northPanel;
 
 import main.eventDrivers.Command;
 import main.resourceManagers.images.Image;
@@ -28,7 +28,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
         restartButton = new RestartButton();
         add(restartButton);
 
-        add(ResultComponent.getInstance());
+        add(GraphPanel.ResultComponent.getInstance());
 
         settingsButton = new JButton("settings");
         settingsButton.addActionListener(e -> {

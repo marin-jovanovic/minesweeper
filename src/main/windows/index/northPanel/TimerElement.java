@@ -1,4 +1,4 @@
-package main.windows.index;
+package main.windows.index.northPanel;
 
 import main.eventDrivers.Command;
 import main.resourceManagers.constants.Constant;
@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.concurrent.TimeUnit;
-
-//            System.out.println(new java.text.SimpleDateFormat("hh:mm:ss").format(TimerElement.time));
 
 public class TimerElement extends JPanel implements PropertyChangeListener {
 
@@ -55,7 +53,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
 
             time += 1000;
 
-
             int seconds = (int) (TimeUnit.MILLISECONDS.toSeconds(time)
                     - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time)));
 
@@ -77,7 +74,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
                 System.out.println("handle this in TimerElement action listener");
                 System.exit(-1);
             }
-
 
         };
         int delay = 1000;
@@ -110,22 +106,12 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
     }
 
     public void startOrContinueTimer() {
-
-//        if (!isStarted) {
         timer.start();
         isTicking = true;
-
-
-//            isStarted = true;
-//        } else {
-//            System.out.println("timer already started");
-//        }
     }
 
     public void stopTimer() {
-
         timer.stop();
-//        isTicking = false;
     }
 
 
@@ -172,8 +158,11 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setLayout(new FlowLayout());
 
-            setSize(((Double) Constant.WIDTH.getValue()).intValue(), ((Double) Constant.HEIGHT.getValue()).intValue());
-            setLocation((Integer) Constant.LOCATION_X.getValue(), (Integer) Constant.LOCATION_Y.getValue());
+            setSize(((Double) Constant.WIDTH.getValue()).intValue(),
+                    ((Double) Constant.HEIGHT.getValue()).intValue());
+
+            setLocation((Integer) Constant.LOCATION_X.getValue(),
+                    (Integer) Constant.LOCATION_Y.getValue());
 
             TimerElement timer = new TimerElement();
 
@@ -182,7 +171,6 @@ public class TimerElement extends JPanel implements PropertyChangeListener {
             JButton startButton = new JButton("start/continue");
             startButton.addActionListener(e -> timer.startOrContinueTimer());
             add(startButton);
-
 
             JButton stop = new JButton("stop");
             stop.addActionListener(e -> timer.stopTimer());

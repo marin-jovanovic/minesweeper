@@ -1,4 +1,4 @@
-package main.windows.index;
+package main.windows.index.centerPanel;
 
 import main.eventDrivers.Command;
 import main.minesweeperDrivers.Cell;
@@ -53,9 +53,6 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                                  (int) Constant.NUMBER_OF_COLUMNS.getValue()));
 
         numOfCells = (Integer) Constant.NUMBER_OF_COLUMNS.getValue() * (Integer) Constant.NUMBER_OF_ROWS.getValue();
-
-//        table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(), (int) Constant.NUMBER_OF_COLUMNS.getValue(),
-//                (int) Constant.NUMBER_OF_MINES.getValue());
 
         buttons = new JButton[(int) Constant.NUMBER_OF_ROWS.getValue()][(int) Constant.NUMBER_OF_COLUMNS.getValue()];
 
