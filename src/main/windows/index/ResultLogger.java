@@ -1,4 +1,4 @@
-package main.windows.index.northPanel;
+package main.windows.index;
 
 import main.resourceManagers.constants.Constant;
 
@@ -16,11 +16,11 @@ public class ResultLogger {
 //        update gui result
         if (result == Result.VICTORY) {
             Constant.NUMBER_OF_WINS.setValue((int) Constant.NUMBER_OF_WINS.getValue() + 1);
-            GraphPanel.ResultComponent.getInstance().refreshWinLabel();
+            ResultComponent.getInstance().refreshWinLabel();
 
         } else if (result == Result.DEFEAT) {
             Constant.NUMBER_OF_LOSSES.setValue((int) Constant.NUMBER_OF_LOSSES.getValue() + 1);
-            GraphPanel.ResultComponent.getInstance().refreshLoseLabel();
+            ResultComponent.getInstance().refreshLoseLabel();
 
         } else {
             System.out.println("error: processResult");

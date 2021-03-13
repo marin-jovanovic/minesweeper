@@ -4,9 +4,6 @@ import main.eventDrivers.Command;
 import main.resourceManagers.constants.Config;
 import main.resourceManagers.constants.Constant;
 import main.resourceManagers.constants.ConstantsManager;
-import main.windows.index.centerPanel.CenterPanel;
-import main.windows.index.northPanel.NorthPanel;
-import main.windows.index.northPanel.RestartButton;
 import main.windows.settings.SettingsWindowListener;
 
 import javax.swing.*;

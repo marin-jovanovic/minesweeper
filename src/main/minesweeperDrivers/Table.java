@@ -36,7 +36,7 @@ public class Table {
             }
         }
 
-        if (numberOfMines + 1 >= numberOfRows * numberOfColumns) {
+        if (numberOfMines >= numberOfRows * numberOfColumns) {
 //        case: more mines or equal to size of table
 
             for (int i = 0; i < numberOfRows; i++) {
@@ -45,10 +45,13 @@ public class Table {
                 }
             }
 
+        } else if (numberOfMines + 1 == numberOfRows * numberOfColumns) {
+//            open only user selected cell
+//            place mines on all other cells
+
         } else {
             //        all cells in table set to {CellStatus.ZERO}
             setAllCellsToZero();
-
             table[userX][userY].setCellStatus(Cell.CellStatus.USER);
 
             int numOfPlacedMines = 0;
@@ -61,21 +64,39 @@ public class Table {
                 int row = rand.nextInt(numberOfRows);
                 int column = rand.nextInt(numberOfColumns);
 
+                boolean isPlaced = false;
 
                 if (table[row][column].getCellStatus() != Cell.CellStatus.MINE &&
                         table[row][column].getCellStatus() != Cell.CellStatus.USER) {
 
+
+//                    for (int m = -1; m < 2; m++) {
+//                        for (int n = -1; n < 2; n++) {
+//
+//                            if (row == userX + m && column == userY + n) {
+//                                break;
+//                            } else {
+//                                if (! isPlaced) {
+//                                    isPlaced = true;
+
                     table[row][column].setCellStatus(Cell.CellStatus.MINE);
                     numOfPlacedMines++;
+//                                }
+//                            }
+//                        }
+//                    }
 
                 }
 
 
             }
 
-            generateHints();
+//            generateHints();
 
         }
+
+
+        table[userX][userY].setCellStatus(Cell.CellStatus.ZERO);
 
     }
 
@@ -127,8 +148,8 @@ public class Table {
     }
 
     public static void main(String[] args) {
-        Table t;
-        t = new Table(10, 10, 50, 2, 2);
+        Table t = new Table(10, 10, 3);
+        t = new Table(10, 10, 30, 2, 2);
 
         t.printTable();
 
@@ -136,7 +157,7 @@ public class Table {
 //
 //        t.printTable();
 
-//        System.out.println(t.isSolvable());
+        System.out.println(t.isSolvable());
     }
 
     public Cell getCell(int x, int y) {
@@ -144,6 +165,13 @@ public class Table {
     }
 
     private boolean isSolvable() {
+
+//
+//
+//        newTable.getCell(3, 3).setCellModifier(Cell.CellModifier.UNKNOWN);
+//
+//        newTable.printTable();
+//        this.printTable();
 
         return false;
     }

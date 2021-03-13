@@ -1,4 +1,4 @@
-package main.windows.index.northPanel;
+package main.windows.index;
 
 import main.eventDrivers.Command;
 import main.resourceManagers.images.Image;
