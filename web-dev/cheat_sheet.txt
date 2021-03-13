@@ -1,0 +1,259 @@
+<link rel="stylesheet" href="site.css">
+<script src="f.js"></script>
+ 
+inline
+	eksplicitno
+		b
+			bold
+		i
+		u
+		sub
+			subscript
+		sup	
+			superscript
+	implicitno
+		strong
+			kao	bold
+			vazan tekst
+		em
+			istaknuti tekst
+			
+		mark		
+			zuto
+			super vazan tekst	
+		small	
+		del
+			vodoravna crta preko sadrzaja
+		ins
+			ubaceni tekst
+			podvucen
+
+		code
+			kod
+		samp
+			izlaz programa
+		kbd
+			input u program
+		var
+			varijable
+ 
+grupiranje
+	div
+		block
+	span
+		za tekstni sadrzaj, slike
+		inline
+
+time
+	<time datetime="1969-07-20 20:15">
+
+
+header
+nav
+	najcesce samo jedan 
+section
+	poglavlje knjige
+	logicki dio stranice weba
+		uvod, sadrzaj, vijest, komentar, kontakt info
+
+	za kratak prikaz
+article
+	neovisna, cjelovita kompozicija sadrzaja
+	novinski clanak, post na forumu, post na  blogu, komentar citatelja
+aside
+	sporedni sadrzaj
+	vezan uz lokalni kontekst
+	fun fact npr
+footer
+
+p
+	block
+	paragraf
+	odlomak
+
+h
+	block
+
+hr
+	block
+	promjena u tematici sadrzaja
+	linija
+
+pre
+	block
+	cuva originalni format
+
+komentari
+	<!- komentar -->
+
+br
+	novi red
+
+&ime_entiteta;
+&#kod_entiteta;
+
+&gt; = >
+nbps = non breakable space
+&lt = <
+&amp = &
+qout = "
+aps = '
+euro = eur
+copy = monkey copyright
+
+img
+	inline-block
+	<img src="slike.jpg" alt="slika"/>
+	style="height: 325px;"
+	height="400" width="200"
+
+	blok
+	<figure>
+		<img src="slika.jpg" alt="alt naziv" style="height: 300px;"/>
+		<figcaption>caption image</figcaption>
+	</figure>
+
+liste
+	blok
+
+	clan liste isto blok
+
+	neuredena
+		ul
+		element
+			li
+
+		modifikatori
+			list-style-type:disc;
+			disc
+			circle
+			square
+			none		
+	uredena
+		ol
+
+		type="1"
+			1 - cijeli brojevi
+			A - velika slova
+			a - mala slova
+			I - veliki rimski brojevi
+			i - mali rimski brojevi
+		od kud pocinje
+			start="5"
+		obrni poredak brojanja
+			reversed="false" ???	
+
+	opisna
+		dl
+
+		pojam i definicija
+
+		<dt>izraz</dt>
+			<dd>opis izraza</dd>
+
+tablica
+	blok
+
+	<table>
+		<tr>
+			red
+
+			<td>
+				element
+
+	ako se taga table onda se samo nad njim vrsi promjena, ne nad svakim elementom unutar njega
+
+	<table stye="border: 1px;">
+
+	boder-collapse: collapse;
+		mice vanjski okvir
+
+	koristi red kao zaglavlje
+		<tr>
+			<th>
+				1
+			</th>
+
+			<th>
+				2
+			</th>
+		</tr>	
+
+	colspan="4"
+		broj stupaca preko kojih se celija proteze
+		<tr>
+			<th	colspan="4">
+				lorem
+			</th>
+		</tr>
+
+	<tr>
+		<th rowspan="2"></th>
+
+		<th colspan="4">
+			lorem
+		</th>
+	</tr>
+
+	<tr>
+		<th rowspan="4" style="transform: rotate(-90deg)">
+			lorem
+		</th>
+	</tr>
+
+
+	<table>
+		<caption>
+			lorem
+		</caption>
+
+		<colgroup>
+			<col>
+			<col span="2" style="background-color:blue;">
+		</colgroup>
+
+		<tr>
+			<th	colspan="4">
+				naslov 2
+			</th>
+		<tr>
+
+
+	</table>
+
+
+	<table>
+		<thead>
+			...
+		</thead>
+	
+		<tbody>
+			...
+		</tbody>
+
+		<tfoot>
+			...
+		</tfoot>
+	<table>
+
+link
+	<a href="link.html">
+		lorem link
+	</a>
+
+	<a href="link.html">
+		<img src="slika.png" width="30px">
+	</a>
+
+	bookmark
+
+		<h2 id="b1">
+			poglavlje prvo
+		</h2>
+
+		<a href="#b1">
+			lorem link
+		</a>
+
+			
+
