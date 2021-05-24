@@ -1,145 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="minesweeper:jar" />
-    </artifacts-to-build>
-  </component>
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d10f2448-b77c-444e-85dd-6514ccc455e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../line_counter/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ppj-lab3/.idea/ppj-lab3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tic-tac-toe/tic-tac-toe.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.txt" beforeDir="false" afterPath="$PROJECT_DIR$/constants.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/minesweeperDrivers/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/main/minesweeperDrivers/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/resources/images/resized_images/temp/0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/resources/images/resized_images/temp/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/resources/images/resized_images/temp/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/resources/images/resized_images/temp/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/CenterPanel$LeftClickListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/CenterPanel$RightClickListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/CenterPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/GraphPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/MainFrame$MainFrameWindowListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/MainFrame$MainFrameWindowListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/MainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/NorthPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/RestartButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/ResultComponent$TestFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/ResultComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/ResultLogger$Result.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/ResultLogger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/TimerElement$TestFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/main/windows/index/TimerElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/minesweeperDrivers/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/minesweeperDrivers/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/temp/0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/temp/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/temp/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/temp/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/centerPanel/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/northPanel/GraphPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/NorthPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/northPanel/NorthPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/RestartButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/northPanel/RestartButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/ResultComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/ResultLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/northPanel/ResultLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/windows/index/TimerElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/windows/index/northPanel/TimerElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statistics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/statistics.txt" afterDir="false" />
-    </list>
+    <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="marin-jovanovic &lt;marin.jovanovic12@gmail.com&gt;" />
-        <option value="Marin Jovanovič &lt;marin.jovanovic12@gmail.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="75c3baf3-3968-4f67-ab2a-5c3ad4680684" />
-  </component>
-  <component name="ProjectId" id="1kTTQMVREnSZkTEiLTQTNl1rCeD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1szeTIEpjN0T52EYjUBOfhSwOiN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="JavaMethodFindUsagesOptions.isSearchForTextOccurrences" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tic-tac-toe" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveMembersDialog.RECENTS_KEY">
-      <recent name="main.minesweeperDrivers.Cell" />
-      <recent name="main.imageModule.Config" />
-      <recent name="main.imageModule.Image" />
-      <recent name="main.imageModule.ImageManager" />
-      <recent name="main.constantModule.ConstantsManager" />
-    </key>
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="main.constantModule" />
-    </key>
-    <key name="MoveInnerDialog.RECENTS_KEY">
-      <recent name="main.minesweeperDrivers" />
-      <recent name="main.windows.settings" />
-      <recent name="main.utils.minesweeperDrivers" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="main.minesweeperDrivers" />
-      <recent name="main.constants" />
-      <recent name="main.mainWindow" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\git\minesweeper\src" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="GraphPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.windows.index.northPanel.GraphPanel" />
+  <component name="RunManager" selected="Application.Image">
+    <configuration name="Image" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.resourceManagers.images.Image" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.windows.index.northPanel.*" />
+          <option name="PATTERN" value="com.minesweeper.resourceManagers.images.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.Main" />
+      <module name="minesweeper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.minesweeper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -148,24 +64,18 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="minesweeper" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.resourceManagers.sounds.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ResultComponent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.windows.index.ResultComponent" />
+    <configuration name="NewImplementation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.eventDrivers.NewImplementation" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.windows.index.northPanel.*" />
+          <option name="PATTERN" value="com.minesweeper.eventDrivers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -174,24 +84,11 @@
       </method>
     </configuration>
     <configuration name="Table" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.minesweeperDrivers.Table" />
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.minesweeperDrivers.Table" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.minesweeperDrivers.Table" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TimerElement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.windows.index.northPanel.TimerElement" />
-      <module name="minesweeper" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.windows.index.northPanel.*" />
+          <option name="PATTERN" value="com.minesweeper.minesweeperDrivers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -212,150 +109,24 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Image" />
+        <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.NewImplementation" />
+        <item itemvalue="Application.Table" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.TimerElement" />
-        <item itemvalue="Application.ResultComponent" />
-        <item itemvalue="Application.GraphPanel" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d10f2448-b77c-444e-85dd-6514ccc455e1" name="Default Changelist" comment="" />
-      <created>1605723568333</created>
+      <changelist id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="" />
+      <created>1621879852926</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1605723568333</updated>
-      <workItem from="1605723569437" duration="467000" />
-      <workItem from="1605724573221" duration="1196000" />
-      <workItem from="1605725860079" duration="289000" />
-      <workItem from="1605726188332" duration="6535000" />
-      <workItem from="1605777206034" duration="8581000" />
-      <workItem from="1605802678628" duration="1876000" />
-      <workItem from="1605823371115" duration="1817000" />
-      <workItem from="1605871584827" duration="1259000" />
-      <workItem from="1605953804615" duration="18657000" />
-      <workItem from="1606053359729" duration="7754000" />
-      <workItem from="1606061200185" duration="10638000" />
-      <workItem from="1606562546896" duration="3218000" />
-      <workItem from="1606572188418" duration="20260000" />
-      <workItem from="1606605711310" duration="28000" />
-      <workItem from="1606650249657" duration="26038000" />
-      <workItem from="1606749406784" duration="8144000" />
-      <workItem from="1606844836713" duration="12661000" />
-      <workItem from="1606900465174" duration="19688000" />
-      <workItem from="1606940658432" duration="7358000" />
-      <workItem from="1606985232753" duration="24858000" />
-      <workItem from="1607120122884" duration="86000" />
-      <workItem from="1607176551049" duration="11353000" />
-      <workItem from="1607263381238" duration="7656000" />
-      <workItem from="1607433309096" duration="13769000" />
-      <workItem from="1607542876764" duration="17853000" />
-      <workItem from="1607600038747" duration="738000" />
-      <workItem from="1607609164027" duration="6560000" />
-      <workItem from="1607642345233" duration="4798000" />
-      <workItem from="1607694991332" duration="25590000" />
-      <workItem from="1607876981803" duration="2595000" />
-      <workItem from="1607944914644" duration="8502000" />
-      <workItem from="1607990457224" duration="49000" />
-      <workItem from="1608034966332" duration="581000" />
-      <workItem from="1608038466886" duration="1033000" />
-      <workItem from="1608040506570" duration="647000" />
-      <workItem from="1608041221585" duration="7512000" />
-      <workItem from="1608117259926" duration="6581000" />
-      <workItem from="1608130288255" duration="615000" />
-      <workItem from="1609540177774" duration="42000" />
-      <workItem from="1612302110549" duration="265000" />
-      <workItem from="1612302562599" duration="5630000" />
-      <workItem from="1612362700088" duration="1992000" />
-      <workItem from="1612476220158" duration="1018000" />
-      <workItem from="1612541886608" duration="613000" />
-      <workItem from="1612564152189" duration="1315000" />
-      <workItem from="1612650305663" duration="4999000" />
-      <workItem from="1612658812499" duration="43000" />
-      <workItem from="1612698714358" duration="2232000" />
-      <workItem from="1612741374674" duration="347000" />
-      <workItem from="1612914799380" duration="4606000" />
-      <workItem from="1612957238630" duration="8069000" />
-      <workItem from="1612993475991" duration="8393000" />
-      <workItem from="1613038435839" duration="7043000" />
-      <workItem from="1613056478750" duration="951000" />
-      <workItem from="1613072708987" duration="15488000" />
-      <workItem from="1613131579152" duration="7227000" />
-      <workItem from="1613147424484" duration="3000" />
-      <workItem from="1613152805549" duration="729000" />
-      <workItem from="1613176397858" duration="6154000" />
-      <workItem from="1613244731377" duration="14266000" />
-      <workItem from="1613313414826" duration="2326000" />
-      <workItem from="1613315796742" duration="2553000" />
-      <workItem from="1613344425660" duration="6146000" />
-      <workItem from="1613432767231" duration="5990000" />
-      <workItem from="1613475576211" duration="2380000" />
-      <workItem from="1613500516894" duration="6106000" />
-      <workItem from="1613566268455" duration="27877000" />
-      <workItem from="1613693212382" duration="3649000" />
-      <workItem from="1613737758820" duration="2367000" />
-      <workItem from="1613868697825" duration="1150000" />
-      <workItem from="1614291843738" duration="10000" />
-      <workItem from="1614508313450" duration="8643000" />
-      <workItem from="1614529529101" duration="2422000" />
-      <workItem from="1614586920334" duration="6947000" />
-      <workItem from="1614612356052" duration="8105000" />
-      <workItem from="1614755057354" duration="24026000" />
-      <workItem from="1614932060668" duration="3915000" />
-      <workItem from="1614972267110" duration="1148000" />
+      <updated>1621879852926</updated>
+      <workItem from="1621879854978" duration="6438000" />
     </task>
-    <task id="LOCAL-00001" summary="current code">
-      <created>1605723886737</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1605723886737</updated>
-    </task>
-    <task id="LOCAL-00002" summary="current code">
-      <created>1605724938902</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1605724938902</updated>
-    </task>
-    <task id="LOCAL-00003" summary="current code">
-      <created>1605725023081</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1605725023081</updated>
-    </task>
-    <task id="LOCAL-00004" summary="current code">
-      <created>1605725725112</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1605725725112</updated>
-    </task>
-    <task id="LOCAL-00005" summary="current code">
-      <created>1605725920471</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1605725920471</updated>
-    </task>
-    <task id="LOCAL-00006" summary="current code">
-      <created>1605726286749</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1605726286749</updated>
-    </task>
-    <task id="LOCAL-00007" summary="current code">
-      <created>1605730724390</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1605730724390</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,217 +142,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="current code" />
-    <option name="LAST_COMMIT_MESSAGE" value="current code" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="880" y="189" key="#Project_Structure" timestamp="1606680801634">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="880" y="189" key="#Project_Structure/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1606680801634" />
-    <state x="1170" y="278" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1613599759037">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1170" y="278" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1613599759037" />
-    <state x="231" y="585" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614521088142">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="231" y="585" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614521088142" />
-    <state x="2265" y="646" key="#com.intellij.ide.util.MemberChooser" timestamp="1614770521847">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2265" y="646" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614512355698" />
-    <state x="2265" y="646" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613579251075" />
-    <state x="2265" y="646" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614770521847" />
-    <state x="2188" y="462" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1612304063979">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2188" y="462" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1612304063979" />
-    <state x="2188" y="462" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607014870448" />
-    <state x="2140" y="676" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1612302348002">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2140" y="676" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1612302348002" />
-    <state x="1144" y="220" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1613040150848">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1144" y="220" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613040150848" />
-    <state x="1145" y="286" key="#com.intellij.refactoring.memberPushDown.PushDownDialog" timestamp="1613039974727">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1145" y="286" key="#com.intellij.refactoring.memberPushDown.PushDownDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613039974727" />
-    <state x="2297" y="864" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1614770700805">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2297" y="864" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613317647028" />
-    <state x="2297" y="864" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614770700805" />
-    <state x="2324" y="1227" width="512" height="219" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1614933201292">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2324" y="1227" width="512" height="219" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614933201292" />
-    <state x="2243" y="847" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1613267648978">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2243" y="847" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613267648978" />
-    <state x="2243" y="784" key="#com.intellij.refactoring.move.moveInner.MoveInnerDialog" timestamp="1614770328836">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2243" y="784" key="#com.intellij.refactoring.move.moveInner.MoveInnerDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613317652828" />
-    <state x="2243" y="784" key="#com.intellij.refactoring.move.moveInner.MoveInnerDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614770328836" />
-    <state x="2127" y="988" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1614770715278">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2423" y="495" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1613003871606" />
-    <state x="249" y="329" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613039901303" />
-    <state x="2127" y="988" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614770715278" />
-    <state x="840" y="0" width="1080" height="1040" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1614613284533">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2392" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1613002958427" />
-    <state x="1970" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613433730334" />
-    <state x="840" y="0" width="1080" height="1040" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614613284533" />
-    <state x="974" y="534" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613696308920">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="974" y="534" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613696308920" />
-    <state x="2190" y="687" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1614769654416">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2190" y="687" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614769654416" />
-    <state x="2207" y="795" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1614508511487">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2207" y="795" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614508511487" />
-    <state x="2240" y="695" key="FileChooserDialogImpl" timestamp="1614941682145">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2240" y="695" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1612658170456" />
-    <state x="2240" y="695" key="FileChooserDialogImpl/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614941682145" />
-    <state width="958" height="462" key="GridCell.Tab.0.bottom" timestamp="1614974662160">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="958" height="463" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614523085833" />
-    <state width="958" height="463" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613581468377" />
-    <state width="818" height="504" key="GridCell.Tab.0.bottom/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@0.0.1920.1040" timestamp="1607952650734" />
-    <state width="958" height="462" key="GridCell.Tab.0.bottom/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614974662160" />
-    <state width="958" height="462" key="GridCell.Tab.0.center" timestamp="1614974662160">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="958" height="463" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614523085833" />
-    <state width="958" height="463" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613581468377" />
-    <state width="818" height="504" key="GridCell.Tab.0.center/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@0.0.1920.1040" timestamp="1607952650734" />
-    <state width="958" height="462" key="GridCell.Tab.0.center/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614974662160" />
-    <state width="958" height="462" key="GridCell.Tab.0.left" timestamp="1614974662160">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="958" height="463" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614523085833" />
-    <state width="958" height="463" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613581468377" />
-    <state width="818" height="504" key="GridCell.Tab.0.left/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@0.0.1920.1040" timestamp="1607952650733" />
-    <state width="958" height="462" key="GridCell.Tab.0.left/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614974662160" />
-    <state width="958" height="462" key="GridCell.Tab.0.right" timestamp="1614974662160">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="958" height="463" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614523085833" />
-    <state width="958" height="463" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613581468377" />
-    <state width="818" height="504" key="GridCell.Tab.0.right/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@0.0.1920.1040" timestamp="1607952650734" />
-    <state width="958" height="462" key="GridCell.Tab.0.right/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614974662160" />
-    <state width="1037" height="684" key="GridCell.Tab.1.bottom" timestamp="1613269451459">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="1037" height="684" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613269451459" />
-    <state width="1037" height="684" key="GridCell.Tab.1.center" timestamp="1613269451459">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="1037" height="684" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613269451459" />
-    <state width="1037" height="684" key="GridCell.Tab.1.left" timestamp="1613269451459">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="1037" height="684" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613269451459" />
-    <state width="1037" height="684" key="GridCell.Tab.1.right" timestamp="1613269451459">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state width="1037" height="684" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613269451459" />
-    <state x="2125" y="644" key="NewModule_or_Project.wizard" timestamp="1608040548509">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2125" y="644" key="NewModule_or_Project.wizard/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1608040548509" />
-    <state x="2275" y="874" key="ReplaceDuplicatesPrompt" timestamp="1607178614541">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2275" y="874" key="ReplaceDuplicatesPrompt/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607178614541" />
-    <state x="2190" y="212" width="774" height="1494" key="SettingsEditor" timestamp="1612304089036">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2190" y="212" width="774" height="1494" key="SettingsEditor/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1612304089036" />
-    <state x="480" y="117" width="1175" height="826" key="SettingsEditor/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1608117496047" />
-    <state x="1975" y="688" key="caller.chooser.dialog" timestamp="1607001259616">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="1975" y="688" key="caller.chooser.dialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607001259616" />
-    <state x="2065" y="550" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1614769876277">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2065" y="550" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614769876277" />
-    <state x="2277" y="854" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613435024968">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2277" y="854" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613435024968" />
-    <state x="2277" y="854" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607180134187" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1614972725035">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1614508777550" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613567576422" />
-    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1614972725035" />
-    <state x="459" y="-12" width="963" height="714" key="dock-window-2" timestamp="1613750624530">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-7" y="0" width="974" height="1047" key="dock-window-2/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1613586702614" />
-    <state x="-7" y="0" width="974" height="1047" key="dock-window-2/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613581361528" />
-    <state x="953" y="0" width="974" height="1047" maximized="true" key="dock-window-2/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@0.0.1920.1040" timestamp="1607945207710" />
-    <state x="459" y="-12" width="963" height="714" key="dock-window-2/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613750624530" />
-    <state x="782" y="404" width="1053" height="1127" key="dock-window-3" timestamp="1607557630693">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="782" y="404" width="1053" height="1127" key="dock-window-3/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607557630693" />
-    <state x="-7" y="0" width="974" height="1047" key="dock-window-4" timestamp="1607557630693">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="-7" y="0" width="974" height="1047" key="dock-window-4/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607557630693" />
-    <state x="212" y="-23" width="1053" height="1127" key="dock-window-5" timestamp="1607559034945">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="212" y="-23" width="1053" height="1127" key="dock-window-5/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607559034945" />
-    <state x="953" y="210" width="974" height="837" key="dock-window-6" timestamp="1607611094416">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="953" y="210" width="974" height="837" key="dock-window-6/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607611094416" />
-    <state x="2156" y="1341" width="540" height="496" key="extract.method.dialog" timestamp="1613605872802">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2156" y="1341" key="extract.method.dialog/0.0.1920.1040/1920.0.1080.1880/3000.827.1536.824@1920.0.1080.1880" timestamp="1613605872802" />
-    <state x="2156" y="1341" key="extract.method.dialog/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613574144236" />
-    <state x="2156" y="1341" width="540" height="496" key="extract.method.dialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607719701621" />
-    <state x="1920" y="601" key="new project wizard" timestamp="1608046580376">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="1920" y="601" key="new project wizard/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1608046580376" />
-    <state x="2303" y="697" key="refactoring.ChangeSignatureDialog" timestamp="1607177965325">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2303" y="697" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1607177965325" />
-    <state x="2116" y="450" key="run.anything.popup" timestamp="1613250640897">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2116" y="450" key="run.anything.popup/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613250640897" />
-    <state x="2116" y="450" key="run.anything.popup/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1606847698870" />
-    <state x="2270" y="407" width="672" height="1226" key="search.everywhere.popup" timestamp="1613577802839">
-      <screen x="1920" y="0" width="1080" height="1880" />
-    </state>
-    <state x="2270" y="407" width="672" height="1226" key="search.everywhere.popup/0.0.1920.1040/1920.0.1080.1880@1920.0.1080.1880" timestamp="1613577802839" />
-    <state x="2270" y="407" width="672" height="1226" key="search.everywhere.popup/0.0.1920.1040/3000.827.1536.824/1920.0.1080.1880@1920.0.1080.1880" timestamp="1608117369758" />
   </component>
 </project>
