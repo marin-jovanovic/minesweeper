@@ -1,11 +1,12 @@
 package com.minesweeper.windows.index;
 
 import com.minesweeper.eventDrivers.Command;
+import com.minesweeper.minesweeper.windows.index.CenterPanel;
 import com.minesweeper.resourceManagers.constants.Config;
 import com.minesweeper.resourceManagers.constants.Constant;
 import com.minesweeper.resourceManagers.constants.ConstantsManager;
 import com.minesweeper.windows.settings.SettingsWindowListener;
-import com.minesweeper.minesweeper.windows.index.CenterPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;

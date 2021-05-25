@@ -46,10 +46,6 @@ public class SettingsFrame extends JFrame {
 
     private final PropertyChangeSupport support;
 
-    public SettingsWindowListener getSettingsWindowListener() {
-        return SettingsWindowListener.getInstance();
-    }
-
     public SettingsFrame() {
         super("Settings");
 
@@ -84,15 +80,6 @@ public class SettingsFrame extends JFrame {
 
     }
 
-    @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-
-//        todo handle this listener
-//        this is fired whatever listener is added
-        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
-    }
-
     public static void main(String[] args) {
         try {
             SwingUtilities.invokeLater(SettingsFrame::new);
@@ -100,6 +87,19 @@ public class SettingsFrame extends JFrame {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public SettingsWindowListener getSettingsWindowListener() {
+        return SettingsWindowListener.getInstance();
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+
+//        todo handle this listener
+//        this is fired whatever listener is added
+        support.firePropertyChange("stop timer element", null, Command.STOP_TIMER);
     }
 
 }

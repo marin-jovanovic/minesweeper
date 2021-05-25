@@ -1,10 +1,9 @@
 This package allows storing constants in memory.
 
-
 Config.java
-    
+
     setup paths  
-    
+
 use this for checking type in Constant.java
 
         String value;
@@ -17,7 +16,7 @@ use this for checking type in Constant.java
         } else {
             constant.setValue(value);
         }
-        
+
 public methods
 
     ConstantsManager.restartSettings()

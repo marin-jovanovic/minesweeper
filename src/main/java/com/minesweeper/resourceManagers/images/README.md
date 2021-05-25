@@ -1,8 +1,7 @@
-
 public methods
-    
+
 Config.java
-    
+
      public static String getBackslash()
     
     public static String getOriginalImagesPath()
@@ -30,7 +29,7 @@ Config.java
     public static int getPictureHeight()
 
 Image.java
-    
+
     public String getPath()
     
     public void flushToDefaultImage()
@@ -38,7 +37,7 @@ Image.java
     public ImageIcon getImageIcon()
     
     public void setImageIcon(ImageIcon imageIcon)
-   
+
 ImageManager.java
 
     public static void restartAllImages()

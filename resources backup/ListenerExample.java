@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class NewImplementation {
+public class ListenerExample {
     public static void main(String[] args) {
         Sender sender = new Sender();
         Receiver receiver = new Receiver();

@@ -16,10 +16,6 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
     private final JButton settingsButton;
     private boolean isGameOver = false;
 
-    public RestartButton getRestartButton() {
-        return restartButton;
-    }
-
     public NorthPanel() {
 
         timerElement = new TimerElement();
@@ -62,6 +58,10 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
         });
         add(haltButton);
 
+    }
+
+    public RestartButton getRestartButton() {
+        return restartButton;
     }
 
     @Override

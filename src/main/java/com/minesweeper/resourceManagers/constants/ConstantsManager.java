@@ -42,12 +42,23 @@ public class ConstantsManager {
     public static LinkedHashMap<Integer, String> initializeConstants() {
         System.out.println("*** " + (new Throwable().getStackTrace())[0].getMethodName() + " ***");
 
+//        File f = new File(Config.getConstantsMemoryPath());
+//        File f = new File(String.valueOf(Main.class.getResource(Config.getConstantsMemoryPath())));
         File f = new File(Config.getConstantsMemoryPath());
-
+        System.out.println(f.getAbsolutePath());
         LinkedHashMap<Integer, String> error_log = new LinkedHashMap<>();
 
         if (!f.exists()) {
             try {
+//                JFrame fr = new JFrame();
+//                fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                fr.setBounds(300, 200, 400, 300);
+//                fr.setVisible(true);
+//                FileDialog fd = new FileDialog(fr, "Open", FileDialog.LOAD);
+//                fd.setVisible(true);
+//                String path = fd.getDirectory() + fd.getFile();
+//                System.out.println(path);
+
                 f.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();

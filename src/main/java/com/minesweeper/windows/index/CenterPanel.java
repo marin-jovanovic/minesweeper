@@ -26,24 +26,18 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
     // columns * rows
     private final int numOfCells;
-
+    private final JButton[][] buttons;
     //    table - blueprint of field
     private Table table;
-
     //    can you click on button (including left and right click operations)
     private boolean areButtonsActive = true;
-
     //    used to check if you can declare win
     private int numOfOpenedCells = 0;
-
     //    for navigation in table
     private int currentHoveredButtonX;
     private int currentHoveredButtonY;
-
     //    used for starting timer
     private boolean isFirstButtonClicked = false;
-
-    private final JButton[][] buttons;
 
     public CenterPanel() {
 
@@ -295,7 +289,11 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                             if (!centerPanel.isFirstButtonClicked) {
                                 table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(),
                                         (int) Constant.NUMBER_OF_COLUMNS.getValue(),
-                                        (int) Constant.NUMBER_OF_MINES.getValue(), i, j);
+                                        (int) Constant.NUMBER_OF_MINES.getValue());
+
+//                                table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(),
+//                                        (int) Constant.NUMBER_OF_COLUMNS.getValue(),
+//                                        (int) Constant.NUMBER_OF_MINES.getValue(), i, j);
 
                                 support.firePropertyChange("start timer", null,
                                         Command.START_TIMER);

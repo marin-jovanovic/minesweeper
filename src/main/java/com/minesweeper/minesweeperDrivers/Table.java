@@ -64,34 +64,16 @@ public class Table {
                 int row = rand.nextInt(numberOfRows);
                 int column = rand.nextInt(numberOfColumns);
 
-                boolean isPlaced = false;
 
                 if (table[row][column].getCellStatus() != Cell.CellStatus.MINE &&
                         table[row][column].getCellStatus() != Cell.CellStatus.USER) {
 
-
-//                    for (int m = -1; m < 2; m++) {
-//                        for (int n = -1; n < 2; n++) {
-//
-//                            if (row == userX + m && column == userY + n) {
-//                                break;
-//                            } else {
-//                                if (! isPlaced) {
-//                                    isPlaced = true;
-
                     table[row][column].setCellStatus(Cell.CellStatus.MINE);
                     numOfPlacedMines++;
-//                                }
-//                            }
-//                        }
-//                    }
 
                 }
 
-
             }
-
-//            generateHints();
 
         }
 
@@ -153,10 +135,6 @@ public class Table {
 
         t.printTable();
 
-//        t.getCell(2, 4).setCellModifier(Cell.CellModifier.UNKNOWN);
-//
-//        t.printTable();
-
         System.out.println(t.isSolvable());
     }
 
@@ -165,14 +143,6 @@ public class Table {
     }
 
     private boolean isSolvable() {
-
-//
-//
-//        newTable.getCell(3, 3).setCellModifier(Cell.CellModifier.UNKNOWN);
-//
-//        newTable.printTable();
-//        this.printTable();
-
         return false;
     }
 
