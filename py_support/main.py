@@ -35,7 +35,7 @@ def resize_all_images_in(p):
 def main():
     # walk_dir()
 
-    resize_all_images_in("resized_new_imgs\\")
+    resize_all_images_in("img_folder\\")
     # reformat_image("playAgain.png", "playAgain.png")
 
 

@@ -11,6 +11,6 @@ public class SoundSettingsPanel extends JPanel {
         add(new JButton("todo"));
         add(new RestartDefaultButton());
 
-
     }
+
 }

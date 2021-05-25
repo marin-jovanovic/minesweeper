@@ -3,6 +3,8 @@ package com.minesweeper.resourceManagers.constants;
 //  TODO auto save setting for window size and location
 //  TODO mute sound option
 
+import com.minesweeper.Main;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -260,16 +262,18 @@ public class ConstantsManager {
      */
     public static void restartConstants() {
         ArrayList<String> lines = new ArrayList<>();
-
-        File f = new File(Config.getDefaultConstantsMemoryPath());
+//  FIXME this will not work with maven
+        File f = new File(String.valueOf(Main.class.getResource(Config.getConstantsMemoryPath())));
+//        File f = new File(Config.getDefaultConstantsMemoryPath());
 
         if (!f.exists()) {
             try {
                 f.createNewFile();
 
 //                copy current to default and custom
-                updateConstants(Config.getDefaultConstantsMemoryPath());
-                updateConstants(Config.getConstantsMemoryPath());
+                updateConstants(String.valueOf(Main.class.getResource(Config.getDefaultConstantsMemoryPath())));
+//                updateConstants(Config.getConstantsMemoryPath());
+                updateConstants(String.valueOf(Main.class.getResource(Config.getConstantsMemoryPath())));
 
             } catch (IOException e) {
                 e.printStackTrace();

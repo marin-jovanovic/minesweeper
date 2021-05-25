@@ -38,7 +38,12 @@ public enum Image {
     T_SIX(Config.getTimeTiles(), "6"),
     T_SEVEN(Config.getTimeTiles(), "7"),
     T_EIGHT(Config.getTimeTiles(), "8"),
-    T_NINE(Config.getTimeTiles(), "9");
+    T_NINE(Config.getTimeTiles(), "9"),
+
+    STOP(Config.getStartStopImagesPath(), "pause"),
+    START(Config.getStartStopImagesPath(), "play"),
+
+    ;
 
     private final String path;
     private ImageIcon imageIcon;

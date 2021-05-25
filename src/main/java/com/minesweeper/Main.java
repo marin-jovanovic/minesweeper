@@ -1,6 +1,6 @@
 package com.minesweeper;
+
 import com.minesweeper.resourceManagers.constants.Config;
-import com.minesweeper.resourceManagers.constants.Constant;
 import com.minesweeper.windows.index.MainFrame;
 
 import javax.swing.*;
@@ -9,19 +9,10 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-//        String root = System.getProperty("user.dir");
-//        System.out.println(root);
-//        File file = new File(root, "temp");
-//        System.out.println("file: " + file);
 
 //        create config folder if missing
         File f = new File(Config.getConstantsFolder());
         System.out.println(f.mkdir());
-
-//
-//        File file = new File(Config.getConstantsFolder(), "temp");
-//        System.out.println("file: " + file);
-
 
         SwingUtilities.invokeLater(MainFrame::new);
     }

@@ -173,10 +173,6 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
         setButtons(true);
         restartButtons();
-
-//        table = new Table((int) Constant.NUMBER_OF_ROWS.getValue(),
-//                (int) Constant.NUMBER_OF_COLUMNS.getValue(),
-//                (int) Constant.NUMBER_OF_MINES.getValue());
     }
 
     /**

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class ResultLogger {
 
-    private static final String PATH = "statistics.txt";
+//    private static final String PATH = "statistics.txt";
+    private static final String PATH = Config.getResultLogPath();
 
     private static final String currentDate = String.valueOf(java.time.LocalDate.now());
 

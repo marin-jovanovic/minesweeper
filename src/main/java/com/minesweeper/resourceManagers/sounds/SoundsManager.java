@@ -5,6 +5,7 @@ import com.minesweeper.resourceManagers.constants.Constant;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class SoundsManager {
 
@@ -35,7 +36,7 @@ public class SoundsManager {
         AudioListener listener = new AudioListener();
 
         try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-                Main.class.getResource(sound.getReducedDefaultPath()))) {
+                Objects.requireNonNull(Main.class.getResource(sound.getReducedDefaultPath())))) {
 
             Clip clip = AudioSystem.getClip();
             clip.addLineListener(listener);
@@ -44,7 +45,10 @@ public class SoundsManager {
             listener.waitUntilDone();
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("error while playing sound");
         }
+
 
     }
 
@@ -62,6 +66,7 @@ public class SoundsManager {
 
         public synchronized void waitUntilDone() {
             try {
+//              TODO check if this is busy waiting
                 while (!done) {
                     wait();
                 }

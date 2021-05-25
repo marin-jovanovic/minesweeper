@@ -15,6 +15,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
     private final RestartButton restartButton;
     private final JButton settingsButton;
     private boolean isGameOver = false;
+    private final PauseButton pauseButton;
 
     public NorthPanel() {
 
@@ -42,21 +43,28 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
         });
         add(settingsButton);
 
-        JButton haltButton = new JButton("stop");
-        haltButton.addActionListener(event -> {
+        pauseButton = new PauseButton();
+        pauseButton.addActionListener(e -> {
             if (timerElement.isTicking()) {
-                if (haltButton.getText().equals("stop")) {
+
+                System.out.println(pauseButton.getState());
+                if (pauseButton.getState() == PauseButton.State.PAUSED) {
+
 //                    todo disable center panel operations
 //                    todo when restarted or settings closed move state to stop
                     timerElement.stopTimer();
-                    haltButton.setText("continue");
+                    System.out.println("continue");
+                    pauseButton.setIcon(Image.START.getImageIcon());
+                    pauseButton.setDisabledIcon(Image.STOP.getImageIcon());
                 } else {
                     timerElement.startOrContinueTimer();
-                    haltButton.setText("stop");
+                    System.out.println("stop");
+                    pauseButton.setIcon(Image.STOP.getImageIcon());
+
                 }
             }
         });
-        add(haltButton);
+        add(pauseButton);
 
     }
 

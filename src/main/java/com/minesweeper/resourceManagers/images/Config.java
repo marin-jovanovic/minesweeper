@@ -12,22 +12,27 @@ public class Config {
     private static final String TIME_TILES = "time";
     private static final String DOT = ".";
     private static final String IMAGES_FORMAT_NAME = "png";
+
     private static final String CUSTOM_IMAGES_PATH =
             backslash +
                     "images" + backslash +
                     "resized_images";
+    private static final String REDUCED_CUSTOM_IMAGES_PATH = CUSTOM_IMAGES_PATH;
+    private static final String REDUCED_ORIGINAL_IMAGES_PATH = CUSTOM_IMAGES_PATH;
+
+
     private static final String ORIGINAL_IMAGES_PATH =
             backslash +
                     "images" + backslash +
                     "original_images";
-    private static final String REDUCED_CUSTOM_IMAGES_PATH =
-            backslash +
-                    "images" + backslash +
-                    "resized_images";
-    private static final String REDUCED_ORIGINAL_IMAGES_PATH =
-            backslash +
-                    "images" + backslash +
-                    "resized_images";
+
+
+    private static final String START_STOP_IMAGES_PATH = "stop";
+
+    public static String getStartStopImagesPath() {
+        return START_STOP_IMAGES_PATH;
+    }
+
     private static final int PICTURE_WIDTH = 50;
     private static final int PICTURE_HEIGHT = 50;
 

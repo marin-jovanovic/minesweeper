@@ -9,7 +9,7 @@ public enum Constant {
     NUMBER_OF_MINES(10),
     LOCATION_X(20),
     LOCATION_Y(20),
-    WIDTH(500.0),
+    WIDTH(550.0),
     HEIGHT(500.0),
 
     IS_VICTORY_SOUND_ACTIVE(true),
