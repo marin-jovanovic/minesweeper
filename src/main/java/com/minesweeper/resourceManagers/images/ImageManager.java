@@ -1,5 +1,7 @@
 package com.minesweeper.resourceManagers.images;
 
+import com.minesweeper.Main;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,11 +18,11 @@ import java.util.EnumSet;
 public class ImageManager {
 
     public static void main(String[] args) {
-
+        restartAllImages();
 //        ImageManager.resizeAllImagesInFolder("src/main/resources/images/original_images/" + a,
 //                "src/main/resources/images/resized_images/" + a);
 
-//        resizeAndSaveImage("src/main/resources/original_images/time/0.png",
+//        resizeAndSaveImage("original_images/time/0.png",
 //                "src/main/resources/resized_images/slika.png");
     }
 
@@ -29,9 +31,16 @@ public class ImageManager {
      */
     public static void restartAllImages() {
 
-        Path targetPath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
+//        Main.class.getResource(
+//                Config.getReducedOriginalImagesPath() + Config.getBackslash() +
+//                        folder + Config.getBackslash() +
+//                        name + Config.getDOT() + Config.getImagesFormatName())
 
-        Path sourcePath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
+//        Path targetPath = Paths.get(new File(Config.getCustomImagesPath()).getAbsolutePath());
+//        String s = Main.class.getResource(Config.getOriginalImagesPath());
+        Path targetPath = Paths.get(String.valueOf(Main.class.getResource(Config.getOriginalImagesPath())));
+//        Path sourcePath = Paths.get(new File(Config.getOriginalImagesPath()).getAbsolutePath());
+        Path sourcePath = Paths.get(String.valueOf(Main.class.getResource(Config.getReducedOriginalImagesPath())));
 
         System.out.println(sourcePath);
         System.out.println(targetPath);

@@ -4,7 +4,171 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="" />
+    <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/py_support/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/button/defeat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/button/playAgain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/button/victory.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/closed_tiles/closedCell.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/closed_tiles/flag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/closed_tiles/notSure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/opened_tiles/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/settings_checker_flags/false.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/settings_checker_flags/notSure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/settings_checker_flags/true.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/custom/time/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/defeat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/settings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/settings_logs/defaultSettings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/deleted from source/settings_logs/settings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/button/defeat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/button/playAgain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/button/victory.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/closed_tiles/closedCell.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/closed_tiles/flag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/closed_tiles/notSure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/opened_tiles/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/settings_checker_flags/false.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/settings_checker_flags/notSure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/settings_checker_flags/true.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/custom/time/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/button/defeat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/button/playAgain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/button/victory.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/closed_tiles/closedCell.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/closed_tiles/flag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/closed_tiles/notSure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/opened_tiles/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/settings_checker_flags/false.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/settings_checker_flags/notSure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/settings_checker_flags/true.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/images/resized_images/time/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/settings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/settings_logs/defaultSettings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/settings_logs/settings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/sounds/defeat_sounds/i.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/sounds/defeat_sounds/j2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources backup/sounds/defeat_sounds/j3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/ImageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/ImageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/original_images/button/defeat.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/original_images/button/defeat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/original_images/button/playAgain.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/original_images/button/playAgain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/original_images/button/victory.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/original_images/button/victory.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/button/playAgain.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/button/playAgain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/closed_tiles/closedCell.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/closed_tiles/closedCell.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/closed_tiles/flag.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/closed_tiles/flag.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/closed_tiles/notSure.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/closed_tiles/notSure.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/opened_tiles/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/settings_checker_flags/false.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/settings_checker_flags/false.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/settings_checker_flags/true.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/settings_checker_flags/true.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/resized_images/time/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Image.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/ImageManager$CopyFileVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/ImageManager$CopyFileVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/ImageManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/ImageManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/original_images/button/defeat.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/original_images/button/defeat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/original_images/button/playAgain.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/original_images/button/playAgain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/original_images/button/victory.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/original_images/button/victory.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/opened_tiles/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/images/resized_images/time/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/images/resized_images/time/9.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,9 +200,22 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager" selected="Application.Image">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Image" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.minesweeper.resourceManagers.images.Image" />
+      <module name="minesweeper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.minesweeper.resourceManagers.images.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImageManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.resourceManagers.images.ImageManager" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
@@ -59,13 +236,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="minesweeper" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -96,24 +266,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Image" />
         <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.NewImplementation" />
-        <item itemvalue="Application.Table" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Image" />
       </list>
     </recent_temporary>
   </component>
@@ -125,7 +294,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621879852926</updated>
-      <workItem from="1621879854978" duration="6438000" />
+      <workItem from="1621879854978" duration="9231000" />
+      <workItem from="1621891149202" duration="19000" />
+      <workItem from="1621891184573" duration="31000" />
+      <workItem from="1621943485645" duration="1888000" />
     </task>
     <servers />
   </component>
@@ -142,5 +314,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

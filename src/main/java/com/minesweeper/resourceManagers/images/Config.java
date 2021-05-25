@@ -13,23 +13,19 @@ public class Config {
     private static final String DOT = ".";
     private static final String IMAGES_FORMAT_NAME = "png";
     private static final String CUSTOM_IMAGES_PATH =
-            "src" + backslash +
-                    "main" + backslash +
-                    "resources" + backslash +
+           backslash +
                     "images" + backslash +
                     "resized_images";
     private static final String ORIGINAL_IMAGES_PATH =
-            "src" + backslash +
-                    "main" + backslash +
-                    "resources" + backslash +
+                     backslash +
                     "images" + backslash +
                     "original_images";
     private static final String REDUCED_CUSTOM_IMAGES_PATH =
-            "resources" + backslash +
+             backslash +
                     "images" + backslash +
                     "resized_images";
     private static final String REDUCED_ORIGINAL_IMAGES_PATH =
-            "resources" + backslash +
+             backslash +
                     "images" + backslash +
                     "resized_images";
     private static final int PICTURE_WIDTH = 50;

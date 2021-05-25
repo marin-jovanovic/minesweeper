@@ -55,61 +55,63 @@ public enum Image {
 //        this is slower, do not know why
 //        this.imageIcon = ImageManager.loadImage(this.path);
 
-//        try {
-            this.imageIcon = new ImageIcon("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png");
-            this.defaultImageIcon = new ImageIcon("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png");
+        try {
+            this.imageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(Main.class.getResource(
+                    Config.getReducedCustomImagesPath() + Config.getBackslash() +
+                            folder + Config.getBackslash() +
+                            name + Config.getDOT() + Config.getImagesFormatName()))));
 
-//            this.imageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(Main.class.getResource(
-//                    Config.getReducedCustomImagesPath() + Config.getBackslash() +
-//                            folder + Config.getBackslash() +
-//                            name + Config.getDOT() + Config.getImagesFormatName()))));
+            defaultImageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(Main.class.getResource(
+                    Config.getReducedOriginalImagesPath() + Config.getBackslash() +
+                            folder + Config.getBackslash() +
+                            name + Config.getDOT() + Config.getImagesFormatName()))));
 
-//            defaultImageIcon = new ImageIcon(ImageIO.read(Objects.requireNonNull(Main.class.getResource(
-//                    Config.getReducedOriginalImagesPath() + Config.getBackslash() +
-//                            folder + Config.getBackslash() +
-//                            name + Config.getDOT() + Config.getImagesFormatName()))));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("error in Image.java while loading images");
 
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.exit(-1);
-//        }
+            System.exit(-1);
+        }
 
     }
 
     public static void main(String[] args) {
-            JFrame f = new JFrame();
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            //Since I'm not setting a layout manager to contentPane, it's default (BorderLayout) is used
-            String p = "/images/resized_images/opened_tiles/-1.png";
-            //This sets the image in JFrame's content area
-//            f.getContentPane().add(new JLabel(new ImageIcon(p)));
-
-        JButton button = new JButton();
-        try {
-            BufferedImage img = ImageIO.read(Objects.requireNonNull(Image.class.getResource(p)));
-            button.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        f.add(button);
-//        URL urlConfig = MyClass.class.getResource("/settings/config.ini"); //by default "src/main/resources/" is in classpath and no config needs to be changed.
-//        InputStream inputAvatar = MyClass.class.getResourceAsStream("/myAvatar.gif"); //with changes in pom.xml now "src/main/images" is counted as resource folder, and added to classpath. So we use it directly.
-        //
-//        BufferedImage img = ImageIO.read(Image.class.getResource("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png"));
-//            f.add(new JButton(new ImageIcon(String.valueOf(img))));
-
-
-            //This sets JFrame's icon (shown in top left corner of JFrame)
-//            f.setIconImage(new ImageIcon("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png").getImage());
-
-            f.setBounds(300, 200, 400, 300);
-            f.setVisible(true);
-
-
-//        for (Image image : EnumSet.allOf(Image.class)) {
-//            System.out.println(image);
+//            JFrame f = new JFrame();
+//            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//            //Since I'm not setting a layout manager to contentPane, it's default (BorderLayout) is used
+//            String p = "/images/resized_images/opened_tiles/-1.png";
+//            //This sets the image in JFrame's content area
+////            f.getContentPane().add(new JLabel(new ImageIcon(p)));
+//
+//        JButton button = new JButton();
+//        try {
+//            BufferedImage img = ImageIO.read(Objects.requireNonNull(Image.class.getResource(p)));
+//            button.setIcon(new ImageIcon(img));
+//        } catch (Exception ex) {
+//            System.out.println(ex);
 //        }
+//        button.addActionListener(e -> {
+//            System.out.println("pressed");
+//        });
+//        f.add(button);
+////        URL urlConfig = MyClass.class.getResource("/settings/config.ini"); //by default "src/main/resources/" is in classpath and no config needs to be changed.
+////        InputStream inputAvatar = MyClass.class.getResourceAsStream("/myAvatar.gif"); //with changes in pom.xml now "src/main/images" is counted as resource folder, and added to classpath. So we use it directly.
+//        //
+////        BufferedImage img = ImageIO.read(Image.class.getResource("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png"));
+////            f.add(new JButton(new ImageIcon(String.valueOf(img))));
+//
+//
+//            //This sets JFrame's icon (shown in top left corner of JFrame)
+////            f.setIconImage(new ImageIcon("com/minesweeper/resources/images/resized_images/opened_tiles/-1.png").getImage());
+//
+//            f.setBounds(300, 200, 400, 300);
+//            f.setVisible(true);
+//
+
+        for (Image image : EnumSet.allOf(Image.class)) {
+            System.out.println(image);
+        }
     }
 
     public String getPath() {

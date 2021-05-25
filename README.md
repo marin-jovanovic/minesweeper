@@ -37,4 +37,9 @@ Set custom images or restart to default.
    supports .jpg and .png
    
    TODO: will be added to settings window
-    
+
+images downloaded from:
+    https://craftpix.net/freebies/free-jungle-cartoon-2d-game-ui/
+    https://www.freepik.com/free-icon/bomb_14141522.htm#page=1&query=bomb&position=7
+
+    https://gooseninja.itch.io/pixel-minesweeper

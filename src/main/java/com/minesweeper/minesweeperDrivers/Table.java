@@ -203,33 +203,15 @@ public class Table {
                     }
 
                     switch (sum) {
-                        case 0:
-                            table[i][j].setCellStatus(Cell.CellStatus.ZERO);
-                            break;
-                        case 1:
-                            table[i][j].setCellStatus(Cell.CellStatus.ONE);
-                            break;
-                        case 2:
-                            table[i][j].setCellStatus(Cell.CellStatus.TWO);
-                            break;
-                        case 3:
-                            table[i][j].setCellStatus(Cell.CellStatus.THREE);
-                            break;
-                        case 4:
-                            table[i][j].setCellStatus(Cell.CellStatus.FOUR);
-                            break;
-                        case 5:
-                            table[i][j].setCellStatus(Cell.CellStatus.FIVE);
-                            break;
-                        case 6:
-                            table[i][j].setCellStatus(Cell.CellStatus.SIX);
-                            break;
-                        case 7:
-                            table[i][j].setCellStatus(Cell.CellStatus.SEVEN);
-                            break;
-                        case 8:
-                            table[i][j].setCellStatus(Cell.CellStatus.EIGHT);
-                            break;
+                        case 0 -> table[i][j].setCellStatus(Cell.CellStatus.ZERO);
+                        case 1 -> table[i][j].setCellStatus(Cell.CellStatus.ONE);
+                        case 2 -> table[i][j].setCellStatus(Cell.CellStatus.TWO);
+                        case 3 -> table[i][j].setCellStatus(Cell.CellStatus.THREE);
+                        case 4 -> table[i][j].setCellStatus(Cell.CellStatus.FOUR);
+                        case 5 -> table[i][j].setCellStatus(Cell.CellStatus.FIVE);
+                        case 6 -> table[i][j].setCellStatus(Cell.CellStatus.SIX);
+                        case 7 -> table[i][j].setCellStatus(Cell.CellStatus.SEVEN);
+                        case 8 -> table[i][j].setCellStatus(Cell.CellStatus.EIGHT);
                     }
 
                 }
