@@ -22,6 +22,7 @@ public class Main {
 //    TODO change logs to json instead of ad-hoc solution
 
     //    FIXME
+//          start/ stop button not working
 //          when pressed "restart all settings" images in settings window are not restarted automatically
 //          fix position on screen of mainframe and settingswindow
 //          when index window is moved and settings window is opened; make sure that new window opens at same location

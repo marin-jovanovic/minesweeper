@@ -5,41 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/PauseButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/py_support/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/py_support/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/ConstantsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/constants/ConstantsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/images/Image.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/sounds/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/sounds/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/sounds/SoundsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/resourceManagers/sounds/SoundsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/NorthPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/NorthPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/ResultLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/ResultLogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/settings/SoundSettingsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/settings/SoundSettingsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/defaultConstants.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/defaultConstants.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statistics.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeper/windows/index/CenterPanel$LeftClickListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeper/windows/index/CenterPanel$LeftClickListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeper/windows/index/CenterPanel$RightClickListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeper/windows/index/CenterPanel$RightClickListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeper/windows/index/CenterPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeper/windows/index/CenterPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/ConstantsManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/constants/ConstantsManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/images/Image.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/sounds/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/sounds/Sound.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/sounds/SoundsManager$AudioListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/sounds/SoundsManager$AudioListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/sounds/SoundsManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/resourceManagers/sounds/SoundsManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger$Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger$Result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SoundSettingsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SoundSettingsPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/defaultConstants.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/defaultConstants.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +146,7 @@
       <workItem from="1621879854978" duration="9231000" />
       <workItem from="1621891149202" duration="19000" />
       <workItem from="1621891184573" duration="31000" />
-      <workItem from="1621943485645" duration="18007000" />
+      <workItem from="1621943485645" duration="18318000" />
     </task>
     <servers />
   </component>

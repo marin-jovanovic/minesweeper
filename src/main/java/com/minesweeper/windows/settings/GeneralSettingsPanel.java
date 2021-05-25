@@ -12,9 +12,9 @@ public class GeneralSettingsPanel extends JPanel {
 
         setLayout(new GridLayout(0, 1));
 
-        add(new TextFieldElement(Constant.NUMBER_OF_ROWS));
-        add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS));
-        add(new TextFieldElement(Constant.NUMBER_OF_MINES));
+        add(new TextFieldElement(Constant.NUMBER_OF_ROWS, "number of rows"));
+        add(new TextFieldElement(Constant.NUMBER_OF_COLUMNS, "number of columns"));
+        add(new TextFieldElement(Constant.NUMBER_OF_MINES, "number of mines"));
 
 
 //TODO

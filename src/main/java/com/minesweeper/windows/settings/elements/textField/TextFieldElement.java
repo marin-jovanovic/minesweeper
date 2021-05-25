@@ -9,11 +9,18 @@ public class TextFieldElement extends JPanel {
     private final JLabel checker;
 
     private final Constant constant;
+    private final String guiId;
+    private final JLabel label;
 
-    public TextFieldElement(Constant constant) {
-        add(new JLabel("todo 1"));
+
+    public TextFieldElement(Constant constant, String guiId) {
+//        add(new JLabel("todo 1"));
 
         this.constant = constant;
+        this.guiId = guiId;
+
+        this.label = new JLabel(guiId);
+        add(label);
 
         textField = new JTextField(10);
         textField.setText(String.valueOf(constant.getValue()));
