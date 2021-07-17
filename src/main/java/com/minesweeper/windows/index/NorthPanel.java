@@ -7,6 +7,8 @@ import com.minesweeper.windows.settings.SettingsFrame;
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NorthPanel extends JPanel implements PropertyChangeListener {
 
@@ -77,7 +79,7 @@ public class NorthPanel extends JPanel implements PropertyChangeListener {
 
         if (evt.getNewValue() == Command.GAME_OVER) {
             if (!isGameOver) {
-
+                
                 restartButton.setIcon(Image.DEFEAT.getImageIcon());
                 timerElement.stopTimer();
                 ResultLogger.processResult(ResultLogger.Result.DEFEAT, timerElement.getTime());
