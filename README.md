@@ -22,7 +22,7 @@ At the moment, the right click functions are a work in progress.
 Change number of tiles and mines.
 
 
-## Peronalization
+## Personalization
 In the settings menu you can change the grid size and the number of mines that occur. 
 
 You can also use any custom image or sound effect for each individual part of the program.
