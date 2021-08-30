@@ -6,12 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/NorthPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/NorthPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell$CellModifier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell$CellStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell$CellStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/NorthPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/NorthPanel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,13 +60,26 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="Application.Main (2)">
-    <configuration name="GraphPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.minesweeper.windows.index.GraphPanel" />
+  <component name="RunManager" selected="Application.Table">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Cell$CellStatus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.minesweeperDrivers.Cell$CellStatus" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.minesweeper.windows.index.*" />
+          <option name="PATTERN" value="com.minesweeper.minesweeperDrivers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -63,25 +87,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Image" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.minesweeper.resourceManagers.images.Image" />
+    <configuration name="Cell" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.newMinesweeperDrivers.Cell" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.minesweeper.resourceManagers.images.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ListenerExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.minesweeper.eventDrivers.ListenerExample" />
-      <module name="minesweeper" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.minesweeper.eventDrivers.*" />
+          <option name="PATTERN" value="com.minesweeper.newMinesweeperDrivers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,6 +113,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Table (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.newMinesweeperDrivers.Table" />
+      <module name="minesweeper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.minesweeper.newMinesweeperDrivers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Table" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.minesweeper.minesweeperDrivers.Table" />
       <module name="minesweeper" />
@@ -115,25 +139,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.Image" />
-        <item itemvalue="Application.GraphPanel" />
         <item itemvalue="Application.Table" />
+        <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.Cell$CellStatus" />
+        <item itemvalue="Application.Table (1)" />
+        <item itemvalue="Application.Cell" />
       </list>
     </recent_temporary>
   </component>

@@ -1,19 +1,23 @@
 package com.minesweeper.minesweeperDrivers;
 
+import java.util.EnumSet;
+
 public class Cell {
-    private CellModifier cellModifier;
+//    covered, question mark, flag
+    private CellVisibility cellVisibility;
+//
     private CellStatus cellStatus;
 
     public Cell() {
-        this.cellModifier = CellModifier.COVERED;
+        this.cellVisibility = CellVisibility.COVERED;
     }
 
-    public CellModifier getCellModifier() {
-        return cellModifier;
+    public CellVisibility getCellModifier() {
+        return cellVisibility;
     }
 
-    public void setCellModifier(CellModifier cellModifier) {
-        this.cellModifier = cellModifier;
+    public void setCellModifier(CellVisibility cellVisibility) {
+        this.cellVisibility = cellVisibility;
     }
 
     public CellStatus getCellStatus() {
@@ -29,14 +33,15 @@ public class Cell {
         return String.valueOf(cellStatus);
     }
 
-    public enum CellModifier {
+    public enum CellVisibility {
         COVERED("0"),
         FLAG("f"),
-        UNKNOWN("?");
+        UNKNOWN("?"),
+        OPENED("_");
 
         private final String string;
 
-        CellModifier(String string) {
+        CellVisibility(String string) {
             this.string = string;
         }
 
@@ -47,6 +52,8 @@ public class Cell {
     }
 
     public enum CellStatus {
+//        for auto solver
+        UNKNOWN("?"),
         MINE("_"),
         ZERO("0"),
         ONE("1"),
@@ -57,7 +64,10 @@ public class Cell {
         SIX("6"),
         SEVEN("7"),
         EIGHT("8"),
+//        what user pressed
+//      todo for testing purposes
         USER("u");
+        ;
 
         private final String string;
 
@@ -69,5 +79,26 @@ public class Cell {
         public String toString() {
             return string;
         }
+
+        public static CellStatus getBasedOnInt(int num) {
+
+
+            for (CellStatus cellStatus:
+                 EnumSet.allOf(CellStatus.class)) {
+
+                if (String.valueOf(num).equals(
+                        cellStatus.string
+                ))  {
+                    return cellStatus;
+                }
+            }
+
+            return null;
+        }
+
+        public static void main(String[] args) {
+            getBasedOnInt(2);
+        }
+
     }
 }

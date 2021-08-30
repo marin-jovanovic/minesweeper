@@ -3,6 +3,7 @@ package com.minesweeper;
 import com.minesweeper.resourceManagers.constants.Config;
 import com.minesweeper.windows.index.MainFrame;
 
+
 import javax.swing.*;
 import java.io.File;
 
@@ -10,7 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        create config folder if missing
+//        create config f   older if missing
+
         File f = new File(Config.getConstantsFolder());
         System.out.println(f.mkdir());
 
