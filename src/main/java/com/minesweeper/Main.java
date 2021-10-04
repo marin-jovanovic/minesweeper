@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        create config f   older if missing
+//        create config folder if missing
 
         File f = new File(Config.getConstantsFolder());
         System.out.println(f.mkdir());

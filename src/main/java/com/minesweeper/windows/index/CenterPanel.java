@@ -117,25 +117,25 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
         numOfOpenedCells++;
         buttons[i][j].setEnabled(false);
 
-        if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.MINE) {
+        if (table.getCell(i, j).getCellStatus() == Cell.CellValue.MINE) {
             buttons[i][j].setDisabledIcon(Image.MINE.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.ZERO) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.ZERO) {
             buttons[i][j].setDisabledIcon(Image.ZERO.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.ONE) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.ONE) {
             buttons[i][j].setDisabledIcon(Image.ONE.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.TWO) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.TWO) {
             buttons[i][j].setDisabledIcon(Image.TWO.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.THREE) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.THREE) {
             buttons[i][j].setDisabledIcon(Image.THREE.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.FOUR) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.FOUR) {
             buttons[i][j].setDisabledIcon(Image.FOUR.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.FIVE) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.FIVE) {
             buttons[i][j].setDisabledIcon(Image.FIVE.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.SIX) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.SIX) {
             buttons[i][j].setDisabledIcon(Image.SIX.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.SEVEN) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.SEVEN) {
             buttons[i][j].setDisabledIcon(Image.SEVEN.getImageIcon());
-        } else if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.EIGHT) {
+        } else if (table.getCell(i, j).getCellStatus() == Cell.CellValue.EIGHT) {
             buttons[i][j].setDisabledIcon(Image.EIGHT.getImageIcon());
         }
 
@@ -150,7 +150,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
 
         openCell(x, y);
 
-        if (table.getCell(x, y).getCellStatus() == Cell.CellStatus.ZERO) {
+        if (table.getCell(x, y).getCellStatus() == Cell.CellValue.ZERO) {
             //        table[x][y] already opened but first if statement in openCell handles that
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
@@ -296,7 +296,7 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
                                 centerPanel.isFirstButtonClicked = true;
                             }
 
-                            if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.ZERO) {
+                            if (table.getCell(i, j).getCellStatus() == Cell.CellValue.ZERO) {
                                 openBlanks(i, j);
 
                             } else {
@@ -316,8 +316,11 @@ public class CenterPanel extends JPanel implements PropertyChangeListener {
             }
         }
 
+
+
         private boolean checkForGameOver(int i, int j) {
-            if (table.getCell(i, j).getCellStatus() == Cell.CellStatus.MINE && !buttons[i][j].isEnabled()) {
+
+            if (table.getCell(i, j).getCellStatus() == Cell.CellValue.MINE && !buttons[i][j].isEnabled()) {
                 System.out.println("game over");
 
 //              TODO extract to new thread (swing worker)

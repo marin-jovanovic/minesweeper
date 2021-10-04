@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table$TableCellTuple.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table$TableCellTuple.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/CenterPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table$TableCellTuple.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,9 +55,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
-  <component name="RunManager" selected="Application.Table">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -68,8 +71,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Cell$CellStatus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.minesweeper.minesweeperDrivers.Cell$CellStatus" />
+    <configuration name="Cell$CellValue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.minesweeper.minesweeperDrivers.Cell$CellValue" />
       <module name="minesweeper" />
       <extension name="coverage">
         <pattern>
@@ -135,9 +138,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Table" />
         <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.Cell$CellStatus" />
+        <item itemvalue="Application.Table" />
+        <item itemvalue="Application.Cell$CellValue" />
         <item itemvalue="Application.Table (1)" />
         <item itemvalue="Application.Cell" />
       </list>

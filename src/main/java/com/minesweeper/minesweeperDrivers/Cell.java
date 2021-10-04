@@ -4,44 +4,44 @@ import java.util.EnumSet;
 
 public class Cell {
 //    covered, question mark, flag
-    private CellVisibility cellVisibility;
-//
     private CellStatus cellStatus;
 
+    private CellValue cellValue;
+
     public Cell() {
-        this.cellVisibility = CellVisibility.COVERED;
-    }
-
-    public CellVisibility getCellModifier() {
-        return cellVisibility;
-    }
-
-    public void setCellModifier(CellVisibility cellVisibility) {
-        this.cellVisibility = cellVisibility;
+        this.cellStatus = CellStatus.COVERED;
     }
 
     public CellStatus getCellStatus() {
-        return cellStatus;
+        return this.cellStatus;
     }
 
     public void setCellStatus(CellStatus cellStatus) {
         this.cellStatus = cellStatus;
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(cellStatus);
+    public CellValue getCellValue() {
+        return this.cellValue;
     }
 
-    public enum CellVisibility {
-        COVERED("0"),
+    public void setCellValue(CellValue cellValue) {
+        this.cellValue = cellValue;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(cellValue);
+    }
+
+    public enum CellStatus {
+        COVERED("c"),
         FLAG("f"),
-        UNKNOWN("?"),
-        OPENED("_");
+        UNKNOWN("u"),
+        OPENED("O");
 
         private final String string;
 
-        CellVisibility(String string) {
+        CellStatus(String string) {
             this.string = string;
         }
 
@@ -51,7 +51,7 @@ public class Cell {
         }
     }
 
-    public enum CellStatus {
+    public enum CellValue {
 //        for auto solver
         UNKNOWN("?"),
         MINE("_"),
@@ -67,11 +67,10 @@ public class Cell {
 //        what user pressed
 //      todo for testing purposes
         USER("u");
-        ;
 
         private final String string;
 
-        CellStatus(String string) {
+        CellValue(String string) {
             this.string = string;
         }
 
@@ -80,16 +79,16 @@ public class Cell {
             return string;
         }
 
-        public static CellStatus getBasedOnInt(int num) {
+        public static CellValue getBasedOnInt(int num) {
 
 
-            for (CellStatus cellStatus:
-                 EnumSet.allOf(CellStatus.class)) {
+            for (CellValue cellValue :
+                 EnumSet.allOf(CellValue.class)) {
 
                 if (String.valueOf(num).equals(
-                        cellStatus.string
+                        cellValue.string
                 ))  {
-                    return cellStatus;
+                    return cellValue;
                 }
             }
 
