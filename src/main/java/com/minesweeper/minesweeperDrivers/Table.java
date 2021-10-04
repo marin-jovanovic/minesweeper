@@ -13,12 +13,15 @@ public class Table {
 //    todo hints
 
     private final Cell[][] table;
-    private final boolean[] isRowFull;
+//    private final boolean[] isRowFull;
 
     private final int numberOfRows;
     private final int numberOfColumns;
+
     private final int numberOfMines;
 
+
+//  users opened this tile
     private final int userX;
     private final int userY;
 
@@ -37,11 +40,8 @@ public class Table {
      */
     public Table(int numberOfRows, int numberOfColumns, int numberOfMines, int userX, int userY) {
         this.numberOfRows = numberOfRows;
-
         this.numberOfColumns = numberOfColumns;
         this.numberOfMines = numberOfMines;
-
-        isRowFull = new boolean[numberOfRows];
 
         this.userX = userX;
         this.userY = userY;
@@ -55,8 +55,16 @@ public class Table {
             }
         }
 
-//        mine placing
+        placeMines(numberOfRows, numberOfColumns, numberOfMines, userX, userY);
 
+        generateHints();
+
+//        visibility
+
+        openBlanks(userX, userY);
+    }
+
+    private void placeMines(int numberOfRows, int numberOfColumns, int numberOfMines, int userX, int userY) {
         if (numberOfMines >= numberOfRows * numberOfColumns) {
 //        case: more mines or equal to size of table
 
@@ -69,6 +77,10 @@ public class Table {
             }
 
         } else if (numberOfMines + 1 == numberOfRows * numberOfColumns) {
+//        case: only one empty cell, all other cells are mines
+
+//            open only user selected cell
+//            place mines on all other cells
 
             System.out.println("only one spot empty");
 
@@ -80,8 +92,6 @@ public class Table {
 
             table[userX][userY].setCellStatus(Cell.CellStatus.USER);
 
-//            open only user selected cell
-//            place mines on all other cells
 
         } else {
 
@@ -102,19 +112,16 @@ public class Table {
 
             Random rand = new Random();
 
-//            this.printTable();
-
             while (numOfPlacedMines != numberOfMines) {
                 int row = rand.nextInt(numberOfRows);
                 int column = rand.nextInt(numberOfColumns);
 
                 boolean isUsersCellOrSurroundingCell = false;
-                int i = userX;
-                int j = userY;
+
                 for (int m = -1; m < 2; m++) {
                     for (int n = -1; n < 2; n++) {
 
-                        if (row == i + m && column == j + n) {
+                        if (row == userX + m && column == userY + n) {
 //                            it is this cell or around this cell
                             isUsersCellOrSurroundingCell = true;
                             break;
@@ -138,12 +145,6 @@ public class Table {
             }
 
         }
-
-        generateHints();
-
-//        visibility
-
-        openBlanks(userX, userY);
     }
 
     //    opens all blank that are NEWS, ne, ns, ...,  of targeted cell
@@ -236,152 +237,6 @@ public class Table {
         }
     }
 
-    private void isSolvableDriver(int x, int y) {
-
-        TableCellTuple thisCell = new TableCellTuple(x,y);
-
-//        iterate over all surrounding cells
-        for (int m = -1; m < 2; m++) {
-            for (int n = -1; n < 2; n++) {
-
-                Cell current = solvingTable[x + m][y + n];
-
-//                current cell
-                if (m == 0 && n == 0) {
-                    current.setCellModifier(Cell.CellVisibility.OPENED);
-                    current.setCellStatus(table[x+m][y+n].getCellStatus());
-
-                    continue;
-                }
-
-//                skip cases where "i + m" or "j + n" are out of board
-                if (x + m < 0 || y + n < 0 || x + m >= numberOfRows
-                        || y + n >= numberOfColumns) {
-                    continue;
-                }
-
-//                if (cc.getCellModifier() != Cell.CellVisibility.OPENED) {
-//                    continue;
-//                }
-
-//                TableCellTuple currentCell = new TableCellTuple(i + m, j + n);
-
-                current.setCellModifier(Cell.CellVisibility.OPENED);
-                current.setCellStatus(table[x+m][y+n].getCellStatus());
-
-//                if (table[x+m][y+n])
-
-//
-//                if (cc.getCellStatus() == Cell.CellStatus.MINE) {
-////                    this cell is mine
-//                    setOfFoundMines.add(currentCell);
-//                    this.howManyHaveIFound++;
-//                } else {
-//                    this.setOfToProcess.add(currentCell);
-//                }
-
-            }
-        }
-
-//        setOfOpened.add(thisCell);
-//
-//        System.out.println("around this is " + this.setOfFoundMines.size());
-//        System.out.println("mines");
-//        this.setOfFoundMines.forEach(cell -> System.out.println(cell));
-//        System.out.println("to process");
-//        this.setOfToProcess.forEach(cell -> System.out.println(cell));
-//        System.out.println("processed");
-//        this.setOfOpened.forEach(cell -> System.out.println(cell));
-
-
-//        System.out.println("solving table:");
-//
-//        for (int i = 0; i < numberOfRows; i++) {
-//            for (int j = 0; j < numberOfColumns; j++) {
-//                System.out.print(solvingTable[i][j].getCellStatus() + " ");
-//            }
-//
-//            System.out.print(", ");
-//
-//            for (int j = 0; j < numberOfColumns; j++) {
-//                System.out.print(solvingTable[i][j].getCellModifier() + " ");
-//            }
-//
-//            System.out.println();
-//        }
-//        System.out.println();
-    }
-
-    private Set<TableCellTuple> setOfFoundMines;
-    private Set<TableCellTuple> setOfOpened;
-    private Set<TableCellTuple> setOfToProcess;
-    private int howManyHaveIFound;
-    private Cell[][] solvingTable;
-
-
-    private Set<TableCellTuple> setOfVisibleTiles;
-
-    private boolean isSolvable() {
-
-//        this.setOfVisibleTiles = new HashSet<>();
-//        this.setOfVisibleTiles.add(
-//                new TableCellTuple(this.userX,
-//                        this.userY)
-//        );
-
-//        this.setOfFoundMines = new HashSet<>();
-//        this.setOfOpened = new HashSet<>();
-//        this.setOfToProcess = new HashSet<>();
-
-//        this.howManyHaveIFound = 0;
-
-//        int i = userX;
-//        int j = userY;
-
-        solvingTable = new Cell[numberOfRows][numberOfColumns];
-
-        for (int i = 0; i < this.numberOfRows; i++) {
-            for (int j = 0; j < this.numberOfColumns; j++) {
-                solvingTable[i][j] = new Cell();
-                solvingTable[i][j].setCellModifier(Cell.CellVisibility.COVERED);
-                solvingTable[i][j].setCellStatus(Cell.CellStatus.UNKNOWN);
-
-//                if (this.table[i][j].getCellModifier() == Cell.CellVisibility.OPENED) {
-//                    solvingTable[i][j] = new Cell();
-//                    solvingTable[i][j].setCellModifier(Cell.CellVisibility.OPENED);
-//                    solvingTable[i][j].setCellStatus(this.table[i][j].getCellStatus());
-//                } else {
-//                    solvingTable[i][j] = new Cell();
-//                    solvingTable[i][j].setCellModifier(Cell.CellVisibility.COVERED);
-//                    solvingTable[i][j].setCellStatus(Cell.CellStatus.UNKNOWN);
-//                }
-            }
-        }
-
-
-        this.isSolvableDriver(userX, userY);
-
-        System.out.println("solving table:");
-
-        for (int i = 0; i < numberOfRows; i++) {
-            for (int j = 0; j < numberOfColumns; j++) {
-                System.out.print(solvingTable[i][j].getCellStatus() + " ");
-            }
-
-            System.out.print(", ");
-
-            for (int j = 0; j < numberOfColumns; j++) {
-                System.out.print(solvingTable[i][j].getCellModifier() + " ");
-            }
-
-            System.out.println();
-        }
-        System.out.println();
-
-
-        return false;
-    }
-
     /**
      * generates numbers on table based on position of mines
      *
@@ -427,33 +282,6 @@ public class Table {
     }
 
     /**
-     * sets all values to false
-     */
-    private void initializeIsRowFull() {
-        for (int i = 0; i < numberOfRows; i++) {
-            isRowFull[i] = false;
-        }
-    }
-
-    /**
-     * gets random non-full row
-     *
-     * @return random non-full row
-     */
-    private int getRow() {
-        Random rand = new Random();
-
-        int row;
-        do {
-//                row in which mine will be placed
-            row = rand.nextInt(numberOfRows);
-
-        } while (isRowFull[row]);
-
-        return row;
-    }
-
-    /**
      * inserts mine in {@code row} at random position (checks if position is occupied)
      *
      * @param row row in which mine is to be inserted
@@ -472,22 +300,22 @@ public class Table {
         }
     }
 
-    /**
-     * if row contains only mines sets {@code isRowFull[row]} to true,
-     * else returns
-     *
-     * @param row row which is being checked
-     */
-    private void updateIsRowFull(int row) {
-
-        for (int i = 0; i < numberOfColumns; i++) {
-            if (table[row][i].getCellStatus() != Cell.CellStatus.MINE) {
-                return;
-            }
-        }
-
-        isRowFull[row] = true;
-    }
+//    /**
+//     * if row contains only mines sets {@code isRowFull[row]} to true,
+//     * else returns
+//     *
+//     * @param row row which is being checked
+//     */
+//    private void updateIsRowFull(int row) {
+//
+//        for (int i = 0; i < numberOfColumns; i++) {
+//            if (table[row][i].getCellStatus() != Cell.CellStatus.MINE) {
+//                return;
+//            }
+//        }
+//
+//        isRowFull[row] = true;
+//    }
 
     /**
      * formatted print of {@code table}

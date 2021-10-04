@@ -6,15 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell$CellModifier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell$CellStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell$CellStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table$TableCellTuple.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table$TableCellTuple.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/NorthPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/NorthPanel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,11 +47,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tic-tac-toe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager" selected="Application.Table">
@@ -170,6 +164,9 @@
       <workItem from="1623019506281" duration="767000" />
       <workItem from="1623160451583" duration="924000" />
       <workItem from="1623194498735" duration="1528000" />
+      <workItem from="1633115221479" duration="1235000" />
+      <workItem from="1633116481785" duration="105000" />
+      <workItem from="1633339027236" duration="23000" />
     </task>
     <servers />
   </component>
@@ -197,5 +194,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
