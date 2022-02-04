@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/py/solvable_checker/util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/py/solvable_checker/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/main.py" afterDir="false" />
     </list>

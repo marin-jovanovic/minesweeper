@@ -1,12 +1,13 @@
 from solvable_checker.board_generator import generate_board
+from solvable_checker.util import what_is_targetable
 
 
 def open_zero(board, board_state, curr_column, curr_row, num_of_columns, num_of_rows, markings_state, markings):
-    test_l = curr_column == 0
-    test_r = curr_column == num_of_columns - 1
-    test_u = curr_row == 0
-    test_d = curr_row == num_of_rows - 1
-
+    # test_l = curr_column == 0
+    # test_r = curr_column == num_of_columns - 1
+    # test_u = curr_row == 0
+    # test_d = curr_row == num_of_rows - 1
+    #
     # if not isinstance(board[curr_row][curr_column], int):
     #     return
     # print(board[curr_row][curr_column])
@@ -22,61 +23,67 @@ def open_zero(board, board_state, curr_column, curr_row, num_of_columns, num_of_
     if (board[curr_row][curr_column] == markings["empty"])\
             or board[curr_row][curr_column] == markings["user"]:
 
-        if not test_u and not test_l:
-            r = curr_row - 1
-            c = curr_column - 1
-
+        for r, c in what_is_targetable(curr_row, curr_column, num_of_rows,
+                                       num_of_columns):
             open_zero(board, board_state, c,r, num_of_columns,
                       num_of_rows, markings_state, markings)
 
-        if not test_u:
-            r = curr_row - 1
-            c = curr_column
 
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
-
-        if not test_u and not test_r:
-            r = curr_row - 1
-            c = curr_column + 1
-
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
-
-        if not test_r:
-            r = curr_row
-            c = curr_column + 1
-
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
-
-        if not test_r and not test_d:
-            r = curr_row + 1
-            c = curr_column + 1
-
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
-
-        if not test_d:
-            r = curr_row + 1
-            c = curr_column
-
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
-
-        if not test_d and not test_l:
-            r = curr_row + 1
-            c = curr_column - 1
-
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
-
-        if not test_l:
-            r = curr_row
-            c = curr_column - 1
-
-            open_zero(board, board_state, c,r, num_of_columns,
-                      num_of_rows, markings_state, markings)
+        # if not test_u and not test_l:
+        #     r = curr_row - 1
+        #     c = curr_column - 1
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_u:
+        #     r = curr_row - 1
+        #     c = curr_column
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_u and not test_r:
+        #     r = curr_row - 1
+        #     c = curr_column + 1
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_r:
+        #     r = curr_row
+        #     c = curr_column + 1
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_r and not test_d:
+        #     r = curr_row + 1
+        #     c = curr_column + 1
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_d:
+        #     r = curr_row + 1
+        #     c = curr_column
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_d and not test_l:
+        #     r = curr_row + 1
+        #     c = curr_column - 1
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
+        #
+        # if not test_l:
+        #     r = curr_row
+        #     c = curr_column - 1
+        #
+        #     open_zero(board, board_state, c,r, num_of_columns,
+        #               num_of_rows, markings_state, markings)
 
 
 # def open_zero_recursion(board, board_state, c, markings, markings_state,
@@ -115,7 +122,29 @@ def solve_board(markings, board):
     print()
     open_zero(board, board_state, user_column, user_row, num_of_columns, num_of_rows, markings_state, markings)
 
+    [print([str(j) for j in i]) for i in board]
+    print()
     [print(i) for i in board_state]
+
+    from collections import defaultdict
+    front_opened = defaultdict(dict)
+    for i, row in enumerate(board_state):
+        for j, val in enumerate(row):
+            if val == markings_state["open"]:
+                if board[i][j] == markings["user"]:
+                    continue
+                targetable = what_is_targetable(i, j ,num_of_rows, num_of_columns)
+                targetable_filtered = []
+
+                for r, c in targetable:
+                    if board_state[r][c] == markings_state["closed"]:
+                        targetable_filtered.append((r, c))
+
+                if targetable_filtered:
+                    front_opened[board[i][j]     ][(i, j)] = targetable_filtered
+
+    print()
+    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front_opened.items()]
 
 
 def main():
@@ -125,12 +154,11 @@ def main():
         "empty": 0
     }
 
-    board = generate_board(markings, 6, 5, 10, 3, 2)
-    [print(i) for i in board]
+    board = generate_board(markings, 10,10,25, 3, 2)
+    # [print(i) for i in board]
 
     solve_board(markings, board)
-    print()
-    [print([str(j) for j in i]) for i in board]
+    # print()
 
 if __name__ == '__main__':
     main()
