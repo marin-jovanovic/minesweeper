@@ -5,13 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/py/solvable_checker/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/minesweeperDrivers/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/minesweeper/windows/index/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table$TableCellTuple.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py_support/img_folder/pause.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/py_support/img_folder/play.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/py_support/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/py_support/temp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/eventDrivers/Command.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/GraphPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/MainFrame$MainFrameWindowListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/MainFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/NorthPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/PauseButton$State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/PauseButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/RestartButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultComponent$TestFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger$Result.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/TimerElement$TestFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/TimerElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/GeneralSettingsPanel$TogglePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/GeneralSettingsPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SettingsFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SettingsWindowListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SoundSettingsPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/imagePicker/ImagePickerElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/reset/RestartCurrentButton$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/reset/RestartCurrentButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/reset/RestartDefaultButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/textField/TextFieldActionListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/textField/TextFieldElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$ButtonPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$ClosedTilePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$OpenedTilePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$TimePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/index/swingworkerExample/ButtonActionListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/index/swingworkerExample/CalculateFactorialTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/index/swingworkerExample/FactorialCalculatorFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/ImageFileView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/ImageFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/ImagePreview.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/imagePanel/ImagesSettingsButtonPanel.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +66,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -38,6 +80,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1szeTIEpjN0T52EYjUBOfhSwOiN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -55,9 +100,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Application.Main (2)">
+  <component name="RunManager" selected="Python.main">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -77,19 +122,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.minesweeper.minesweeperDrivers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Cell" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.minesweeper.newMinesweeperDrivers.Cell" />
-      <module name="minesweeper" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.minesweeper.newMinesweeperDrivers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,13 +168,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="minesweeper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/py/solvable_checker" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/py/solvable_checker/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (2)" />
-        <item itemvalue="Application.Table" />
-        <item itemvalue="Application.Cell$CellValue" />
-        <item itemvalue="Application.Table (1)" />
-        <item itemvalue="Application.Cell" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -186,17 +235,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.io.FileNotFoundException" package="java.io" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
