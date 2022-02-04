@@ -5,54 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83fdb3d5-bc8c-4b29-9ccc-049d063e1367" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/py/solvable_checker/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/py/solvable_checker/board_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/py_support/img_folder/pause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/py_support/img_folder/play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/py_support/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/py_support/temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/eventDrivers/Command.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/minesweeperDrivers/Table.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/GraphPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/MainFrame$MainFrameWindowListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/MainFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/NorthPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/PauseButton$State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/PauseButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/RestartButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultComponent$TestFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger$Result.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/ResultLogger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/TimerElement$TestFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/index/TimerElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/GeneralSettingsPanel$TogglePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/GeneralSettingsPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SettingsFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SettingsWindowListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/SoundSettingsPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/imagePicker/ImagePickerElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/reset/RestartCurrentButton$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/reset/RestartCurrentButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/reset/RestartDefaultButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/textField/TextFieldActionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/elements/textField/TextFieldElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$ButtonPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$ClosedTilePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$OpenedTilePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel$TimePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/minesweeper/windows/settings/imagePanel/ImagesSettingsPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/index/swingworkerExample/ButtonActionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/index/swingworkerExample/CalculateFactorialTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/index/swingworkerExample/FactorialCalculatorFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/ImageFileView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/ImageFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/ImagePreview.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/elements/imagePicker/driver/Utils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/windows/settings/imagePanel/ImagesSettingsButtonPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/solvable_checker/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,11 +144,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
