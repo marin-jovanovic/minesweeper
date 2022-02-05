@@ -1,9 +1,10 @@
 from random import randint
+
 from solvable_checker.util import what_is_targetable
 
 
-def generate_board(markings, num_of_rows, num_of_columns, num_of_mines, user_row, user_column):
-
+def generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
+                   user_row, user_column):
     # todo check restrictions
     board = [[0 for _ in range(num_of_columns)] for _ in range(num_of_rows)]
 
