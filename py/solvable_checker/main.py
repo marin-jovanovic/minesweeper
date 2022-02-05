@@ -121,39 +121,6 @@ def solve_board(markings, board, markings_state):
     open_zero(board, board_state, user_column, user_row, num_of_columns,
               num_of_rows, markings_state, markings)
 
-    # [print([str(j) for j in i]) for i in board]
-    # print()
-    # [print(i) for i in board_state]
-
-    from collections import defaultdict
-
-    # board = [    ['1', '1', '3', 'x', 'x', '1', '1', '3', 'x', '3'],
-    #     ['2', 'x', '5', 'x', '3', '1', '1', 'x', 'x', 'x'],
-    #     ['3', 'x', 'x', '3', '3', '2', '3', '4', 'x', '3'],
-    #     ['x', '3', 'u', '2', 'x', 'x', '3', 'x', '2', '1'],
-    #     ['2', '2', '0', '1', '2', '3', 'x', '2', '1', '0'],
-    #     ['x', '3', '2', '1', '1', '2', '2', '2', '0', '0'],
-    #     ['x', 'x', '2', 'x', '1', '1', 'x', '1', '0', '0'],
-    #     ['x', '5', '3', '1', '1', '1', '1', '1', '0', '0'],
-    #     ['x', 'x', '1', '0', '0', '0', '0', '0', '0', '0'],
-    #     ['x', '3', '1', '0', '0', '0', '0', '0', '0', '0'],
-    # ]
-    #
-    # board_state = [
-    #
-    #     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', ' ', ' ', 'o', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', 'o', 'o', 'o', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', 'o', 'o', 'o', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', 'o', 'o', 'o', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    #     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    #
-    # ]
-
     board = [
         ['0', '1', 'x', '2', 'x'],
         ['2', '3', '2', '2', '1'],
@@ -238,6 +205,17 @@ def solve_board(markings, board, markings_state):
 
     # todo remove same rows, check if that is possible
 
+    front_opened_control = subset_cleaner(front_opened_control)
+    print()
+    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
+     front_opened_control.items()]
+
+    # front_opened_control = subset_cleaner(front_opened_control)
+    # [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
+    #  front_opened_control.items()]
+
+
+def subset_cleaner(front_opened_control):
     seen = set()
     to_remove_tiles = set()
     reduced_tiles = defaultdict(dict)
@@ -264,19 +242,20 @@ def solve_board(markings, board, markings_state):
                             #   do you need to rerun this portion of code till no change
                             reduced_tiles[new_cardinality][i[2]] = new_t_b_d
 
-    front_opened_control = {i[0]: {j[0]: j[1] for j in i[1].items() if j[0] not in to_remove_tiles} for i in front_opened_control.items()}
-    # front_opened_control[]
-    # front_opened_control[]
+    # todo optimize with pop
+    front_opened_control = {
+        i[0]: {j[0]: j[1] for j in i[1].items() if j[0] not in to_remove_tiles}
+        for i in front_opened_control.items()}
+
+    # breakpoint()
+
     for i in reduced_tiles.items():
         for j in i[1].items():
-
             front_opened_control[i[0]][j[0]] = j[1]
 
-    # [[front_opened_control[i[0]][j[0]] = j[1]  for j in  i[1].items()] for i in reduced_tiles.items()]
-    # front_opened_control += reduced_tiles
-    print(reduced_tiles)
-    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front_opened_control.items()]
+    # print(reduced_tiles)
+    return front_opened_control
+
 
 def cleanup_front(front_opened_control, mines):
     new_front = defaultdict(dict)
