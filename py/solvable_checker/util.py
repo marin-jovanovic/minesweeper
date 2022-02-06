@@ -41,3 +41,4 @@ def what_is_targetable(row, column, num_of_rows, num_of_columns):
 
     constraints_log[(row, column)] = existing
     return existing
+

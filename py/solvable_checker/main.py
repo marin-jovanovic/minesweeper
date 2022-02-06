@@ -21,24 +21,9 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
     [print(i) for i in board_state]
 
     front_opened_control = defaultdict(dict)
-    front_opened = {}
-    for i, row in enumerate(board_state):
-        for j, val in enumerate(row):
-            if val == markings_state["open"]:
-                if board[i][j] == markings["user"]:
-                    continue
-
-                targetable = what_is_targetable(i, j, num_of_rows,
-                                                num_of_columns)
-                targetable_filtered = []
-
-                for r, c in targetable:
-                    if board_state[r][c] == markings_state["closed"]:
-                        targetable_filtered.append((r, c))
-
-                if targetable_filtered:
-                    front_opened_control[int(board[i][j])][(i, j)] = targetable_filtered
-                    front_opened[int(board[i][j])] = targetable_filtered
+    update_front_opened_control(board, board_state, front_opened_control,
+                                markings, markings_state, num_of_columns,
+                                num_of_rows)
 
     print()
     [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
@@ -62,6 +47,10 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
         print(f"{iteration=}")
         iteration += 1
 
+        if not front_opened_control:
+            print("job done")
+            break
+
         # ##########################################################################
 
         # solve this kind of problems
@@ -72,22 +61,54 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
 
         # extract new mines
         # delete rows from front_opened_control
-        while new_mines := direct_extraction(front_opened_control):
-            [mines.add(i) for i in new_mines]
 
-            remove_mines_from_board_state(board_state, mines)
+        is_sth_changed = True
+        while is_sth_changed:
+            is_sth_changed = False
 
-            for r, c in new_mines:
-                board_state[r][c] = markings_state["mine"]
+            # 	 1 [(3, 0)] -> remove, add to new_mines
+            # 	 3 [(2, 0), (2, 2), (4, 0), (3, 0)]
+            front_opened_control, new_mines = direct_extraction(front_opened_control, board_state, markings_state)
+            if new_mines:
+                is_sth_changed = True
 
-            # cleanup front, find what can be opened
-            front_opened_control, new_to_open = cleanup_front(front_opened_control, mines)
+            print()
+            print("after removing cardinality == len")
+            [print("\t",[str(j) for j in i]) for i in board]
+            print()
+            [print("\t", i) for i in board_state]
+            print()
+
+            front_opened_control, new_to_open = cleanup_front(front_opened_control, new_mines)
+
+            # print("after removing mines")
+            [[print("\t", i[0], j[1]) for j in i[1].items()] for i in
+             front_opened_control.items()]
+            print()
+
+            print(f"\t{new_mines=}")
+            print(f"\t{new_to_open=}")
+            print()
 
             for r, c in new_to_open:
                 click_log.add((r, c))
                 open_tile(board, board_state, r, c, num_of_columns,
                           num_of_rows, markings_state, markings)
 
+            update_front_opened_control(board, board_state, front_opened_control,
+                                        markings, markings_state, num_of_columns,
+                                        num_of_rows)
+
+            # print("reduced to")
+            [[print("\t", i[0], j[1]) for j in i[1].items()] for i in
+             front_opened_control.items()]
+
+            if not front_opened_control:
+                print("front opened control empty, board must be solved")
+                return
+
+            [mines.add(i) for i in new_mines]
+            print()
         print()
         print("direct extraction")
         print(f"\t{click_log=}")
@@ -101,6 +122,7 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
         print()
 
         print(80 * "-")
+        return
         # ##########################################################################
 
         # 1 (1, 2) [(0, 2), (0, 1), (0, 3), (1, 1)]
@@ -127,7 +149,7 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
          front_opened_control.items()]
 
-        c = remove_mines_from_board_state(board_state, mines)
+        c = remove_mines_from_board_state(front_opened_control, mines)
         # if c:
         #     is_sth_changed = True
 
@@ -144,7 +166,6 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
      front_opened_control.items()]
     print()
 
-
     # if 0 in front_opened_control:
     #     print("cleanup", front_opened_control[0])
 
@@ -153,15 +174,47 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
     #  front_opened_control.items()]
 
 
-def remove_mines_from_board_state(board_state, mines):
-    # remove mines from rows
+def update_front_opened_control(board, board_state, front_opened_control,
+                                markings, markings_state, num_of_columns,
+                                num_of_rows):
+
     for i, row in enumerate(board_state):
-        for c_t, t_b_d in enumerate(row):
-            for j in t_b_d:
+        for j, val in enumerate(row):
+            if val == markings_state["open"]:
+                if board[i][j] in [ markings["user"], markings["mine"]]:
+                    continue
+
+                targetable = what_is_targetable(i, j, num_of_rows,
+                                                num_of_columns)
+                targetable_filtered = []
+
+                for r, c in targetable:
+                    if board_state[r][c] == markings_state["closed"]:
+                        targetable_filtered.append((r, c))
+
+                if targetable_filtered:
+                    try:
+                        front_opened_control[int(board[i][j])][(i, j)] = targetable_filtered
+                    except Exception as e:
+                        print("type", board[i][j])
+                        raise e
+
+def remove_mines_from_board_state(front_opened_control, mines):
+
+    print("remove_mines_from_board_state")
+    print(f"{front_opened_control=}")
+    # print()
+    #
+    # remove mines from rows
+    for  row in front_opened_control.items():
+        print(f"{row[0]=} {row[1]=}")
+        for c_t, t_b_d in enumerate(row[1].items()):
+            # print(f" {row=} {c_t=} {t_b_d=}")
+            for j in t_b_d[1]:
                 if j in mines:
                     print("removing", j)
                     print("bcz", mines)
-                    t_b_d.remove(j)
+                    t_b_d[1].remove(j)
 #                    todo decrement cardinality
 
 
@@ -238,6 +291,27 @@ def subset_cleaner(front_opened_control):
 
 
 def cleanup_front(front_opened_control, mines):
+    """
+    1 (1, 0) [(0, 0), (0, 1)]
+    1 (1, 3) [(0, 3), (0, 2), (0, 4), (2, 4), (1, 4)] -> mine (1, 4) -> remove row, add to new_to_open
+    1 (2, 3) [(1, 4), (3, 4), (2, 4)]
+    1 (4, 2) [(4, 3)]
+    2 (1, 1) [(0, 1), (0, 0), (0, 2)]
+    2 (1, 2) [(0, 2), (0, 1), (0, 3)]
+    3 (3, 3) [(2, 4), (4, 3), (4, 4), (3, 4)]
+
+    1 (1, 0) [(0, 0), (0, 1)]
+    1 (4, 2) [(4, 3)]
+    2 (1, 1) [(0, 1), (0, 0), (0, 2)]
+    2 (1, 2) [(0, 2), (0, 1), (0, 3)]
+    3 (3, 3) [(2, 4), (4, 3), (4, 4), (3, 4)]
+
+    to_del=[(2, 3), (1, 4), (4, 1)]
+    new_to_open={(2, 4), (0, 4), (3, 4), (0, 3), (0, 2)}
+
+    """
+
+
     new_front = defaultdict(dict)
     to_open = set()
 
@@ -258,14 +332,27 @@ def cleanup_front(front_opened_control, mines):
             if cardinality - cardinality_decrementer <= 0:
                 [to_open.add(i) for i in new_t_b_d]
             else:
+                if not new_t_b_d: continue
                 new_front[cardinality - cardinality_decrementer][t] = new_t_b_d
 
     return new_front, to_open
 
 
-def direct_extraction(front_opened_control):
+def direct_extraction(front_opened_control,board_state,markings_state):
+    """
+    1 (1, 0) [(0, 0), (0, 1)]
+    1 (1, 3) [(0, 3), (0, 2), (0, 4), (2, 4), (1, 4)]
+    1 (2, 3) [(1, 4), (3, 4), (2, 4)]
+    1 (4, 2) [(4, 3)] -> remove this, add to mines
+    2 (1, 1) [(0, 1), (0, 0)] -> remove this, add to mines
+    2 (1, 2) [(0, 2), (0, 1), (0, 3)]
+    3 (3, 3) [(2, 4), (4, 3), (4, 4), (3, 4)]
+
+    """
+
+    new_front_opened = defaultdict(dict)
     mines = set()
-    # todo switch to front_opened
+
     for cardinality, tiles in front_opened_control.items():
 
         to_remove = []
@@ -274,10 +361,18 @@ def direct_extraction(front_opened_control):
             if cardinality == len(t_b_d):
                 [mines.add(i) for i in t_b_d]
                 to_remove.append(t)
+            else:
+                new_front_opened[cardinality][t] = t_b_d
 
         [tiles.pop(i) for i in to_remove]
     # print()
-    return mines
+
+    for r, c in mines:
+        board_state[r][c] = markings_state["mine"]
+
+    # front_opened_control = new_front_opened
+
+    return new_front_opened, mines
 
 
 def main():
