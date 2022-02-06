@@ -1,7 +1,6 @@
 from collections import defaultdict
 
 from solvable_checker.constants import game_status
-
 from solvable_checker.util import get_all_mines, create_front
 
 
@@ -37,21 +36,18 @@ def basic_strategy(front_opened, board_state, markings_state, board,
                         board_state[r][c] = markings_state["open"]
                     is_sth_changed = True
 
-        front_opened = defaultdict(dict)
-        create_front(board, board_state,
-                     front_opened,
-                     markings, markings_state,
-                     num_of_columns,
-                     num_of_rows,
-                     mines_present=True)
+        # front_opened = defaultdict(dict)
+        front_opened = create_front(board, board_state, front_opened,
+                                    num_of_columns,
+                                    num_of_rows, mines_present=True)
 
         if not front_opened:
             print("all tiles opened and all mines marked")
             # print_boards(board, board_state)
             return game_status["solution found"], get_all_mines(board_state,
-                                                                markings_state)
+                                                                markings_state), front_opened
 
-    return game_status["solution not found"], None
+    return game_status["solution not found"], None, front_opened
     # , front_opened,
 
 

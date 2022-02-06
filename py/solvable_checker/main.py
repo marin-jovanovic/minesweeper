@@ -2,28 +2,25 @@ from collections import defaultdict
 
 from solvable_checker.basic_strategy import basic_strategy
 from solvable_checker.board_generator import generate_board_with_first_move
+from solvable_checker.constants import game_status
+from solvable_checker.constants import markings, markings_state
 from solvable_checker.util import get_all_mines, \
     create_front
-from solvable_checker.constants import game_status
+from solvable_checker.subset_strategy import subset_strategy
+
 
 def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
                 num_of_columns=None):
     # todo add hints
     #   need click log     # click_log = set()
 
-    if not num_of_rows:
-        num_of_rows = len(board)
-    if not num_of_columns:
-        num_of_columns = len(board[0])
+    num_of_rows = num_of_rows if num_of_rows else len(board)
+    num_of_columns = num_of_columns if num_of_columns else len(board[0])
 
-    front_opened = defaultdict(dict)
-    create_front(board, board_state, front_opened,
-                 markings, markings_state, num_of_columns,
-                 num_of_rows)
+    front = create_front(board, board_state, None, num_of_columns, num_of_rows)
 
     print()
-    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front_opened.items()]
+    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
     print()
 
     # todo run this while new mines can be extracted
@@ -34,19 +31,20 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
     iteration = 0
     is_sth_changed = True
     while is_sth_changed:
+        is_sth_changed= False
         print(80 * "-")
         print(80 * "-")
         print(80 * "-")
         print(f"{iteration=}")
         iteration += 1
 
-        if not front_opened:
+        if not front:
             print("job done")
             break
 
-        status, mines = basic_strategy(front_opened, board_state, markings_state, board,
-                                       markings,
-                                       num_of_columns,
+        # updates front
+        status, mines, front = basic_strategy(front, board_state, markings_state,
+                                       board, None, num_of_columns,
                                        num_of_rows, )
 
         if status == game_status["solution found"]:
@@ -55,51 +53,34 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         print("after removing cardinality == len and cardinality == 0")
 
         print_boards(board, board_state)
-        # print()
-        # [[print( i[0], j[0],j[1]) for j in i[1].items()] for i in
-        #  front_opened.items()]
         print()
-        # [print(i) for i in board_state]
+        [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
+
+        c = 0
+        for i,j in front.items():
+            for k, l in j.items():
+                c += 1
+        print(f"{c=}")
 
 
-        print()
-        [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-         front_opened.items()]
-        print()
 
-        print(80 * "-")
-        return get_all_mines(board_state, markings_state)
-        # ##########################################################################
+        # print(f"{front=}")
 
-        # 1 (1, 2) [(0, 2), (0, 1), (0, 3), (1, 1)]
-        # 1 (1, 4) [(0, 4), (0, 3)]
-        # 2 (1, 3) [(0, 3), (0, 2), (0, 4)]
-        #
-        # remove last one and mark (0, 2) as mine
-        # 1 (1, 2) [(0, 2), (0, 1), (0, 3), (1, 1)]
-        # 1 (1, 4) [(0, 4), (0, 3)]
+        status, mines, front, change_status = subset_strategy(front, board_state, markings_state, board,
+                   markings,
+                   num_of_columns,
+                   num_of_rows, )
+        if status == game_status["solution found"]:
+            return mines
 
-        # 1 (1, 2) [(0, 2), (0, 1), (0, 3), (1, 1)]
-        # 1 (1, 4) [(0, 4), (0, 3)]
-        # 2 (1, 3) [(0, 3), (0, 2), (0, 4), (7, 7)]
-        #
-        # 1 (1, 2) [(0, 2), (0, 1), (0, 3), (1, 1)]
-        # 1 (1, 4) [(0, 4), (0, 3)]
-        # 1 (1, 3) [(0, 2), (7, 7)]
+        if change_status == "changed":
+            is_sth_changed = True
 
-        # todo remove same rows, check if that is possible
+        print("after subset strategy")
+        [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
+        print_boards(board, board_state)
 
-        print("subsets")
-        front_opened, is_sth_changed = subset_cleaner(front_opened)
-        print()
-        [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-         front_opened.items()]
-
-        c = remove_mines_from_board_state(front_opened, mines)
-        # if c:
-        #     is_sth_changed = True
-
-        is_sth_changed = True if c else is_sth_changed
+    return get_all_mines(board_state, markings_state)
 
     print(80 * "-")
     print(f"{click_log=}")
@@ -109,15 +90,15 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
     [print(i) for i in board_state]
     print()
     [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front_opened.items()]
+     front.items()]
     print()
 
-    # if 0 in front_opened:
-    #     print("cleanup", front_opened[0])
+    # if 0 in front:
+    #     print("cleanup", front[0])
 
-    # front_opened = subset_cleaner(front_opened)
+    # front = subset_cleaner(front)
     # [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-    #  front_opened.items()]
+    #  front.items()]
 
 
 def remove_mines_from_board_state(front, mines):
@@ -138,51 +119,7 @@ def remove_mines_from_board_state(front, mines):
 #                    todo decrement cardinality
 
 
-def subset_cleaner(front_opened_control):
-    seen = set()
-    to_remove_tiles = set()
-    reduced_tiles = defaultdict(dict)
-    for cardinality_1, tiles_1 in front_opened_control.items():
 
-        for t_1, t_b_d_1 in tiles_1.items():
-            print("\t", t_1, "-", t_b_d_1)
-            seen.add(t_1)
-            for cardinality_2, tiles_2 in front_opened_control.items():
-
-                for t_2, t_b_d_2 in tiles_2.items():
-                    if t_2 in seen:
-                        continue
-
-                    print("\t\t", t_2, "-", t_b_d_2)
-
-                    for i in [(t_b_d_1, t_b_d_2, t_2), (t_b_d_2, t_b_d_1, t_1)]:
-
-                        if set(i[0]).issubset(set(i[1])):
-                            new_cardinality = abs(cardinality_2 - cardinality_1)
-                            new_t_b_d = [j for j in i[1] if j not in i[0]]
-                            to_remove_tiles.add(i[-1])
-                            # todo check what happens if from first for loop is removed element
-                            #   do you need to rerun this portion of code till no change
-
-                            if new_t_b_d:
-                                reduced_tiles[new_cardinality][i[2]] = new_t_b_d
-
-    # todo optimize with pop
-
-    # print(reduced_tiles)
-
-    for i in front_opened_control.items():
-        for j in i[1].items():
-            if j[0] in to_remove_tiles:
-                continue
-
-            reduced_tiles[i[0]][j[0]] = j[1]
-
-    # print("sth changed", reduced_tiles != front_opened_control)
-
-    return reduced_tiles, reduced_tiles != front_opened_control
-    # print(reduced_tiles)
-    # return front_opened_control
 
 
 def cleanup_front(front_opened_control, mines):
@@ -232,15 +169,11 @@ def cleanup_front(front_opened_control, mines):
     return new_front, to_open
 
 
-
-
-
 def print_boards(board, board_state):
     [print([str(j) for j in i], l) for i, l in zip(board, board_state)]
 
-from solvable_checker.constants import markings, markings_state
-def main():
 
+def main():
     num_of_rows = 10
     num_of_columns = 5
     num_of_mines = 15

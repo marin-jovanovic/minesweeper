@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efc247e1-2215-4492-99fe-256b43e1970a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/py/solvable_checker/basic_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/py/solvable_checker/subset_strategy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/solvable_checker/basic_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/basic_strategy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/py/solvable_checker/board_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/board_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/solvable_checker/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/py/solvable_checker/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/solvable_checker/tile_opener.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/tile_opener.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/solvable_checker/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/solvable_checker/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

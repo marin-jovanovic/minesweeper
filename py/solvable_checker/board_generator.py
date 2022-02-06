@@ -1,12 +1,12 @@
 from random import randint
 
+from solvable_checker.constants import markings_state, markings
 from solvable_checker.tile_opener import open_tile
 from solvable_checker.util import what_is_targetable
-from solvable_checker.constants import markings_state, markings
+
 
 def generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
                    user_row, user_column):
-
     # todo check restrictions
     board = [[0 for _ in range(num_of_columns)] for _ in range(num_of_rows)]
 
@@ -55,7 +55,6 @@ def place_mines(board, markings, num_of_columns, num_of_mines, num_of_rows,
 
 
 def set_if_not_user_or_mine(board, markings, r, c):
-
     if board[r][c] != markings["mine"]:
         board[r][c] += 1
 
@@ -71,6 +70,6 @@ def generate_board_with_first_move(num_of_rows, num_of_columns, num_of_mines,
                    _ in range(num_of_rows)]
 
     open_tile(board, board_state, user_row, user_column, num_of_columns,
-             num_of_rows, markings_state, markings)
+              num_of_rows, markings_state, markings)
 
     return board, board_state

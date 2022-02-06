@@ -3,7 +3,6 @@ from solvable_checker.util import what_is_targetable
 
 def open_zero(board, board_state, curr_column, curr_row, num_of_columns,
               num_of_rows, markings_state, markings):
-
     if board[curr_row][curr_column] != markings["user"] and not isinstance(
             board[curr_row][curr_column], int):
         return
@@ -22,13 +21,12 @@ def open_zero(board, board_state, curr_column, curr_row, num_of_columns,
                       num_of_rows, markings_state, markings)
 
 
-def open_tile(board, board_state,user_row, user_column,  num_of_columns,
+def open_tile(board, board_state, user_row, user_column, num_of_columns,
               num_of_rows, markings_state, markings):
-
     # if board[user_row][user_column] == markings["user"] or         board[user_row][user_column] == markings["empty"]:
     if board[user_row][user_column] == markings["empty"]:
         open_zero(board, board_state, user_column, user_row, num_of_columns,
-              num_of_rows, markings_state, markings)
+                  num_of_rows, markings_state, markings)
 
         # todo extract to map
         return "dont know if game is won"

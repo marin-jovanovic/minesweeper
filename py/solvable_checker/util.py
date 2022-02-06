@@ -1,9 +1,10 @@
+from solvable_checker.constants import markings, markings_state
+
 constraints_log = {}
 
 
 def what_is_targetable(row, column, num_of_rows, num_of_columns):
     if (row, column) in constraints_log:
-        # print(f"i have this {row}, {column} -> {constraints_log[(row, column)]}")
         return constraints_log[(row, column)]
 
     test_l = column == 0
@@ -57,12 +58,13 @@ def get_all_mines(board_state, markings_state):
     return mines
 
 
-def create_front(board, board_state, front_opened_control,
-                 markings, markings_state, num_of_columns,
+def create_front(board, board_state, front_opened_control, num_of_columns,
                  num_of_rows, mines_present=False):
-
     # todo add option to iterate over prev closed so that you do not need to
     #   check alr. opened
+
+    from collections import defaultdict
+    front = defaultdict(dict)
 
     for i, row in enumerate(board_state):
         for j, val in enumerate(row):
@@ -87,9 +89,11 @@ def create_front(board, board_state, front_opened_control,
 
                 if targetable_filtered:
                     try:
-                        front_opened_control[
+                        front[
                             int(board[i][j]) - cardinality_decrementer][
                             (i, j)] = targetable_filtered
                     except Exception as e:
                         print("type", board[i][j])
                         raise e
+
+    return front
