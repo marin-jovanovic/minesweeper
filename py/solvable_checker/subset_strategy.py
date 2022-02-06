@@ -40,7 +40,7 @@ def subset_strategy(front, board_state, markings_state, board,
     [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
      front.items()]
 
-    if not is_sth_changed:
+    if is_sth_changed:
         return game_status["solution not found"], get_all_mines(board_state, markings_state), front, "changed"
 
     else:
@@ -48,7 +48,7 @@ def subset_strategy(front, board_state, markings_state, board,
         return game_status["solution not found"], get_all_mines(board_state,
                                                                 markings_state), front, "not changed"
 
-    return None, None, None
+    # return None, None, None
 
     # print(80 * "-")
     # return get_all_mines(board_state, markings_state)

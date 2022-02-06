@@ -62,14 +62,11 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
                 c += 1
         print(f"{c=}")
 
-
-
-        # print(f"{front=}")
-
         status, mines, front, change_status = subset_strategy(front, board_state, markings_state, board,
                    markings,
                    num_of_columns,
                    num_of_rows, )
+
         if status == game_status["solution found"]:
             return mines
 
@@ -79,6 +76,15 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         print("after subset strategy")
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
         print_boards(board, board_state)
+
+        # 1 (3, 3) [(2, 4), (4, 4), (3, 4)]
+        # 1 (4, 1) [(2, 4), (4, 4), (3, 4), (x, y)] -> mark (x, y) as safe
+
+        # 1 (3, 3) [(2, 4), (4, 4), (3, 4)]
+        # 2 (4, 1) [(2, 4), (4, 4), (3, 4), (x, y)] -> mark (x, y) as mine
+
+        # 1 (3, 3) [(2, 4), (4, 4)]
+        # 2 (4, 1) [(2, 4), (4, 4), (3, 4), (x, y)] -> mark (x, y) as safe
 
     return get_all_mines(board_state, markings_state)
 
