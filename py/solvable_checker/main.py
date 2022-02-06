@@ -72,6 +72,9 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
             if new_mines:
                 is_sth_changed = True
 
+            if not new_mines:
+                break
+
             print()
             print("after removing cardinality == len")
             [print("\t",[str(j) for j in i]) for i in board]
@@ -82,7 +85,7 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
             front_opened_control, new_to_open = cleanup_front(front_opened_control, new_mines)
 
             # print("after removing mines")
-            [[print("\t", i[0], j[1]) for j in i[1].items()] for i in
+            [[print("\t", i[0], j[0],j[1]) for j in i[1].items()] for i in
              front_opened_control.items()]
             print()
 
@@ -100,7 +103,7 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
                                         num_of_rows)
 
             # print("reduced to")
-            [[print("\t", i[0], j[1]) for j in i[1].items()] for i in
+            [[print("\t", i[0], j[0],j[1]) for j in i[1].items()] for i in
              front_opened_control.items()]
 
             if not front_opened_control:
@@ -117,7 +120,7 @@ def solve_board(markings, board, markings_state, user_row=None, user_column=None
         print()
         [print("\t",i) for i in board_state]
         print()
-        [[print("\t",i[0], j[1]) for j in i[1].items()] for i in
+        [[print("\t",i[0], j[0], j[1]) for j in i[1].items()] for i in
          front_opened_control.items()]
         print()
 
@@ -375,6 +378,10 @@ def direct_extraction(front_opened_control,board_state,markings_state):
     return new_front_opened, mines
 
 
+def print_boards(board, board_state):
+    [print([str(j) for j in i], l) for i, l in zip(board, board_state)]
+
+
 def main():
     markings = {
         "mine": "x",
@@ -387,8 +394,28 @@ def main():
         "mine": "m"
     }
 
-    board = generate_board(markings, 5, 5, 5, 3, 2)
-    # [print(i) for i in board]
+    num_of_rows = 5
+    num_of_columns = 5
+    num_of_mines = 5
+    user_row = 3
+    user_column = 2
+
+    # can not be mine
+    # can not be number other than 0 because then you need to guess
+    board = generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
+                   user_row, user_column)
+
+    board_state = [[markings_state["closed"] for _ in range(num_of_columns)] for
+                   _ in range(num_of_rows)]
+
+    open_tile(board, board_state, user_row, user_column, num_of_columns,
+             num_of_rows, markings_state, markings)
+
+    print_boards(board, board_state)
+
+    # todo handle user
+
+    return
 
     solve_board(markings, board, markings_state)
     # print()
