@@ -42,3 +42,54 @@ def what_is_targetable(row, column, num_of_rows, num_of_columns):
     constraints_log[(row, column)] = existing
     return existing
 
+
+def get_all_mines(board_state, markings_state):
+    """
+    find locations of all opened mines
+    """
+
+    mines = set()
+    for i, row in enumerate(board_state):
+        indices = [i for i, x in enumerate(row) if x == markings_state["mine"]]
+
+        if indices:
+            [mines.add((i, j)) for j in indices]
+    return mines
+
+
+def create_front(board, board_state, front_opened_control,
+                 markings, markings_state, num_of_columns,
+                 num_of_rows, mines_present=False):
+
+    # todo add option to iterate over prev closed so that you do not need to
+    #   check alr. opened
+
+    for i, row in enumerate(board_state):
+        for j, val in enumerate(row):
+            if val == markings_state["open"]:
+
+                if board[i][j] == markings["mine"]:
+                    if not mines_present:
+                        continue
+
+                targetable = what_is_targetable(i, j, num_of_rows,
+                                                num_of_columns)
+                targetable_filtered = []
+                cardinality_decrementer = 0
+
+                for r, c in targetable:
+                    if board_state[r][c] == markings_state["closed"]:
+                        targetable_filtered.append((r, c))
+
+                    if mines_present:
+                        if board_state[r][c] == markings_state["mine"]:
+                            cardinality_decrementer += 1
+
+                if targetable_filtered:
+                    try:
+                        front_opened_control[
+                            int(board[i][j]) - cardinality_decrementer][
+                            (i, j)] = targetable_filtered
+                    except Exception as e:
+                        print("type", board[i][j])
+                        raise e

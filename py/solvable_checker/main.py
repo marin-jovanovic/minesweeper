@@ -1,39 +1,35 @@
 from collections import defaultdict
 
-from solvable_checker.board_generator import generate_board
-from solvable_checker.tile_opener import open_tile
-from solvable_checker.util import what_is_targetable
+from solvable_checker.basic_strategy import basic_strategy
+from solvable_checker.board_generator import generate_board_with_first_move
+from solvable_checker.util import get_all_mines, \
+    create_front
+from solvable_checker.constants import game_status
 
+def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
+                num_of_columns=None):
+    # todo add hints
+    #   need click log     # click_log = set()
 
-def solve_board(markings, board, markings_state, board_state, user_row=None,
-                user_column=None,
-                num_of_rows=None, num_of_columns=None):
+    if not num_of_rows:
+        num_of_rows = len(board)
+    if not num_of_columns:
+        num_of_columns = len(board[0])
 
-    num_of_columns, num_of_rows = calculate_num_of_r_and_c(board,
-                                                             markings,
-                                                             markings_state,
-                                                             num_of_columns,
-                                                             num_of_rows,
-                                                             user_column,
-                                                             user_row)
-
-    front_opened_control = defaultdict(dict)
-    update_front_opened_control(board, board_state, front_opened_control,
-                                markings, markings_state, num_of_columns,
-                                num_of_rows)
+    front_opened = defaultdict(dict)
+    create_front(board, board_state, front_opened,
+                 markings, markings_state, num_of_columns,
+                 num_of_rows)
 
     print()
     [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front_opened_control.items()]
+     front_opened.items()]
     print()
 
     # todo run this while new mines can be extracted
 
     # this must not be reinitialized
     mines = set()
-
-    click_log = set()
-    # to_open = set()
 
     iteration = 0
     is_sth_changed = True
@@ -44,68 +40,35 @@ def solve_board(markings, board, markings_state, board_state, user_row=None,
         print(f"{iteration=}")
         iteration += 1
 
-        if not front_opened_control:
+        if not front_opened:
             print("job done")
             break
 
-        # ##########################################################################
+        status, mines = basic_strategy(front_opened, board_state, markings_state, board,
+                                       markings,
+                                       num_of_columns,
+                                       num_of_rows, )
 
-        # solve this kind of problems
-        # remove 1 (4, 3) [(4, 4)]
-        # remove 2 (3, 1) [(2, 1), (2, 0)]
-        # todo
-        #   remove 0 (3, 1) [(2, 1), (2, 0)]
+        if status == game_status["solution found"]:
+            return mines
 
-        # extract new mines
-        # delete rows from front_opened_control
+        print("after removing cardinality == len and cardinality == 0")
 
-
-        is_sth_changed = True
-        while is_sth_changed:
-
-            # 	 1 [(3, 0)] -> remove, add to new_mines
-            # 	 3 [(2, 0), (2, 2), (4, 0), (3, 0)]
-            front_opened_control, new_mines = direct_extraction(front_opened_control, board_state, markings_state)
-
-            is_sth_changed = True if new_mines else False
-
-            print()
-            print("after removing cardinality == len")
-
-            print_boards(board, board_state)
-
-            front_opened_control = defaultdict(dict)
-            update_front_opened_control(board, board_state,
-                                        front_opened_control,
-                                        markings, markings_state,
-                                        num_of_columns,
-                                        num_of_rows,
-                                        mines_present=True)
-
-            if not front_opened_control:
-                print("all tiles opened and all mines marked")
-                return
-
-            # front_opened_control, new_to_open = cleanup_front(front_opened_control, new_mines)
-
-            print()
-            [[print( i[0], j[0],j[1]) for j in i[1].items()] for i in
-             front_opened_control.items()]
-
+        print_boards(board, board_state)
+        # print()
+        # [[print( i[0], j[0],j[1]) for j in i[1].items()] for i in
+        #  front_opened.items()]
         print()
-        print("direct extraction")
-        print(f"{click_log=}")
-        print(f"{mines=}")
+        # [print(i) for i in board_state]
 
-        print()
-        [print(i) for i in board_state]
+
         print()
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-         front_opened_control.items()]
+         front_opened.items()]
         print()
 
         print(80 * "-")
-        return
+        return get_all_mines(board_state, markings_state)
         # ##########################################################################
 
         # 1 (1, 2) [(0, 2), (0, 1), (0, 3), (1, 1)]
@@ -127,12 +90,12 @@ def solve_board(markings, board, markings_state, board_state, user_row=None,
         # todo remove same rows, check if that is possible
 
         print("subsets")
-        front_opened_control, is_sth_changed = subset_cleaner(front_opened_control)
+        front_opened, is_sth_changed = subset_cleaner(front_opened)
         print()
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-         front_opened_control.items()]
+         front_opened.items()]
 
-        c = remove_mines_from_board_state(front_opened_control, mines)
+        c = remove_mines_from_board_state(front_opened, mines)
         # if c:
         #     is_sth_changed = True
 
@@ -146,97 +109,33 @@ def solve_board(markings, board, markings_state, board_state, user_row=None,
     [print(i) for i in board_state]
     print()
     [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front_opened_control.items()]
+     front_opened.items()]
     print()
 
-    # if 0 in front_opened_control:
-    #     print("cleanup", front_opened_control[0])
+    # if 0 in front_opened:
+    #     print("cleanup", front_opened[0])
 
-    # front_opened_control = subset_cleaner(front_opened_control)
+    # front_opened = subset_cleaner(front_opened)
     # [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-    #  front_opened_control.items()]
+    #  front_opened.items()]
 
 
-# def calculate_num_of_r_and_c():
-#     return solver_init_config
-
-
-
-def update_front_opened_control(board, board_state, front_opened_control,
-                                markings, markings_state, num_of_columns,
-                                num_of_rows,mines_present=False):
-
-    # todo add option to iterate over prev closed so that you do not need to
-    #   check alr. opened
-
-    for i, row in enumerate(board_state):
-        for j, val in enumerate(row):
-            if val == markings_state["open"]:
-
-                if board[i][j] == markings["mine"]:
-                    if not mines_present:
-                        continue
-
-                targetable = what_is_targetable(i, j, num_of_rows,
-                                                num_of_columns)
-                targetable_filtered = []
-                cardinality_decrementer = 0
-
-                for r, c in targetable:
-                    if board_state[r][c] == markings_state["closed"]:
-                        targetable_filtered.append((r, c))
-
-                    if mines_present:
-                        if board_state[r][c] == markings_state["mine"]:
-                            # if board[r][c] == markings["mine"]:
-                            cardinality_decrementer += 1
-
-                if targetable_filtered:
-                    try:
-                        front_opened_control[int(board[i][j]) - cardinality_decrementer][(i, j)] = targetable_filtered
-                    except Exception as e:
-                        print("type", board[i][j])
-                        raise e
-
-def remove_mines_from_board_state(front_opened_control, mines):
-
+def remove_mines_from_board_state(front, mines):
     print("remove_mines_from_board_state")
-    print(f"{front_opened_control=}")
-    # print()
-    #
+    print(f"{front=}")
+
     # remove mines from rows
-    for  row in front_opened_control.items():
+    for row in front.items():
         print(f"{row[0]=} {row[1]=}")
         for c_t, t_b_d in enumerate(row[1].items()):
-            # print(f" {row=} {c_t=} {t_b_d=}")
             for j in t_b_d[1]:
                 if j in mines:
                     print("removing", j)
                     print("bcz", mines)
                     t_b_d[1].remove(j)
+
+
 #                    todo decrement cardinality
-
-
-def calculate_num_of_r_and_c(board, markings, markings_state, num_of_columns,
-                       num_of_rows, user_column, user_row):
-    if not num_of_rows:
-        num_of_rows = len(board)
-    if not num_of_columns:
-        num_of_columns = len(board[0])
-
-    # if not user_row and not user_column:
-    #     is_found = False
-    #
-    #     for i, row in enumerate(board):
-    #         if is_found:
-    #             break
-    #         for j, val in enumerate(row):
-    #             if val == markings["user"]:
-    #                 is_found = True
-    #                 user_row = i
-    #                 user_column = j
-    #                 break
-    return num_of_columns, num_of_rows
 
 
 def subset_cleaner(front_opened_control):
@@ -307,7 +206,6 @@ def cleanup_front(front_opened_control, mines):
 
     """
 
-
     new_front = defaultdict(dict)
     to_open = set()
 
@@ -334,86 +232,49 @@ def cleanup_front(front_opened_control, mines):
     return new_front, to_open
 
 
-def direct_extraction(front_opened_control,board_state,markings_state):
-    """
-    1 (1, 0) [(0, 0), (0, 1)]
-    1 (1, 3) [(0, 3), (0, 2), (0, 4), (2, 4), (1, 4)]
-    1 (2, 3) [(1, 4), (3, 4), (2, 4)]
-    1 (4, 2) [(4, 3)] -> remove this, add to mines
-    2 (1, 1) [(0, 1), (0, 0)] -> remove this, add to mines
-    2 (1, 2) [(0, 2), (0, 1), (0, 3)]
-    3 (3, 3) [(2, 4), (4, 3), (4, 4), (3, 4)]
 
-    """
-
-    new_front_opened = defaultdict(dict)
-    mines = set()
-
-    for cardinality, tiles in front_opened_control.items():
-
-        to_remove = []
-        for t, t_b_d in tiles.items():
-
-            if cardinality == len(t_b_d):
-                [mines.add(i) for i in t_b_d]
-                to_remove.append(t)
-            else:
-                new_front_opened[cardinality][t] = t_b_d
-
-        [tiles.pop(i) for i in to_remove]
-    # print()
-
-    for r, c in mines:
-        board_state[r][c] = markings_state["mine"]
-
-    # front_opened_control = new_front_opened
-
-    return new_front_opened, mines
 
 
 def print_boards(board, board_state):
     [print([str(j) for j in i], l) for i, l in zip(board, board_state)]
 
-
+from solvable_checker.constants import markings, markings_state
 def main():
-    markings = {
-        "mine": "x",
-        "user": "u",
-        "empty": 0
-    }
-    markings_state = {
-        "open": "o",
-        "closed": " ",
-        "mine": "m"
-    }
 
-    num_of_rows = 5
+    num_of_rows = 10
     num_of_columns = 5
-    num_of_mines = 5
+    num_of_mines = 15
     user_row = 3
     user_column = 2
 
-    # can not be mine
-    # can not be number other than 0 because then you need to guess
-    board = generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
-                   user_row, user_column)
-
-    board_state = [[markings_state["closed"] for _ in range(num_of_columns)] for
-                   _ in range(num_of_rows)]
-
-    open_tile(board, board_state, user_row, user_column, num_of_columns,
-             num_of_rows, markings_state, markings)
+    board, board_state = generate_board_with_first_move(num_of_rows,
+                                                        num_of_columns,
+                                                        num_of_mines, user_row,
+                                                        user_column)
 
     print_boards(board, board_state)
 
     # todo handle user
 
-    # return
+    mines_location = solve_board(markings, board, markings_state, board_state)
 
-    solve_board(markings, board, markings_state, board_state)
-    # print()
+    print("main mines", mines_location)
+
+    correct_mines_location = set()
+    for i, r in enumerate(board):
+        for j, elem in enumerate(r):
+            if elem == markings["mine"]:
+                correct_mines_location.add((i, j))
+
+    # if all([i for i in mines_location])
+    if mines_location.issubset(correct_mines_location):
+        print("all found mines are correct")
+
+    else:
+        print("mines wrongly detected, marked wrongly but not dead")
+
+    assert len(mines_location), num_of_mines
 
 
 if __name__ == '__main__':
     main()
-
