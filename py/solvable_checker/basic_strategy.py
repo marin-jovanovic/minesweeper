@@ -36,6 +36,7 @@ def basic_strategy(front_opened, board_state, markings_state, board,
                         board_state[r][c] = markings_state["open"]
                     is_sth_changed = True
 
+        # fixme recursion infinite error
         # front_opened = defaultdict(dict)
         front_opened = create_front(board, board_state, front_opened,
                                     num_of_columns,
@@ -51,7 +52,7 @@ def basic_strategy(front_opened, board_state, markings_state, board,
     # , front_opened,
 
 
-def direct_extraction(front_opened_control, board_state, markings_state):
+def direct_extraction(front, board_state, markings_state):
     """
     1 (1, 0) [(0, 0), (0, 1)]
     1 (1, 3) [(0, 3), (0, 2), (0, 4), (2, 4), (1, 4)]
@@ -66,7 +67,7 @@ def direct_extraction(front_opened_control, board_state, markings_state):
     new_front_opened = defaultdict(dict)
     mines = set()
 
-    for cardinality, tiles in front_opened_control.items():
+    for cardinality, tiles in front.items():
 
         to_remove = []
         for t, t_b_d in tiles.items():

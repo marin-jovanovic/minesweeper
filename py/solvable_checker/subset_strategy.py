@@ -34,11 +34,11 @@ def subset_strategy(front, board_state, markings_state, board,
     # [[print( i[0], j[0],j[1]) for j in i[1].items()] for i in front.items()]
     # print()
 
-    print("subsets")
+    # print("subsets")
     front, is_sth_changed = subset_cleaner(front)
-    print()
-    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front.items()]
+    # print()
+    # [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
+    #  front.items()]
 
     if is_sth_changed:
         return game_status["solution not found"], get_all_mines(board_state, markings_state), front, "changed"
