@@ -17,6 +17,9 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
     num_of_rows = num_of_rows if num_of_rows else len(board)
     num_of_columns = num_of_columns if num_of_columns else len(board[0])
 
+    # num_of_mines location list_of_closed_tiles
+    # 1 (6, 1) [(7, 1), (7, 0)]
+    # 1 (7, 2) [(6, 3), (8, 2), (8, 1), (8, 3), (7, 3), (7, 1)]
     front = create_front(board, board_state, None, num_of_columns, num_of_rows)
 
     print()
@@ -57,10 +60,14 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
 
         c = 0
-        for i,j in front.items():
+        for i, j in front.items():
             for k, l in j.items():
                 c += 1
-        print(f"{c=}")
+        print(f"num of rows = {c}")
+
+        # todo remove duplicates
+        # 1 (6, 0) [(7, 0), (7, 1)]
+        # 1 (6, 1) [(7, 1), (7, 0)]
 
         status, mines, front, change_status = subset_strategy(front, board_state, markings_state, board,
                    markings,
