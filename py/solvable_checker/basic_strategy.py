@@ -6,7 +6,7 @@ from solvable_checker.util import get_all_mines, create_front, what_is_targetabl
 from solvable_checker.constants import markings, markings_state
 
 
-def basic_strategy(front_opened, board_state, markings_state, board,
+def basic_strategy(front, board_state, markings_state, board,
                    markings,
                    num_of_columns,
                    num_of_rows, ):
@@ -22,8 +22,8 @@ def basic_strategy(front_opened, board_state, markings_state, board,
     """
     is_sth_changed = True
     while is_sth_changed:
-        front_opened, new_mines = direct_extraction(front_opened, board_state,
-                                                    markings_state)
+        front, new_mines = direct_extraction(front, board_state,
+                                             markings_state)
 
         is_sth_changed = True if new_mines else False
 
@@ -33,9 +33,9 @@ def basic_strategy(front_opened, board_state, markings_state, board,
         0 [(3, 0)] -> remove, open
         """
         what_is_opened = set()
-        for cardinality, tiles in front_opened.items():
+        for cardinality, j in front.items():
 
-            for t, t_b_d in tiles.items():
+            for t, t_b_d in j.items():
 
                 if cardinality == 0:
                     for r, c in t_b_d:
@@ -51,45 +51,45 @@ def basic_strategy(front_opened, board_state, markings_state, board,
 
         if what_is_opened:
             print("----")
+            [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
+             front.items()]
+            print("----")
+
             for i in what_is_opened:
                 r, c = i[0], i[1]
-
-                print(r,c)
 
                 targetable = what_is_targetable(r, c, num_of_rows,
                                                 num_of_columns)
 
-                for j in targetable:
-                    if board_state[j[0]][j[1]] == markings_state["open"]:
-                        print("update", j)
+                for neighbour in targetable:
+                    if board_state[neighbour[0]][neighbour[1]] == markings_state["open"]:
 
                         is_found = False
-                        curr_num = -1
+                        curr_cardinality = -1
                         tmp = None
-                        for k, m in front_opened.items():
-                            print(k, m)
-                            curr_num = k
-                            for n, p in m.items():
-                                if n == j:
+                        for cardinality, j in front.items():
+                            curr_cardinality = cardinality
+                            for n, p in j.items():
+                                if n == neighbour:
                                     is_found = True
-                                    print("this")
-
-                                    tmp = m.pop(n)
-                                    print("poped", tmp)
-                                    print(j in tmp)
-                                    tmp.remove(j)
-                                    # m[j] ==
+                                    tmp = j.pop(n)
+                                    tmp.remove(i)
                                     break
 
                             if is_found:
                                 break
-                                    # front_opened.pop()
                         if tmp:
-                            front_opened[curr_num - 1][j] = tmp
+                            # if tmp = set() then skip
+                            # 0 (5, 1) [(6, 2)]
+                            # ----
+                            # after {(6, 2)}
+                            front[curr_cardinality - 1][neighbour] = tmp
 
-                        [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-                         front_opened.items()]
+            print("after", what_is_opened)
+            [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
+             front.items()]
 
+            # todo mines
             sys.exit()
 
 
@@ -99,12 +99,12 @@ def basic_strategy(front_opened, board_state, markings_state, board,
         #                             num_of_columns,
         #                             num_of_rows, mines_present=True)
 
-        if not front_opened:
+        if not front:
             print("all tiles opened and all mines marked")
             return game_status["solution found"], get_all_mines(board_state,
-                                                                markings_state), front_opened
+                                                                markings_state), front
 
-    return game_status["solution not found"], None, front_opened
+    return game_status["solution not found"], None, front
 
 
 def update_front(board, board_state, front_opened_control, num_of_columns,
