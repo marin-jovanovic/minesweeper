@@ -2,8 +2,13 @@ from solvable_checker.constants import markings, markings_state
 
 constraints_log = {}
 
+# for cardinality, tiles in front.items():
+#
+#     to_remove = []
+#     for t, t_b_d in tiles.items():
 
-def what_is_targetable(row, column, num_of_rows, num_of_columns):
+
+def get_tile_neighbours(row, column, num_of_rows, num_of_columns):
     if (row, column) in constraints_log:
         return constraints_log[(row, column)]
 
@@ -74,8 +79,8 @@ def create_front(board, board_state, front_opened_control, num_of_columns,
                     if not mines_present:
                         continue
 
-                targetable = what_is_targetable(i, j, num_of_rows,
-                                                num_of_columns)
+                targetable = get_tile_neighbours(i, j, num_of_rows,
+                                                 num_of_columns)
                 targetable_filtered = []
                 cardinality_decrementer = 0
 
@@ -97,3 +102,7 @@ def create_front(board, board_state, front_opened_control, num_of_columns,
                         raise e
 
     return front
+
+
+def print_boards(board, board_state):
+    [print([str(j) for j in i], l) for i, l in zip(board, board_state)]

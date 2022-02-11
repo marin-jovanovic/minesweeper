@@ -1,4 +1,4 @@
-from solvable_checker.util import what_is_targetable
+from solvable_checker.util import get_tile_neighbours
 
 
 def open_zero(board, board_state, curr_column, curr_row, num_of_columns,
@@ -15,8 +15,8 @@ def open_zero(board, board_state, curr_column, curr_row, num_of_columns,
     if (board[curr_row][curr_column] == markings["empty"]) \
             or board[curr_row][curr_column] == markings["user"]:
 
-        for r, c in what_is_targetable(curr_row, curr_column, num_of_rows,
-                                       num_of_columns):
+        for r, c in get_tile_neighbours(curr_row, curr_column, num_of_rows,
+                                        num_of_columns):
             open_zero(board, board_state, c, r, num_of_columns,
                       num_of_rows, markings_state, markings)
 

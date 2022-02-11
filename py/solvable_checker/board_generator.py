@@ -2,7 +2,7 @@ from random import randint
 
 from solvable_checker.constants import markings_state, markings
 from solvable_checker.tile_opener import open_tile
-from solvable_checker.util import what_is_targetable
+from solvable_checker.util import get_tile_neighbours
 
 
 def generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
@@ -10,8 +10,8 @@ def generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
     # todo check restrictions
     board = [[0 for _ in range(num_of_columns)] for _ in range(num_of_rows)]
 
-    for r, c in what_is_targetable(user_row, user_column,
-                                   num_of_rows, num_of_columns):
+    for r, c in get_tile_neighbours(user_row, user_column,
+                                    num_of_rows, num_of_columns):
         board[r][c] = markings["user"]
 
     occupied_tiles = {(user_row, user_column)}
@@ -19,8 +19,8 @@ def generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
     place_mines(board, markings, num_of_columns, num_of_mines, num_of_rows,
                 occupied_tiles)
 
-    for r, c in what_is_targetable(user_row, user_column,
-                                   num_of_rows, num_of_columns):
+    for r, c in get_tile_neighbours(user_row, user_column,
+                                    num_of_rows, num_of_columns):
         board[r][c] = markings["empty"]
 
     place_hints(board, markings, num_of_columns, num_of_rows)
@@ -33,8 +33,8 @@ def place_hints(board, markings, num_of_columns, num_of_rows):
         for curr_column in range(num_of_columns):
             if board[curr_row][curr_column] == markings["mine"]:
 
-                for r, c in what_is_targetable(curr_row, curr_column,
-                                               num_of_rows, num_of_columns):
+                for r, c in get_tile_neighbours(curr_row, curr_column,
+                                                num_of_rows, num_of_columns):
                     set_if_not_user_or_mine(board, markings, r,
                                             c)
 

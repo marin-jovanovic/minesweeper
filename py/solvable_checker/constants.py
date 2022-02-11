@@ -1,3 +1,5 @@
+import enum
+
 game_status = {
     "solution found": 0,
     "solution not found": 1,
@@ -12,3 +14,16 @@ markings_state = {
     "closed": " ",
     "mine": "m"
 }
+
+
+class Markings(enum.Enum):
+    MINE = "x"
+    USER = "u"
+    EMPTY = 0
+
+class MarkingsState(enum.Enum):
+    OPEN = "o"
+    CLOSED = " "
+    MINE = "m"
+    # todo
+    # UNKNOWN = "?"

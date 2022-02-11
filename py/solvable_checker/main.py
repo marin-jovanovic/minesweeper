@@ -5,7 +5,7 @@ from solvable_checker.board_generator import generate_board_with_first_move
 from solvable_checker.constants import game_status
 from solvable_checker.constants import markings, markings_state
 from solvable_checker.util import get_all_mines, \
-    create_front
+    create_front, print_boards
 from solvable_checker.subset_strategy import subset_strategy
 
 
@@ -180,10 +180,6 @@ def cleanup_front(front_opened_control, mines):
                 new_front[cardinality - cardinality_decrementer][t] = new_t_b_d
 
     return new_front, to_open
-
-
-def print_boards(board, board_state):
-    [print([str(j) for j in i], l) for i, l in zip(board, board_state)]
 
 
 def main():
