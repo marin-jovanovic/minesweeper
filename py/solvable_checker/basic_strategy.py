@@ -40,29 +40,38 @@ def basic_strategy(front, board_state, markings_state, board,
     1 [(2, 0), (2, 2)] -> nothing
 
     """
+
+    # [[print(i[0], tile[0], tile[1]) for tile in i[1].items()] for i in
+    #  front.items()]
+
     is_sth_changed = True
     while is_sth_changed:
-        # print("---- beforew miens")
-        # [[print(i[0], tile[0], tile[1]) for tile in i[1].items()] for i in
-        #  front.items()]
-        # print()
-
-        # new_front = recalculate_front(board, board_state, front, num_of_columns,
-        #                               num_of_rows)
-        #
-        # [[print(i[0], tile[0], tile[1]) for tile in i[1].items()] for i in
-        #  new_front.items()]
-        #
-        # sys.exit()
-        #
-        # print_boards(board, board_state)
-        # print("----")
 
         front, new_mines = direct_extraction(front, board_state,
                                              markings_state)
 
         # todo check if needed
-        front = recalculate_front(board, board_state, front,num_of_columns, num_of_rows)
+        # front = recalculate_front(board, board_state, front,num_of_columns, num_of_rows)
+
+        if new_mines:
+
+            for i in new_mines:
+                r, c = i[0], i[1]
+
+                for neighbour in get_tile_neighbours(r, c, num_of_rows,
+                                                 num_of_columns):
+
+                    if board_state[neighbour[0]][neighbour[1]] == markings_state["open"]:
+
+                        for cardinality, tile_composite_dict in front.items():
+                            if neighbour in tile_composite_dict:
+                                tmp = tile_composite_dict.pop(neighbour)
+                                tmp.remove(i)
+
+                                if tmp:
+                                    front[cardinality - 1][neighbour] = tmp
+
+                                break
 
         is_sth_changed = True if new_mines else False
 
@@ -82,12 +91,7 @@ def basic_strategy(front, board_state, markings_state, board,
                         board_state[r][c] = markings_state["open"]
                     is_sth_changed = True
 
-        # todo iterate over all current rows and update them
-        # todo add opened to rows
-
-        # todo iter over what is opened and add to rows
-        # todo go over all neiqhbours of what is opeend and update their opened neigh.
-
+        # front = recalculate_front(board, board_state, front,num_of_columns, num_of_rows)
 
         # iterate over newly opened tiles and add them to front, update their neigh.
         if what_is_opened:
@@ -105,25 +109,12 @@ def basic_strategy(front, board_state, markings_state, board,
                                 tmp = tile_composite_dict.pop(neighbour)
                                 tmp.remove(i)
 
-                                # todo check if tmp is empty
                                 if tmp:
                                     front[cardinality - 1][neighbour] = tmp
 
                                 break
 
-            # print("after", what_is_opened)
-            # [[print(i[0], tile[0], tile[1]) for tile in i[1].items()] for i in
-            #  front.items()]
-
-
-
             # todo mines
-
-
-        # # # fixme recursion infinite error
-        # front_opened = update_front(board, board_state, front_opened,
-        #                             num_of_columns,
-        #                             num_of_rows, mines_present=True)
 
         if not front:
             print("all tiles opened and all mines marked")
@@ -137,12 +128,10 @@ def recalculate_front(board, board_state, front, num_of_columns, num_of_rows):
     new_front = defaultdict(dict)
     for a, b in front.items():
         for c, d in b.items():
-            # print(c,a,d)
             cardinality, tile, t_b_d = recalculate_tile_info(c[0], c[1],
                                                              num_of_rows,
                                                              num_of_columns,
                                                              board_state, board)
-            # print(t[1], t[0], t[2])
 
             new_front[cardinality][tile] = t_b_d
     return new_front

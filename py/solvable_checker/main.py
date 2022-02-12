@@ -60,8 +60,8 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
 
         c = 0
-        for i, j in front.items():
-            for k, l in j.items():
+        for _, j in front.items():
+            for _ in j.items():
                 c += 1
         print(f"num of rows = {c}")
 
@@ -83,6 +83,55 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         print("after subset strategy")
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
         print_boards(board, board_state)
+
+
+        # todo extract, already used in basic strategy
+        """
+        handle 
+        0 (a, b) [(2, 0), (2, 2), (4, 0), (3, 0)]
+        0 [(3, 0)] -> remove, open
+        """
+        what_is_opened = set()
+        for cardinality, tile_composite_dict in front.items():
+
+            for tile, t_b_d in tile_composite_dict.items():
+
+                if cardinality <= 0:
+                    for r, c in t_b_d:
+                        what_is_opened.add((r, c))
+                        board_state[r][c] = markings_state["open"]
+                    is_sth_changed = True
+
+        # fixme
+        # iteration=42798
+        # after removing cardinality == len and cardinality == 0
+        # ['0', '0', '1', '1', '1'] ['o', 'o', 'o', 'o', ' ']
+        # ['0', '0', '1', 'x', '1'] ['o', 'o', 'o', 'm', 'o']
+        # ['0', '0', '1', '1', '1'] ['o', 'o', 'o', 'o', 'o']
+        # ['1', '1', '0', '1', '1'] ['o', 'o', 'o', 'o', 'o']
+        # ['x', '3', '2', '3', 'x'] ['m', 'o', 'o', 'o', 'o']
+        # ['x', 'x', '4', 'x', 'x'] ['o', 'o', 'm', 'm', 'm']
+        # ['x', 'x', '5', 'x', '3'] [' ', ' ', ' ', ' ', ' ']
+        # ['x', 'x', '5', '2', '2'] [' ', ' ', ' ', ' ', ' ']
+        # ['3', 'x', '3', 'x', '2'] [' ', ' ', ' ', ' ', ' ']
+        # ['1', '1', '2', '2', 'x'] [' ', ' ', ' ', ' ', ' ']
+        #
+        # -1 (3, 3) [(4, 4)]
+        # num of rows = 1
+        #
+        # after subset strategy
+        # -1 (3, 3) [(4, 4)]
+        # ['0', '0', '1', '1', '1'] ['o', 'o', 'o', 'o', ' ']
+        # ['0', '0', '1', 'x', '1'] ['o', 'o', 'o', 'm', 'o']
+        # ['0', '0', '1', '1', '1'] ['o', 'o', 'o', 'o', 'o']
+        # ['1', '1', '0', '1', '1'] ['o', 'o', 'o', 'o', 'o']
+        # ['x', '3', '2', '3', 'x'] ['m', 'o', 'o', 'o', 'o']
+        # ['x', 'x', '4', 'x', 'x'] ['o', 'o', 'm', 'm', 'm']
+        # ['x', 'x', '5', 'x', '3'] [' ', ' ', ' ', ' ', ' ']
+        # ['x', 'x', '5', '2', '2'] [' ', ' ', ' ', ' ', ' ']
+        # ['3', 'x', '3', 'x', '2'] [' ', ' ', ' ', ' ', ' ']
+        # ['1', '1', '2', '2', 'x'] [' ', ' ', ' ', ' ', ' ']
+
 
         # 1 (3, 3) [(2, 4), (4, 4), (3, 4)]
         # 1 (4, 1) [(2, 4), (4, 4), (3, 4), (x, y)] -> mark (x, y) as safe
