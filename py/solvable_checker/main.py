@@ -32,6 +32,18 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
     # this must not be reinitialized
     mines = set()
 
+    # fixme
+    # ['1', '1', '0', '1', '1'] [' ', 'o', 'o', 'o', ' ']
+    # ['x', '1', '0', '1', 'x'] [' ', 'o', 'o', 'o', ' ']
+    # ['2', '2', '0', '1', '1'] [' ', 'o', 'o', 'o', ' ']
+    # ['x', '1', '0', '1', '1'] [' ', 'o', 'o', 'o', ' ']
+    # ['1', '1', '1', '2', 'x'] [' ', 'o', 'o', 'o', ' ']
+    # ['0', '1', '2', 'x', '2'] [' ', ' ', ' ', ' ', ' ']
+    # ['1', '2', 'x', '3', '2'] [' ', ' ', ' ', ' ', ' ']
+    # ['2', 'x', '5', 'x', '1'] [' ', ' ', ' ', ' ', ' ']
+    # ['3', 'x', 'x', '3', '2'] [' ', ' ', ' ', ' ', ' ']
+    # ['x', '3', '3', 'x', '1'] [' ', ' ', ' ', ' ', ' ']
+
     iteration = 0
     is_sth_changed = True
     while is_sth_changed:
@@ -89,14 +101,14 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         # todo extract, already used in basic strategy
         """
         handle 
-        0 (a, b) [(2, 0), (2, 2), (4, 0), (3, 0)]
-        0 [(3, 0)] -> remove, open
+        0 (a, b) [(2, 0), (2, 2), (4, 0), (3, 0)] -> remove, open
+        -1 (a, b) [(2, 0), (2, 2), (4, 0), (3, 0)] -> remove, open
+        -5 [(3, 0)] -> remove, open
         """
+
         what_is_opened = set()
         to_remove = set()
         for cardinality, tile_composite_dict in front.items():
-            rm = None
-            # f = True
 
             if cardinality <= 0:
                 for tile, t_b_d in tile_composite_dict.items():
@@ -104,12 +116,7 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
                         what_is_opened.add((r, c))
                         board_state[r][c] = markings_state["open"]
 
-                f = True
                 to_remove.add(cardinality)
-
-            # if f:
-            #     front.pop(cardinality)
-
 
         for i in to_remove:
             front.pop(i)
@@ -118,26 +125,7 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
         print_boards(board, board_state)
 
-
     return get_all_mines(board_state, markings_state)
-
-    print(80 * "-")
-    print(f"{click_log=}")
-    print(f"{mines=}")
-
-    print()
-    [print(i) for i in board_state]
-    print()
-    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-     front.items()]
-    print()
-
-    # if 0 in front:
-    #     print("cleanup", front[0])
-
-    # front = subset_cleaner(front)
-    # [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in
-    #  front.items()]
 
 
 def remove_mines_from_board_state(front, mines):
