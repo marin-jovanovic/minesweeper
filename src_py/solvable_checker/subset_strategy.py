@@ -1,7 +1,7 @@
 from collections import defaultdict
-from solvable_checker.constants import game_status
+from src_py.solvable_checker.constants import game_status
 
-from solvable_checker.util import get_all_mines, create_front
+from src_py.solvable_checker.util import get_all_mines, create_front
 
 def subset_strategy(front, board_state, markings_state, board,
                    markings,

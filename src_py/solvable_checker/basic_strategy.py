@@ -1,12 +1,12 @@
 import sys
 from collections import defaultdict
 
-from solvable_checker.constants import game_status
-from solvable_checker.util import get_all_mines, create_front, get_tile_neighbours
-from solvable_checker.constants import markings, markings_state
+from src_py.solvable_checker.constants import game_status
+from src_py.solvable_checker.util import get_all_mines, create_front, get_tile_neighbours
+from src_py.solvable_checker.constants import markings, markings_state
 # from solvable_checker.main import print_boards
-from solvable_checker.util import print_boards
-from solvable_checker.constants import Markings, MarkingsState
+from src_py.solvable_checker.util import print_boards
+from src_py.solvable_checker.constants import Markings, MarkingsState
 
 
 def recalculate_tile_info(r, c,num_of_rows,num_of_columns, board_state, board):

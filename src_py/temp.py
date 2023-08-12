@@ -3,8 +3,8 @@ from tkinter import filedialog
 from tkinter import *
 
 # for multiple extensions use this
-# extensions = (".java", ".py", ".c")
-extensions = ".py"
+# extensions = (".java", ".src_py", ".c")
+extensions = ".src_py"
 
 
 def get_num_of_lines_in_file(path):

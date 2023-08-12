@@ -1,4 +1,4 @@
-from solvable_checker.util import get_tile_neighbours
+from src_py.solvable_checker.util import get_tile_neighbours
 
 
 def open_zero(board, board_state, curr_column, curr_row, num_of_columns,

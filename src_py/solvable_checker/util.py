@@ -1,4 +1,5 @@
-from solvable_checker.constants import markings, markings_state
+from src_py.solvable_checker.constants import markings, markings_state
+from collections import defaultdict
 
 constraints_log = {}
 
@@ -68,7 +69,6 @@ def create_front(board, board_state, front_opened_control, num_of_columns,
     # todo add option to iterate over prev closed so that you do not need to
     #   check alr. opened
 
-    from collections import defaultdict
     front = defaultdict(dict)
 
     for i, row in enumerate(board_state):

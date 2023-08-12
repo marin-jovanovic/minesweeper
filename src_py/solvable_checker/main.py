@@ -1,16 +1,21 @@
 from collections import defaultdict
 
-from solvable_checker.basic_strategy import basic_strategy
-from solvable_checker.board_generator import generate_board_with_first_move
-from solvable_checker.constants import game_status
-from solvable_checker.constants import markings, markings_state
-from solvable_checker.util import get_all_mines, \
+from src_py.solvable_checker.basic_strategy import basic_strategy
+from src_py.solvable_checker.board_generator import generate_board_with_first_move
+from src_py.solvable_checker.constants import game_status
+from src_py.solvable_checker.constants import markings, markings_state
+from src_py.solvable_checker.util import get_all_mines, \
     create_front, print_boards
-from solvable_checker.subset_strategy import subset_strategy
+from src_py.solvable_checker.subset_strategy import subset_strategy
 
 
-def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
-                num_of_columns=None):
+def solve_board(
+        markings,
+        board,
+        markings_state,
+        board_state,
+        num_of_rows=None,
+        num_of_columns=None):
     # todo add hints
     #   need click log
     #       click_log = set()
@@ -23,26 +28,12 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
     # 1 (7, 2) [(6, 3), (8, 2), (8, 1), (8, 3), (7, 3), (7, 1)]
     front = create_front(board, board_state, None, num_of_columns, num_of_rows)
 
-    print()
-    [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
-    print()
-
-    # todo run this while new mines can be extracted
+    # print()
+    # [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
+    # print()
 
     # this must not be reinitialized
     mines = set()
-
-    # fixme
-    # ['1', '1', '0', '1', '1'] [' ', 'o', 'o', 'o', ' ']
-    # ['x', '1', '0', '1', 'x'] [' ', 'o', 'o', 'o', ' ']
-    # ['2', '2', '0', '1', '1'] [' ', 'o', 'o', 'o', ' ']
-    # ['x', '1', '0', '1', '1'] [' ', 'o', 'o', 'o', ' ']
-    # ['1', '1', '1', '2', 'x'] [' ', 'o', 'o', 'o', ' ']
-    # ['0', '1', '2', 'x', '2'] [' ', ' ', ' ', ' ', ' ']
-    # ['1', '2', 'x', '3', '2'] [' ', ' ', ' ', ' ', ' ']
-    # ['2', 'x', '5', 'x', '1'] [' ', ' ', ' ', ' ', ' ']
-    # ['3', 'x', 'x', '3', '2'] [' ', ' ', ' ', ' ', ' ']
-    # ['x', '3', '3', 'x', '1'] [' ', ' ', ' ', ' ', ' ']
 
     iteration = 0
     is_sth_changed = True
@@ -82,7 +73,8 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         # 1 (6, 0) [(7, 0), (7, 1)]
         # 1 (6, 1) [(7, 1), (7, 0)]
 
-        status, mines, front, change_status = subset_strategy(front, board_state, markings_state, board,
+        status, mines, front, change_status = subset_strategy(
+            front, board_state, markings_state, board,
                    markings,
                    num_of_columns,
                    num_of_rows, )
@@ -96,7 +88,6 @@ def solve_board(markings, board, markings_state, board_state, num_of_rows=None,
         print("after subset strategy")
         [[print(i[0], j[0], j[1]) for j in i[1].items()] for i in front.items()]
         print_boards(board, board_state)
-
 
         # todo extract, already used in basic strategy
         """
@@ -198,17 +189,25 @@ def cleanup_front(front_opened_control, mines):
 
 def main():
     num_of_rows = 10
-    num_of_columns = 5
-    num_of_mines = 15
+    num_of_columns = 9
+    num_of_mines = 17
     user_row = 3
     user_column = 2
 
-    board, board_state = generate_board_with_first_move(num_of_rows,
-                                                        num_of_columns,
-                                                        num_of_mines, user_row,
-                                                        user_column)
+    print(f"user started game with clicking on {user_row=} {user_column=}")
+
+    board, board_state = generate_board_with_first_move(
+        num_of_rows,
+        num_of_columns,
+        num_of_mines,
+        user_row,
+        user_column
+    )
 
     print_boards(board, board_state)
+
+    raise NotImplementedError
+
 
     # todo handle user
 

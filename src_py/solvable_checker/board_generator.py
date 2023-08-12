@@ -1,12 +1,19 @@
 from random import randint
 
-from solvable_checker.constants import markings_state, markings
-from solvable_checker.tile_opener import open_tile
-from solvable_checker.util import get_tile_neighbours
+from src_py.solvable_checker.constants import markings_state, markings
+from src_py.solvable_checker.tile_opener import open_tile
+from src_py.solvable_checker.util import get_tile_neighbours
 
 
 def generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
                    user_row, user_column):
+    """
+
+    return:
+        board: 2d array
+
+    """
+
     # todo check restrictions
     board = [[0 for _ in range(num_of_columns)] for _ in range(num_of_rows)]
 
@@ -59,11 +66,14 @@ def set_if_not_user_or_mine(board, markings, r, c):
         board[r][c] += 1
 
 
-def generate_board_with_first_move(num_of_rows, num_of_columns, num_of_mines,
+def generate_board_with_first_move(
+        num_of_rows, num_of_columns, num_of_mines,
                                    user_row, user_column):
+
     # can not be mine
     # can not be number other than 0 because then you need to guess
-    board = generate_board(markings, num_of_rows, num_of_columns, num_of_mines,
+    board = generate_board(
+        markings, num_of_rows, num_of_columns, num_of_mines,
                            user_row, user_column)
 
     board_state = [[markings_state["closed"] for _ in range(num_of_columns)] for
